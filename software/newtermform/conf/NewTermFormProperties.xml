@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+
+    <ConfigurableItems>
+
+        <ConfigurableItem>
+                 <key>NEWTERMFORM_BUILD_INFO</key>
+                 <value>@newtermform.build.info@</value>
+        </ConfigurableItem>
+
+    </ConfigurableItems>
+
+</root>
