@@ -6,8 +6,10 @@
   <ul>
     <li><a href="http://www.cancer.gov" target="_blank" 
       alt="National Cancer Institute">NCI Home</a> |
+<%--      
     <li><a href="<%= request.getContextPath() %>/pages/contact_us.jsf"
       alt="NCIt Contact Us">Contact Us</a> |</i>
+--%>      
     <li><a href="http://www.cancer.gov/policies" target="_blank"
       alt="National Cancer Institute Policies">Policies</a> |</li>
     <li><a href="http://www.cancer.gov/policies/page4" target="_blank"
