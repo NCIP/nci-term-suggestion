@@ -1,8 +1,5 @@
 <html>
  <body>
-  <jsp:forward page="/pages/main.jsp">
-    <jsp:param name="content_title" value="Change Request"/>
-    <jsp:param name="content_page" value="change_request.jsp"/>
-  </jsp:forward>
+  <jsp:forward page="/pages/change_request.jsp"/>
  </body>
 </html>
