@@ -1,4 +1,4 @@
-<!-- File: change_request.jsp (Begin) -->
+<!-- File: content_change_request.jsp (Begin) -->
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
@@ -9,7 +9,7 @@
   String phone = "phone";
   String email = "email";
 %>
-<form method="post">
+<h:form method="post">
   <table>
     <tr>
       <td>First Name:</td>
@@ -37,7 +37,7 @@
       </td>
       <td/>
       <td align="right"><INPUT type="submit" name="submit" value="Proceed"></td>
-    </tr>
+      </tr>
   </table>
-</form>
-<!-- File: change_request.jsp (End) -->
+</h:form>
+<!-- File: content_change_request.jsp (End) -->
