@@ -40,5 +40,4 @@
       alt="USA.gov" />
   </map>
 </div>
-</div>
 <!-- File: footer.jsp (End) -->
