@@ -5,6 +5,7 @@
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
 <%
+  int i=0;
   List list = null;
   Iterator iterator = null;
   String selectedItem = null;
@@ -12,6 +13,7 @@
   String conceptCode = "conceptCode";
   LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.DEFINITION;
   String modification = "modification";
+  LBUtils.PROPERTY_ACTION action = LBUtils.PROPERTY_ACTION.Modify;
   String notes = "notes";
 %>
 <h:form method="post">
@@ -74,7 +76,7 @@
     <%
       list = LBUtils.getPropertyList(property);
       iterator = list.iterator();
-      int i=0;
+      i=0;
       while (iterator.hasNext()) {
         String item = (String) iterator.next();
         String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight"; ++i;
@@ -93,9 +95,21 @@
     <tr>
       <td><textarea class="textbody" name="modification" alt="modification" rows="4" cols="50"><%=modification%></textarea></td>
       <td valign="top">
-        <a href="http://www.google.com">Add</a>
-        <br/><a href="http://www.google.com">Modify</a>
-        <br/><a href="http://www.google.com">Delete</a>
+        <table>
+          <%
+            LBUtils.PROPERTY_ACTION[] items = LBUtils.PROPERTY_ACTION.values();
+            for (i=0; i<items.length; ++i) {
+              String item = items[i].name();
+              String checked = item==action.name() ? "checked=\"checked\" " : "";
+          %>
+            <tr>
+              <td valign="top"><input type="radio" name="action" value="<%=item%> <%=checked%>"/></td>
+              <td colspan="2"><%=item%></td>
+            </tr>
+          <%
+            }
+          %>
+        </table>
       </td>
     </tr>
   </table>

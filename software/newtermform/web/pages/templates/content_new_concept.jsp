@@ -44,14 +44,14 @@
       <td><input name="conceptName" value="<%=conceptName%>" alt="conceptName" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
-      <% String checkParent = radioConcept==ParentConcept ? "checked=\"checked\" " : ""; %>
-      <td><input type="radio" name="radioConcept" value="Parent Concept" <%=checkParent%>/></td>
+      <% String checked = radioConcept==ParentConcept ? "checked=\"checked\" " : ""; %>
+      <td><input type="radio" name="radioConcept" value="Parent Concept" <%=checked%>/></td>
       <td>Parent Concept:</td>
       <td><input name="parentConcept" value="<%=parentConcept%>" alt="parentConcept" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
-      <% String checkNearest = radioConcept==NearestConcept ? "checked=\"checked\" " : ""; %>
-      <td><input type="radio" name="radioConcept" value="Nearest Concept" <%=checkNearest%>/></td>
+      <% checked = radioConcept==NearestConcept ? "checked=\"checked\" " : ""; %>
+      <td><input type="radio" name="radioConcept" value="Nearest Concept" <%=checked%>/></td>
       <td>Nearest Concept:</td>
       <td><input name="nearestConcept" value="<%=nearestConcept%>" alt="nearestConcept" <%=INPUT_ARGS%>></td>
     </tr>

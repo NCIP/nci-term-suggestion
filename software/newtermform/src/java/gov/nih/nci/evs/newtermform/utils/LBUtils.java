@@ -22,6 +22,8 @@ public class LBUtils {
         }
     };
     
+    public static enum PROPERTY_ACTION { Add, Modify, Delete }
+
     public static List<String> getVocabularyList() {
         ArrayList<String> list = new ArrayList<String>();
         list.add("BioC_0902D");
