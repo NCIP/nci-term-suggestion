@@ -22,25 +22,8 @@ public class LBUtils {
         }
     };
     
-    public static enum MODIFIABLE_PROPERTY { 
-        DEFINITION("Definition"), SYNONYM("Synonym"), OTHERS("Others");
-        
-        private String _name = "";
-        private void setName(String name) { _name = name; }
-        public String getName() { return _name; }
-        
-        private MODIFIABLE_PROPERTY(String name){
-            setName(name);
-        }
-        
-        public static List<String> getNameList() {
-            ArrayList<String> list = new ArrayList<String>();
-            for (MODIFIABLE_PROPERTY item : values())
-                list.add(item.getName());
-            return list;
-        }
-    };
-    
+    public static enum MODIFIABLE_PROPERTY { Definition, Synonym, Others }
+
     public static enum PROPERTY_ACTION { Add, Modify, Delete }
 
     public static List<String> getVocabularyList() {
@@ -55,11 +38,11 @@ public class LBUtils {
     
     public static List<String> getPropertyList(MODIFIABLE_PROPERTY property) {
         ArrayList<String> list = new ArrayList<String>();
-        if (property == MODIFIABLE_PROPERTY.DEFINITION) {
+        if (property == MODIFIABLE_PROPERTY.Definition) {
             list.add("Definition: A liquid tissue; its major function is to transport oxygen throughout the body. It also supplies the tissues with nutrients, removes waste products, and contains various components of the immune system defending the body against infection. Several hormones also travel in the blood.");
             list.add("CDISC Definition: A liquid tissue with the primary function of transporting oxygen and carbon dioxide. It supplies the tissues with nutrients, removes waste products, and contains various components of the immune system defending the body against infection.");
             list.add("NCI-GLOSS Definition: Blood circulating throughout the body.");
-        } else if (property == MODIFIABLE_PROPERTY.SYNONYM) {
+        } else if (property == MODIFIABLE_PROPERTY.Synonym) {
             list.add("Term: Blood; Source: CTRM; Type: DN");      
             list.add("Term: BLOOD; Source: CDISC; Type: PT");  
             list.add("Term: Blood; Source: NCI; Type: PT");  

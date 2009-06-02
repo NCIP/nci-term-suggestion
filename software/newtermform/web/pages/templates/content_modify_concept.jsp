@@ -5,16 +5,16 @@
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
 <%
+  String vocabulary = "CDISC_0902D";
+  String conceptCode = "conceptCode";
+  LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.Synonym;
+  String modification = "modification";
+  LBUtils.PROPERTY_ACTION action = LBUtils.PROPERTY_ACTION.Modify;
+  String notes = "notes";
   int i=0;
   List list = null;
   Iterator iterator = null;
   String selectedItem = null;
-  String vocabulary = "CDISC_0902D";
-  String conceptCode = "conceptCode";
-  LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.DEFINITION;
-  String modification = "modification";
-  LBUtils.PROPERTY_ACTION action = LBUtils.PROPERTY_ACTION.Modify;
-  String notes = "notes";
 %>
 <h:form method="post">
   <b>Concept Information:</b>
@@ -53,13 +53,11 @@
       <td>
         <select name="property">
           <%
-            list = LBUtils.MODIFIABLE_PROPERTY.getNameList();
-            iterator = list.iterator();
-            selectedItem = property.getName();
-            while (iterator.hasNext()) {
-              String item = (String) iterator.next();
+            LBUtils.MODIFIABLE_PROPERTY[] mprops = LBUtils.MODIFIABLE_PROPERTY.values();
+            for (i=0; i<mprops.length; ++i) {
+              LBUtils.MODIFIABLE_PROPERTY item = mprops[i];
               String args = "";
-              if (item.equals(selectedItem))
+              if (item.equals(property))
                   args += "selected=\"true\"";
           %>
               <option value="<%=item%>" <%=args%>><%=item%></option>
@@ -71,7 +69,7 @@
     </tr>
   </table>
   
-  <br/><b>Select a <%=property.getName().toLowerCase()%>:</b>
+  <br/><b>Select a <%=property.name().toLowerCase()%>:</b>
   <table>
     <%
       list = LBUtils.getPropertyList(property);
