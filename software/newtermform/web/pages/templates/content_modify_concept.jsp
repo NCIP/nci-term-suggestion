@@ -10,9 +10,10 @@
   String selectedItem = null;
   String vocabulary = "CDISC_0902D";
   String conceptCode = "conceptCode";
-  String property = LBUtils.MODIFIABLE_PROPERTIES.SYNONYM.getName();
+  LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.DEFINITION;
 %>
 <h:form method="post">
+  <b>Concept Information:</b>
   <table>
     <tr>
       <td>Vocabulary:</td>
@@ -48,9 +49,9 @@
       <td>
         <select name="property">
           <%
-            list = LBUtils.MODIFIABLE_PROPERTIES.getNameList();
+            list = LBUtils.MODIFIABLE_PROPERTY.getNameList();
             iterator = list.iterator();
-            selectedItem = property;
+            selectedItem = property.getName();
             while (iterator.hasNext()) {
               String item = (String) iterator.next();
               String args = "";
@@ -64,6 +65,26 @@
         </select>
       </td>
     </tr>
+  </table>
+  
+  <br/>
+  <b>List of <%=property.getName()%>s:</b>
+  <table>
+    <%
+      list = LBUtils.getPropertyList(property);
+      iterator = list.iterator();
+      int i=0;
+      while (iterator.hasNext()) {
+        String item = (String) iterator.next();
+        String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight"; ++i;
+    %>
+      <tr class="<%=rowColor%>">
+        <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%>"/></td>
+        <td colspan="2"><%=item%></td>
+      </tr>
+    <%
+      }
+    %>
   </table>
 </h:form>
 <!-- File: content_modify_concept.jsp (End) -->
