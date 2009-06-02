@@ -3,15 +3,12 @@
 <%@ page import="gov.nih.nci.evs.newtermform.utils.*" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
-  private static final int NoneConcept = 0;
-  private static final int ParentConcept = 1;
-  private static final int NearestConcept = 2;
 %>
 <%
   List list = LBUtils.getVocabularyList();
   String vocabulary = "CDISC_0902D";
   String conceptName = "concept name";
-  byte radioConcept = ParentConcept;
+  LBUtils.RELATIVE_TO relativeTo = LBUtils.RELATIVE_TO.Parent;
   String parentConcept = "parent concept";
   String nearestConcept = "nearest concept";
   String message = "message";
@@ -44,15 +41,21 @@
       <td><input name="conceptName" value="<%=conceptName%>" alt="conceptName" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
-      <% String checked = radioConcept==ParentConcept ? "checked=\"checked\" " : ""; %>
-      <td><input type="radio" name="radioConcept" value="Parent Concept" <%=checked%>/></td>
-      <td>Parent Concept:</td>
+      <%
+        LBUtils.RELATIVE_TO relativeToTmp = LBUtils.RELATIVE_TO.Parent;
+        String checked = relativeTo==relativeToTmp ? "checked=\"checked\" " : ""; 
+      %>
+      <td><input type="radio" name="relativeTo" value="<%=relativeToTmp.getName()%>" <%=checked%>/></td>
+      <td><%=relativeToTmp.getName()%>:</td>
       <td><input name="parentConcept" value="<%=parentConcept%>" alt="parentConcept" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
-      <% checked = radioConcept==NearestConcept ? "checked=\"checked\" " : ""; %>
-      <td><input type="radio" name="radioConcept" value="Nearest Concept" <%=checked%>/></td>
-      <td>Nearest Concept:</td>
+      <%
+        relativeToTmp = LBUtils.RELATIVE_TO.Nearest;
+        checked = relativeTo==relativeToTmp ? "checked=\"checked\" " : ""; 
+      %>
+      <td><input type="radio" name="relativeTo" value="<%=relativeToTmp.getName()%>" <%=checked%>/></td>
+      <td><%=relativeToTmp.getName()%>:</td>
       <td><input name="nearestConcept" value="<%=nearestConcept%>" alt="nearestConcept" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>

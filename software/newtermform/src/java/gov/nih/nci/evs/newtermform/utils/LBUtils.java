@@ -3,6 +3,25 @@ package gov.nih.nci.evs.newtermform.utils;
 import java.util.*;
 
 public class LBUtils {
+    public static enum RELATIVE_TO { 
+        None("None"), Parent("Parent Concept"), Nearest("Nearest Concept"); 
+
+        private String _name = "";
+        private void setName(String name) { _name = name; }
+        public String getName() { return _name; }
+        
+        private RELATIVE_TO(String name){
+            setName(name);
+        }
+        
+        public static RELATIVE_TO[] getNames() {
+            ArrayList<String> list = new ArrayList<String>();
+            for (RELATIVE_TO item : values())
+                list.add(item.getName());
+            return list.toArray(new RELATIVE_TO[list.size()]);
+        }
+    };
+    
     public static enum MODIFIABLE_PROPERTY { 
         DEFINITION("Definition"), SYNONYM("Synonym"), OTHERS("Others");
         
