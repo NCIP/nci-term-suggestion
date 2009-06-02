@@ -88,7 +88,7 @@
     %>
   </table>
 
-  <br/><b>Modify selected property:</b>
+  <br/><b>Add or modify a selected property:</b>
   <table>
     <tr>
       <td><textarea class="textbody" name="modification" alt="modification" rows="4" cols="50"><%=modification%></textarea></td>
