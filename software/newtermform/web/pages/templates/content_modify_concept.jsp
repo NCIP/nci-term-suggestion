@@ -5,11 +5,13 @@
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
 <%
+  String propertyParam = request.getParameter("property");
   String vocabulary = "CDISC_0902D";
-  String conceptCode = "conceptCode";
-  LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.Synonym;
+  String conceptCode = "C12434";
+  LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.valueOfOrDefault(propertyParam);
   String modification = "modification";
   LBUtils.PROPERTY_ACTION action = LBUtils.PROPERTY_ACTION.Modify;
+  String description = "description";
   String notes = "notes";
   int i=0;
   List list = null;
@@ -45,7 +47,7 @@
       <td>
         <input name="conceptCode" value="<%=conceptCode%>" alt="conceptCode" <%=INPUT_ARGS%>>
         <a href="http://www.google.com">Search</a>
-        <a href="http://www.yahoo.com">Display</a>
+        <a href="http://localhost:19280/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=C12434" target="_blank">Display</a>
       </td>
     </tr>
     <tr>
@@ -69,48 +71,63 @@
     </tr>
   </table>
   
-  <br/><b>Select a <%=property.name().toLowerCase()%>:</b>
-  <table>
-    <%
-      list = LBUtils.getPropertyList(property);
-      iterator = list.iterator();
-      i=0;
-      while (iterator.hasNext()) {
-        String item = (String) iterator.next();
-        String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight"; ++i;
-    %>
-      <tr class="<%=rowColor%>">
-        <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%>"/></td>
-        <td colspan="2"><%=item%></td>
-      </tr>
-    <%
-      }
-    %>
-  </table>
-
-  <br/><b>Add or modify a selected property:</b>
-  <table>
-    <tr>
-      <td><textarea class="textbody" name="modification" alt="modification" rows="4" cols="50"><%=modification%></textarea></td>
-      <td valign="top">
-        <table>
-          <%
-            LBUtils.PROPERTY_ACTION[] items = LBUtils.PROPERTY_ACTION.values();
-            for (i=0; i<items.length; ++i) {
-              String item = items[i].name();
-              String checked = item==action.name() ? "checked=\"checked\" " : "";
-          %>
-            <tr>
-              <td valign="top"><input type="radio" name="action" value="<%=item%> <%=checked%>"/></td>
-              <td colspan="2"><%=item%></td>
-            </tr>
-          <%
-            }
-          %>
-        </table>
-      </td>
-    </tr>
-  </table>
+  <%
+    if (property != LBUtils.MODIFIABLE_PROPERTY.Others) {
+  %>
+      <br/><b>Select a <%=property.name().toLowerCase()%>:</b>
+      <table>
+        <%
+          list = LBUtils.getPropertyList(property);
+          iterator = list.iterator();
+          i=0;
+          while (iterator.hasNext()) {
+            String item = (String) iterator.next();
+            String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight"; ++i;
+        %>
+          <tr class="<%=rowColor%>">
+            <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%>"/></td>
+            <td colspan="2"><%=item%></td>
+          </tr>
+        <%
+          }
+        %>
+      </table>
+    
+      <br/><b>Add or modify a selected property:</b>
+      <table>
+        <tr>
+          <td><textarea class="textbody" name="modification" alt="modification" rows="4" cols="50"><%=modification%></textarea></td>
+          <td valign="top">
+            <table>
+              <%
+                LBUtils.PROPERTY_ACTION[] items = LBUtils.PROPERTY_ACTION.values();
+                for (i=0; i<items.length; ++i) {
+                  String item = items[i].name();
+                  String checked = item==action.name() ? "checked=\"checked\" " : "";
+              %>
+                <tr>
+                  <td valign="top"><input type="radio" name="action" value="<%=item%> <%=checked%>"/></td>
+                  <td colspan="2"><%=item%></td>
+                </tr>
+              <%
+                }
+              %>
+            </table>
+          </td>
+        </tr>
+      </table>
+  <%
+    } else {
+  %>
+      <br/><b>Brief description of your modification:</b>
+      <table>
+        <tr>
+          <td><textarea class="textbody" name="description" alt="description" rows="4" cols="50"><%=description%></textarea></td>
+        </tr>
+      </table>
+  <%
+    }
+  %>
 
   <br/><b>Notes/Comments (if any):</b>
   <table>

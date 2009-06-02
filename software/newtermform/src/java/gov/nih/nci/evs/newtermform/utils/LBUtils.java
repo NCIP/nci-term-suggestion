@@ -22,7 +22,15 @@ public class LBUtils {
         }
     };
     
-    public static enum MODIFIABLE_PROPERTY { Definition, Synonym, Others }
+    public static enum MODIFIABLE_PROPERTY { Definition, Synonym, Others;
+        public static MODIFIABLE_PROPERTY valueOfOrDefault(String text) {
+            try {
+                return valueOf(text);
+            } catch (Exception e) {
+                return Definition;
+            }
+        }
+    }
 
     public static enum PROPERTY_ACTION { Add, Modify, Delete }
 
