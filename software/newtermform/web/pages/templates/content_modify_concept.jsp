@@ -2,6 +2,7 @@
 <%@ page import="gov.nih.nci.evs.newtermform.utils.*" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
+  private static final String TEXTAREA_ARGS = "rows=\"4\" cols=\"80\"";
 %>
 <%
   String propertyParam = request.getParameter("property");
@@ -19,6 +20,7 @@
 %>
 <div class="texttitle-blue">Suggest Concept Modification:</div><br/>
 <form method="post">
+  <!-- --------------------------------------------------------------------- -->
   <b>Concept Information:</b>
   <table>
     <tr>
@@ -45,7 +47,6 @@
       <td>Concept Code:</td>
       <td>
         <input name="conceptCode" value="<%=conceptCode%>" alt="conceptCode" <%=INPUT_ARGS%>>
-        <a href="http://www.google.com">Search</a>
         <a href="http://localhost:19280/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=C12434" target="_blank">Display</a>
       </td>
     </tr>
@@ -70,12 +71,14 @@
     </tr>
   </table>
   
+  <!-- --------------------------------------------------------------------- -->
   <%
     String propertyNameLC = property.name().toLowerCase();
     if (property != LBUtils.MODIFIABLE_PROPERTY.Others) {
   %>
+      <!-- ----------------------------------------------------------------- -->
       <br/><b>Select a <%=propertyNameLC%>:</b>
-      <table>
+      <table width="70%">
         <%
           items = LBUtils.getProperties(property);
           selectedItem = selectedProperty;
@@ -93,11 +96,12 @@
         %>
       </table>
     
+      <!-- ----------------------------------------------------------------- -->
       <br/><b>Suggest a new <%=propertyNameLC%> or modify an existing one:</b>
       <table>
         <tr>
           <% modification = selectedProperty; %>
-          <td><textarea class="textbody" name="modification" rows="4" cols="50"><%=modification%></textarea></td>
+          <td><textarea class="textbody" name="modification" <%=TEXTAREA_ARGS%>><%=modification%></textarea></td>
           <td valign="top">
             <table>
               <%
@@ -121,23 +125,26 @@
   <%
     } else {
   %>
+      <!-- ----------------------------------------------------------------- -->
       <br/><b>Brief description of your modification:</b>
       <table>
         <tr>
-          <td><textarea class="textbody" name="description" rows="4" cols="50"><%=description%></textarea></td>
+          <td><textarea class="textbody" name="description" <%=TEXTAREA_ARGS%>><%=description%></textarea></td>
         </tr>
       </table>
   <%
     }
   %>
 
+  <!-- --------------------------------------------------------------------- -->
   <br/><b>Notes or comments (if any):</b>
   <table>
     <tr>
-      <td><textarea class="textbody" name="notes" rows="4" cols="50"><%=notes%></textarea></td>
+      <td><textarea class="textbody" name="notes" <%=TEXTAREA_ARGS%>><%=notes%></textarea></td>
     </tr>
   </table>
   
+  <!-- --------------------------------------------------------------------- -->
   <table>
     <tr>
      <td><a href="<%=request.getContextPath()%>/pages/change_request.jsp">Back</a></td>
