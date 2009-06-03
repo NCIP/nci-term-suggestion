@@ -70,9 +70,10 @@
   </table>
   
   <%
+    String propertyNameLC = property.name().toLowerCase();
     if (property != LBUtils.MODIFIABLE_PROPERTY.Others) {
   %>
-      <br/><b>Select a <%=property.name().toLowerCase()%>:</b>
+      <br/><b>Select a <%=propertyNameLC%>:</b>
       <table>
         <%
           items = LBUtils.getProperties(property);
@@ -91,7 +92,7 @@
         %>
       </table>
     
-      <br/><b>Add or modify a selected property:</b>
+      <br/><b>Suggest a new <%=propertyNameLC%> or modify an existing one:</b>
       <table>
         <tr>
           <% modification = selectedProperty; %>
@@ -129,7 +130,7 @@
     }
   %>
 
-  <br/><b>Notes/Comments (if any):</b>
+  <br/><b>Notes or comments (if any):</b>
   <table>
     <tr>
       <td><textarea class="textbody" name="notes" rows="4" cols="50"><%=notes%></textarea></td>
