@@ -2,9 +2,14 @@
 <%
   String basePath = request.getContextPath();
 %>
-<a href="<%=basePath%>/pages/change_request.jsp">Change Request</a>
-<br/><a href="<%=basePath%>/pages/new_concept.jsp">New Concept</a>
-<br/><a href="<%=basePath%>/pages/modify_concept.jsp?property=Definition">Modify Concept (Definition)</a>
-<br/><a href="<%=basePath%>/pages/modify_concept.jsp?property=Synonym">Modify Concept (Synonym)</a>
-<br/><a href="<%=basePath%>/pages/modify_concept.jsp?property=Others">Modify Concept (Others)</a>
+The following are samples of the forms to request a change:
+<ul>
+  <li><a href="<%=basePath%>/pages/change_request.jsp">Change Request</a></li>
+  <li><a href="<%=basePath%>/pages/new_concept.jsp">New Concept</a></li>
+  <li>Modify Concept:
+    <a href="<%=basePath%>/pages/modify_concept.jsp?property=Definition">Definition</a>,
+    <a href="<%=basePath%>/pages/modify_concept.jsp?property=Synonym">Synonym</a>,
+    <a href="<%=basePath%>/pages/modify_concept.jsp?property=Others">Others</a>
+  </li>
+</ul>
 <!-- File: content_show_all.jsp (End) -->
