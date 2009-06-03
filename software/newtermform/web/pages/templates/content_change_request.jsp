@@ -9,6 +9,7 @@
   String phone = "phone";
   String email = "email";
 %>
+<div class="texttitle-blue">Contact Information:</div><br/>
 <form method="post">
   <table>
     <tr>
