@@ -65,4 +65,11 @@ public class LBUtils {
         }
         return list.toArray(new String[list.size()]);
     }
+    
+    public static String getProperty(MODIFIABLE_PROPERTY property, int index) {
+        String[] list = getProperties(property);
+        if (index >= 0 && index < list.length)
+            return list[index];
+        return "";
+    }
 }
