@@ -8,6 +8,7 @@
   String vocabulary = "CDISC_0902D";
   String conceptCode = "C12434";
   LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.valueOfOrDefault(propertyParam);
+  String selectedProperty = LBUtils.getProperty(property, 1);
   String modification = "modification";
   LBUtils.PROPERTY_ACTION action = LBUtils.PROPERTY_ACTION.Modify;
   String description = "description";
@@ -75,12 +76,14 @@
       <table>
         <%
           items = LBUtils.getProperties(property);
+          selectedItem = selectedProperty;
           for (i=0; i<items.length; ++i) {
             String item = items[i];
+            String checked = item==selectedItem ? "checked=\"checked\" " : "";
             String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight";
         %>
           <tr class="<%=rowColor%>">
-            <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%>"/></td>
+            <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%> <%=checked%>"/></td>
             <td colspan="2"><%=item%></td>
           </tr>
         <%
@@ -91,6 +94,7 @@
       <br/><b>Add or modify a selected property:</b>
       <table>
         <tr>
+          <% modification = selectedProperty; %>
           <td><textarea class="textbody" name="modification" rows="4" cols="50"><%=modification%></textarea></td>
           <td valign="top">
             <table>
