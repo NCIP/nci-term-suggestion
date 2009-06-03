@@ -562,8 +562,10 @@
                 <fail unless="env.DISPLAY" message="DISPLAY environment variable not set, please set it as outlined above and run again." />
             </then>
         </if>
+<!-- Note: This caused a warning message (in Eclipse).
         <taskdef resource="selenium-ant.properties" classpathref="project.test.selenium.classpath" />
         <selenese suite="${selenium.test.suite}" browser="${selenium.browser}" results="${selenium.report.dir}/${selenium.report.file}" multiWindow="falsE" timeoutInSeconds="60" port="${selenium.proxy.port}" startURL="${selenium.url}" />
+-->
     </target>
 
     <target name="test:acceptance:fitnesse" description="Runs fitnesse acceptance tests">
