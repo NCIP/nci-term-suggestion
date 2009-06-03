@@ -18,7 +18,7 @@
   Iterator iterator = null;
   String selectedItem = null;
 %>
-<h:form method="post">
+<form method="post">
   <b>Concept Information:</b>
   <table>
     <tr>
@@ -96,7 +96,7 @@
       <br/><b>Add or modify a selected property:</b>
       <table>
         <tr>
-          <td><textarea class="textbody" name="modification" alt="modification" rows="4" cols="50"><%=modification%></textarea></td>
+          <td><textarea class="textbody" name="modification" rows="4" cols="50"><%=modification%></textarea></td>
           <td valign="top">
             <table>
               <%
@@ -122,7 +122,7 @@
       <br/><b>Brief description of your modification:</b>
       <table>
         <tr>
-          <td><textarea class="textbody" name="description" alt="description" rows="4" cols="50"><%=description%></textarea></td>
+          <td><textarea class="textbody" name="description" rows="4" cols="50"><%=description%></textarea></td>
         </tr>
       </table>
   <%
@@ -132,7 +132,7 @@
   <br/><b>Notes/Comments (if any):</b>
   <table>
     <tr>
-      <td><textarea class="textbody" name="notes" alt="notes" rows="4" cols="50"><%=notes%></textarea></td>
+      <td><textarea class="textbody" name="notes" rows="4" cols="50"><%=notes%></textarea></td>
     </tr>
   </table>
   
@@ -142,5 +142,5 @@
      <td align="right"><INPUT type="submit" name="submit" value="Submit"></td>
     </tr>
   </table>
-</h:form>
+</form>
 <!-- File: content_modify_concept.jsp (End) -->

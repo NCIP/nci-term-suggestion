@@ -1,7 +1,7 @@
 <%@ page import="gov.nih.nci.evs.newtermform.common.*" %>
 <html>
-<body>        
-	<% String message = request.getSession().getAttribute(Constants.ERROR_MESSAGE); %>
+  <body>        
+	<% String message = (String) request.getSession().getAttribute(Constants.ERROR_MESSAGE); %>
 	<b><%=message%></b>
-</body>
+  </body>
 </html>        

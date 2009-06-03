@@ -13,7 +13,7 @@
   String nearestConcept = "nearest concept";
   String message = "message";
 %>
-<h:form method="post">
+<form method="post">
   <table>
     <tr>
       <td></td>
@@ -64,7 +64,7 @@
     </tr>
     <tr>
       <td></td>
-      <td colspan="2"><textarea class="textbody" name="message" alt="message" rows="10" cols="50"><%=message%></textarea></td>
+      <td colspan="2"><textarea class="textbody" name="message" rows="10" cols="50"><%=message%></textarea></td>
     </tr>
     <tr>
       <td></td>
@@ -72,5 +72,5 @@
       <td align="right"><INPUT type="submit" name="submit" value="Submit"></td>
     </tr>
   </table>
-</h:form>
+</form>
 <!-- File: content_new_concept.jsp (end) -->
