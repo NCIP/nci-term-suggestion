@@ -1,5 +1,4 @@
 <!-- File: content_change_request.jsp (Begin) -->
-<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>

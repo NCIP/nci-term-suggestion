@@ -1,5 +1,4 @@
 <!-- File: content_modify_concept.jsp (Begin) -->
-<%@ page import="java.util.*" %>
 <%@ page import="gov.nih.nci.evs.newtermform.utils.*" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
@@ -14,8 +13,7 @@
   String description = "description";
   String notes = "notes";
   int i=0;
-  List list = null;
-  Iterator iterator = null;
+  String[] items = null;
   String selectedItem = null;
 %>
 <form method="post">
@@ -26,14 +24,13 @@
       <td>
         <select name="vocabulary">
           <%
-            list = LBUtils.getVocabularyList();
-            iterator = list.iterator();
+            items = LBUtils.getVocabularies();
             selectedItem = vocabulary;
-            while (iterator.hasNext()) {
-              String item = (String) iterator.next();
+            for (i=0; i<items.length; ++i) {
+              String item = items[i];
               String args = "";
               if (item.equals(selectedItem))
-                  args += "selected=\"true\"";
+                args += "selected=\"true\"";
           %>
               <option value="<%=item%>" <%=args%>><%=item%></option>
           <%
@@ -57,12 +54,12 @@
           <%
             LBUtils.MODIFIABLE_PROPERTY[] mprops = LBUtils.MODIFIABLE_PROPERTY.values();
             for (i=0; i<mprops.length; ++i) {
-              LBUtils.MODIFIABLE_PROPERTY item = mprops[i];
+              LBUtils.MODIFIABLE_PROPERTY mprop = mprops[i];
               String args = "";
-              if (item.equals(property))
+              if (mprop.equals(property))
                   args += "selected=\"true\"";
           %>
-              <option value="<%=item%>" <%=args%>><%=item%></option>
+              <option value="<%=mprop%>" <%=args%>><%=mprop%></option>
           <%
             }
           %>
@@ -77,12 +74,10 @@
       <br/><b>Select a <%=property.name().toLowerCase()%>:</b>
       <table>
         <%
-          list = LBUtils.getPropertyList(property);
-          iterator = list.iterator();
-          i=0;
-          while (iterator.hasNext()) {
-            String item = (String) iterator.next();
-            String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight"; ++i;
+          items = LBUtils.getProperties(property);
+          for (i=0; i<items.length; ++i) {
+            String item = items[i];
+            String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight";
         %>
           <tr class="<%=rowColor%>">
             <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%>"/></td>
@@ -100,14 +95,15 @@
           <td valign="top">
             <table>
               <%
-                LBUtils.PROPERTY_ACTION[] items = LBUtils.PROPERTY_ACTION.values();
-                for (i=0; i<items.length; ++i) {
-                  String item = items[i].name();
-                  String checked = item==action.name() ? "checked=\"checked\" " : "";
+                LBUtils.PROPERTY_ACTION[] pActions = LBUtils.PROPERTY_ACTION.values();
+                for (i=0; i<pActions.length; ++i) {
+                  LBUtils.PROPERTY_ACTION pAction = pActions[i];
+                  String checked = pAction==action ? "checked=\"checked\" " : "";
+                  String pActionName = pAction.name();
               %>
                 <tr>
-                  <td valign="top"><input type="radio" name="action" value="<%=item%> <%=checked%>"/></td>
-                  <td colspan="2"><%=item%></td>
+                  <td valign="top"><input type="radio" name="action" value="<%=pActionName%> <%=checked%>"/></td>
+                  <td colspan="2"><%=pActionName%></td>
                 </tr>
               <%
                 }
