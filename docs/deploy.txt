@@ -8,11 +8,6 @@ Pre-installation requirements
 1. JDK 1.5
 2. Apache ANT 1.7 or newer
 
---------------------------------------
-Deploy to DEV remotely from desktop
---------------------------------------
-1. Rename local.properties so that it does not overwrite the remote properties file.
-2. ant -Dproperties.file=dev-upgrade.properties deploy:remote:upgrade
 
 -----------------------
 Build the application
@@ -20,11 +15,34 @@ Build the application
 Checkout source files from SVN at the following URL:
 https://gforge.nci.nih.gov/svnroot/newterm/trunk
 
-1. Compile the application
-   cd C:\SVN-Projects\newterm\software\build
-   ant build:all
-2. Deploy the application
-   ant deploy:local:install
+1. Change to the build directory
+   Example; c:> cd C:\SVN-Projects\newterm\software\build
+
+2. Compile and deploy the application locally
+   c:\...\build> ant deploy:local:install
+
+Step (2) will deploy a new JBoss container and start it at the following URL
+http://localhost:19280/newtermform/
+
+The JBoss instance will be located in "C:\Apps\evs\jboss-4.0.5.GA" by default.
+
+If you need to overwrite any settings, create a local.properties file and add the
+properties you wish to overwrite to it. Properties can be found in
+project.properties and install.properties.
+
+For example, if you need to change the location of the application server add the
+following to your local.properties:
+
+application.base.path.windows=h:/Apps/evs/ncitbrowser-webapp
+
+
+--------------------------------------
+Deploy to DEV remotely from desktop
+--------------------------------------
+1. Make sure your local.properties has the following entry in it:
+   ssh.key.file=C:/SVN-Projects/nci-newterm-properties/properties/ssh-keys/id_dsa_bda.
+2. ant -Dproperties.file=C:\SVN-Projects\nci-newterm-properties\properties\dev-upgrade.properties deploy:remote:upgrade
+
 
 -----------------------
 Other build commands
@@ -36,6 +54,7 @@ Clean:      ant clean
 Build:      ant build:all
 Deploy:     ant deploy:local:install
 Redeploy:   ant deploy:hot
+
 
 --------------------------------------
 Trouble shooting
