@@ -17,6 +17,7 @@
   String[] items = null;
   String selectedItem = null;
 %>
+<div class="texttitle-blue">Suggest Concept Modification:</div><br/>
 <form method="post">
   <b>Concept Information:</b>
   <table>
@@ -84,7 +85,7 @@
             String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight";
         %>
           <tr class="<%=rowColor%>">
-            <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%> <%=checked%>"/></td>
+            <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%>" <%=checked%>/></td>
             <td colspan="2"><%=item%></td>
           </tr>
         <%
@@ -107,7 +108,7 @@
                   String pActionName = pAction.name();
               %>
                 <tr>
-                  <td valign="top"><input type="radio" name="action" value="<%=pActionName%> <%=checked%>"/></td>
+                  <td valign="top"><input type="radio" name="action" value="<%=pActionName%>" <%=checked%>/></td>
                   <td colspan="2"><%=pActionName%></td>
                 </tr>
               <%

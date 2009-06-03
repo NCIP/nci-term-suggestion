@@ -14,6 +14,7 @@
   String items[] = null;
   String selectedItem = null;
 %>
+<div class="texttitle-blue">Suggest New Concept:</div><br/>
 <form method="post">
   <table>
     <tr>
