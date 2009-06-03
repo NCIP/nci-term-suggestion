@@ -1,17 +1,18 @@
 <!-- File: content_new_concept.jsp (Begin) -->
-<%@ page import="java.util.*" %>
 <%@ page import="gov.nih.nci.evs.newtermform.utils.*" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
 <%
-  List list = LBUtils.getVocabularyList();
   String vocabulary = "CDISC_0902D";
   String conceptName = "concept name";
   LBUtils.RELATIVE_TO relativeTo = LBUtils.RELATIVE_TO.Parent;
   String parentConcept = "parent concept";
   String nearestConcept = "nearest concept";
   String message = "message";
+  int i=0;
+  String items[] = null;
+  String selectedItem = null;
 %>
 <form method="post">
   <table>
@@ -21,12 +22,13 @@
       <td>
         <select name="vocabulary">
           <%
-            Iterator iterator = list.iterator();
-            while (iterator.hasNext()) {
-              String item = (String) iterator.next();
+            items = LBUtils.getVocabularies();
+            selectedItem = vocabulary;
+            for (i=0; i<items.length; ++i) {
+              String item = items[i];
               String args = "";
-              if (item.equals(vocabulary))
-                  args += "selected=\"true\"";
+              if (item.equals(selectedItem))
+                args += "selected=\"true\"";
           %>
               <option value="<%=item%>" <%=args%>><%=item%></option>
           <%
