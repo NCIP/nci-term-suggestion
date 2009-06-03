@@ -1,4 +1,5 @@
 <!-- File: content_change_request.jsp (Begin) -->
+<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
@@ -9,7 +10,7 @@
   String phone = "phone";
   String email = "email";
 %>
-<h:form method="post">
+<form method="post">
   <table>
     <tr>
       <td>First Name:</td>
@@ -31,13 +32,13 @@
       <td>Request:</td>
       <td>
         <select>
-         <option>New Concept
-         <option>Concept Modification
+         <option>New Concept</option>
+         <option>Concept Modification</option>
         </select>
       </td>
       <td/>
       <td align="right"><INPUT type="submit" name="submit" value="Proceed"></td>
       </tr>
   </table>
-</h:form>
+</form>
 <!-- File: content_change_request.jsp (End) -->
