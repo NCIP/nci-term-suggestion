@@ -285,13 +285,6 @@
         init,
         build:newtermform-webapp
         " >
-
-        <echo>**************************************</echo>
-        <exec executable="ls">
-            <arg value="/local/AnthillPro/work"/>
-        </exec>
-        <echo>**************************************</echo>
-
     </target>
 
     <target name="build:newtermform-webapp" depends="init" description="Call webapp sub-projects build target to produce artifiacts">
@@ -426,6 +419,13 @@
         build:all,
         dist:upgrader
         ">
+
+        <echo>**************************************</echo>
+        <exec executable="ls">
+            <arg value="/local/AnthillPro/work"/>
+        </exec>
+        <echo>**************************************</echo>
+
         <!--
           * Will use the target from install.xml specified in ${upgrade.target} (defaults to upgrade unless passed in on command line).
           * Requires specifying -Dproperties.file=@file@ on the command line to point installer to correct enviornment to install into.
