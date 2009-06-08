@@ -6,14 +6,14 @@
 %>
 <%
   String propertyParam = request.getParameter("property");
-  String vocabulary = "CDISC_0902D";
+  String vocabulary = "NCI Thesaurus";
   String conceptCode = "C12434";
   LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.valueOfOrDefault(propertyParam);
   String selectedProperty = LBUtils.getProperty(property, 1);
-  String modification = "modification";
+  String suggestion = "";
   LBUtils.PROPERTY_ACTION action = LBUtils.PROPERTY_ACTION.Modify;
-  String description = "description";
-  String notes = "notes";
+  String description = "";
+  String notes = "";
   int i=0;
   String[] items = null;
   String selectedItem = null;
@@ -100,8 +100,8 @@
       <br/><b>Suggest a new <%=propertyNameLC%> or modify an existing one:</b>
       <table class="datatable">
         <tr>
-          <% modification = selectedProperty; %>
-          <td><textarea class="textbody" name="modification" <%=TEXTAREA_ARGS%>><%=modification%></textarea></td>
+          <% suggestion = selectedProperty; %>
+          <td><textarea class="textbody" name="suggestion" <%=TEXTAREA_ARGS%>><%=suggestion%></textarea></td>
           <td valign="top">
             <table class="datatable">
               <%
