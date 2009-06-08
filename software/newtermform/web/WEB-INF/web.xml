@@ -14,20 +14,23 @@
 		<param-value>/WEB-INF/faces-config.xml</param-value>
 	</context-param>
 
+<!-- Note: BDA -->
 	<listener>
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
+<!-- Note: Eclipse 
+    <listener>
+      <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>
+-->
 
 	<!-- Faces Servlet -->
-
-<!-- DYEE: Orig -->
-<!-- 
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup> 1 </load-on-startup>
-	</servlet>
--->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup> 1 </load-on-startup>
+    </servlet>
+<!-- DYEE: Orig
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>gov.nih.nci.evs.newtermform.servlet.AFacesServlet</servlet-class>
@@ -37,6 +40,7 @@
         </init-param>
         <load-on-startup>-1</load-on-startup>
     </servlet>
+-->
 
 	<!-- Faces Servlet Mapping -->
 
