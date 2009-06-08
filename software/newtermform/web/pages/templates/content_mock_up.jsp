@@ -29,24 +29,32 @@ send the user to one of the following forms:
         <li><a href="<%=othersChangeForm%>">Others</a></li>
       </ul>
     
-      <br/>The user needs to enter in vocabulary, concept code,
-      and a property he/she would like to edit.  Once the vocabulary is
-      selected, this form will dynamically generate a list of editable
-      properties for the specified concept code.  We could limit this
-      list to just definitions and synonyms.
+      <br/>Note(s): The user needs to enter in vocabulary, concept code,
+      and a property he/she would like to edit.  There will be
+      a couple of dynamic interaction within this page:
       
-      <br/><br/>A display URL is next to concept code to allow the user
-      to reference the concept information from within another browser.
-      
-      <br/><br/>When a specific property type is selected, the rest of the
-      form will be update to allow the user to suggest adding a new property;
-      or suggest modifying, or deleting a specific property.
-      
-      <br/><br/>Select a specific property will propagate it to the
-      "Suggest a new ... or modify an existing one:" textfield.
-      
-      <br/><br/>
-
+      <ul>
+        <li>Once the vocabulary is selected, this form will 
+            generate a list of editable properties for the
+            specified concept code.  We could limit this
+            list to just definitions and synonyms.  In addition,
+            it will update the Display link to allow the user
+            to browser the concept within a specific vocabulary.
+            Example: If NCI Thesaurus is selected, then the
+            concept will be display within a separate NCIt
+            browser window.</li>
+        <li>When a specific property type is selected, the
+            rest of the form will be update to allow the user
+            to suggest adding a new property; or suggest
+            modifying, or deleting a specific property.</li>
+        <li>Selecting a specific property will propagate it to
+            the "Suggest a new ... or modify an existing one:"
+            textfield.</li>
+        <li>Selecting the Delete radio button, will clear any
+            previous suggestive text, and copies the current
+            selected property value into this textfield.</li>
+        <li><b>Only one property change per submission.</b></li>
+      </ul>
     </li>
   </ul>
 </p>
