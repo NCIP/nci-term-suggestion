@@ -22,7 +22,7 @@
 <form method="post">
   <!-- --------------------------------------------------------------------- -->
   <b>Concept Information:</b>
-  <table>
+  <table class="datatable">
     <tr>
       <td>Vocabulary:</td>
       <td>
@@ -78,7 +78,7 @@
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Select a <%=propertyNameLC%>:</b>
-      <table width="70%">
+      <table class="datatable">
         <%
           items = LBUtils.getProperties(property);
           selectedItem = selectedProperty;
@@ -98,12 +98,12 @@
     
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Suggest a new <%=propertyNameLC%> or modify an existing one:</b>
-      <table>
+      <table class="datatable">
         <tr>
           <% modification = selectedProperty; %>
           <td><textarea class="textbody" name="modification" <%=TEXTAREA_ARGS%>><%=modification%></textarea></td>
           <td valign="top">
-            <table>
+            <table class="datatable">
               <%
                 LBUtils.PROPERTY_ACTION[] pActions = LBUtils.PROPERTY_ACTION.values();
                 for (i=0; i<pActions.length; ++i) {
@@ -112,8 +112,8 @@
                   String pActionName = pAction.name();
               %>
                 <tr>
-                  <td valign="top"><input type="radio" name="action" value="<%=pActionName%>" <%=checked%>/></td>
-                  <td colspan="2"><%=pActionName%></td>
+                  <td><input type="radio" name="action" value="<%=pActionName%>" <%=checked%>/></td>
+                  <td><%=pActionName%></td>
                 </tr>
               <%
                 }
@@ -127,7 +127,7 @@
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Brief description of your modification:</b>
-      <table>
+      <table class="datatable">
         <tr>
           <td><textarea class="textbody" name="description" <%=TEXTAREA_ARGS%>><%=description%></textarea></td>
         </tr>
@@ -138,14 +138,14 @@
 
   <!-- --------------------------------------------------------------------- -->
   <br/><b>Notes or comments (if any):</b>
-  <table>
+  <table class="datatable">
     <tr>
       <td><textarea class="textbody" name="notes" <%=TEXTAREA_ARGS%>><%=notes%></textarea></td>
     </tr>
   </table>
   
   <!-- --------------------------------------------------------------------- -->
-  <table>
+  <table class="datatable">
     <tr>
      <td><a href="<%=request.getContextPath()%>/pages/change_request.jsp">Back</a></td>
      <td align="right"><INPUT type="submit" name="submit" value="Submit"></td>
