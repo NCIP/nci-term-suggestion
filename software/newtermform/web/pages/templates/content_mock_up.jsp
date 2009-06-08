@@ -9,9 +9,10 @@
 %>
 <div class="texttitle-blue">Mock Up Forms for Suggest New Term:</div><br/>
 <p>
-The following are samples mock up forms to request (or suggest) a change
-for a vocabulary.  Currently, there is now interactions between pages are
-these forms are used to generate discussion to help solidify our requirements.
+The following are samples mock up forms to request (or suggest)
+a change for a particular vocabulary.  Currently, there are no
+interactions between these pages.  They are currently used to
+generate discussions to help us solidify our requirements.
 </p>
 
 <p>
@@ -35,21 +36,24 @@ send the user to one of the following forms:
       
       <ul>
         <li>Once the vocabulary is selected, this form will 
-            generate a list of editable properties for the
-            specified concept code.  We could limit this
-            list to just definitions and synonyms.  In addition,
-            it will update the Display link to allow the user
-            to browser the concept within a specific vocabulary.
-            Example: If NCI Thesaurus is selected, then the
-            concept will be display within a separate NCIt
-            browser window.</li>
+            generate a list of editable properties (Property
+            ComboBox) for the specified concept code.  We
+            could limit this list to just definitions and
+            synonyms.</li>
+        <li>After the user enters a concept code, the Display
+            URL will be updated to allow the user to browser
+            the concept within a specific vocabulary.
+            Example: If NCI Thesaurus is selected within the
+            Vocabulary ComboBox, then the concept will be
+            display within a separate NCIt browser window.
+        </li>
         <li>When a specific property type is selected, the
             rest of the form will be update to allow the user
-            to suggest adding a new property; or suggest
-            modifying, or deleting a specific property.</li>
+            to suggest adding a new property; or, suggest
+            modifying or deleting a specific property.</li>
         <li>Selecting a specific property will propagate it to
-            the "Suggest a new ... or modify an existing one:"
-            textfield.</li>
+            the "Suggest a new [PROPERTY_NAME] or modify an
+            existing one:" textfield.</li>
         <li>Selecting the Delete radio button, will clear any
             previous suggestive text, and copies the current
             selected property value into this textfield.</li>
