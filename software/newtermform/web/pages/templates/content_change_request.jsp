@@ -37,7 +37,7 @@
         </select>
       </td>
       <td/>
-      <td align="right"><INPUT type="submit" name="submit" value="Proceed"></td>
+      <td align="right"><INPUT type="submit" name="submit" value="Next"></td>
       </tr>
   </table>
 </form>

@@ -5,7 +5,7 @@
 %>
 <%
   String vocabulary = "CDISC_0902D";
-  String conceptName = "concept name";
+  String preferredName = "preferred name";
   LBUtils.RELATIVE_TO relativeTo = LBUtils.RELATIVE_TO.Parent;
   String parentConcept = "parent concept";
   String nearestConcept = "nearest concept";
@@ -40,8 +40,8 @@
     </tr>
     <tr>
       <td></td>
-      <td>New Concept Name:</td>
-      <td><input name="conceptName" value="<%=conceptName%>" alt="conceptName" <%=INPUT_ARGS%>></td>
+      <td>Concept Preferred Name:</td>
+      <td><input name="preferredName" value="<%=preferredName%>" alt="preferredName" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <%
