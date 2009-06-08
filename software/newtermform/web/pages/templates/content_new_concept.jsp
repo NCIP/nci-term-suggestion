@@ -4,19 +4,19 @@
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
 <%
-  String vocabulary = "CDISC_0902D";
-  String preferredName = "preferred name";
+  String vocabulary = "NCI Thesaurus";
+  String preferredName = "Ultra Murine Cell Types";
   LBUtils.RELATIVE_TO relativeTo = LBUtils.RELATIVE_TO.Parent;
-  String parentConcept = "parent concept";
-  String nearestConcept = "nearest concept";
-  String message = "message";
+  String parentCode = "C23442";
+  String nearestCode = "C23442";
+  String message = "";
   int i=0;
   String items[] = null;
   String selectedItem = null;
 %>
 <div class="texttitle-blue">Suggest New Concept:</div><br/>
 <form method="post">
-  <table>
+  <table class="datatable">
     <tr>
       <td></td>
       <td>Vocabulary:</td>
@@ -50,7 +50,7 @@
       %>
       <td><input type="radio" name="relativeTo" value="<%=relativeToTmp.getName()%>" <%=checked%>/></td>
       <td><%=relativeToTmp.getName()%>:</td>
-      <td><input name="parentConcept" value="<%=parentConcept%>" alt="parentConcept" <%=INPUT_ARGS%>></td>
+      <td><input name="parentCode" value="<%=parentCode%>" alt="parentCode" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <%
@@ -59,15 +59,23 @@
       %>
       <td><input type="radio" name="relativeTo" value="<%=relativeToTmp.getName()%>" <%=checked%>/></td>
       <td><%=relativeToTmp.getName()%>:</td>
-      <td><input name="nearestConcept" value="<%=nearestConcept%>" alt="nearestConcept" <%=INPUT_ARGS%>></td>
+      <td><input name="nearestCode" value="<%=nearestCode%>" alt="nearestCode" <%=INPUT_ARGS%>></td>
+    </tr>
+    <!-- Simulates a blank line (Begin) -->
+    <tr><td> </td></tr>
+    <tr><td> </td></tr>
+    <tr><td> </td></tr>
+    <tr><td> </td></tr>
+    <tr><td> </td></tr>
+    <tr><td> </td></tr>
+    <!-- Simulates a blank line (End) -->
+    <tr>
+      <td></td>
+      <td colspan="2"><b>Enter a description of the term and the reason for adding it:</b></td>
     </tr>
     <tr>
       <td></td>
-      <td colspan="2">Enter a description of the term and the reason for adding it:</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td colspan="2"><textarea class="textbody" name="message" rows="10" cols="50"><%=message%></textarea></td>
+      <td colspan="2"><textarea class="textbody" name="message" rows="4" cols="95"><%=message%></textarea></td>
     </tr>
     <tr>
       <td></td>

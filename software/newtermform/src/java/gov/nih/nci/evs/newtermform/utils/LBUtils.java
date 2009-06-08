@@ -4,7 +4,9 @@ import java.util.*;
 
 public class LBUtils {
     public static enum RELATIVE_TO { 
-        None("None"), Parent("Parent Concept"), Nearest("Nearest Concept"); 
+        None("None"), 
+        Parent("Parent Concept Code"), 
+        Nearest("Nearest Concept Code"); 
 
         private String _name = "";
         private void setName(String name) { _name = name; }
@@ -38,10 +40,12 @@ public class LBUtils {
 
     public static String[] getVocabularies() {
         ArrayList<String> list = new ArrayList<String>();
-        list.add("BioC_0902D");
-        list.add("CBO2007_06");
-        list.add("CDC_0902D");
-        list.add("CDISC_0902D");
+//        list.add("BioC_0902D");
+//        list.add("CBO2007_06");
+//        list.add("CDC_0902D");
+//        list.add("CDISC_0902D");
+//        list.add("...");
+        list.add("NCI Thesaurus");
         list.add("...");
         return list.toArray(new String[list.size()]);
     }

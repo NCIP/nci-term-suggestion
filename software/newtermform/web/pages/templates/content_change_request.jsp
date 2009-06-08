@@ -3,15 +3,15 @@
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
 <%
-  String firstName = "firstName";
-  String lastName = "lastName";
-  String affiliation = "affiliation";
-  String phone = "phone";
-  String email = "email";
+  String firstName = "John";
+  String lastName = "Doe";
+  String affiliation = "ABC Corporation";
+  String phone = "301-443-8000";
+  String email = "John.Doe@abc.com";
 %>
 <div class="texttitle-blue">Contact Information:</div><br/>
 <form method="post">
-  <table>
+  <table class="datatable">
     <tr>
       <td>First Name:</td>
       <td><input name="firstName" value="<%=firstName%>" alt="First Name" <%=INPUT_ARGS%>></td>
