@@ -298,7 +298,7 @@
                     <xmlcatalog refid="installer.catalog"/>
                     <replace path="/server/mbean/attribute[contains(text(),'NewTermFormProperties')]">
 <![CDATA[<attribute name="Properties">
-    gov.nih.nci.evs.browser.NewTermFormProperties=${application.data.path}/${newtermform.conf.path}/${newtermform-webapp.prop.file}
+    NewTermFormPropertiesFile=${application.data.path}/${newtermform.conf.path}/${newtermform-webapp.prop.file}
 </attribute>]]>
                     </replace>
                 </xmltask>
@@ -309,7 +309,7 @@
                     <xmlcatalog refid="installer.catalog"/>
                     <insert path="/server/mbean[@code='org.jboss.varia.property.SystemPropertiesService']">
 <![CDATA[<attribute name="Properties">
-    gov.nih.nci.evs.browser.newtermformProperties=${application.data.path}/${newtermform.conf.path}/${newtermform-webapp.prop.file}
+    NewTermFormPropertiesFile=${application.data.path}/${newtermform.conf.path}/${newtermform-webapp.prop.file}
 </attribute>]]>
                     </insert>
                 </xmltask>
