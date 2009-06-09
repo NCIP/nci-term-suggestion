@@ -14,13 +14,28 @@
         </locale-config>
     </application>
 
-    <!-- DYEE -->
-    <navigation-rule>  
-        <display-name>Home</display-name>  
-        <from-view-id>/index.jsp</from-view-id>  
-    </navigation-rule>  
-    <navigation-rule>  
-        <display-name>Mock Up Forms</display-name>  
-        <from-view-id>/pages/mock_up.jsp</from-view-id>  
-    </navigation-rule>
+  <!-- Navigation: Request Change ========================================== -->
+  <navigation-rule>
+    <from-view-id>/pages/mock_up.jsp</from-view-id>
+    <navigation-case>
+       <description>Message</description>
+       <from-action>#{userSessionBean.changeRequest}</from-action>
+       <from-outcome>message</from-outcome>
+       <to-view-id>/pages/message.jsp</to-view-id>
+    </navigation-case>
+
+    <navigation-case>
+       <description>New Concept</description>
+       <from-action>#{userSessionBean.changeRequest}</from-action>
+       <from-outcome>new_concept</from-outcome>
+       <to-view-id>/pages/new_concept.jsp</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+
+  <!-- Managed Beans ======================================================= -->
+  <managed-bean>
+    <managed-bean-name>userSessionBean</managed-bean-name>
+    <managed-bean-class>gov.nih.nci.evs.newtermform.bean.UserSessionBean</managed-bean-class>
+    <managed-bean-scope>session</managed-bean-scope>
+  </managed-bean>
 </faces-config>
