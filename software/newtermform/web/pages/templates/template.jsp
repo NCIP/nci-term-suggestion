@@ -1,5 +1,6 @@
-<!-- File: main.jsp (Begin) -->
+<!-- File: template.jsp (Begin) -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="gov.nih.nci.evs.newtermform.properties.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
   String imagePath = request.getContextPath() + "/images";
@@ -8,7 +9,9 @@
       content_title = "Suggest New Term";
   String content_page = "/pages/templates/"; 
   content_page += request.getParameter("content_page");
+  String buildInfo = AppProperties.getInstance().getBuildInfo();
 %>
+<!-- Build info: <%=buildInfo%> -->
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -32,4 +35,4 @@
     </div>
   </body>
 </html>
-<!-- File: main.jsp (End) -->
+<!-- File: template.jsp (End) -->
