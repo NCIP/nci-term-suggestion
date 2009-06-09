@@ -38,18 +38,19 @@
          <option>Concept Modification</option>
         </select>
       </td>    
-      <td align="right" colspan="2"><INPUT type="submit" name="submit" value="Next"></td>
 <%--
+      <td align="right" colspan="2"><INPUT type="submit" name="submit" value="Next"></td>
+--%>
       <td align="right" colspan="2">
         <h:commandButton
-          id="changeRequest"
-          value="changeRequest"
+          id="submit"
+          value="submit"
           action="#{userSessionBean.changeRequest}"
           image="#{facesContext.externalContext.requestContextPath}/images/search.gif"
           alt="changeRequest">
         </h:commandButton>
       </td>
---%>
+
     </tr>
   </table>
 </form>

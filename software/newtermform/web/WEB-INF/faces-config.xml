@@ -16,7 +16,7 @@
 
   <!-- Navigation: Request Change ========================================== -->
   <navigation-rule>
-    <from-view-id>/pages/mock_up.jsp</from-view-id>
+    <from-view-id>/pages/change_request.jsp</from-view-id>
     <navigation-case>
        <description>Message</description>
        <from-action>#{userSessionBean.changeRequest}</from-action>
