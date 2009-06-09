@@ -5,39 +5,38 @@ import java.util.HashMap;
 import org.apache.log4j.Logger;
 
 public class AppProperties {
-    private static HashMap<String, String> configurableItemMap;
+    private static final String PROPERTY_FILE = 
+        "gov.nih.nci.evs.browser.NewTermFormProperties";
+    
+    private static final String DEBUG_ON = "DEBUG_ON";
+    private static final String MAIL_SMTP_SERVER = "MAIL_SMTP_SERVER";
+    private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
+    private static final String BUILD_INFO = "NEWTERMFORM_BUILD_INFO";
 
-    public static final String DEBUG_ON = "DEBUG_ON";
-    public static final String MAIL_SMTP_SERVER = "MAIL_SMTP_SERVER";
-    public static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
-    public static final String BUILD_INFO = "NEWTERMFORM_BUILD_INFO";
-
-    private static Logger log = Logger.getLogger(AppProperties.class);
     private static AppProperties appProperties = null;
-
-    private boolean debugOn = false;
-    private String mail_smtp_server = null;
-    private String ncicb_contact_url = null;
+    private Logger log = Logger.getLogger(AppProperties.class);
+    private HashMap<String, String> configurableItemMap;
     private String buildInfo = null;
 
-    /**
-     * Private constructor for singleton pattern.
-     */
-    private AppProperties() {
+    private AppProperties() { // Singleton Pattern
         loadProperties();
-
-        debugOn = Boolean.parseBoolean(getProperty(DEBUG_ON));
-        ncicb_contact_url = getProperty(NCICB_CONTACT_URL);
-        mail_smtp_server = getProperty(MAIL_SMTP_SERVER);
     }
 
     public static AppProperties getInstance() throws Exception {
-        if (appProperties == null) {
-            synchronized (AppProperties.class) {
-                appProperties = new AppProperties();
-            }
-        }
+        if (appProperties == null)
+            appProperties = new AppProperties();
         return appProperties;
+    }
+
+    private void loadProperties() {
+        synchronized (AppProperties.class) {
+            String propertyFile = System.getProperty(PROPERTY_FILE);
+            log.info("AppProperties File Location= " + propertyFile);
+            
+            PropertyFileParser parser = new PropertyFileParser(propertyFile);
+            parser.run();
+            configurableItemMap = parser.getConfigurableItemMap();
+        }
     }
 
     private String getProperty(String key) {
@@ -47,16 +46,6 @@ public class AppProperties {
         if (value.compareToIgnoreCase("null") == 0)
             return null;
         return value;
-    }
-
-    private void loadProperties() {
-        String propertyFile = System
-            .getProperty("gov.nih.nci.evs.browser.NewTermFormProperties");
-
-        log.info("AppProperties File Location= " + propertyFile);
-        PropertyFileParser parser = new PropertyFileParser(propertyFile);
-        parser.run();
-        configurableItemMap = parser.getConfigurableItemMap();
     }
 
     public String getBuildInfo() {
@@ -72,5 +61,17 @@ public class AppProperties {
 
         System.out.println("getBuildInfo returns " + buildInfo);
         return buildInfo;
+    }
+    
+    public boolean getDebugOn() {
+        return Boolean.parseBoolean(getProperty(DEBUG_ON));
+    }
+    
+    public String getContactUrl() {
+        return getProperty(NCICB_CONTACT_URL);
+    }
+    
+    public String getMailSmtpServer() {
+        return getProperty(MAIL_SMTP_SERVER);
     }
 }
