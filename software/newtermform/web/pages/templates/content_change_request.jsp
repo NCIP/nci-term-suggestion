@@ -1,4 +1,6 @@
 <!-- File: content_change_request.jsp (Begin) -->
+<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
+<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>
@@ -10,7 +12,7 @@
   String email = "John.Doe@abc.com";
 %>
 <div class="texttitle-blue">Contact Information:</div><br/>
-<form method="post">
+<form name="changeRequest" method="post">
   <table class="datatable">
     <tr>
       <td>First Name:</td>
@@ -35,10 +37,20 @@
          <option>New Concept</option>
          <option>Concept Modification</option>
         </select>
+      </td>    
+      <td align="right" colspan="2"><INPUT type="submit" name="submit" value="Next"></td>
+<%--
+      <td align="right" colspan="2">
+        <h:commandButton
+          id="changeRequest"
+          value="changeRequest"
+          action="#{userSessionBean.changeRequest}"
+          image="#{facesContext.externalContext.requestContextPath}/images/search.gif"
+          alt="changeRequest">
+        </h:commandButton>
       </td>
-      <td/>
-      <td align="right"><INPUT type="submit" name="submit" value="Next"></td>
-      </tr>
+--%>
+    </tr>
   </table>
 </form>
 <!-- File: content_change_request.jsp (End) -->
