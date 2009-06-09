@@ -5,9 +5,7 @@ import java.util.HashMap;
 import org.apache.log4j.Logger;
 
 public class AppProperties {
-    private static final String PROPERTY_FILE = 
-        "gov.nih.nci.evs.browser.NewTermFormProperties";
-    
+    private static final String PROPERTY_FILE = "NewTermFormPropertiesFile";
     private static final String DEBUG_ON = "DEBUG_ON";
     private static final String MAIL_SMTP_SERVER = "MAIL_SMTP_SERVER";
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
