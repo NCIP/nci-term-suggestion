@@ -59,33 +59,33 @@ import org.xml.sax.SAXException;
  */
 
 public class PropertyFileParser {
-    private HashMap<String, String> configurableItemMap;
-    private String xmlfile;
-    private Document dom;
+    private HashMap<String, String> _configurableItemMap;
+    private String _xmlfile;
+    private Document _dom;
 
     public PropertyFileParser() {
-        configurableItemMap = new HashMap<String, String>();
+        _configurableItemMap = new HashMap<String, String>();
     }
 
     public PropertyFileParser(String xmlfile) {
-        configurableItemMap = new HashMap<String, String>();
-        this.xmlfile = xmlfile;
+        _configurableItemMap = new HashMap<String, String>();
+        _xmlfile = xmlfile;
     }
 
     public void run() {
-        parseXmlFile(xmlfile);
+        parseXmlFile(_xmlfile);
         parseDocument();
     }
 
     public HashMap<String, String> getConfigurableItemMap() {
-        return configurableItemMap;
+        return _configurableItemMap;
     }
 
     private void parseXmlFile(String xmlfile) {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
-            dom = db.parse(xmlfile);
+            _dom = db.parse(xmlfile);
         } catch (ParserConfigurationException pce) {
             pce.printStackTrace();
         } catch (SAXException se) {
@@ -96,11 +96,11 @@ public class PropertyFileParser {
     }
 
     private void parseDocument() {
-        Element docEle = dom.getDocumentElement();
-        NodeList list2 = docEle.getElementsByTagName("ConfigurableItem");
-        if (list2 != null && list2.getLength() > 0) {
-            for (int i = 0; i < list2.getLength(); i++) {
-                Element el = (Element) list2.item(i);
+        Element docEle = _dom.getDocumentElement();
+        NodeList list = docEle.getElementsByTagName("ConfigurableItem");
+        if (list != null && list.getLength() > 0) {
+            for (int i = 0; i < list.getLength(); i++) {
+                Element el = (Element) list.item(i);
                 getConfigurableItem(el);
             }
         }
@@ -109,7 +109,7 @@ public class PropertyFileParser {
     private void getConfigurableItem(Element displayItemElement) {
         String key = getTextValue(displayItemElement, "key");
         String value = getTextValue(displayItemElement, "value");
-        configurableItemMap.put(key, value);
+        _configurableItemMap.put(key, value);
     }
 
     private String getTextValue(Element ele, String tagName) {
