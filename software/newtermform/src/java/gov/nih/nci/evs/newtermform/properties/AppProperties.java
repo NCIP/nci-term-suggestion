@@ -13,34 +13,34 @@ public class AppProperties {
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String BUILD_INFO = "NEWTERMFORM_BUILD_INFO";
 
-    private static AppProperties appProperties = null;
-    private Logger log = Logger.getLogger(AppProperties.class);
-    private HashMap<String, String> configurableItemMap;
-    private String buildInfo = null;
+    private static AppProperties _appProperties = null;
+    private Logger _log = Logger.getLogger(AppProperties.class);
+    private HashMap<String, String> _configurableItemMap;
+    private String _buildInfo = null;
 
     private AppProperties() { // Singleton Pattern
         loadProperties();
     }
 
     public static AppProperties getInstance() throws Exception {
-        if (appProperties == null)
-            appProperties = new AppProperties();
-        return appProperties;
+        if (_appProperties == null)
+            _appProperties = new AppProperties();
+        return _appProperties;
     }
 
     private void loadProperties() {
         synchronized (AppProperties.class) {
             String propertyFile = System.getProperty(PROPERTY_FILE);
-            log.info("AppProperties File Location= " + propertyFile);
+            _log.info("AppProperties File Location= " + propertyFile);
             
             PropertyFileParser parser = new PropertyFileParser(propertyFile);
             parser.run();
-            configurableItemMap = parser.getConfigurableItemMap();
+            _configurableItemMap = parser.getConfigurableItemMap();
         }
     }
 
     private String getProperty(String key) {
-        String value = (String) configurableItemMap.get(key);
+        String value = (String) _configurableItemMap.get(key);
         if (value == null)
             return null;
         if (value.compareToIgnoreCase("null") == 0)
@@ -49,18 +49,18 @@ public class AppProperties {
     }
 
     public String getBuildInfo() {
-        if (buildInfo != null)
-            return buildInfo;
+        if (_buildInfo != null)
+            return _buildInfo;
         try {
-            buildInfo = getProperty(AppProperties.BUILD_INFO);
-            if (buildInfo == null)
-                buildInfo = "null";
+            _buildInfo = getProperty(AppProperties.BUILD_INFO);
+            if (_buildInfo == null)
+                _buildInfo = "null";
         } catch (Exception ex) {
-            buildInfo = ex.getMessage();
+            _buildInfo = ex.getMessage();
         }
 
-        System.out.println("getBuildInfo returns " + buildInfo);
-        return buildInfo;
+        System.out.println("getBuildInfo returns " + _buildInfo);
+        return _buildInfo;
     }
     
     public boolean getDebugOn() {
