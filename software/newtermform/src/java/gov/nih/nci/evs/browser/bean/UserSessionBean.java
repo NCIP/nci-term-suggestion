@@ -1,4 +1,4 @@
-package gov.nih.nci.evs.newtermform.bean;
+package gov.nih.nci.evs.browser.bean;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;

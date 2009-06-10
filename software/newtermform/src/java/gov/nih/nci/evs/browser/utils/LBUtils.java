@@ -1,4 +1,4 @@
-package gov.nih.nci.evs.newtermform.utils;
+package gov.nih.nci.evs.browser.utils;
 
 import java.util.*;
 

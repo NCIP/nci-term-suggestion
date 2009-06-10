@@ -1,4 +1,4 @@
-package gov.nih.nci.evs.newtermform.properties;
+package gov.nih.nci.evs.browser.properties;
 
 import java.util.HashMap;
 

@@ -33,7 +33,7 @@
 <!-- DYEE: Orig
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>gov.nih.nci.evs.newtermform.servlet.AFacesServlet</servlet-class>
+        <servlet-class>gov.nih.nci.evs.browser.servlet.AFacesServlet</servlet-class>
         <init-param>
             <param-name>errorPage</param-name>
             <param-value>/pages/error_handler.jsf</param-value>

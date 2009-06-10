@@ -1,5 +1,5 @@
 <!-- File: content_new_concept.jsp (Begin) -->
-<%@ page import="gov.nih.nci.evs.newtermform.utils.*" %>
+<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
 %>

@@ -5,7 +5,7 @@
 
 <faces-config>
     <application>
-        <message-bundle>gov.nih.nci.evs.newtermform.bean.Resources</message-bundle>
+        <message-bundle>gov.nih.nci.evs.browser.bean.Resources</message-bundle>
         <locale-config>
             <default-locale>en</default-locale>
             <supported-locale>en-us</supported-locale>
@@ -35,7 +35,7 @@
   <!-- Managed Beans ======================================================= -->
   <managed-bean>
     <managed-bean-name>userSessionBean</managed-bean-name>
-    <managed-bean-class>gov.nih.nci.evs.newtermform.bean.UserSessionBean</managed-bean-class>
+    <managed-bean-class>gov.nih.nci.evs.browser.bean.UserSessionBean</managed-bean-class>
     <managed-bean-scope>session</managed-bean-scope>
   </managed-bean>
 </faces-config>

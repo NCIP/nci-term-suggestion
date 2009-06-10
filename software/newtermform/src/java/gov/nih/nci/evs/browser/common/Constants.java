@@ -1,4 +1,4 @@
-package gov.nih.nci.evs.newtermform.common;
+package gov.nih.nci.evs.browser.common;
 
 public interface Constants {
     // Application version
