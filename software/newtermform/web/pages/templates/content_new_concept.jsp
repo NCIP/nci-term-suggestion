@@ -5,11 +5,20 @@
 %>
 <%
   String vocabulary = "NCI Thesaurus";
+  String conceptName = "Ultra_Murine_Cell_Types";
   String preferredName = "Ultra Murine Cell Types";
+  String semanticType = "Cell Type";
   LBUtils.RELATIVE_TO relativeTo = LBUtils.RELATIVE_TO.Parent;
   String parentCode = "C23442";
   String nearestCode = "C23442";
-  String message = "";
+  String definition =
+      "The smallest units of living structure capable of independent" + 
+      " existence, composed of a membrane-enclosed mass of protoplasm" +
+      " and containing a nucleus or nucleoid. Cells are highly variable" +
+      " and specialized in both structure and function, though all must" +
+      " at some stage replicate proteins and nucleic acids, utilize" +
+      " energy, and reproduce themselves.";
+  String message = "New improved version of the previous type.";
   int i=0;
   String items[] = null;
   String selectedItem = null;
@@ -40,8 +49,18 @@
     </tr>
     <tr>
       <td></td>
-      <td>Concept Preferred Name:</td>
+      <td>Concept Name:</td>
+      <td><input name="conceptName" value="<%=conceptName%>" alt="conceptName" <%=INPUT_ARGS%>></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Preferred Name:</td>
       <td><input name="preferredName" value="<%=preferredName%>" alt="preferredName" <%=INPUT_ARGS%>></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Semantic Type:</td>
+      <td><input name="semanticType" value="<%=semanticType%>" alt="semanticType" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <%
@@ -61,17 +80,17 @@
       <td><%=relativeToTmp.getName()%>:</td>
       <td><input name="nearestCode" value="<%=nearestCode%>" alt="nearestCode" <%=INPUT_ARGS%>></td>
     </tr>
-    <!-- Simulates a blank line (Begin) -->
-    <tr><td> </td></tr>
-    <tr><td> </td></tr>
-    <tr><td> </td></tr>
-    <tr><td> </td></tr>
-    <tr><td> </td></tr>
-    <tr><td> </td></tr>
-    <!-- Simulates a blank line (End) -->
     <tr>
       <td></td>
-      <td colspan="2"><b>Enter a description of the term and the reason for adding it:</b></td>
+      <td colspan="2">Definition:</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2"><textarea class="textbody" name="definition" rows="4" cols="95"><%=definition%></textarea></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="2">Enter a description of the term and the reason for adding it:</td>
     </tr>
     <tr>
       <td></td>
