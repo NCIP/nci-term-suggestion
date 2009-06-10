@@ -28,8 +28,7 @@ if "%1" == "clean" (
     goto DONE
 )
 if "%1" == "dev" (
-    ant -Dproperties.file=C:\@\src\browsers\newterm.properties\dev-upgrade.properties deploy:remote:upgrade
-    rem ant -Dproperties.file=C:\newterm.properties\dev-upgrade.properties deploy:remote:upgrade
+    ant -Dproperties.file=C:\SVN-Projects\nci-newterm-properties\properties\dev-upgrade.properties deploy:remote:upgrade
     goto DONE
 )
 
