@@ -1,7 +1,9 @@
 <!-- File: content_new_concept.jsp (Begin) -->
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%!
-  private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
+  private static final String INPUT_ARGS = 
+    "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"" +
+    " onKeyPress=\"return ifenter(event,this.form)\"";
 %>
 <%
   String email = "John.Doe@abc.com";
@@ -26,29 +28,23 @@
 %>
 <form method="post">
   <div class="texttitle-blue">Suggest New Concept:</div><br/>
-  <table class="datatable">
-    <tr>
-      <td colspan="2"><b>Contact Information:</b></td>
-    </tr>
+  <table class="newConceptDT">
+    <tr><td colspan="2"><b>Contact Information:</b></td></tr>
     <tr>
       <td>Email:</td>
-      <td><input name="email" value="<%=email%>" alt="email" <%=INPUT_ARGS%>></td>
+      <td><input class="newConceptTF" name="email" value="<%=email%>" alt="email" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td valign="top">Other:</td>
-      <td><textarea class="textbody" name="other" rows="4" cols="30"><%=other%></textarea></td>
-    </tr>
-    <tr>
-      <td><br/></td>
+      <td><textarea class="newConceptTA" name="other"><%=other%></textarea></td>
     </tr>
 
-    <tr>
-      <td colspan="2"><b>Term Information:</b></td>
-    </tr>
+    <tr><td><br/></td></tr>
+    <tr><td colspan="2"><b>Term Information:</b></td></tr>
     <tr>
       <td>Vocabulary:</td>
       <td>
-        <select name="vocabulary">
+        <select class="newConceptCB" name="vocabulary">
           <%
             items = LBUtils.getVocabularies();
             selectedItem = vocabulary;
@@ -67,27 +63,26 @@
     </tr>
     <tr>
       <td>Term:</td>
-      <td><input name="term" value="<%=term%>" alt="preferredName" <%=INPUT_ARGS%>></td>
+      <td><input class="newConceptTF"  name="term" value="<%=term%>" alt="preferredName" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td>Synonyms:</td>
-      <td><input name="synonyms" value="<%=synonyms%>" alt="synonyms" <%=INPUT_ARGS%>></td>
+      <td><input class="newConceptTF"  name="synonyms" value="<%=synonyms%>" alt="synonyms" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td>Parent Concept Code:</td>
-      <td><input name="parentCode" value="<%=parentCode%>" alt="parentCode" <%=INPUT_ARGS%>></td>
+      <td><input class="newConceptTF"  name="parentCode" value="<%=parentCode%>" alt="parentCode" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
-      <td colspan="2">Definition:</td>
+      <td valign="top">Definition:</td>
+      <td><textarea class="newConceptTA" name="definition" rows="4" cols="95"><%=definition%></textarea></td>
     </tr>
+
+    <tr><td><br/></td></tr>
+    <tr><td colspan="2"><b>Additional Information:</b></td></tr>
     <tr>
-      <td colspan="2"><textarea class="textbody" name="definition" rows="4" cols="95"><%=definition%></textarea></td>
-    </tr>
-    <tr>
-      <td colspan="2">Reason for adding plus any additional information:</td>
-    </tr>
-    <tr>
-      <td colspan="2"><textarea class="textbody" name="reason" rows="4" cols="95"><%=reason%></textarea></td>
+      <td valign="top">Reason for adding plus any additional information:</td>
+      <td><textarea class="newConceptTA" name="reason" rows="4" cols="95"><%=reason%></textarea></td>
     </tr>
     <tr>
       <td><a href="<%=request.getContextPath()%>/pages/change_request.jsp">Back</a></td>
