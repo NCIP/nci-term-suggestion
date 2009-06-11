@@ -33,13 +33,19 @@
     <!-- =================================================================== -->
     <tr><td colspan="2"><b>Contact Information:</b></td></tr>
     <tr>
-      <td <%=LABEL_ARGS%>>Email:</td>
+      <td <%=LABEL_ARGS%>>Email: *</td>
       <td><input name="email" value="<%=email%>" alt="email"
         class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Other:</td>
       <td><textarea name="other" class="newConceptTA<%=css%>"><%=other%></textarea></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="newConceptNotes"><b>Privacy Note:</b> Your contact information will only be used to contact you
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;about this topic and not for any other purpose.
+      </td>
     </tr>
 
     <!-- =================================================================== -->
@@ -66,7 +72,7 @@
       </td>
     </tr>
     <tr>
-      <td <%=LABEL_ARGS%>>Term:</td>
+      <td <%=LABEL_ARGS%>>Term: *</td>
       <td><input name="term" value="<%=term%>" alt="term"
         class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
@@ -89,7 +95,7 @@
     <tr><td><br/></td></tr>
     <tr><td colspan="2"><b>Additional Information:</b></td></tr>
     <tr>
-      <td <%=LABEL_ARGS%>>Reason for adding plus any additional information:</td>
+      <td <%=LABEL_ARGS%>>Reason for adding plus any other additional information:</td>
       <td><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
     </tr>
 

@@ -536,6 +536,9 @@ h3
  font-size: 11px;
  width: 75%;
 }
+.newConceptNotes {
+ font-size: 9px;
+}
 .newConceptTF {
   width: 400px;
   height: 14px;
