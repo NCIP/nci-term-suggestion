@@ -18,8 +18,8 @@
   String[] items = null;
   String selectedItem = null;
 %>
-<div class="texttitle-blue">Suggest Concept Modification:</div><br/>
 <form method="post">
+  <div class="texttitle-blue">Suggest Concept Modification:</div><br/>
   <!-- --------------------------------------------------------------------- -->
   <b>Concept Information:</b>
   <table class="datatable">
