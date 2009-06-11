@@ -43,7 +43,7 @@
     </tr>
     <tr>
       <td></td>
-      <td class="newConceptNotes"><b>Privacy Note:</b> Your contact information will only be used to contact you
+      <td class="newConceptNotes"><b>Privacy Notice:</b> Your contact information will only be used to contact you
           <br/>&nbsp;&nbsp;&nbsp;&nbsp;about this topic and not for any other purpose.
       </td>
     </tr>
