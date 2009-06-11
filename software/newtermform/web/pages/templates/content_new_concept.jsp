@@ -1,8 +1,8 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%!
   private static final String INPUT_ARGS = 
-    "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"" +
-    " onKeyPress=\"return ifenter(event,this.form)\"";
+    "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
+    // " onKeyPress=\"return ifenter(event,this.form)\"";
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
@@ -33,7 +33,7 @@
     <!-- =================================================================== -->
     <tr><td colspan="2"><b>Contact Information:</b></td></tr>
     <tr>
-      <td <%=LABEL_ARGS%>>Email: *</td>
+      <td <%=LABEL_ARGS%>>Email: <i class="red">*</i></td>
       <td><input name="email" value="<%=email%>" alt="email"
         class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
@@ -52,7 +52,7 @@
     <tr><td><br/></td></tr>
     <tr><td colspan="2"><b>Term Information:</b></td></tr>
     <tr>
-      <td <%=LABEL_ARGS%>>Vocabulary:</td>
+      <td <%=LABEL_ARGS%>>Vocabulary: <i class="red">*</i></td>
       <td>
         <select name="vocabulary" class="newConceptCB<%=css%>">
           <%
@@ -72,7 +72,7 @@
       </td>
     </tr>
     <tr>
-      <td <%=LABEL_ARGS%>>Term: *</td>
+      <td <%=LABEL_ARGS%>>Term: <i class="red">*</i></td>
       <td><input name="term" value="<%=term%>" alt="term"
         class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
@@ -102,7 +102,8 @@
     <!-- =================================================================== -->
     <tr><td><br/></td></tr>
     <tr>
-      <td colspan="2" align="right">
+      <td class="newConceptNotes"><i class="red">* Required</i></td>
+      <td align="right">
         <INPUT type="submit" name="submit" value="Submit">
       </td>
     </tr>
