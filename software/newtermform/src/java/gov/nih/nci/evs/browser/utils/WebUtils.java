@@ -11,7 +11,7 @@ public class WebUtils {
         ListUtils.debugList("Request Headers", list);
     }
     
-    private static ArrayList<String> getHeaders(HttpServletRequest request) {
+    public static ArrayList<String> getHeaders(HttpServletRequest request) {
         Enumeration<?> enumeration = request.getHeaderNames();
         ArrayList<String> list = new ArrayList<String>();
         while (enumeration.hasMoreElements()) {
@@ -20,5 +20,21 @@ public class WebUtils {
             list.add(name + ": " + value);
         }
         return list;
+    }
+    
+    public static boolean isClientBrowser(HttpServletRequest request,
+            String type) {
+        String userAgent = request.getHeader("user-agent");
+        if (userAgent == null)
+            return false;
+        return userAgent.toLowerCase().contains(type);
+    }
+    
+    public static boolean isUsingIE(HttpServletRequest request) {
+        return isClientBrowser(request, "msie");
+    }
+
+    public static boolean isUsingFirefox(HttpServletRequest request) {
+        return isClientBrowser(request, "firefox");
     }
 }
