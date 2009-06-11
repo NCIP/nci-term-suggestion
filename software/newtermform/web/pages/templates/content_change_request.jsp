@@ -1,4 +1,3 @@
-<!-- File: content_change_request.jsp (Begin) -->
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%!
@@ -53,4 +52,3 @@
     </tr>
   </table>
 </form>
-<!-- File: content_change_request.jsp (End) -->

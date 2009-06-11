@@ -1,4 +1,3 @@
-<!-- File: content_show_all.jsp (Begin) -->
 <%
   String basePath = request.getContextPath();
   String changeRequestForm = basePath + "/pages/change_request.jsp";
@@ -62,4 +61,3 @@ send the user to one of the following forms:
     </li>
   </ul>
 </p>
-<!-- File: content_show_all.jsp (End) -->

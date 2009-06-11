@@ -1,4 +1,3 @@
-<!-- File: sub_header.jsp (Begin) -->
 <%
   String imagePath = request.getContextPath() + "/images";
 %>
@@ -9,4 +8,3 @@
       alt="Enterprise Vocabulary Services" border="0"/>
   </a>
 </div>
-<!-- File: sub_header.jsp (End) -->

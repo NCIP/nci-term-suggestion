@@ -1,4 +1,3 @@
-<!-- File: content_new_concept.jsp (Begin) -->
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%!
   private static final String INPUT_ARGS = 
@@ -103,4 +102,3 @@
     </tr>
   </table>
 </form>
-<!-- File: content_new_concept.jsp (end) -->

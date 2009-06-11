@@ -1,4 +1,3 @@
-<!-- File: header.jsp (Begin) -->
 <%
   String imagePath = request.getContextPath() + "/images";
 %>
@@ -27,4 +26,3 @@
       alt="www.cancer.gov" />
   </a>
 </div>
-<!-- File: header.jsp (End) -->
