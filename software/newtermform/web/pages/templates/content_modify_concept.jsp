@@ -1,4 +1,3 @@
-<!-- File: content_modify_concept.jsp (Begin) -->
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
@@ -152,4 +151,3 @@
     </tr>
   </table>
 </form>
-<!-- File: content_modify_concept.jsp (End) -->

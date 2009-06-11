@@ -1,4 +1,3 @@
-<!-- File: footer.jsp (Begin) -->
 <%
   String imagePath = request.getContextPath() + "/images";
 %>
@@ -40,4 +39,3 @@
       alt="USA.gov" />
   </map>
 </div>
-<!-- File: footer.jsp (End) -->
