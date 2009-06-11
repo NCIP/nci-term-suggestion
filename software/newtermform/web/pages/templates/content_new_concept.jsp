@@ -26,9 +26,7 @@
   int i=0;
   String items[] = null;
   String selectedItem = null;
-%>
-<%
-  WebUtils.debugHeaders(request);
+  String css = WebUtils.isUsingIE(request) ? "_IE" : "";
 %>
 <form method="post">
   <div class="texttitle-blue">Suggest New Concept:</div><br/>
@@ -38,11 +36,11 @@
     <tr>
       <td <%=LABEL_ARGS%>>Email:</td>
       <td><input name="email" value="<%=email%>" alt="email"
-        class="newConceptTF" <%=INPUT_ARGS%>></td>
+        class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Other:</td>
-      <td><textarea name="other" class="newConceptTA"><%=other%></textarea></td>
+      <td><textarea name="other" class="newConceptTA<%=css%>"><%=other%></textarea></td>
     </tr>
 
     <!-- =================================================================== -->
@@ -51,7 +49,7 @@
     <tr>
       <td <%=LABEL_ARGS%>>Vocabulary:</td>
       <td>
-        <select name="vocabulary" class="newConceptCB">
+        <select name="vocabulary" class="newConceptCB<%=css%>">
           <%
             items = LBUtils.getVocabularies();
             selectedItem = vocabulary;
@@ -71,21 +69,21 @@
     <tr>
       <td <%=LABEL_ARGS%>>Term:</td>
       <td><input name="term" value="<%=term%>" alt="term"
-        class="newConceptTF" <%=INPUT_ARGS%>></td>
+        class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Synonyms:</td>
       <td><input name="synonyms" value="<%=synonyms%>" alt="synonyms"
-        class="newConceptTF" <%=INPUT_ARGS%>></td>
+        class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Parent Concept Code:</td>
       <td><input name="parentCode" value="<%=parentCode%>" alt="parentCode"
-        class="newConceptTF" <%=INPUT_ARGS%>></td>
+        class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Definition:</td>
-      <td><textarea name="definition" class="newConceptTA"><%=definition%></textarea></td>
+      <td><textarea name="definition" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
     </tr>
 
     <!-- =================================================================== -->
@@ -93,7 +91,7 @@
     <tr><td colspan="2"><b>Additional Information:</b></td></tr>
     <tr>
       <td <%=LABEL_ARGS%>>Reason for adding plus any additional information:</td>
-      <td><textarea name="reason" class="newConceptTA"><%=reason%></textarea></td>
+      <td><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
     </tr>
 
     <!-- =================================================================== -->
