@@ -258,8 +258,10 @@
 
         <filterset id="embedded.filterset">
             <filter token="newtermform.conf.path" value="${application.data.path}/${newtermform.conf.path}"/>
-            <filter token="mail.smtp.server" value="${mail.smtp.server}"/>
             <filter token="newtermform.build.info" value="Built: ${BUILD_DATE}"/>
+            <filter token="debug.on" value="${debug.on}"/>
+            <filter token="mail.smtp.server" value="${mail.smtp.server}"/>
+            <filter token="ncicb.contact.url" value="${ncicb.contact.url}"/>
         </filterset>
         <mkdir dir="${application.data.path}/${newtermform.conf.path}" />
         <copy todir="${application.data.path}/${newtermform.conf.path}" filtering="true" overwrite="true">
