@@ -224,7 +224,7 @@ h3
 .datatable 
 {
  font-size: 11px;
- width: 70%;
+ width: 100%;
 }
 
 .datatableheader 
@@ -531,4 +531,23 @@ h3
  border-style: solid;
  color: #FFF;
  cursor: pointer;
+}
+.newConceptDT {
+ font-size: 11px;
+ width: 75%;
+}
+.newConceptTF {
+  width: 400px;
+  height: 14px;
+  font-size: 10px;
+}
+.newConceptCB {
+  width: 400px;
+  height: 20px;
+  font-size: 10px;
+}
+.newConceptTA {
+  width: 400px;
+  height: 75px;
+  font-size: 10px;
 }
