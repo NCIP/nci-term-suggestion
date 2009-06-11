@@ -27,6 +27,9 @@
   String items[] = null;
   String selectedItem = null;
 %>
+<%
+  WebUtils.debugHeaders(request);
+%>
 <form method="post">
   <div class="texttitle-blue">Suggest New Concept:</div><br/>
   <table class="newConceptDT">
@@ -34,11 +37,12 @@
     <tr><td colspan="2"><b>Contact Information:</b></td></tr>
     <tr>
       <td <%=LABEL_ARGS%>>Email:</td>
-      <td><input class="newConceptTF" name="email" value="<%=email%>" alt="email" <%=INPUT_ARGS%>></td>
+      <td><input name="email" value="<%=email%>" alt="email"
+        class="newConceptTF" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Other:</td>
-      <td><textarea class="newConceptTA" name="other"><%=other%></textarea></td>
+      <td><textarea name="other" class="newConceptTA"><%=other%></textarea></td>
     </tr>
 
     <!-- =================================================================== -->
@@ -47,7 +51,7 @@
     <tr>
       <td <%=LABEL_ARGS%>>Vocabulary:</td>
       <td>
-        <select class="newConceptCB" name="vocabulary">
+        <select name="vocabulary" class="newConceptCB">
           <%
             items = LBUtils.getVocabularies();
             selectedItem = vocabulary;
@@ -66,19 +70,22 @@
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Term:</td>
-      <td><input class="newConceptTF"  name="term" value="<%=term%>" alt="preferredName" <%=INPUT_ARGS%>></td>
+      <td><input name="term" value="<%=term%>" alt="term"
+        class="newConceptTF" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Synonyms:</td>
-      <td><input class="newConceptTF"  name="synonyms" value="<%=synonyms%>" alt="synonyms" <%=INPUT_ARGS%>></td>
+      <td><input name="synonyms" value="<%=synonyms%>" alt="synonyms"
+        class="newConceptTF" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Parent Concept Code:</td>
-      <td><input class="newConceptTF"  name="parentCode" value="<%=parentCode%>" alt="parentCode" <%=INPUT_ARGS%>></td>
+      <td><input name="parentCode" value="<%=parentCode%>" alt="parentCode"
+        class="newConceptTF" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Definition:</td>
-      <td><textarea class="newConceptTA" name="definition" rows="4" cols="95"><%=definition%></textarea></td>
+      <td><textarea name="definition" class="newConceptTA"><%=definition%></textarea></td>
     </tr>
 
     <!-- =================================================================== -->
@@ -86,7 +93,7 @@
     <tr><td colspan="2"><b>Additional Information:</b></td></tr>
     <tr>
       <td <%=LABEL_ARGS%>>Reason for adding plus any additional information:</td>
-      <td><textarea class="newConceptTA" name="reason" rows="4" cols="95"><%=reason%></textarea></td>
+      <td><textarea name="reason" class="newConceptTA"><%=reason%></textarea></td>
     </tr>
 
     <!-- =================================================================== -->
