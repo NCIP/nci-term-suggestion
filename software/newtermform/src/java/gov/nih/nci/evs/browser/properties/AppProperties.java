@@ -1,20 +1,25 @@
 package gov.nih.nci.evs.browser.properties;
 
-import java.util.HashMap;
+import gov.nih.nci.evs.browser.newterm.*;
+
+import java.util.*;
 
 import org.apache.log4j.Logger;
 
 public class AppProperties {
     private static final String PROPERTY_FILE = "NewTermFormPropertiesFile";
+    private static final String BUILD_INFO = "NEWTERMFORM_BUILD_INFO";
     private static final String DEBUG_ON = "DEBUG_ON";
     private static final String MAIL_SMTP_SERVER = "MAIL_SMTP_SERVER";
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
-    private static final String BUILD_INFO = "NEWTERMFORM_BUILD_INFO";
+    private static final String VOCABULARY_PREFIX = "VOCABULARY_";
+    private static final int VOCABULARY_MAX = 20;
 
     private static AppProperties _appProperties = null;
     private Logger _log = Logger.getLogger(AppProperties.class);
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
+    private ArrayList<VocabInfo> _vocabList = null;
 
     private AppProperties() { // Singleton Pattern
         loadProperties();
@@ -71,5 +76,22 @@ public class AppProperties {
     
     public String getMailSmtpServer() {
         return getProperty(MAIL_SMTP_SERVER);
+    }
+    
+    private ArrayList<VocabInfo> parseVocabList() {
+        ArrayList<VocabInfo> list = new ArrayList<VocabInfo>();
+        for (int i=0; i<VOCABULARY_MAX; ++i) {
+            String value = getProperty(VOCABULARY_PREFIX + i);
+            VocabInfo vocab = VocabInfo.parse(value);
+            if (vocab != null)
+                list.add(vocab);
+        }
+        return list;
+    }
+    
+    public ArrayList<VocabInfo> getVocabularies() {
+        if (_vocabList == null)
+            _vocabList = parseVocabList();
+        return _vocabList;
     }
 }
