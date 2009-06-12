@@ -7,6 +7,7 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
+  String imagePath = request.getContextPath() + "/images";
   String email = "John.Doe@abc.com";
   String other = "Phone: 987-654-3210";
 
@@ -34,16 +35,16 @@
     <tr><td colspan="2"><b>Contact Information:</b></td></tr>
     <tr>
       <td <%=LABEL_ARGS%>>Email: <i class="red">*</i></td>
-      <td><input name="email" value="<%=email%>" alt="email"
+      <td colspan="2"><input name="email" value="<%=email%>" alt="email"
         class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Other:</td>
-      <td><textarea name="other" class="newConceptTA<%=css%>"><%=other%></textarea></td>
+      <td colspan="2"><textarea name="other" class="newConceptTA<%=css%>"><%=other%></textarea></td>
     </tr>
     <tr>
       <td></td>
-      <td class="newConceptNotes"><b>Privacy Notice:</b> Your contact information will only be used to contact you
+      <td colspan="2" class="newConceptNotes"><b>Privacy Notice:</b> Your contact information will only be used to contact you
           <br/>&nbsp;&nbsp;&nbsp;&nbsp;about this topic and not for any other purpose.
       </td>
     </tr>
@@ -70,25 +71,33 @@
           %>
         </select>
       </td>
+      <td align="right">
+        <a href="http://www.nih.gov" target="_blank"
+         alt="U.S. National Institutes of Health">
+          <img src="<%=imagePath%>/search.gif"
+            width="51" height="21" border="0"
+            alt="U.S. National Institutes of Health" />
+        </a>
+      </td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Term: <i class="red">*</i></td>
-      <td><input name="term" value="<%=term%>" alt="term"
+      <td colspan="2"><input name="term" value="<%=term%>" alt="term"
         class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Synonyms:</td>
-      <td><input name="synonyms" value="<%=synonyms%>" alt="synonyms"
+      <td colspan="2"><input name="synonyms" value="<%=synonyms%>" alt="synonyms"
         class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Parent Concept Code:</td>
-      <td><input name="parentCode" value="<%=parentCode%>" alt="parentCode"
+      <td colspan="2"><input name="parentCode" value="<%=parentCode%>" alt="parentCode"
         class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
     </tr>
     <tr>
       <td <%=LABEL_ARGS%>>Definition:</td>
-      <td><textarea name="definition" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
+      <td colspan="2"><textarea name="definition" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
     </tr>
 
     <!-- =================================================================== -->
@@ -96,14 +105,14 @@
     <tr><td colspan="2"><b>Additional Information:</b></td></tr>
     <tr>
       <td <%=LABEL_ARGS%>>Reason for adding plus any other additional information:</td>
-      <td><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
+      <td colspan="2"><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
     </tr>
 
     <!-- =================================================================== -->
     <tr><td><br/></td></tr>
     <tr>
       <td class="newConceptNotes"><i class="red">* Required</i></td>
-      <td align="right">
+      <td colspan="2" align="right">
         <INPUT type="submit" name="submit" value="Submit">
       </td>
     </tr>
