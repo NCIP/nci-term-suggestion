@@ -3,27 +3,6 @@ package gov.nih.nci.evs.browser.utils;
 import java.util.*;
 
 public class LBUtils {
-    public static enum RELATIVE_TO { 
-        None("None"), 
-        Parent("Parent Concept Code"), 
-        Nearest("Nearest Concept Code"); 
-
-        private String _name = "";
-        private void setName(String name) { _name = name; }
-        public String getName() { return _name; }
-        
-        private RELATIVE_TO(String name){
-            setName(name);
-        }
-        
-        public static RELATIVE_TO[] getNames() {
-            ArrayList<String> list = new ArrayList<String>();
-            for (RELATIVE_TO item : values())
-                list.add(item.getName());
-            return list.toArray(new RELATIVE_TO[list.size()]);
-        }
-    };
-    
     public static enum MODIFIABLE_PROPERTY { 
         Definition, Synonym, Others;
         
@@ -37,18 +16,6 @@ public class LBUtils {
     }
 
     public static enum PROPERTY_ACTION { Add, Modify, Delete }
-
-    public static String[] getVocabularies() {
-        ArrayList<String> list = new ArrayList<String>();
-//        list.add("BioC_0902D");
-//        list.add("CBO2007_06");
-//        list.add("CDC_0902D");
-//        list.add("CDISC_0902D");
-//        list.add("...");
-        list.add("NCI Thesaurus");
-        list.add("...");
-        return list.toArray(new String[list.size()]);
-    }
     
     public static String[] getProperties(MODIFIABLE_PROPERTY property) {
         ArrayList<String> list = new ArrayList<String>();

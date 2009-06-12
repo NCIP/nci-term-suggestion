@@ -49,19 +49,20 @@ public class VocabInfo {
     }
 
     public static void debug(VocabInfo list) {
-        debug(Utils.SEPARATOR);
-        debug("Name: " + list.getName());
-        debug("Url: " + list.getUrl());
+        debug("* Name: " + list.getName());
+        debug("  * Url: " + list.getUrl());
         ArrayList<String> emails = list.getEmails();
         Iterator<String> iterator = emails.iterator();
         while (iterator.hasNext()) {
             String email = iterator.next();
-            debug("Email: " + email);
+            debug("  * Email: " + email);
         }
     }
     
     public static void debug(List<VocabInfo> list) {
         Iterator<VocabInfo> iterator = list.iterator();
+        debug(Utils.SEPARATOR);
+        debug("List of vocabularies:");
         while (iterator.hasNext())
             debug(iterator.next());
     }
