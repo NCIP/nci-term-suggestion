@@ -1,4 +1,5 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
+<%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%!
   private static final String INPUT_ARGS = 
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
@@ -12,7 +13,6 @@
   String vocabulary = "NCI Thesaurus";
   String term = "Ultra Murine Cell Types";
   String synonyms = "";
-  LBUtils.RELATIVE_TO relativeTo = LBUtils.RELATIVE_TO.Parent;
   String parentCode = "C23442";
   String definition =
       "The smallest units of living structure capable of independent" + 
@@ -23,7 +23,7 @@
       " energy, and reproduce themselves.";
   String reason = "New improved version of the previous type.";
   int i=0;
-  String items[] = null;
+  String[] items = null;
   String selectedItem = null;
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
 %>
@@ -56,7 +56,7 @@
       <td>
         <select name="vocabulary" class="newConceptCB<%=css%>">
           <%
-            items = LBUtils.getVocabularies();
+            items = AppProperties.getInstance().getVocabularyNames();
             selectedItem = vocabulary;
             for (i=0; i<items.length; ++i) {
               String item = items[i];

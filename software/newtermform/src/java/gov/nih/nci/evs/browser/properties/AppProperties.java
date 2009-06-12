@@ -90,8 +90,23 @@ public class AppProperties {
     }
     
     public ArrayList<VocabInfo> getVocabularies() {
-        if (_vocabList == null)
+        if (_vocabList == null) {
             _vocabList = parseVocabList();
+            if (getDebugOn())
+                VocabInfo.debug(_vocabList);
+        }
         return _vocabList;
+    }
+    
+    public String[] getVocabularyNames() {
+        getVocabularies();  // Initializes
+        int n = _vocabList.size();
+        VocabInfo[] infos = _vocabList.toArray(new VocabInfo[n]);
+        String[] names = new String[n];
+        for (int i=0; i<n; ++i) {
+            VocabInfo info = infos[i];
+            names[i] = info.getName();
+        }
+        return names;
     }
 }
