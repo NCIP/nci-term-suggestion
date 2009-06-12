@@ -117,6 +117,8 @@ public class PropertyFileParser {
         NodeList nl = ele.getElementsByTagName(tagName);
         if (nl != null && nl.getLength() > 0) {
             Element el = (Element) nl.item(0);
+            if (el == null || el.getFirstChild() == null)
+                return "";
             textVal = el.getFirstChild().getNodeValue();
         }
         return textVal = textVal.trim();

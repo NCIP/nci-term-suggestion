@@ -262,6 +262,12 @@
             <filter token="debug.on" value="${debug.on}"/>
             <filter token="mail.smtp.server" value="${mail.smtp.server}"/>
             <filter token="ncicb.contact.url" value="${ncicb.contact.url}"/>
+            <filter token="vocabulary.0" value="${vocabulary.0}"/>
+            <filter token="vocabulary.1" value="${vocabulary.1}"/>
+            <filter token="vocabulary.2" value="${vocabulary.2}"/>
+            <filter token="vocabulary.3" value="${vocabulary.3}"/>
+            <filter token="vocabulary.4" value="${vocabulary.4}"/>
+            <filter token="vocabulary.5" value="${vocabulary.5}"/>
         </filterset>
         <mkdir dir="${application.data.path}/${newtermform.conf.path}" />
         <copy todir="${application.data.path}/${newtermform.conf.path}" filtering="true" overwrite="true">
