@@ -22,7 +22,8 @@
       <key>NCICB_CONTACT_URL</key>
       <value>@ncicb.contact.url@</value>
     </ConfigurableItem>
-    
+
+    <!-- Vocabulary List (Begin) =========================================== -->
     <ConfigurableItem>
       <key>VOCABULARY_0</key>
       <value>@vocabulary.0@</value>
@@ -52,6 +53,32 @@
       <key>VOCABULARY_5</key>
       <value>@vocabulary.5@</value>
     </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_6</key>
+      <value>@vocabulary.6@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_7</key>
+      <value>@vocabulary.7@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_8</key>
+      <value>@vocabulary.8@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_9</key>
+      <value>@vocabulary.9@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_10</key>
+      <value>@vocabulary.10@</value>
+    </ConfigurableItem>
+    <!-- Vocabulary List (End) ============================================= -->
 
   </ConfigurableItems>
 </root>
