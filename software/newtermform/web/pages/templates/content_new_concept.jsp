@@ -2,13 +2,7 @@
 <%@ page import="gov.nih.nci.evs.browser.newterm.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
-<script type="text/javascript">
-  function displayLinkInNewWindow(id) {
-    var element = document.getElementById(id);
-    var url = element.value;
-    element.onclick=window.open(url);
-  }
-</script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%!
   private static final String INPUT_ARGS = 
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
