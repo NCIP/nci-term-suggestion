@@ -3,7 +3,7 @@
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript">
-  function jump2(id) {
+  function displayLinkInNewWindow(id) {
     var element = document.getElementById(id);
     var url = element.value;
     element.onclick=window.open(url);
@@ -84,7 +84,7 @@
         </select>
       </td>
       <td align="right">
-        <img src="<%=imagePath%>/search.gif" onclick="javascript:jump2('url')" />
+        <img src="<%=imagePath%>/search.gif" onclick="javascript:displayLinkInNewWindow('url')" />
       </td>
     </tr>
     <tr>
