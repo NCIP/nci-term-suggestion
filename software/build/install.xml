@@ -268,6 +268,11 @@
             <filter token="vocabulary.3" value="${vocabulary.3}"/>
             <filter token="vocabulary.4" value="${vocabulary.4}"/>
             <filter token="vocabulary.5" value="${vocabulary.5}"/>
+            <filter token="vocabulary.6" value="${vocabulary.6}"/>
+            <filter token="vocabulary.7" value="${vocabulary.7}"/>
+            <filter token="vocabulary.8" value="${vocabulary.8}"/>
+            <filter token="vocabulary.9" value="${vocabulary.9}"/>
+            <filter token="vocabulary.10" value="${vocabulary.10}"/>
         </filterset>
         <mkdir dir="${application.data.path}/${newtermform.conf.path}" />
         <copy todir="${application.data.path}/${newtermform.conf.path}" filtering="true" overwrite="true">
