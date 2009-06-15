@@ -78,7 +78,7 @@
         </select>
       </td>
       <td align="right">
-        <img src="<%=imagePath%>/search.gif" onclick="javascript:displayLinkInNewWindow('url')" />
+        <img src="<%=imagePath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
       </td>
     </tr>
     <tr>
@@ -114,7 +114,7 @@
     <tr>
       <td class="newConceptNotes"><i class="red">* Required</i></td>
       <td colspan="2" align="right">
-        <INPUT type="submit" name="submit" value="Submit">
+        <input type="image" name="submit" value="submit" src="<%=imagePath%>/submit.gif">
       </td>
     </tr>
   </table>
