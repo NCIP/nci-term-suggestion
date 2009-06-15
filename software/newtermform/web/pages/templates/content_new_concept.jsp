@@ -1,5 +1,13 @@
-<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="gov.nih.nci.evs.browser.newterm.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
+<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
+<script type="text/javascript">
+  function jump2() {
+    var loc = document.getElementById("url").value;
+    document.getElementById('url').onclick=window.open(loc);
+  }
+</script>
 <%!
   private static final String INPUT_ARGS = 
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
@@ -55,29 +63,27 @@
     <tr>
       <td <%=LABEL_ARGS%>>Vocabulary: <i class="red">*</i></td>
       <td>
-        <select name="vocabulary" class="newConceptCB<%=css%>">
+        <select name="vocabulary" id="url" class="newConceptCB<%=css%>">
           <%
-            items = AppProperties.getInstance().getVocabularyNames();
             selectedItem = vocabulary;
-            for (i=0; i<items.length; ++i) {
-              String item = items[i];
+            ArrayList list = AppProperties.getInstance().getVocabularies();
+            Iterator iterator = list.iterator();
+            while (iterator.hasNext()) {
+              VocabInfo vocab = (VocabInfo) iterator.next();
+              String item = vocab.getName();
+              String url = vocab.getUrl();
               String args = "";
               if (item.equals(selectedItem))
                 args += "selected=\"true\"";
           %>
-              <option value="<%=item%>" <%=args%>><%=item%></option>
+              <option value="<%=url%>" <%=args%>><%=item%></option>
           <%
             }
           %>
         </select>
       </td>
       <td align="right">
-        <a href="http://www.nih.gov" target="_blank"
-         alt="U.S. National Institutes of Health">
-          <img src="<%=imagePath%>/search.gif"
-            width="51" height="21" border="0"
-            alt="U.S. National Institutes of Health" />
-        </a>
+        <img src="<%=imagePath%>/search.gif" onclick="javascript:jump2()" />
       </td>
     </tr>
     <tr>
