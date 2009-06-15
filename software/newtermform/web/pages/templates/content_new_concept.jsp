@@ -3,9 +3,10 @@
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript">
-  function jump2() {
-    var loc = document.getElementById("url").value;
-    document.getElementById('url').onclick=window.open(loc);
+  function jump2(id) {
+    var element = document.getElementById(id);
+    var url = element.value;
+    element.onclick=window.open(url);
   }
 </script>
 <%!
@@ -83,7 +84,7 @@
         </select>
       </td>
       <td align="right">
-        <img src="<%=imagePath%>/search.gif" onclick="javascript:jump2()" />
+        <img src="<%=imagePath%>/search.gif" onclick="javascript:jump2('url')" />
       </td>
     </tr>
     <tr>
