@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<!-- bda-build-template version 0.10.0 -->
+<!-- bda-build-template version 1.1.0 -->
 
 <project name="newtermform-installer" default="upgrade" basedir="."
     xmlns:ivy="antlib:org.apache.ivy.ant"
@@ -116,7 +116,7 @@
             <pathelement location="${bda-utils.dir}/antunit-1.0.jar" />
         </classpath>
     </taskdef>
-    <taskdef name="xmlconfig" classname="com.xmlconfig.anttask.XmlConfig" classpathref="bda-utils.classpath" />
+    <!-- taskdef name="xmlconfig" classname="com.xmlconfig.anttask.XmlConfig" classpathref="bda-utils.classpath" / -->
     <taskdef name="for" classname="net.sf.antcontrib.logic.ForTask" classpathref="bda-utils.classpath" />
     <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="bda-utils.classpath" />
     <taskdef resource="liquibasetasks.properties" classpathref="bda-utils.classpath"/>
@@ -296,7 +296,6 @@
             <then>
                 <xmltask source="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml"
                     dest="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml">
-                    <xmlcatalog refid="installer.catalog"/>
                     <replace path="/server/mbean/attribute[contains(text(),'NewTermFormProperties')]">
 <![CDATA[<attribute name="Properties">
     NewTermFormPropertiesFile=${application.data.path}/${newtermform.conf.path}/${newtermform-webapp.prop.file}
@@ -307,7 +306,6 @@
             <else>
                 <xmltask source="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml"
                     dest="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml">
-                    <xmlcatalog refid="installer.catalog"/>
                     <insert path="/server/mbean[@code='org.jboss.varia.property.SystemPropertiesService']">
 <![CDATA[<attribute name="Properties">
     NewTermFormPropertiesFile=${application.data.path}/${newtermform.conf.path}/${newtermform-webapp.prop.file}
@@ -333,7 +331,6 @@
         <!--<copy file="${jboss.home}/server/${jboss.server.name}/conf/${log4j.file.name}" tofile="${jboss.home}/server/${jboss.server.name}/conf/${log4j.file.name}.1"/>-->
         <xmltask source="${jboss.home}/server/${jboss.server.name}/conf/${log4j.file.name}"
             dest="${jboss.home}/server/${jboss.server.name}/conf/${log4j.file.name}">
-            <xmlcatalog refid="installer.catalog"/>
             <remove path="/log4j:configuration/appender[@name='TestAppender']"/>
             <insert path="/log4j:configuration">
                 <![CDATA[
