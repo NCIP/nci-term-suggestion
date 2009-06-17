@@ -10,14 +10,14 @@
 
     <target name="findfiles">
             <exec executable="sh" failonerror="true">
-                    <arg line=" -c 'find /local/AnthillPro/work/nci-newterm-autodeploy_(bda).trunk.dev/trunk/software/target/bda-utils  -maxdepth 2 -ls'"/>
+                    <arg line="-c 'find /local/AnthillPro/work/nci-newterm-autodeploy_\(bda\).trunk.dev/trunk/software/target/bda-utils -maxdepth 2 -ls'"/>
             </exec>
     </target>
 
     <target name="printfile">
             <loadfile
                     property="file.contents"
-                    srcFile="/local/AnthillPro/work/nci-newterm-autodeploy_(bda).trunk.dev/trunk/software/build/build.xml">
+                    srcFile="/local/AnthillPro/work/nci-newterm-autodeploy_\(bda\).trunk.dev/trunk/software/build/build.xml">
                     <filterchain>
                             <linecontainsregexp>
                                     <regexp pattern=".*"/>
