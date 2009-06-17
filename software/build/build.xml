@@ -660,7 +660,7 @@
     <target name="printfile">
             <loadfile
                     property="file.contents"
-                    srcFile="/local/AnthillPro/work/nci-newterm-autodeploy_(bda).trunk.dev/trunk/software/build/build.xml"
+                    srcFile="/local/AnthillPro/work/nci-newterm-autodeploy_(bda).trunk.dev/trunk/software/build/build.xml">
                     <filterchain>
                             <linecontainsregexp>
                                     <regexp pattern=".*"/>
