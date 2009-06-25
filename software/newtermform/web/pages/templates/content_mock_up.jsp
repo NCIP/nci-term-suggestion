@@ -1,7 +1,7 @@
 <%
   String basePath = request.getContextPath();
   String changeRequestForm = basePath + "/pages/change_request.jsp";
-  String newConceptForm = basePath + "/pages/new_concept.jsp";
+  String newConceptForm = basePath + "/pages/new_concept.jsf";
   String definitionChangeForm = basePath + "/pages/modify_concept.jsp?property=Definition";
   String synonymChangeForm = basePath + "/pages/modify_concept.jsp?property=Synonym";
   String othersChangeForm = basePath + "/pages/modify_concept.jsp?property=Others";
@@ -22,19 +22,19 @@ selects the request type and then selects the "Next" button, this will
 send the user to one of the following forms:
   <ul>
     <li><a href="<%=newConceptForm%>">New Concept</a></li>
-    <li>Concept Modification Examples: 
+    <li>Concept Modification Examples:
       <ul>
         <li><a href="<%=definitionChangeForm%>">Definition</a>,</li>
         <li><a href="<%=synonymChangeForm%>">Synonym</a>,</li>
         <li><a href="<%=othersChangeForm%>">Others</a></li>
       </ul>
-    
+
       <br/>Note(s): The user needs to enter in vocabulary, concept code,
       and a property he/she would like to edit.  There will be
       a couple of dynamic interaction within this page:
-      
+
       <ul>
-        <li>Once the vocabulary is selected, this form will 
+        <li>Once the vocabulary is selected, this form will
             generate a list of editable properties (Property
             ComboBox) for the specified concept code.  We
             could limit this list to just definitions and
