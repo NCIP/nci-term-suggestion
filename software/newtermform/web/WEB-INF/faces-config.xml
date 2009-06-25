@@ -35,6 +35,14 @@
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
+            <from-outcome>message</from-outcome>
+            <to-view-id>/pages/message.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
             <from-outcome>java.lang.Exception</from-outcome>
             <to-view-id>/error_page.jsp</to-view-id>
         </navigation-case>
