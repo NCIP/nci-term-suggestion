@@ -1,3 +1,4 @@
+<%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%!
   private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
@@ -27,7 +28,7 @@
       <td>
         <select name="vocabulary">
           <%
-            items = LBUtils.getVocabularies();
+            items = AppProperties.getInstance().getVocabularyNames();
             selectedItem = vocabulary;
             for (i=0; i<items.length; ++i) {
               String item = items[i];
