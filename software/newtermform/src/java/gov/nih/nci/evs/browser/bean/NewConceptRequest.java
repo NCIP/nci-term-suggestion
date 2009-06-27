@@ -3,7 +3,6 @@ package gov.nih.nci.evs.browser.bean;
 import gov.nih.nci.evs.browser.properties.AppProperties;
 import gov.nih.nci.evs.browser.utils.*;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.*;
 
 public class NewConceptRequest extends RequestBase {
