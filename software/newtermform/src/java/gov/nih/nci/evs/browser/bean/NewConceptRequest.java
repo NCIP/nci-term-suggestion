@@ -20,38 +20,39 @@ public class NewConceptRequest extends RequestBase {
         setParameters(new String[] { EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS,
                 PARENT_CODE, DEFINITION, REASON });
     }
-    
+
     protected void setParameters(String[] parameters) {
         super.setParameters(parameters);
-        
-        //Hack: In content_new_concept.jsp page, the vocabulary comboBox
-        //  stores the value as the URL instead of the vocabulary name.
-        //  This is done so that the "Browse" button can display the
-        //  vocabulary's URL in a separate window kicked off by using
-        //  javascript displayLinkInNewWindow method.  The following
-        //  lines manually replaces the URL with the vocabulary name.
-        //Note: In order for this to work, the URL must be unique.
+
+        // Hack: In content_new_concept.jsp page, the vocabulary comboBox
+        // stores the value as the URL instead of the vocabulary name.
+        // This is done so that the "Browse" button can display the
+        // vocabulary's URL in a separate window kicked off by using
+        // javascript displayLinkInNewWindow method. The following
+        // lines manually replaces the URL with the vocabulary name.
+        // Note: In order for this to work, the URL must be unique.
         String url = _parametersHashMap.get(VOCABULARY);
         String name = AppProperties.getInstance().getVocabularyName(url);
         _parametersHashMap.put(VOCABULARY, name);
     }
 
     public String submit() {
-        updateAllSessionAttributes();
+        updateSessionAttributes();
         String warnings = validate();
         if (warnings.length() > 0) {
             _request.getSession().setAttribute("warnings", warnings);
             return "warnings";
         }
-        
-        String mailServer = AppProperties.getInstance().getMailSmtpServer();
+
+        AppProperties appProperties = AppProperties.getInstance();
+        String mailServer = appProperties.getMailSmtpServer();
         String from = _parametersHashMap.get(EMAIL);
-        String[] recipients = AppProperties.getInstance().getContactUsRecipients();
+        String[] recipients = appProperties.getContactUsRecipients();
         String subject = getSubject();
         String emailMsg = getEmailMesage();
-        
+
         try {
-            if (false) //DYEE
+            if (false) // DYEE
             MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
             _request.getSession().setAttribute("warnings",
@@ -59,34 +60,39 @@ public class NewConceptRequest extends RequestBase {
             e.printStackTrace();
             return "warnings";
         }
-        
+
+        clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
+                TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
         _request.getSession().setAttribute("warnings", null);
         _request.getSession().setAttribute("message", Utils.toHtml(emailMsg));
         return "message";
     }
-    
+
     private String validate() {
         StringBuffer buffer = new StringBuffer();
         String email = _parametersHashMap.get(EMAIL);
-        if (! MailUtils.isValidEmailAddress(email)) {
-            if (buffer.length() > 0) buffer.append("\n");
+        if (!MailUtils.isValidEmailAddress(email)) {
+            if (buffer.length() > 0)
+                buffer.append("\n");
             buffer.append("* Please enter a valid email address.");
         }
 
         String vocabulary = _parametersHashMap.get(VOCABULARY);
         if (vocabulary == null || vocabulary.length() <= 0) {
-            if (buffer.length() > 0) buffer.append("\n");
+            if (buffer.length() > 0)
+                buffer.append("\n");
             buffer.append("* Please select a vocabulary.");
         }
 
         String term = _parametersHashMap.get(TERM);
         if (term == null || term.length() <= 0) {
-            if (buffer.length() > 0) buffer.append("\n");
+            if (buffer.length() > 0)
+                buffer.append("\n");
             buffer.append("* Please enter a term.");
         }
         return buffer.toString();
     }
-    
+
     private String getSubject() {
         String term = _parametersHashMap.get(TERM);
         String value = "Request New Concept";
@@ -94,7 +100,7 @@ public class NewConceptRequest extends RequestBase {
             value += " (" + term + ")";
         return value;
     }
-    
+
     private String getEmailMesage() {
         StringBuffer buffer = new StringBuffer();
         buffer.append(getSubject());
