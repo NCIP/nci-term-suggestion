@@ -175,6 +175,13 @@
           <td class="newConceptNotes"><i class="red">* Required</i></td>
           <td colspan="2" align="right">
             <h:commandButton
+              id="clear"
+              value="clear"
+              action="#{userSessionBean.clearNewConcept}"
+              image="#{facesContext.externalContext.requestContextPath}/images/clear.gif"
+              alt="clear">
+            </h:commandButton>
+            <h:commandButton
               id="submit"
               value="submit"
               action="#{userSessionBean.requestNewConcept}"
