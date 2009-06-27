@@ -126,7 +126,7 @@
             <h:commandButton
               id="submit"
               value="submit"
-              action="#{userSessionBean.changeRequest}"
+              action="#{userSessionBean.requestNewConcept}"
               image="#{facesContext.externalContext.requestContextPath}/images/submit.gif"
               alt="submit">
             </h:commandButton>

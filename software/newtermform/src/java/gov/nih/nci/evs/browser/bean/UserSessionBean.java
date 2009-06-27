@@ -11,4 +11,13 @@ public class UserSessionBean {
         request.getSession().setAttribute("message", "hello world");
         return "message";
     }
+    
+    public String requestNewConcept() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.
+        getCurrentInstance().getExternalContext().getRequest();
+        request.getSession().setAttribute("message", "requestNewConcept");
+    	
+    	return "message";
+    }
+    
 }

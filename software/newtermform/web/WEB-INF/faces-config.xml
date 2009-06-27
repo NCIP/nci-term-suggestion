@@ -16,17 +16,17 @@
     <!-- Navigation: Request Change ========================================== -->
 
     <navigation-rule>
-        <from-view-id>/pages/change_request.jsp</from-view-id>
+        <from-view-id>/pages/new_concept.jsp</from-view-id>
         <navigation-case>
             <description>Message</description>
-            <from-action>#{userSessionBean.changeRequest}</from-action>
+            <from-action>#{userSessionBean.requestNewConcept}</from-action>
             <from-outcome>message</from-outcome>
             <to-view-id>/pages/message.jsp</to-view-id>
         </navigation-case>
 
         <navigation-case>
             <description>New Concept</description>
-            <from-action>#{userSessionBean.changeRequest}</from-action>
+            <from-action>#{userSessionBean.requestNewConcept}</from-action>
             <from-outcome>new_concept</from-outcome>
             <to-view-id>/pages/new_concept.jsp</to-view-id>
         </navigation-case>
