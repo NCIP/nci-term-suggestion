@@ -6,6 +6,7 @@ import gov.nih.nci.evs.browser.utils.*;
 import javax.servlet.http.*;
 
 public class NewConceptRequest extends RequestBase {
+    // List of session attribute name(s):
     private final String EMAIL = "email";
     private final String OTHER = "other";
     private final String VOCABULARY = "vocabulary";
@@ -14,6 +15,12 @@ public class NewConceptRequest extends RequestBase {
     private final String PARENT_CODE = "parentCode";
     private final String DEFINITION = "definition";
     private final String REASON = "reason";
+    private final String MESSAGE = "message";
+    private final String WARNINGS = "warnings";
+    
+    // List of return state(s):
+    private final String MESSAGE_STATE = "message";
+    private final String WARNING_STATE = "warnings";
 
     public NewConceptRequest(HttpServletRequest request) {
         super(request);
@@ -40,8 +47,8 @@ public class NewConceptRequest extends RequestBase {
         updateSessionAttributes();
         String warnings = validate();
         if (warnings.length() > 0) {
-            _request.getSession().setAttribute("warnings", warnings);
-            return "warnings";
+            _request.getSession().setAttribute(WARNINGS, warnings);
+            return WARNING_STATE;
         }
 
         AppProperties appProperties = AppProperties.getInstance();
@@ -55,17 +62,17 @@ public class NewConceptRequest extends RequestBase {
             if (false) // DYEE
             MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
-            _request.getSession().setAttribute("warnings",
+            _request.getSession().setAttribute(WARNINGS,
                     e.getLocalizedMessage());
             e.printStackTrace();
-            return "warnings";
+            return WARNING_STATE;
         }
 
         clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
                 TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
-        _request.getSession().setAttribute("warnings", null);
-        _request.getSession().setAttribute("message", Utils.toHtml(emailMsg));
-        return "message";
+        _request.getSession().setAttribute(WARNINGS, null);
+        _request.getSession().setAttribute(MESSAGE, Utils.toHtml(emailMsg));
+        return MESSAGE_STATE;
     }
 
     private String validate() {
