@@ -22,6 +22,8 @@ public class MailUtils extends Object {
             return false;
         if (posOfAtChar == posOfDotChar - 1)
             return false;
+        if (posOfDotChar == text.length() - 1)
+            return false;
         return true;
     }
 

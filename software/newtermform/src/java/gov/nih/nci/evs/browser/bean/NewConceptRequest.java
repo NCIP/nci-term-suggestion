@@ -22,6 +22,13 @@ public class NewConceptRequest extends RequestBase {
     }
 
     public String submit() {
+        updateAllSessionAttributes();
+        String warnings = validate();
+        if (warnings.length() > 0) {
+            _request.getSession().setAttribute("warning", warnings);
+            return "warning";
+        }
+        
         String mailServer = AppProperties.getInstance().getMailSmtpServer();
         String from = _parametersHashMap.get(EMAIL);
         String[] recipients = AppProperties.getInstance().getContactUsRecipients();
@@ -39,8 +46,29 @@ public class NewConceptRequest extends RequestBase {
         
         _request.getSession().setAttribute("message",
                 Utils.toHtml(emailMsg));
-        updateAllSessionAttributes();
         return "message";
+    }
+    
+    private String validate() {
+        StringBuffer buffer = new StringBuffer();
+        String email = _parametersHashMap.get(EMAIL);
+        if (! MailUtils.isValidEmailAddress(email)) {
+            if (buffer.length() > 0) buffer.append("\n");
+            buffer.append("* Please enter a valid email address.");
+        }
+
+        String vocabulary = _parametersHashMap.get(VOCABULARY);
+        if (vocabulary == null || vocabulary.length() <= 0) {
+            if (buffer.length() > 0) buffer.append("\n");
+            buffer.append("* Please select a vocabulary.");
+        }
+
+        String term = _parametersHashMap.get(TERM);
+        if (term == null || term.length() <= 0) {
+            if (buffer.length() > 0) buffer.append("\n");
+            buffer.append("* Please enter a term.");
+        }
+        return buffer.toString();
     }
     
     private String getSubject() {
