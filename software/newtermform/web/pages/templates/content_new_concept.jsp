@@ -23,7 +23,7 @@
   String parentCode = HTTPUtils.getSessionAttributeString(request, "parentCode");
   String definition = HTTPUtils.getSessionAttributeString(request, "definition");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
-  String warning = HTTPUtils.getSessionAttributeString(request, "warning");
+  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
 
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
@@ -67,12 +67,26 @@
       <table class="newConceptDT">
         <!-- =================================================================== -->
         <%
-          if (warning.length() > 0) {
+          if (warnings.length() > 0) {
+            String[] wList = Utils.toStrings(warnings, "\n", false);
+            for (i=0; i<wList.length; ++i) {
+              String warning = wList[i];
+              warning = Utils.toHtml(warning); // For leading spaces (indentation)
+              if (i==0) {
         %>
-            <tr>
-              <td <%=LABEL_ARGS%>><b class="red">Warning:</b></td>
-              <td><i class="red"><%=warning%></i></td>
-            </tr>
+                <tr>
+                  <td <%=LABEL_ARGS%>><b class="red">Warning:</b></td>
+                  <td><i class="red"><%=warning%></i></td>
+                </tr>
+        <%    } else { %>
+                <tr>
+                  <td <%=LABEL_ARGS%>></td>
+                  <td><i class="red"><%=warning%></i></td>
+                </tr>
+        <%
+              }
+            }
+        %>
             <tr><td><br/></td></tr>
         <%
           }

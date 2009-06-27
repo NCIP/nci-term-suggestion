@@ -25,8 +25,8 @@ public class NewConceptRequest extends RequestBase {
         updateAllSessionAttributes();
         String warnings = validate();
         if (warnings.length() > 0) {
-            _request.getSession().setAttribute("warning", warnings);
-            return "warning";
+            _request.getSession().setAttribute("warnings", warnings);
+            return "warnings";
         }
         
         String mailServer = AppProperties.getInstance().getMailSmtpServer();
@@ -38,10 +38,10 @@ public class NewConceptRequest extends RequestBase {
         try {
             MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
-            _request.getSession().setAttribute("warning",
+            _request.getSession().setAttribute("warnings",
                     e.getLocalizedMessage());
             e.printStackTrace();
-            return "warning";
+            return "warnings";
         }
         
         _request.getSession().setAttribute("message",
