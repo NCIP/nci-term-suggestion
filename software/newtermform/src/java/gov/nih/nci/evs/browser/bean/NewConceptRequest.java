@@ -31,10 +31,10 @@ public class NewConceptRequest extends RequestBase {
         try {
             MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
-            _request.getSession().setAttribute("message",
-                    Utils.toHtml(e.getLocalizedMessage()));
+            _request.getSession().setAttribute("warning",
+                    e.getLocalizedMessage());
             e.printStackTrace();
-            return "message";
+            return "warning";
         }
         
         _request.getSession().setAttribute("message",

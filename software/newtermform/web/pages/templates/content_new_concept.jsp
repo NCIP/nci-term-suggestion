@@ -23,6 +23,7 @@
   String parentCode = HTTPUtils.getSessionAttributeString(request, "parentCode");
   String definition = HTTPUtils.getSessionAttributeString(request, "definition");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
+  String warning = HTTPUtils.getSessionAttributeString(request, "warning");
 
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
@@ -64,6 +65,19 @@
     <form method="post">
       <div class="texttitle-blue">Suggest New Concept:</div><br/>
       <table class="newConceptDT">
+        <!-- =================================================================== -->
+        <%
+          if (warning.length() > 0) {
+        %>
+            <tr>
+              <td <%=LABEL_ARGS%>><b class="red">Warning:</b></td>
+              <td><i class="red"><%=warning%></i></td>
+            </tr>
+            <tr><td><br/></td></tr>
+        <%
+          }
+        %>
+        
         <!-- =================================================================== -->
         <tr><td colspan="2"><b>Contact Information:</b></td></tr>
         <tr>
