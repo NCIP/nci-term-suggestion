@@ -11,15 +11,18 @@ public class UserSessionBean {
 	}
 	
     public String changeRequest() {
-        HttpServletRequest request = getRequest();
-        request.getSession().setAttribute("message", "UserSessionBean.changeRequest");
+        getRequest().getSession().setAttribute(
+                "message", "UserSessionBean.changeRequest");
         return "message";
     }
     
     public String requestNewConcept() {
-        HttpServletRequest request = getRequest();
-        NewConceptRequest newConceptRequest = new NewConceptRequest(request);
-        return newConceptRequest.submit();
+        NewConceptRequest request = new NewConceptRequest(getRequest());
+        return request.submitForm();
     }
     
+    public String clearNewConcept() {
+        NewConceptRequest request = new NewConceptRequest(getRequest());
+        return request.clearForm();  
+    }
 }

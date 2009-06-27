@@ -42,8 +42,20 @@ public class NewConceptRequest extends RequestBase {
         String name = AppProperties.getInstance().getVocabularyName(url);
         _parametersHashMap.put(VOCABULARY, name);
     }
+    
+    public void clear() {
+        setParameters(EMPTY_PARAMETERS);
+        _request.getSession().setAttribute(WARNINGS, null);
+        _request.getSession().setAttribute(MESSAGE, null);
+        clearSessionAttributes();
+    }
+    
+    public String clearForm() {
+        clear();
+        return WARNING_STATE;
+    }
 
-    public String submit() {
+    public String submitForm() {
         updateSessionAttributes();
         String warnings = validate();
         if (warnings.length() > 0) {
