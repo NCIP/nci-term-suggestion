@@ -11,9 +11,8 @@ public class UserSessionBean {
 	}
 	
     public String changeRequest() {
-        System.out.println("DYEE: UserSessionBean.changeRequest");
         HttpServletRequest request = getRequest();
-        request.getSession().setAttribute("message", "hello world");
+        request.getSession().setAttribute("message", "UserSessionBean.changeRequest");
         return "message";
     }
     

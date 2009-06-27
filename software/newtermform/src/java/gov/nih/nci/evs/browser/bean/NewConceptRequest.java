@@ -23,6 +23,7 @@ public class NewConceptRequest extends RequestBase {
     public String submit() {
         _request.getSession().setAttribute("message",
                 Utils.toHtml(formatEmailMessage()));
+        updateAttributes();
         return "message";
     }
 
