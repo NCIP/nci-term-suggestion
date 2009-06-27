@@ -115,4 +115,16 @@ public class AppProperties {
         }
         return names;
     }
+    
+    public String getVocabularyName(String url) {
+        getVocabularies();  // Initializes
+        int n = _vocabList.size();
+        VocabInfo[] infos = _vocabList.toArray(new VocabInfo[n]);
+        for (int i=0; i<n; ++i) {
+            VocabInfo info = infos[i];
+            if (info.getUrl().equals(url))
+                return info.getName();
+        }
+        return null;
+    }
 }
