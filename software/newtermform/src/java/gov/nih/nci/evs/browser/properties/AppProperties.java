@@ -1,6 +1,7 @@
 package gov.nih.nci.evs.browser.properties;
 
 import gov.nih.nci.evs.browser.newterm.*;
+import gov.nih.nci.evs.browser.utils.Utils;
 
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class AppProperties {
         loadProperties();
     }
 
-    public static AppProperties getInstance() throws Exception {
+    public static AppProperties getInstance() {
         if (_appProperties == null)
             _appProperties = new AppProperties();
         return _appProperties;
@@ -72,6 +73,11 @@ public class AppProperties {
     
     public String getContactUrl() {
         return getProperty(NCICB_CONTACT_URL);
+    }
+    
+    public String[] getContactUsRecipients() {
+        String value = getContactUrl();
+        return Utils.toStrings(value, ";", false);
     }
     
     public String getMailSmtpServer() {

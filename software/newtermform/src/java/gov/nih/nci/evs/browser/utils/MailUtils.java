@@ -1,7 +1,5 @@
 package gov.nih.nci.evs.browser.utils;
 
-import gov.nih.nci.evs.browser.properties.AppProperties;
-
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -13,16 +11,6 @@ import javax.mail.internet.MimeMessage;
 
 public class MailUtils extends Object {
     private static final long serialVersionUID = 1L;
-
-    public static String[] getRecipients() throws Exception {
-        String value = AppProperties.getInstance().getContactUrl();
-        return Utils.toStrings(value, ";", false);
-    }
-
-    public static String getMailSmtpServer() throws Exception {
-        String value = AppProperties.getInstance().getMailSmtpServer();
-        return value;
-    }
 
     public static boolean isValidEmailAddress(String text) {
         int posOfAtChar = text.indexOf('@');
@@ -67,14 +55,14 @@ public class MailUtils extends Object {
 
         if (!isValidEmailAddress(from)) {
             error.append("Warning: Your message was not sent.\n");
-            error.append(indent + "* Invalid e-mail address.");
+            error.append(indent + "* Invalid e-mail address: \"" + from + "\"");
             throw new UserInputException(error.toString());
         }
     }
 
-    public static void postMail(String from, String recipients[],
-        String subject, String message) throws MessagingException, Exception {
-        String mail_smtp_server = getMailSmtpServer();
+    public static void postMail(String mail_smtp_server, String from, 
+        String recipients[], String subject, String message) 
+            throws MessagingException, Exception {
         if (mail_smtp_server == null || mail_smtp_server.length() <= 0)
             throw new MessagingException("SMTP host not set.");
         postMailValidation(from, recipients, subject, message);
