@@ -14,22 +14,18 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  String imagePath = request.getContextPath() + "/images";
-  String email = "John.Doe@abc.com";
-  String other = "Phone: 987-654-3210";
+  // Session Attribute(s):
+  String email = HTTPUtils.getSessionAttributeString(request, "email");
+  String other = HTTPUtils.getSessionAttributeString(request, "other");
+  String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
+  String term = HTTPUtils.getSessionAttributeString(request, "term");
+  String synonyms = HTTPUtils.getSessionAttributeString(request, "synonyms");
+  String parentCode = HTTPUtils.getSessionAttributeString(request, "parentCode");
+  String definition = HTTPUtils.getSessionAttributeString(request, "definition");
+  String reason = HTTPUtils.getSessionAttributeString(request, "reason");
 
-  String vocabulary = "NCI Thesaurus";
-  String term = "Ultra Murine Cell Types";
-  String synonyms = "";
-  String parentCode = "C23442";
-  String definition =
-      "The smallest units of living structure capable of independent" +
-      " existence, composed of a membrane-enclosed mass of protoplasm" +
-      " and containing a nucleus or nucleoid. Cells are highly variable" +
-      " and specialized in both structure and function, though all must" +
-      " at some stage replicate proteins and nucleic acids, utilize" +
-      " energy, and reproduce themselves.";
-  String reason = "New improved version of the previous type.";
+  // Member variable(s):
+  String imagePath = request.getContextPath() + "/images";
   int i=0;
   String[] items = null;
   String selectedItem = null;
