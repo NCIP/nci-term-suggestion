@@ -6,6 +6,7 @@ import javax.servlet.http.*;
 
 public class RequestBase {
     protected final String[] EMPTY_PARAMETERS = new String[] {};
+    protected final String INDENT = "    ";
     protected HttpServletRequest _request = null;
     protected String[] _parameters = EMPTY_PARAMETERS;
     protected HashMap<String, String> _parametersHashMap = null;
@@ -30,8 +31,20 @@ public class RequestBase {
         _parameters = parameters;
         _parametersHashMap = getParametersHashMap(parameters);
     }
+    
+    protected String debugParameters(String text) {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(text);
+        for (int i = 0; i < _parameters.length; ++i) {
+            String parameter = _parameters[i];
+            buffer.append("\n* ");
+            buffer.append(parameter + ": ");
+            buffer.append(_parametersHashMap.get(parameter));
+        }
+        return buffer.toString();
+    }
 
-    protected void updateAttributes() {
+    protected void updateAllSessionAttributes() {
         for (int i = 0; i < _parameters.length; ++i) {
             String parameter = _parameters[i];
             _request.getSession().setAttribute(parameter,

@@ -1,7 +1,9 @@
 package gov.nih.nci.evs.browser.bean;
 
+import gov.nih.nci.evs.browser.properties.AppProperties;
 import gov.nih.nci.evs.browser.utils.*;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.*;
 
 public class NewConceptRequest extends RequestBase {
@@ -21,21 +23,42 @@ public class NewConceptRequest extends RequestBase {
     }
 
     public String submit() {
+        String mailServer = AppProperties.getInstance().getMailSmtpServer();
+        String from = _parametersHashMap.get(EMAIL);
+        String[] recipients = AppProperties.getInstance().getContactUsRecipients();
+        String subject = getSubject();
+        String emailMsg = getEmailMesage();
+        
+        try {
+            MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
+        } catch (Exception e) {
+            _request.getSession().setAttribute("message",
+                    Utils.toHtml(e.getLocalizedMessage()));
+            e.printStackTrace();
+            return "message";
+        }
+        
         _request.getSession().setAttribute("message",
-                Utils.toHtml(formatEmailMessage()));
-        updateAttributes();
+                Utils.toHtml(emailMsg));
+        updateAllSessionAttributes();
         return "message";
     }
-
-    protected String formatEmailMessage() {
-        String indent = "    ";
+    
+    private String getSubject() {
+        String term = _parametersHashMap.get(TERM);
+        String value = "Request New Concept";
+        if (term.length() > 0)
+            value += " (" + term + ")";
+        return value;
+    }
+    
+    private String getEmailMesage() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append("Request New Concept");
+        buffer.append(getSubject());
         for (int i = 0; i < _parameters.length; ++i) {
             String parameter = _parameters[i];
-            buffer.append("\n" + indent + "* ");
-            buffer.append(parameter);
-            buffer.append(": ");
+            buffer.append("\n* ");
+            buffer.append(parameter + ": ");
             buffer.append(_parametersHashMap.get(parameter));
         }
         return buffer.toString();
