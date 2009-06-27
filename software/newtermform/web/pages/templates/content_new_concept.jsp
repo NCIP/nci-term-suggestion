@@ -30,6 +30,33 @@
   String[] items = null;
   String selectedItem = null;
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
+  
+  // The following values are used only for testing purposes:
+  boolean useTestValues = true;
+  if (useTestValues) {
+    if (email.length() <= 0)
+      email = "John.Doe@abc.com";
+    if (other.length() <= 0)
+      other = "Phone: 987-654-3210";
+    if (vocabulary.length() <= 0)
+      vocabulary = "NCI Thesaurus";
+    if (term.length() <= 0)
+      term = "Ultra Murine Cell Types";
+    if (synonyms.length() <= 0)
+      synonyms = "Cell Types; Cell; Murine Cell Types";
+    if (parentCode.length() <= 0)
+      parentCode = "C23442";
+    if (definition.length() <= 0)
+      definition =
+        "The smallest units of living structure capable of independent" +
+        " existence, composed of a membrane-enclosed mass of protoplasm" +
+        " and containing a nucleus or nucleoid. Cells are highly variable" +
+        " and specialized in both structure and function, though all must" +
+        " at some stage replicate proteins and nucleic acids, utilize" +
+        " energy, and reproduce themselves.";
+      if (reason.length() <= 0)
+        reason = "New improved version of the previous type.";
+  }
 %>
 <html>
   <body>
