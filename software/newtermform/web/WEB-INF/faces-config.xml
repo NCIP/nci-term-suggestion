@@ -25,9 +25,9 @@
         </navigation-case>
 
         <navigation-case>
-            <description>New Concept</description>
+            <description>Warning</description>
             <from-action>#{userSessionBean.requestNewConcept}</from-action>
-            <from-outcome>new_concept</from-outcome>
+            <from-outcome>warning</from-outcome>
             <to-view-id>/pages/new_concept.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
