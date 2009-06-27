@@ -40,30 +40,22 @@ public class NewConceptRequest {
 	}
 
 	public String submit() {
-        String email = (String) _request.getParameter("email");
-        String other = (String) _request.getParameter("other");
-        String vocabulary = (String) _request.getParameter("vocabulary");
-        String term = (String) _request.getParameter("term");
-        String synonyms = (String) _request.getParameter("synonyms");
-        String parentCode = (String) _request.getParameter("parentCode");
-        String definition = (String) _request.getParameter("definition");
-        String reason = (String) _request.getParameter("reason");
         _request.getSession().setAttribute("message", 
-            Utils.toHtml("Request New Concept " 
-        		+ "\n  * email: " + email
-        		+ "\n  * other: " + other
-        		+ "\n  * vocabulary: " + vocabulary
-        		+ "\n  * term: " + term
-                + "\n  * synonyms: " + synonyms
-                + "\n  * parentCode: " + parentCode
-                + "\n  * definition: " + definition
-                + "\n  * reason: " + reason
-            )
-        );
+            Utils.toHtml(formatEmailMessage()));
     	return "message";
 	}
 	
-	private void formatEmailMessage() {
-	    
+	private String formatEmailMessage() {
+	    String indent = "    ";
+	    StringBuffer buffer = new StringBuffer();
+	    buffer.append("Request New Concept");
+	    for (int i=0; i<PARAMETERS.length; ++i) {
+	        String parameter = PARAMETERS[i];
+	        buffer.append("\n" + indent + "* ");
+	        buffer.append(parameter);
+	        buffer.append(": ");
+	        buffer.append(_parametersHM.get(parameter));
+	    }
+	    return buffer.toString();
 	}
 }
