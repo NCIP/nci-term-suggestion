@@ -43,12 +43,27 @@ public class RequestBase {
         }
         return buffer.toString();
     }
-
-    protected void updateAllSessionAttributes() {
-        for (int i = 0; i < _parameters.length; ++i) {
-            String parameter = _parameters[i];
+    
+    protected void updateSessionAttributes(String[] parameters) {
+        for (int i = 0; i < parameters.length; ++i) {
+            String parameter = parameters[i];
             _request.getSession().setAttribute(parameter,
                     _parametersHashMap.get(parameter));
         }
+    }
+
+    protected void updateSessionAttributes() {
+        updateSessionAttributes(_parameters);
+    }
+    
+    protected void clearSessionAttributes(String[] parameters) {
+        for (int i = 0; i < parameters.length; ++i) {
+            String parameter = parameters[i];
+            _request.getSession().setAttribute(parameter, null);
+        }
+    }
+    
+    protected void clearSessionAttributes() {
+        clearSessionAttributes(_parameters);
     }
 }
