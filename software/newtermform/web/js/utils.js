@@ -12,3 +12,7 @@ function displayLinkInNewWindow(id) {
   var url = element.value;
   element.onclick=window.open(url + "_blank");
 }
+
+function go(loc) {
+  window.location.href = loc;
+}
