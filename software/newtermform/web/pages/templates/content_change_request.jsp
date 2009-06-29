@@ -11,8 +11,7 @@
 <%
   if (message != null && message.length() > 0) {
 %>
-    <%=message%><br/>
-    <br/>
+    <div class="msgColor"><%=message%></div><br/>
 <%
   }
 %>
