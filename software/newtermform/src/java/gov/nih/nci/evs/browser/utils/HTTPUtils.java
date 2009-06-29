@@ -8,11 +8,18 @@ import javax.servlet.http.*;
 
 public class HTTPUtils {
     public static String getSessionAttributeString(HttpServletRequest request,
-            String attributeName) {
+        String attributeName, boolean clear) {
         String value = (String) request.getSession().getAttribute(attributeName);
         if (value == null || value.length() <= 0)
             return "";
+        if (clear)
+            request.getSession().setAttribute(attributeName, null);
         return cleanXSS(value);
+    }
+
+    public static String getSessionAttributeString(HttpServletRequest request,
+            String attributeName) {
+        return getSessionAttributeString(request, attributeName, false);
     }
 
     public static String cleanXSS(String value) {
