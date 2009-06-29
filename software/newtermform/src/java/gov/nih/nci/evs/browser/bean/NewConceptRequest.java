@@ -114,21 +114,34 @@ public class NewConceptRequest extends RequestBase {
 
     private String getSubject() {
         String term = _parametersHashMap.get(TERM);
-        String value = "Request New Concept";
+        String value = "Suggest New Concept";
         if (term.length() > 0)
-            value += " (" + term + ")";
+            value += ": " + term;
         return value;
     }
-
+    
     private String getEmailMesage() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(getSubject());
-        for (int i = 0; i < _parameters.length; ++i) {
-            String parameter = _parameters[i];
-            buffer.append("\n* ");
-            buffer.append(parameter + ": ");
-            buffer.append(_parametersHashMap.get(parameter));
-        }
+        buffer.append(getSubject() + "\n\n");
+        itemizeParameters(buffer, "Contact information:",
+            new String[] { EMAIL, OTHER });
+        itemizeParameters(buffer, "Term Information:",
+            new String[] { VOCABULARY, TERM, SYNONYMS, PARENT_CODE, DEFINITION });
+        itemizeParameters(buffer, "Additional information:",
+            new String[] { REASON });
+        
         return buffer.toString();
+    }
+
+    private void itemizeParameters(StringBuffer buffer, String header,
+        String[] parameters) {
+        buffer.append(header + "\n");
+        for (int i = 0; i < parameters.length; ++i) {
+            String parameter = parameters[i];
+            buffer.append("* " + parameter + ": ");
+            buffer.append(_parametersHashMap.get(parameter));
+            buffer.append("\n");
+        }
+        buffer.append("\n");
     }
 }
