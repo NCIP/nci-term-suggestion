@@ -11,7 +11,18 @@
 <%
   if (message != null && message.length() > 0) {
 %>
-    <div class="msgColor"><%=message%></div><br/>
+    <div class="msgColor">
+<%      
+    String[] list = Utils.toStrings(message, "\n", false, false);
+    for (int i=0; i<list.length; ++i) {
+      String text = list[i];
+      text = Utils.toHtml(text); // For leading spaces (indentation)
+%>
+      <%=text%><br/>
+<%
+    }
+%>
+   </div><br/>
 <%
   }
 %>

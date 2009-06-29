@@ -23,6 +23,9 @@ public class NewConceptRequest extends RequestBase {
     private final String WARNING_STATE = "warnings";
     private final String SUCCESSFUL_STATE = "successful";
 
+    // List of member variable(s):
+    private final boolean sendEmail = true;
+
     public NewConceptRequest(HttpServletRequest request) {
         super(request);
         setParameters(new String[] { EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS,
@@ -72,7 +75,8 @@ public class NewConceptRequest extends RequestBase {
         String emailMsg = getEmailMesage();
 
         try {
-            MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
+            if (sendEmail)
+                MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
             _request.getSession().setAttribute(WARNINGS,
                     e.getLocalizedMessage());
@@ -83,7 +87,9 @@ public class NewConceptRequest extends RequestBase {
         clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
                 TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
         _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, "Your request has been sent.");
+        _request.getSession().setAttribute(MESSAGE, 
+            "FYI: The following request has been sent:\n"
+            + "    * " + getSubject());
         return SUCCESSFUL_STATE;
     }
 
