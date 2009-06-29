@@ -66,7 +66,7 @@
       <!-- =================================================================== -->
       <%
         if (warnings.length() > 0) {
-          String[] wList = Utils.toStrings(warnings, "\n", false);
+          String[] wList = Utils.toStrings(warnings, "\n", false, false);
           for (i=0; i<wList.length; ++i) {
             String warning = wList[i];
             warning = Utils.toHtml(warning); // For leading spaces (indentation)
