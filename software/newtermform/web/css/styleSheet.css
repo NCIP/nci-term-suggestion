@@ -542,6 +542,9 @@ h3
 .red {
   color: red;
 }
+.msgColor {
+  color: blue;
+}
 .newConceptTF {
   width: 400px;
   height: 15px;

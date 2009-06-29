@@ -2,4 +2,4 @@
 <%
   String message = HTTPUtils.getSessionAttributeString(request, "message", true);
 %>
-<b><%=message%></b>
+<div class="msgColor"><%=message%></div>
