@@ -73,13 +73,13 @@
             if (i==0) {
       %>
               <tr>
-                <td <%=LABEL_ARGS%>><b class="red">Warning:</b></td>
-                <td><i class="red"><%=warning%></i></td>
+                <td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
+                <td><i class="warningMsgColor"><%=warning%></i></td>
               </tr>
       <%    } else { %>
               <tr>
                 <td <%=LABEL_ARGS%>></td>
-                <td><i class="red"><%=warning%></i></td>
+                <td><i class="warningMsgColor"><%=warning%></i></td>
               </tr>
       <%
             }
@@ -93,7 +93,7 @@
       <!-- =================================================================== -->
       <tr><td colspan="2"><b>Contact Information:</b></td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Email: <i class="red">*</i></td>
+        <td <%=LABEL_ARGS%>>Email: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
           <input name="email" value="<%=email%>" alt="email"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
@@ -114,7 +114,7 @@
       <tr><td><br/></td></tr>
       <tr><td colspan="2"><b>Term Information:</b></td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Vocabulary: <i class="red">*</i></td>
+        <td <%=LABEL_ARGS%>>Vocabulary: <i class="warningMsgColor">*</i></td>
         <td>
           <select name="vocabulary" id="url" class="newConceptCB<%=css%>">
             <%
@@ -140,7 +140,7 @@
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Term: <i class="red">*</i></td>
+        <td <%=LABEL_ARGS%>>Term: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><input name="term" value="<%=term%>" alt="term"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
@@ -170,7 +170,7 @@
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
       <tr>
-        <td class="newConceptNotes"><i class="red">* Required</i></td>
+        <td class="newConceptNotes"><i class="warningMsgColor">* Required</i></td>
         <td colspan="2" align="right">
           <h:commandButton
             id="clear"
