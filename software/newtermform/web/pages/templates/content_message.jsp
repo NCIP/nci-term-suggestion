@@ -1,4 +1,5 @@
+<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%
-  String message = (String) request.getSession().getAttribute("message");
+  String message = HTTPUtils.getSessionAttributeString(request, "message", true);
 %>
 <b><%=message%></b>
