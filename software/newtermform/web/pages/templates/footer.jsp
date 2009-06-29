@@ -15,8 +15,6 @@
       alt="National Cancer Institute Accessibility">Accessibility</a></li>
     <li> | <a href="http://www.cancer.gov/policies/page7" target="_blank"
       alt="National Cancer Institute Freedom of Information Act">FOIA</a></li>
-    <li> | <a href="<%=request.getContextPath()%>">SNT</a></li>
-    <li> | <a href="<%=request.getContextPath()%>/pages/mock_up.jsp">Mock Ups</a></li>
   </ul>
 
   <p>
