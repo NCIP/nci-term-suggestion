@@ -18,19 +18,20 @@
     <navigation-rule>
         <from-view-id>/pages/new_concept.jsp</from-view-id>
         <navigation-case>
-            <description>Message</description>
-            <from-action>#{userSessionBean.requestNewConcept}</from-action>
-            <from-outcome>message</from-outcome>
-            <to-view-id>/pages/message.jsp</to-view-id>
-        </navigation-case>
-
-        <navigation-case>
             <description>Warnings</description>
             <from-action>#{userSessionBean.requestNewConcept}</from-action>
             <from-outcome>warnings</from-outcome>
             <to-view-id>/pages/new_concept.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>successful</from-outcome>
+            <to-view-id>/pages/change_request.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>    
 
     <navigation-rule>
         <from-view-id>*</from-view-id>

@@ -21,6 +21,7 @@ public class NewConceptRequest extends RequestBase {
     // List of return state(s):
     private final String MESSAGE_STATE = "message";
     private final String WARNING_STATE = "warnings";
+    private final String SUCCESSFUL_STATE = "successful";
 
     public NewConceptRequest(HttpServletRequest request) {
         super(request);
@@ -44,10 +45,10 @@ public class NewConceptRequest extends RequestBase {
     }
     
     public void clear() {
+        clearSessionAttributes();
         setParameters(EMPTY_PARAMETERS);
         _request.getSession().setAttribute(WARNINGS, null);
         _request.getSession().setAttribute(MESSAGE, null);
-        clearSessionAttributes();
     }
     
     public String clearForm() {
@@ -71,7 +72,6 @@ public class NewConceptRequest extends RequestBase {
         String emailMsg = getEmailMesage();
 
         try {
-            if (false) // DYEE
             MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
             _request.getSession().setAttribute(WARNINGS,
@@ -83,8 +83,8 @@ public class NewConceptRequest extends RequestBase {
         clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
                 TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
         _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, Utils.toHtml(emailMsg));
-        return MESSAGE_STATE;
+        _request.getSession().setAttribute(MESSAGE, "Your request has been sent.");
+        return SUCCESSFUL_STATE;
     }
 
     private String validate() {
