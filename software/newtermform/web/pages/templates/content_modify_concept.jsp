@@ -20,6 +20,8 @@
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
   String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
   String propertyName = HTTPUtils.getSessionAttributeString(request, "propertyName");
+  String action = HTTPUtils.getSessionAttributeString(request, "action");
+  if (action.length() <= 0) action = LBUtils.PROPERTY_ACTION.Add.name();
   String suggestions = HTTPUtils.getSessionAttributeString(request, "suggestions");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
@@ -44,6 +46,8 @@
       conceptCode = "C12434";
     if (propertyName.length() <= 0)
       propertyName = "Definition";
+    if (action.length() <= 0)
+        action = LBUtils.PROPERTY_ACTION.Add.name();
     if (suggestions.length() <= 0)
         suggestions =
         "The smallest units of living structure capable of independent" +
@@ -146,8 +150,33 @@
         <td colspan="2"><input name="propertyName" value="<%=propertyName%>" alt="propertyName"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
+
+
       <tr>
-        <td <%=LABEL_ARGS%>>suggestion(s) (whether it is adding, modifying, or deleting a property): <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>>Action: <i class="warningMsgColor">*</i></td>
+        <td>
+          <select name="action" class="newConceptCB<%=css%>">
+            <%
+              selectedItem = action;
+              list = LBUtils.PROPERTY_ACTION.names();
+              iterator = list.iterator();
+              while (iterator.hasNext()) {
+                String item = (String) iterator.next();
+                String args = "";
+                if (item.equals(selectedItem))
+                  args += "selected=\"true\"";
+            %>
+                <option value="<%=item%>" <%=args%>><%=item%></option>
+            <%
+              }
+            %>
+          </select>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td <%=LABEL_ARGS%>>Suggestion(s): <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="suggestions" class="newConceptTA<%=css%>"><%=suggestions%></textarea></td>
       </tr>
 

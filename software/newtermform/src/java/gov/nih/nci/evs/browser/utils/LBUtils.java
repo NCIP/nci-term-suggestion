@@ -15,7 +15,18 @@ public class LBUtils {
         }
     }
 
-    public static enum PROPERTY_ACTION { Add, Modify, Delete }
+    public static enum PROPERTY_ACTION { 
+        Add, Modify, Delete;
+        
+        public static ArrayList<String> names() {
+            PROPERTY_ACTION[] values = values();
+            ArrayList<String> list = new ArrayList<String>();
+            for (int i=0; i<values.length; ++i) {
+                list.add(values[i].name());
+            }
+            return list;
+        }
+    }
     
     public static String[] getProperties(MODIFIABLE_PROPERTY property) {
         ArrayList<String> list = new ArrayList<String>();
