@@ -5,6 +5,7 @@
   private static final String TEXTAREA_ARGS = "rows=\"4\" cols=\"80\"";
 %>
 <%
+  String imagePath = request.getContextPath() + "/images";
   String propertyParam = request.getParameter("property");
   String vocabulary = "NCI Thesaurus";
   String conceptCode = "C12434";
@@ -22,7 +23,7 @@
   <div class="texttitle-blue">Suggest Concept Modification (Mock Up):</div><br/>
   <!-- --------------------------------------------------------------------- -->
   <b>Concept Information:</b>
-  <table class="datatable">
+  <table class="modifyConceptDT">
     <tr>
       <td>Vocabulary:</td>
       <td>
@@ -78,7 +79,7 @@
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Select a <%=propertyNameLC%>:</b>
-      <table class="datatable">
+      <table class="modifyConceptDT">
         <%
           items = LBUtils.getProperties(property);
           selectedItem = selectedProperty;
@@ -98,12 +99,12 @@
     
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Suggest a new <%=propertyNameLC%> or modify an existing one:</b>
-      <table class="datatable">
+      <table class="modifyConceptDT">
         <tr>
           <% suggestion = selectedProperty; %>
           <td><textarea class="textbody" name="suggestion" <%=TEXTAREA_ARGS%>><%=suggestion%></textarea></td>
           <td valign="top">
-            <table class="datatable">
+            <table class="modifyConceptDT">
               <%
                 LBUtils.PROPERTY_ACTION[] pActions = LBUtils.PROPERTY_ACTION.values();
                 for (i=0; i<pActions.length; ++i) {
@@ -127,7 +128,7 @@
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Brief description of your modification:</b>
-      <table class="datatable">
+      <table class="modifyConceptDT">
         <tr>
           <td><textarea class="textbody" name="description" <%=TEXTAREA_ARGS%>><%=description%></textarea></td>
         </tr>
@@ -138,17 +139,20 @@
 
   <!-- --------------------------------------------------------------------- -->
   <br/><b>Notes or comments (if any):</b>
-  <table class="datatable">
+  <table class="modifyConceptDT">
     <tr>
       <td><textarea class="textbody" name="notes" <%=TEXTAREA_ARGS%>><%=notes%></textarea></td>
     </tr>
   </table>
   
   <!-- --------------------------------------------------------------------- -->
-  <table class="datatable">
+  <table class="modifyConceptDT">
     <tr>
-     <td><a href="<%=request.getContextPath()%>/pages/change_request.jsp">Back</a></td>
-     <td align="right"><INPUT type="submit" name="submit" value="Submit"></td>
+     <!-- <td><a href="<%=request.getContextPath()%>/pages/change_request.jsp">Back</a></td> -->
+     <!-- <td align="right"><INPUT type="submit" name="submit" value="Submit"></td> -->
+     <td align="right"><a href="<%=request.getContextPath()%>/pages/change_request.jsp">
+       <img src="<%=imagePath%>/submit.gif" width="51" height="21"
+         alt="Submit" border="0"/></a></td>
     </tr>
   </table>
 </form>
