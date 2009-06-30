@@ -20,7 +20,7 @@
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
   String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
   String propertyName = HTTPUtils.getSessionAttributeString(request, "propertyName");
-  String suggestion = HTTPUtils.getSessionAttributeString(request, "suggestion");
+  String suggestions = HTTPUtils.getSessionAttributeString(request, "suggestions");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
 
@@ -44,8 +44,8 @@
       conceptCode = "C12434";
     if (propertyName.length() <= 0)
       propertyName = "Definition";
-    if (suggestion.length() <= 0)
-        suggestion =
+    if (suggestions.length() <= 0)
+        suggestions =
         "The smallest units of living structure capable of independent" +
         " existence, composed of a membrane-enclosed mass of protoplasm" +
         " and containing a nucleus or nucleoid. Cells are highly variable" +
@@ -147,8 +147,8 @@
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Suggestion: <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><textarea name="suggestion" class="newConceptTA<%=css%>"><%=suggestion%></textarea></td>
+        <td <%=LABEL_ARGS%>>suggestions(s) (whether it is adding, modifying, or deleting a property): <i class="warningMsgColor">*</i></td>
+        <td colspan="2"><textarea name="suggestions" class="newConceptTA<%=css%>"><%=suggestions%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
