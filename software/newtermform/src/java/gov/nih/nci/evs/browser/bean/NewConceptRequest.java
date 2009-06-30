@@ -19,12 +19,11 @@ public class NewConceptRequest extends RequestBase {
     private final String WARNINGS = "warnings";
     
     // List of return state(s):
-    private final String MESSAGE_STATE = "message";
     private final String WARNING_STATE = "warnings";
     private final String SUCCESSFUL_STATE = "successful";
 
     // List of member variable(s):
-    private final boolean sendEmail = true;
+    private final boolean isSendEmail = AppProperties.getInstance().isSendEmail();
 
     public NewConceptRequest(HttpServletRequest request) {
         super(request);
@@ -75,7 +74,7 @@ public class NewConceptRequest extends RequestBase {
         String emailMsg = getEmailMesage();
 
         try {
-            if (sendEmail)
+            if (isSendEmail)
                 MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
             _request.getSession().setAttribute(WARNINGS,
@@ -87,9 +86,13 @@ public class NewConceptRequest extends RequestBase {
         clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
                 TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
         _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, 
-            "FYI: The following request has been sent:\n"
-            + "    * " + getSubject());
+        String msg = "FYI: The following request has been sent:\n";
+        msg += "    * " + getSubject();
+        if (! isSendEmail) {
+            msg += "\nFYI: Actually, email was never sent:";
+            msg += "\n    * send.email configuration flag = " + isSendEmail + ".";
+        }
+        _request.getSession().setAttribute(MESSAGE, msg);
         return SUCCESSFUL_STATE;
     }
 
