@@ -18,10 +18,9 @@
   String email = HTTPUtils.getSessionAttributeString(request, "email");
   String other = HTTPUtils.getSessionAttributeString(request, "other");
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
-  String term = HTTPUtils.getSessionAttributeString(request, "term");
-  String synonyms = HTTPUtils.getSessionAttributeString(request, "synonyms");
-  String parentCode = HTTPUtils.getSessionAttributeString(request, "parentCode");
-  String definition = HTTPUtils.getSessionAttributeString(request, "definition");
+  String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
+  String propertyName = HTTPUtils.getSessionAttributeString(request, "propertyName");
+  String suggestion = HTTPUtils.getSessionAttributeString(request, "suggestion");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
 
@@ -41,14 +40,12 @@
       other = "Phone: 987-654-3210";
     if (vocabulary.length() <= 0)
       vocabulary = "NCI Thesaurus";
-    if (term.length() <= 0)
-      term = "Ultra Murine Cell Types";
-    if (synonyms.length() <= 0)
-      synonyms = "Cell Types; Cell; Murine Cell Types";
-    if (parentCode.length() <= 0)
-      parentCode = "C23442";
-    if (definition.length() <= 0)
-      definition =
+    if (conceptCode.length() <= 0)
+      conceptCode = "C12434";
+    if (propertyName.length() <= 0)
+      propertyName = "Definition";
+    if (suggestion.length() <= 0)
+        suggestion =
         "The smallest units of living structure capable of independent" +
         " existence, composed of a membrane-enclosed mass of protoplasm" +
         " and containing a nucleus or nucleoid. Cells are highly variable" +
@@ -61,7 +58,7 @@
 %>
 <f:view>
   <form method="post">
-    <div class="texttitle-blue">Suggest New Concept:</div><br/>
+    <div class="texttitle-blue">Suggest Concept Modification:</div><br/>
     <table class="newConceptDT">
       <!-- =================================================================== -->
       <%
@@ -140,30 +137,25 @@
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Term: <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><input name="term" value="<%=term%>" alt="term"
+        <td <%=LABEL_ARGS%>>Concept Code: <i class="warningMsgColor">*</i></td>
+        <td colspan="2"><input name="conceptCode" value="<%=conceptCode%>" alt="conceptCode"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Synonym(s):</td>
-        <td colspan="2"><input name="synonyms" value="<%=synonyms%>" alt="synonyms"
+        <td <%=LABEL_ARGS%>>Property Name: <i class="warningMsgColor">*</i></td>
+        <td colspan="2"><input name="propertyName" value="<%=propertyName%>" alt="propertyName"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Parent Concept Code:</td>
-        <td colspan="2"><input name="parentCode" value="<%=parentCode%>" alt="parentCode"
-          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
-      </tr>
-      <tr>
-        <td <%=LABEL_ARGS%>>Definition:</td>
-        <td colspan="2"><textarea name="definition" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
+        <td <%=LABEL_ARGS%>>Suggestion: <i class="warningMsgColor">*</i></td>
+        <td colspan="2"><textarea name="suggestion" class="newConceptTA<%=css%>"><%=suggestion%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
       <tr><td colspan="2"><b>Additional Information:</b></td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Reason for adding plus any other additional information:</td>
+        <td <%=LABEL_ARGS%>>Reason for modification plus any other additional information:</td>
         <td colspan="2"><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
       </tr>
 
