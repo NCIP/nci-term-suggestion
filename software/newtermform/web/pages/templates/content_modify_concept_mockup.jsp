@@ -9,10 +9,10 @@
   String propertyParam = HTTPUtils.getParameter(request, "property");
   String vocabulary = "NCI Thesaurus";
   String conceptCode = "C12434";
-  LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.valueOfOrDefault(propertyParam);
+  Prop.MODIFIABLE_PROPERTY property = Prop.MODIFIABLE_PROPERTY.valueOfOrDefault(propertyParam);
   String selectedProperty = LBUtils.getProperty(property, 1);
   String suggestion = "";
-  LBUtils.PROPERTY_ACTION action = LBUtils.PROPERTY_ACTION.Modify;
+  Prop.PROPERTY_ACTION action = Prop.PROPERTY_ACTION.Modify;
   String description = "";
   String notes = "";
   int i=0;
@@ -56,9 +56,9 @@
       <td>
         <select name="property">
           <%
-            LBUtils.MODIFIABLE_PROPERTY[] mprops = LBUtils.MODIFIABLE_PROPERTY.values();
+          Prop.MODIFIABLE_PROPERTY[] mprops = Prop.MODIFIABLE_PROPERTY.values();
             for (i=0; i<mprops.length; ++i) {
-              LBUtils.MODIFIABLE_PROPERTY mprop = mprops[i];
+                Prop.MODIFIABLE_PROPERTY mprop = mprops[i];
               String args = "";
               if (mprop.equals(property))
                   args += "selected=\"true\"";
@@ -75,7 +75,7 @@
   <!-- --------------------------------------------------------------------- -->
   <%
     String propertyNameLC = property.name().toLowerCase();
-    if (property != LBUtils.MODIFIABLE_PROPERTY.Others) {
+    if (property != Prop.MODIFIABLE_PROPERTY.Others) {
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Select a <%=propertyNameLC%>:</b>
@@ -106,9 +106,9 @@
           <td valign="top">
             <table class="modifyConceptDT">
               <%
-                LBUtils.PROPERTY_ACTION[] pActions = LBUtils.PROPERTY_ACTION.values();
+              Prop.PROPERTY_ACTION[] pActions = Prop.PROPERTY_ACTION.values();
                 for (i=0; i<pActions.length; ++i) {
-                  LBUtils.PROPERTY_ACTION pAction = pActions[i];
+                    Prop.PROPERTY_ACTION pAction = pActions[i];
                   String checked = pAction==action ? "checked=\"checked\" " : "";
                   String pActionName = pAction.name();
               %>

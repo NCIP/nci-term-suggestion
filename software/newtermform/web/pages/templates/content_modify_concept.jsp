@@ -20,7 +20,7 @@
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
   String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
   String propertyName = HTTPUtils.getSessionAttributeString(request, "propertyName");
-  LBUtils.PROPERTY_ACTION propertyAction = (LBUtils.PROPERTY_ACTION) 
+  Prop.PROPERTY_ACTION propertyAction = (Prop.PROPERTY_ACTION) 
     request.getSession().getAttribute("propertyAction");
   String suggestions = HTTPUtils.getSessionAttributeString(request, "suggestions");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
@@ -46,7 +46,7 @@
       conceptCode = "C12434";
     if (propertyName.length() <= 0)
       propertyName = "Definition";
-    propertyAction = LBUtils.PROPERTY_ACTION.Add;
+    propertyAction = Prop.PROPERTY_ACTION.Add;
     if (suggestions.length() <= 0)
         suggestions =
         "The smallest units of living structure capable of independent" +
@@ -157,7 +157,7 @@
           <select name="propertyAction" class="newConceptCB<%=css%>">
             <%
               selectedItem = propertyAction.name();
-              list = LBUtils.PROPERTY_ACTION.names();
+              list = Prop.PROPERTY_ACTION.names();
               iterator = list.iterator();
               while (iterator.hasNext()) {
                 String item = (String) iterator.next();
