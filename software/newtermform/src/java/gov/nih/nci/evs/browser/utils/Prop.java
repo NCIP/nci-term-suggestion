@@ -3,10 +3,10 @@ package gov.nih.nci.evs.browser.utils;
 import java.util.*;
 
 public class Prop {
-    public static enum MODIFIABLE_PROPERTY { 
+    public static enum Modifiable { 
         Definition, Synonym, Others;
         
-        public static MODIFIABLE_PROPERTY valueOfOrDefault(String text) {
+        public static Modifiable valueOfOrDefault(String text) {
             try {
                 return valueOf(text);
             } catch (Exception e) {
@@ -15,11 +15,11 @@ public class Prop {
         }
     }
 
-    public static enum PROPERTY_ACTION { 
+    public static enum Action { 
         Add, Modify, Delete;
         
         public static ArrayList<String> names() {
-            PROPERTY_ACTION[] values = values();
+            Action[] values = values();
             ArrayList<String> list = new ArrayList<String>();
             for (int i=0; i<values.length; ++i) {
                 list.add(values[i].name());
@@ -27,7 +27,7 @@ public class Prop {
             return list;
         }
 
-        public static PROPERTY_ACTION valueOfOrDefault(String text) {
+        public static Action valueOfOrDefault(String text) {
             try {
                 return valueOf(text);
             } catch (Exception e) {

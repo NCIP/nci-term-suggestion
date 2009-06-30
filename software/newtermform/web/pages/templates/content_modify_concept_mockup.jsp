@@ -5,14 +5,14 @@
   private static final String TEXTAREA_ARGS = "rows=\"4\" cols=\"80\"";
 %>
 <%
-  String imagePath = request.getContextPath() + "/images";
+    String imagePath = request.getContextPath() + "/images";
   String propertyParam = HTTPUtils.getParameter(request, "property");
   String vocabulary = "NCI Thesaurus";
   String conceptCode = "C12434";
-  Prop.MODIFIABLE_PROPERTY property = Prop.MODIFIABLE_PROPERTY.valueOfOrDefault(propertyParam);
+  Prop.Modifiable property = Prop.Modifiable.valueOfOrDefault(propertyParam);
   String selectedProperty = LBUtils.getProperty(property, 1);
   String suggestion = "";
-  Prop.PROPERTY_ACTION action = Prop.PROPERTY_ACTION.Modify;
+  Prop.Action action = Prop.Action.Modify;
   String description = "";
   String notes = "";
   int i=0;
@@ -29,17 +29,17 @@
       <td>
         <select name="vocabulary">
           <%
-            items = AppProperties.getInstance().getVocabularyNames();
-            selectedItem = vocabulary;
-            for (i=0; i<items.length; ++i) {
-              String item = items[i];
-              String args = "";
-              if (item.equals(selectedItem))
-                args += "selected=\"true\"";
+              items = AppProperties.getInstance().getVocabularyNames();
+                selectedItem = vocabulary;
+                for (i=0; i<items.length; ++i) {
+                  String item = items[i];
+                  String args = "";
+                  if (item.equals(selectedItem))
+                    args += "selected=\"true\"";
           %>
               <option value="<%=item%>" <%=args%>><%=item%></option>
           <%
-            }
+              }
           %>
         </select>
       </td>
@@ -56,16 +56,16 @@
       <td>
         <select name="property">
           <%
-          Prop.MODIFIABLE_PROPERTY[] mprops = Prop.MODIFIABLE_PROPERTY.values();
+            Prop.Modifiable[] mprops = Prop.Modifiable.values();
             for (i=0; i<mprops.length; ++i) {
-                Prop.MODIFIABLE_PROPERTY mprop = mprops[i];
+              Prop.Modifiable mprop = mprops[i];
               String args = "";
               if (mprop.equals(property))
-                  args += "selected=\"true\"";
+                args += "selected=\"true\"";
           %>
               <option value="<%=mprop%>" <%=args%>><%=mprop%></option>
           <%
-            }
+              }
           %>
         </select>
       </td>
@@ -74,16 +74,16 @@
   
   <!-- --------------------------------------------------------------------- -->
   <%
-    String propertyNameLC = property.name().toLowerCase();
-    if (property != Prop.MODIFIABLE_PROPERTY.Others) {
+      String propertyNameLC = property.name().toLowerCase();
+        if (property != Prop.Modifiable.Others) {
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Select a <%=propertyNameLC%>:</b>
       <table class="modifyConceptDT">
         <%
-          items = LBUtils.getProperties(property);
-          selectedItem = selectedProperty;
-          for (i=0; i<items.length; ++i) {
+            items = LBUtils.getProperties(property);
+                  selectedItem = selectedProperty;
+                  for (i=0; i<items.length; ++i) {
             String item = items[i];
             String checked = item==selectedItem ? "checked=\"checked\" " : "";
             String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight";
@@ -93,7 +93,7 @@
             <td colspan="2"><%=item%></td>
           </tr>
         <%
-          }
+            }
         %>
       </table>
     
@@ -101,14 +101,16 @@
       <br/><b>Suggest a new <%=propertyNameLC%> or modify an existing one:</b>
       <table class="modifyConceptDT">
         <tr>
-          <% suggestion = selectedProperty; %>
+          <%
+              suggestion = selectedProperty;
+          %>
           <td><textarea class="textbody" name="suggestion" <%=TEXTAREA_ARGS%>><%=suggestion%></textarea></td>
           <td valign="top">
             <table class="modifyConceptDT">
               <%
-              Prop.PROPERTY_ACTION[] pActions = Prop.PROPERTY_ACTION.values();
+                Prop.Action[] pActions = Prop.Action.values();
                 for (i=0; i<pActions.length; ++i) {
-                    Prop.PROPERTY_ACTION pAction = pActions[i];
+                  Prop.Action pAction = pActions[i];
                   String checked = pAction==action ? "checked=\"checked\" " : "";
                   String pActionName = pAction.name();
               %>
