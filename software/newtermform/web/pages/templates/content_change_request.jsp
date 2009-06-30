@@ -14,11 +14,11 @@
   if (msg != null && msg.length() > 0) {
 %>
     <div class="msgColor">
-<%      
-    String[] list = Utils.toStrings(msg, "\n", false, false);
+<%
+    String[] list = StringUtils.toStrings(msg, "\n", false, false);
     for (int i=0; i<list.length; ++i) {
       String text = list[i];
-      text = Utils.toHtml(text); // For leading spaces (indentation)
+      text = StringUtils.toHtml(text); // For leading spaces (indentation)
 %>
       <%=text%><br/>
 <%
@@ -26,18 +26,18 @@
 %>
    </div><br/>
 <%
-  }
+    }
 %>
 <%
-  msg = warnings;
+    msg = warnings;
   if (msg != null && msg.length() > 0) {
 %>
     <div class="warningMsgColor">
-<%      
-    String[] list = Utils.toStrings(msg, "\n", false, false);
+<%
+    String[] list = StringUtils.toStrings(msg, "\n", false, false);
     for (int i=0; i<list.length; ++i) {
       String text = list[i];
-      text = Utils.toHtml(text); // For leading spaces (indentation)
+      text = StringUtils.toHtml(text); // For leading spaces (indentation)
 %>
       <%=text%><br/>
 <%

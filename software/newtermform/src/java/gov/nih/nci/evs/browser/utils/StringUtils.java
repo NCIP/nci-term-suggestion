@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class Utils {
+public class StringUtils {
     public static final String SEPARATOR = 
         "----------------------------------------"
         + "----------------------------------------";

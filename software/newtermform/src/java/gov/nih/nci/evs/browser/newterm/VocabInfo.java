@@ -1,6 +1,6 @@
 package gov.nih.nci.evs.browser.newterm;
 
-import gov.nih.nci.evs.browser.utils.Utils;
+import gov.nih.nci.evs.browser.utils.*;
 
 import java.util.*;
 
@@ -61,7 +61,7 @@ public class VocabInfo {
     
     public static void debug(List<VocabInfo> list) {
         Iterator<VocabInfo> iterator = list.iterator();
-        debug(Utils.SEPARATOR);
+        debug(StringUtils.SEPARATOR);
         debug("List of vocabularies:");
         while (iterator.hasNext())
             debug(iterator.next());
