@@ -147,7 +147,7 @@
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>suggestions(s) (whether it is adding, modifying, or deleting a property): <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>>suggestion(s) (whether it is adding, modifying, or deleting a property): <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="suggestions" class="newConceptTA<%=css%>"><%=suggestions%></textarea></td>
       </tr>
 
