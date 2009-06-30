@@ -59,7 +59,10 @@ public class NewConceptRequest extends RequestBase {
     }
 
     public String submitForm() {
+        _request.getSession().setAttribute(WARNINGS, null);
+        _request.getSession().setAttribute(MESSAGE, null);
         updateSessionAttributes();
+        
         String warnings = validate();
         if (warnings.length() > 0) {
             _request.getSession().setAttribute(WARNINGS, warnings);
@@ -85,14 +88,16 @@ public class NewConceptRequest extends RequestBase {
 
         clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
                 TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
-        _request.getSession().setAttribute(WARNINGS, null);
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
-        if (! isSendEmail) {
-            msg += "\nFYI: Actually, email was never sent:";
-            msg += "\n    * send.email configuration flag = " + isSendEmail + ".";
-        }
         _request.getSession().setAttribute(MESSAGE, msg);
+        if (! isSendEmail) {
+            msg = "Warning: Email was never sent:";
+            msg += "\n    * send.email configuration flag = " + isSendEmail + ".";
+            msg += "\n    * This flag allows us to design and implement our web pages";
+            msg += "\n      without having to send a bunch of bogus emails.";
+            _request.getSession().setAttribute(WARNINGS, msg);
+        }
         return SUCCESSFUL_STATE;
     }
 
