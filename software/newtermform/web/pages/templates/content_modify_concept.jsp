@@ -155,8 +155,8 @@
 
       <tr>
         <td <%=LABEL_ARGS%>>Action: <i class="warningMsgColor">*</i></td>
-        <td>
-          <select name="propertyAction" class="newConceptCB<%=css%>">
+        <td colspan="2">
+          <select name="propertyAction" class="newConceptCB2<%=css%>">
             <%
                 selectedItem = propertyAction.name();
                   list = Prop.Action.names();
