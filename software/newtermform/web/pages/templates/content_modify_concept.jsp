@@ -1,154 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
+<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
+<%@ page contentType="text/html;charset=windows-1252"%>
+<%@ page import="java.util.*" %>
+<%@ page import="gov.nih.nci.evs.browser.newterm.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%!
-  private static final String INPUT_ARGS = "class=\"textbody\" size=\"30\" onFocus=\"active=true\" onBlur=\"active=false\" onKeyPress=\"return ifenter(event,this.form)\"";
-  private static final String TEXTAREA_ARGS = "rows=\"4\" cols=\"80\"";
+  private static final String INPUT_ARGS =
+    "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
+    // " onKeyPress=\"return ifenter(event,this.form)\"";
+  private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  String propertyParam = request.getParameter("property");
-  String vocabulary = "NCI Thesaurus";
-  String conceptCode = "C12434";
-  LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.valueOfOrDefault(propertyParam);
-  String selectedProperty = LBUtils.getProperty(property, 1);
-  String suggestion = "";
-  LBUtils.PROPERTY_ACTION action = LBUtils.PROPERTY_ACTION.Modify;
-  String description = "";
-  String notes = "";
+  // Session Attribute(s):
+  String email = HTTPUtils.getSessionAttributeString(request, "email");
+  String other = HTTPUtils.getSessionAttributeString(request, "other");
+  String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
+  String term = HTTPUtils.getSessionAttributeString(request, "term");
+  String synonyms = HTTPUtils.getSessionAttributeString(request, "synonyms");
+  String parentCode = HTTPUtils.getSessionAttributeString(request, "parentCode");
+  String definition = HTTPUtils.getSessionAttributeString(request, "definition");
+  String reason = HTTPUtils.getSessionAttributeString(request, "reason");
+  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
+
+  // Member variable(s):
+  String imagePath = request.getContextPath() + "/images";
   int i=0;
   String[] items = null;
   String selectedItem = null;
+  String css = WebUtils.isUsingIE(request) ? "_IE" : "";
+  
+  // The following values are used only for testing purposes:
+  boolean useTestValues = true;
+  if (useTestValues) {
+    if (email.length() <= 0)
+      email = "John.Doe@abc.com";
+    if (other.length() <= 0)
+      other = "Phone: 987-654-3210";
+    if (vocabulary.length() <= 0)
+      vocabulary = "NCI Thesaurus";
+    if (term.length() <= 0)
+      term = "Ultra Murine Cell Types";
+    if (synonyms.length() <= 0)
+      synonyms = "Cell Types; Cell; Murine Cell Types";
+    if (parentCode.length() <= 0)
+      parentCode = "C23442";
+    if (definition.length() <= 0)
+      definition =
+        "The smallest units of living structure capable of independent" +
+        " existence, composed of a membrane-enclosed mass of protoplasm" +
+        " and containing a nucleus or nucleoid. Cells are highly variable" +
+        " and specialized in both structure and function, though all must" +
+        " at some stage replicate proteins and nucleic acids, utilize" +
+        " energy, and reproduce themselves.";
+    if (reason.length() <= 0)
+      reason = "New improved version of the previous type.";
+  }
 %>
-<form method="post">
-  <div class="texttitle-blue">Suggest Concept Modification:</div><br/>
-  <!-- --------------------------------------------------------------------- -->
-  <b>Concept Information:</b>
-  <table class="datatable">
-    <tr>
-      <td>Vocabulary:</td>
-      <td>
-        <select name="vocabulary">
-          <%
-            items = AppProperties.getInstance().getVocabularyNames();
-            selectedItem = vocabulary;
-            for (i=0; i<items.length; ++i) {
-              String item = items[i];
-              String args = "";
-              if (item.equals(selectedItem))
-                args += "selected=\"true\"";
-          %>
-              <option value="<%=item%>" <%=args%>><%=item%></option>
-          <%
+<f:view>
+  <form method="post">
+    <div class="texttitle-blue">Suggest New Concept:</div><br/>
+    <table class="newConceptDT">
+      <!-- =================================================================== -->
+      <%
+          if (warnings.length() > 0) {
+                String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
+                for (i=0; i<wList.length; ++i) {
+          String warning = wList[i];
+          warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
+          if (i==0) {
+      %>
+              <tr>
+                <td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
+                <td><i class="warningMsgColor"><%=warning%></i></td>
+              </tr>
+      <%    } else { %>
+              <tr>
+                <td <%=LABEL_ARGS%>></td>
+                <td><i class="warningMsgColor"><%=warning%></i></td>
+              </tr>
+      <%
             }
-          %>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td>Concept Code:</td>
-      <td>
-        <input name="conceptCode" value="<%=conceptCode%>" alt="conceptCode" <%=INPUT_ARGS%>>
-        <a href="http://localhost:19280/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=C12434" target="_blank">Display</a>
-      </td>
-    </tr>
-    <tr>
-      <td>Property</td>
-      <td>
-        <select name="property">
-          <%
-            LBUtils.MODIFIABLE_PROPERTY[] mprops = LBUtils.MODIFIABLE_PROPERTY.values();
-            for (i=0; i<mprops.length; ++i) {
-              LBUtils.MODIFIABLE_PROPERTY mprop = mprops[i];
-              String args = "";
-              if (mprop.equals(property))
-                  args += "selected=\"true\"";
-          %>
-              <option value="<%=mprop%>" <%=args%>><%=mprop%></option>
-          <%
-            }
-          %>
-        </select>
-      </td>
-    </tr>
-  </table>
-  
-  <!-- --------------------------------------------------------------------- -->
-  <%
-    String propertyNameLC = property.name().toLowerCase();
-    if (property != LBUtils.MODIFIABLE_PROPERTY.Others) {
-  %>
-      <!-- ----------------------------------------------------------------- -->
-      <br/><b>Select a <%=propertyNameLC%>:</b>
-      <table class="datatable">
-        <%
-          items = LBUtils.getProperties(property);
-          selectedItem = selectedProperty;
-          for (i=0; i<items.length; ++i) {
-            String item = items[i];
-            String checked = item==selectedItem ? "checked=\"checked\" " : "";
-            String rowColor = (i%2 == 0) ? "dataRowDark" : "dataRowLight";
-        %>
-          <tr class="<%=rowColor%>">
-            <td valign="top"><input type="radio" name="selectedProperty" value="<%=item%>" <%=checked%>/></td>
-            <td colspan="2"><%=item%></td>
-          </tr>
-        <%
           }
-        %>
-      </table>
-    
-      <!-- ----------------------------------------------------------------- -->
-      <br/><b>Suggest a new <%=propertyNameLC%> or modify an existing one:</b>
-      <table class="datatable">
-        <tr>
-          <% suggestion = selectedProperty; %>
-          <td><textarea class="textbody" name="suggestion" <%=TEXTAREA_ARGS%>><%=suggestion%></textarea></td>
-          <td valign="top">
-            <table class="datatable">
-              <%
-                LBUtils.PROPERTY_ACTION[] pActions = LBUtils.PROPERTY_ACTION.values();
-                for (i=0; i<pActions.length; ++i) {
-                  LBUtils.PROPERTY_ACTION pAction = pActions[i];
-                  String checked = pAction==action ? "checked=\"checked\" " : "";
-                  String pActionName = pAction.name();
-              %>
-                <tr>
-                  <td><input type="radio" name="action" value="<%=pActionName%>" <%=checked%>/></td>
-                  <td><%=pActionName%></td>
-                </tr>
-              <%
-                }
-              %>
-            </table>
-          </td>
-        </tr>
-      </table>
-  <%
-    } else {
-  %>
-      <!-- ----------------------------------------------------------------- -->
-      <br/><b>Brief description of your modification:</b>
-      <table class="datatable">
-        <tr>
-          <td><textarea class="textbody" name="description" <%=TEXTAREA_ARGS%>><%=description%></textarea></td>
-        </tr>
-      </table>
-  <%
-    }
-  %>
+      %>
+          <tr><td><br/></td></tr>
+      <%
+        }
+      %>
+      
+      <!-- =================================================================== -->
+      <tr><td colspan="2"><b>Contact Information:</b></td></tr>
+      <tr>
+        <td <%=LABEL_ARGS%>>Email: <i class="warningMsgColor">*</i></td>
+        <td colspan="2">
+          <input name="email" value="<%=email%>" alt="email"
+          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
+        </td>
+      </tr>
+      <tr>
+        <td <%=LABEL_ARGS%>>Other:</td>
+        <td colspan="2"><textarea name="other" class="newConceptTA<%=css%>"><%=other%></textarea></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td colspan="2" class="newConceptNotes"><b>Privacy Notice:</b> Your contact information will only be used to contact you
+            <br/>&nbsp;&nbsp;&nbsp;&nbsp;about this topic and not for any other purpose.
+        </td>
+      </tr>
 
-  <!-- --------------------------------------------------------------------- -->
-  <br/><b>Notes or comments (if any):</b>
-  <table class="datatable">
-    <tr>
-      <td><textarea class="textbody" name="notes" <%=TEXTAREA_ARGS%>><%=notes%></textarea></td>
-    </tr>
-  </table>
-  
-  <!-- --------------------------------------------------------------------- -->
-  <table class="datatable">
-    <tr>
-     <td><a href="<%=request.getContextPath()%>/pages/change_request.jsp">Back</a></td>
-     <td align="right"><INPUT type="submit" name="submit" value="Submit"></td>
-    </tr>
-  </table>
-</form>
+      <!-- =================================================================== -->
+      <tr><td><br/></td></tr>
+      <tr><td colspan="2"><b>Term Information:</b></td></tr>
+      <tr>
+        <td <%=LABEL_ARGS%>>Vocabulary: <i class="warningMsgColor">*</i></td>
+        <td>
+          <select name="vocabulary" id="url" class="newConceptCB<%=css%>">
+            <%
+              selectedItem = vocabulary;
+              ArrayList list = AppProperties.getInstance().getVocabularies();
+              Iterator iterator = list.iterator();
+              while (iterator.hasNext()) {
+                VocabInfo vocab = (VocabInfo) iterator.next();
+                String item = vocab.getName();
+                String url = vocab.getUrl();
+                String args = "";
+                if (item.equals(selectedItem))
+                  args += "selected=\"true\"";
+            %>
+                <option value="<%=url%>" <%=args%>><%=item%></option>
+            <%
+              }
+            %>
+          </select>
+        </td>
+        <td align="right">
+          <img src="<%=imagePath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
+        </td>
+      </tr>
+      <tr>
+        <td <%=LABEL_ARGS%>>Term: <i class="warningMsgColor">*</i></td>
+        <td colspan="2"><input name="term" value="<%=term%>" alt="term"
+          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+      </tr>
+      <tr>
+        <td <%=LABEL_ARGS%>>Synonym(s):</td>
+        <td colspan="2"><input name="synonyms" value="<%=synonyms%>" alt="synonyms"
+          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+      </tr>
+      <tr>
+        <td <%=LABEL_ARGS%>>Parent Concept Code:</td>
+        <td colspan="2"><input name="parentCode" value="<%=parentCode%>" alt="parentCode"
+          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+      </tr>
+      <tr>
+        <td <%=LABEL_ARGS%>>Definition:</td>
+        <td colspan="2"><textarea name="definition" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
+      </tr>
+
+      <!-- =================================================================== -->
+      <tr><td><br/></td></tr>
+      <tr><td colspan="2"><b>Additional Information:</b></td></tr>
+      <tr>
+        <td <%=LABEL_ARGS%>>Reason for adding plus any other additional information:</td>
+        <td colspan="2"><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
+      </tr>
+
+      <!-- =================================================================== -->
+      <tr><td><br/></td></tr>
+      <tr>
+        <td class="newConceptNotes"><i class="warningMsgColor">* Required</i></td>
+        <td colspan="2" align="right">
+          <h:commandButton
+            id="clear"
+            value="clear"
+            action="#{userSessionBean.clearNewConcept}"
+            image="#{facesContext.externalContext.requestContextPath}/images/clear.gif"
+            alt="clear">
+          </h:commandButton>
+          <h:commandButton
+            id="submit"
+            value="submit"
+            action="#{userSessionBean.requestNewConcept}"
+            image="#{facesContext.externalContext.requestContextPath}/images/submit.gif"
+            alt="submit">
+          </h:commandButton>
+        </td>
+      </tr>
+    </table>
+  </form>
+</f:view>
