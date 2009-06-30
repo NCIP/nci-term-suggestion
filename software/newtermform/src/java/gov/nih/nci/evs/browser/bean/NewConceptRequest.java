@@ -165,7 +165,7 @@ public class NewConceptRequest extends RequestBase {
         buffer.append("    * This flag allows us to design and implement our web pages\n");
         buffer.append("      without having to send a bunch of bogus emails.\n");
         buffer.append("Debug:\n");
-        buffer.append("    * recipient(s): " + Utils.toString(recipients, ", ") + "\n");
+        buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
         _request.getSession().setAttribute(WARNINGS, buffer.toString());
     }
 }

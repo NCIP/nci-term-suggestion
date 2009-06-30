@@ -1,7 +1,7 @@
 package gov.nih.nci.evs.browser.properties;
 
 import gov.nih.nci.evs.browser.newterm.*;
-import gov.nih.nci.evs.browser.utils.Utils;
+import gov.nih.nci.evs.browser.utils.*;
 
 import java.util.*;
 
@@ -83,7 +83,7 @@ public class AppProperties {
     
     public String[] getContactUsRecipients() {
         String value = getContactUrl();
-        return Utils.toStrings(value, ";", false);
+        return StringUtils.toStrings(value, ";", false);
     }
     
     public String getMailSmtpServer() {

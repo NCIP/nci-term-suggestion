@@ -65,12 +65,12 @@
     <table class="newConceptDT">
       <!-- =================================================================== -->
       <%
-        if (warnings.length() > 0) {
-          String[] wList = Utils.toStrings(warnings, "\n", false, false);
-          for (i=0; i<wList.length; ++i) {
-            String warning = wList[i];
-            warning = Utils.toHtml(warning); // For leading spaces (indentation)
-            if (i==0) {
+          if (warnings.length() > 0) {
+                String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
+                for (i=0; i<wList.length; ++i) {
+          String warning = wList[i];
+          warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
+          if (i==0) {
       %>
               <tr>
                 <td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
