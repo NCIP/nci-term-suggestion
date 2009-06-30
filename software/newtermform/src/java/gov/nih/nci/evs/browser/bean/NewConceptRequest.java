@@ -70,9 +70,10 @@ public class NewConceptRequest extends RequestBase {
         }
 
         AppProperties appProperties = AppProperties.getInstance();
+        String vocabulary = _parametersHashMap.get(VOCABULARY);
         String mailServer = appProperties.getMailSmtpServer();
         String from = _parametersHashMap.get(EMAIL);
-        String[] recipients = appProperties.getContactUsRecipients();
+        String[] recipients = appProperties.getVocabularyEmails(vocabulary);
         String subject = getSubject();
         String emailMsg = getEmailMesage();
 
@@ -155,10 +156,16 @@ public class NewConceptRequest extends RequestBase {
     private void printSendEmailWarning() {
         if (isSendEmail)
             return;
-        String msg = "Warning: Email was never sent:";
-        msg += "\n    * send.email configuration flag = " + isSendEmail + ".";
-        msg += "\n    * This flag allows us to design and implement our web pages";
-        msg += "\n      without having to send a bunch of bogus emails.";
-        _request.getSession().setAttribute(WARNINGS, msg);
+        String[] recipients = AppProperties.getInstance().getVocabularyEmails(
+            _parametersHashMap.get(VOCABULARY));
+        
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("Warning: Email was never sent:\n");
+        buffer.append("    * send.email configuration flag = " + isSendEmail + ".\n");
+        buffer.append("    * This flag allows us to design and implement our web pages\n");
+        buffer.append("      without having to send a bunch of bogus emails.\n");
+        buffer.append("Debug:\n");
+        buffer.append("    * recipient(s): " + Utils.toString(recipients, ", ") + "\n");
+        _request.getSession().setAttribute(WARNINGS, buffer.toString());
     }
 }

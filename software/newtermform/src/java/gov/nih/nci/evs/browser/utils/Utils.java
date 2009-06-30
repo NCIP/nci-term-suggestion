@@ -71,4 +71,14 @@ public class Utils {
         text = text.replaceAll("  ", "&nbsp;&nbsp;");
         return text;
     }
+    
+    public static String toString(String[] values, String delimiter) {
+        StringBuffer buffer = new StringBuffer();
+        for (int i=0; i<values.length; ++i) {
+            if (i>0)
+                buffer.append(delimiter);
+            buffer.append(values[i]);
+        }
+        return buffer.toString();
+    }
 }
