@@ -26,6 +26,14 @@ public class LBUtils {
             }
             return list;
         }
+
+        public static PROPERTY_ACTION valueOfOrDefault(String text) {
+            try {
+                return valueOf(text);
+            } catch (Exception e) {
+                return Add;
+            }
+        }
     }
     
     public static String[] getProperties(MODIFIABLE_PROPERTY property) {
