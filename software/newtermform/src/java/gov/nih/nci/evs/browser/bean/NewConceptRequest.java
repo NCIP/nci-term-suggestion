@@ -91,39 +91,32 @@ public class NewConceptRequest extends RequestBase {
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);
-        if (! isSendEmail) {
-            msg = "Warning: Email was never sent:";
-            msg += "\n    * send.email configuration flag = " + isSendEmail + ".";
-            msg += "\n    * This flag allows us to design and implement our web pages";
-            msg += "\n      without having to send a bunch of bogus emails.";
-            _request.getSession().setAttribute(WARNINGS, msg);
-        }
+        printSendEmailWarning();
         return SUCCESSFUL_STATE;
     }
-
+    
     private String validate() {
         StringBuffer buffer = new StringBuffer();
         String email = _parametersHashMap.get(EMAIL);
-        if (!MailUtils.isValidEmailAddress(email)) {
-            if (buffer.length() > 0)
-                buffer.append("\n");
-            buffer.append("* Please enter a valid email address.");
-        }
+        validate(buffer, MailUtils.isValidEmailAddress(email), 
+            "* Please enter a valid email address.");
 
         String vocabulary = _parametersHashMap.get(VOCABULARY);
-        if (vocabulary == null || vocabulary.length() <= 0) {
-            if (buffer.length() > 0)
-                buffer.append("\n");
-            buffer.append("* Please select a vocabulary.");
-        }
+        validate(buffer, vocabulary != null && vocabulary.length() > 0, 
+            "* Please select a vocabulary.");
 
         String term = _parametersHashMap.get(TERM);
-        if (term == null || term.length() <= 0) {
-            if (buffer.length() > 0)
-                buffer.append("\n");
-            buffer.append("* Please enter a term.");
-        }
+        validate(buffer, term != null && term.length() > 0,
+            "* Please enter a term.");
         return buffer.toString();
+    }
+    
+    private void validate(StringBuffer buffer, boolean validValue, String message) {
+        if (validValue)
+            return;
+        if (buffer.length() > 0)
+            buffer.append("\n");
+        buffer.append(message);
     }
 
     private String getSubject() {
@@ -157,5 +150,15 @@ public class NewConceptRequest extends RequestBase {
             buffer.append("\n");
         }
         buffer.append("\n");
+    }
+
+    private void printSendEmailWarning() {
+        if (isSendEmail)
+            return;
+        String msg = "Warning: Email was never sent:";
+        msg += "\n    * send.email configuration flag = " + isSendEmail + ".";
+        msg += "\n    * This flag allows us to design and implement our web pages";
+        msg += "\n      without having to send a bunch of bogus emails.";
+        _request.getSession().setAttribute(WARNINGS, msg);
     }
 }
