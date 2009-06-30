@@ -20,8 +20,8 @@
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
   String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
   String propertyName = HTTPUtils.getSessionAttributeString(request, "propertyName");
-  String action = HTTPUtils.getSessionAttributeString(request, "action");
-  if (action.length() <= 0) action = LBUtils.PROPERTY_ACTION.Add.name();
+  LBUtils.PROPERTY_ACTION propertyAction = (LBUtils.PROPERTY_ACTION) 
+    request.getSession().getAttribute("propertyAction");
   String suggestions = HTTPUtils.getSessionAttributeString(request, "suggestions");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
@@ -46,8 +46,7 @@
       conceptCode = "C12434";
     if (propertyName.length() <= 0)
       propertyName = "Definition";
-    if (action.length() <= 0)
-        action = LBUtils.PROPERTY_ACTION.Add.name();
+    propertyAction = LBUtils.PROPERTY_ACTION.Add;
     if (suggestions.length() <= 0)
         suggestions =
         "The smallest units of living structure capable of independent" +
@@ -155,9 +154,9 @@
       <tr>
         <td <%=LABEL_ARGS%>>Action: <i class="warningMsgColor">*</i></td>
         <td>
-          <select name="action" class="newConceptCB<%=css%>">
+          <select name="propertyAction" class="newConceptCB<%=css%>">
             <%
-              selectedItem = action;
+              selectedItem = propertyAction.name();
               list = LBUtils.PROPERTY_ACTION.names();
               iterator = list.iterator();
               while (iterator.hasNext()) {
