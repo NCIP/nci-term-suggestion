@@ -3,7 +3,8 @@
 %>
 <div class="footer">
   <ul>
-    <li><a href="http://www.cancer.gov" target="_blank" 
+    <li><a href="<%=request.getContextPath()%>">Home</a></li>
+    <li> | <a href="http://www.cancer.gov" target="_blank" 
       alt="National Cancer Institute">NCI Home</a></li>
 <%--      
     <li> | <a href="<%= request.getContextPath() %>/pages/contact_us.jsf"
