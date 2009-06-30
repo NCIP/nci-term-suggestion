@@ -11,6 +11,7 @@ public class AppProperties {
     private static final String PROPERTY_FILE = "NewTermFormPropertiesFile";
     private static final String BUILD_INFO = "NEWTERMFORM_BUILD_INFO";
     private static final String DEBUG_ON = "DEBUG_ON";
+    private static final String SEND_EMAIL = "SEND_EMAIL";
     private static final String MAIL_SMTP_SERVER = "MAIL_SMTP_SERVER";
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String VOCABULARY_PREFIX = "VOCABULARY_";
@@ -67,8 +68,12 @@ public class AppProperties {
         return _buildInfo;
     }
     
-    public boolean getDebugOn() {
+    public boolean isDebugOn() {
         return Boolean.parseBoolean(getProperty(DEBUG_ON));
+    }
+    
+    public boolean isSendEmail() {
+        return Boolean.parseBoolean(getProperty(SEND_EMAIL));
     }
     
     public String getContactUrl() {
@@ -98,7 +103,7 @@ public class AppProperties {
     public ArrayList<VocabInfo> getVocabularies() {
         if (_vocabList == null) {
             _vocabList = parseVocabList();
-            if (getDebugOn())
+            if (isDebugOn())
                 VocabInfo.debug(_vocabList);
         }
         return _vocabList;

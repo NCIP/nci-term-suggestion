@@ -245,6 +245,7 @@
             <filter token="newtermform.conf.path" value="${application.data.path}/${newtermform.conf.path}"/>
             <filter token="newtermform.build.info" value="Built: ${BUILD_DATE}"/>
             <filter token="debug.on" value="${debug.on}"/>
+            <filter token="send.email" value="${send.email}"/>
             <filter token="mail.smtp.server" value="${mail.smtp.server}"/>
             <filter token="ncicb.contact.url" value="${ncicb.contact.url}"/>
             <filter token="vocabulary.0" value="${vocabulary.0}"/>

@@ -14,6 +14,11 @@
     </ConfigurableItem>
     
     <ConfigurableItem>
+      <key>SEND_EMAIL</key>
+      <value>@send.email@</value>
+    </ConfigurableItem>
+    
+    <ConfigurableItem>
       <key>MAIL_SMTP_SERVER</key>
       <value>@mail.smtp.server@</value>
     </ConfigurableItem>
