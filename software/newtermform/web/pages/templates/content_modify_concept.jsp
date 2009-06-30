@@ -45,18 +45,16 @@
     if (conceptCode.length() <= 0)
       conceptCode = "C12434";
     if (propertyName.length() <= 0)
-      propertyName = "Definition";
-    propertyAction = Prop.Action.Add;
+      propertyName = "CDISC Definition";
+    propertyAction = Prop.Action.Modify;
     if (suggestions.length() <= 0)
-        suggestions =
-        "The smallest units of living structure capable of independent" +
-        " existence, composed of a membrane-enclosed mass of protoplasm" +
-        " and containing a nucleus or nucleoid. Cells are highly variable" +
-        " and specialized in both structure and function, though all must" +
-        " at some stage replicate proteins and nucleic acids, utilize" +
-        " energy, and reproduce themselves.";
+      suggestions =
+        "A liquid tissue with the primary function of transporting" +
+        " oxygen and carbon dioxide. It supplies the tissues with nutrients," +
+        " removes waste products, and contains various components of the" +
+        " immune system defending the body against infection.";
     if (reason.length() <= 0)
-      reason = "New improved version of the previous type.";
+      reason = "Fixed typo in definition.";
   }
 %>
 <f:view>
