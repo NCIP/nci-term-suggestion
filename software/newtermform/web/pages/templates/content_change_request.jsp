@@ -3,17 +3,38 @@
 <%
   // Session Attribute(s):
   String message = HTTPUtils.getSessionAttributeString(request, "message", true);
+  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings", true);
   
   // Member variable(s):
   String basePath = request.getContextPath();
 %>
 <div class="texttitle-blue">Change Request:</div><br/>
 <%
-  if (message != null && message.length() > 0) {
+  String msg = message;
+  if (msg != null && msg.length() > 0) {
 %>
     <div class="msgColor">
 <%      
-    String[] list = Utils.toStrings(message, "\n", false, false);
+    String[] list = Utils.toStrings(msg, "\n", false, false);
+    for (int i=0; i<list.length; ++i) {
+      String text = list[i];
+      text = Utils.toHtml(text); // For leading spaces (indentation)
+%>
+      <%=text%><br/>
+<%
+    }
+%>
+   </div><br/>
+<%
+  }
+%>
+<%
+  msg = warnings;
+  if (msg != null && msg.length() > 0) {
+%>
+    <div class="warningMsgColor">
+<%      
+    String[] list = Utils.toStrings(msg, "\n", false, false);
     for (int i=0; i<list.length; ++i) {
       String text = list[i];
       text = Utils.toHtml(text); // For leading spaces (indentation)
