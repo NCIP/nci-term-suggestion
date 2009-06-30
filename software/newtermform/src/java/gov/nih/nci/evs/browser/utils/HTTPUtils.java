@@ -7,19 +7,26 @@ import java.util.regex.*;
 import javax.servlet.http.*;
 
 public class HTTPUtils {
-    public static String getSessionAttributeString(HttpServletRequest request,
-        String attributeName, boolean clear) {
-        String value = (String) request.getSession().getAttribute(attributeName);
+    public static String getParameter(HttpServletRequest request, String name) {
+        String value = request.getParameter(name);
         if (value == null || value.length() <= 0)
             return "";
-        if (clear)
-            request.getSession().setAttribute(attributeName, null);
         return cleanXSS(value);
     }
 
     public static String getSessionAttributeString(HttpServletRequest request,
-            String attributeName) {
-        return getSessionAttributeString(request, attributeName, false);
+        String name, boolean clear) {
+        String value = (String) request.getSession().getAttribute(name);
+        if (value == null || value.length() <= 0)
+            return "";
+        if (clear)
+            request.getSession().setAttribute(name, null);
+        return cleanXSS(value);
+    }
+
+    public static String getSessionAttributeString(HttpServletRequest request,
+        String name) {
+        return getSessionAttributeString(request, name, false);
     }
 
     public static String cleanXSS(String value) {

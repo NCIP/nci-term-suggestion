@@ -145,7 +145,7 @@
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Synonyms:</td>
+        <td <%=LABEL_ARGS%>>Synonym(s):</td>
         <td colspan="2"><input name="synonyms" value="<%=synonyms%>" alt="synonyms"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>

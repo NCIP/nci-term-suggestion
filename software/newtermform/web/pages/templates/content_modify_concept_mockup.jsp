@@ -6,7 +6,7 @@
 %>
 <%
   String imagePath = request.getContextPath() + "/images";
-  String propertyParam = request.getParameter("property");
+  String propertyParam = HTTPUtils.getParameter(request, "property");
   String vocabulary = "NCI Thesaurus";
   String conceptCode = "C12434";
   LBUtils.MODIFIABLE_PROPERTY property = LBUtils.MODIFIABLE_PROPERTY.valueOfOrDefault(propertyParam);
