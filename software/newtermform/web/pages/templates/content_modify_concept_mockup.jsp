@@ -23,7 +23,7 @@
   <div class="texttitle-blue">Suggest Concept Modification (Mock Up):</div><br/>
   <!-- --------------------------------------------------------------------- -->
   <b>Concept Information:</b>
-  <table class="modifyConceptDT">
+  <table class="newConceptDT">
     <tr>
       <td>Vocabulary:</td>
       <td>
@@ -79,7 +79,7 @@
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Select a <%=propertyNameLC%>:</b>
-      <table class="modifyConceptDT">
+      <table class="newConceptDT">
         <%
             items = LBUtils.getProperties(property);
                   selectedItem = selectedProperty;
@@ -99,14 +99,14 @@
     
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Suggest a new <%=propertyNameLC%> or modify an existing one:</b>
-      <table class="modifyConceptDT">
+      <table class="newConceptDT">
         <tr>
           <%
               suggestion = selectedProperty;
           %>
           <td><textarea class="textbody" name="suggestion" <%=TEXTAREA_ARGS%>><%=suggestion%></textarea></td>
           <td valign="top">
-            <table class="modifyConceptDT">
+            <table class="newConceptDT">
               <%
                 Prop.Action[] pActions = Prop.Action.values();
                 for (i=0; i<pActions.length; ++i) {
@@ -130,7 +130,7 @@
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Brief description of your modification:</b>
-      <table class="modifyConceptDT">
+      <table class="newConceptDT">
         <tr>
           <td><textarea class="textbody" name="description" <%=TEXTAREA_ARGS%>><%=description%></textarea></td>
         </tr>
@@ -141,14 +141,14 @@
 
   <!-- --------------------------------------------------------------------- -->
   <br/><b>Notes or comments (if any):</b>
-  <table class="modifyConceptDT">
+  <table class="newConceptDT">
     <tr>
       <td><textarea class="textbody" name="notes" <%=TEXTAREA_ARGS%>><%=notes%></textarea></td>
     </tr>
   </table>
   
   <!-- --------------------------------------------------------------------- -->
-  <table class="modifyConceptDT">
+  <table class="newConceptDT">
     <tr>
      <!-- <td><a href="<%=request.getContextPath()%>/pages/change_request.jsp">Back</a></td> -->
      <!-- <td align="right"><INPUT type="submit" name="submit" value="Submit"></td> -->
