@@ -73,6 +73,7 @@ public class AppProperties {
     }
     
     public boolean isSendEmail() {
+        //if (true) return true;
         return Boolean.parseBoolean(getProperty(SEND_EMAIL));
     }
     
@@ -110,26 +111,37 @@ public class AppProperties {
     }
     
     public String[] getVocabularyNames() {
-        getVocabularies();  // Initializes
-        int n = _vocabList.size();
-        VocabInfo[] infos = _vocabList.toArray(new VocabInfo[n]);
-        String[] names = new String[n];
-        for (int i=0; i<n; ++i) {
-            VocabInfo info = infos[i];
-            names[i] = info.getName();
+        ArrayList<VocabInfo> list = getVocabularies();
+        Iterator<VocabInfo> iterator = list.iterator();
+        ArrayList<String> names = new ArrayList<String>();
+        while (iterator.hasNext()) {
+            VocabInfo info = iterator.next();
+            names.add(info.getName());
         }
-        return names;
+        return names.toArray(new String[names.size()]);
     }
     
     public String getVocabularyName(String url) {
-        getVocabularies();  // Initializes
-        int n = _vocabList.size();
-        VocabInfo[] infos = _vocabList.toArray(new VocabInfo[n]);
-        for (int i=0; i<n; ++i) {
-            VocabInfo info = infos[i];
+        ArrayList<VocabInfo> list = getVocabularies();
+        Iterator<VocabInfo> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            VocabInfo info = iterator.next();
             if (info.getUrl().equals(url))
                 return info.getName();
         }
         return null;
+    }
+    
+    public String[] getVocabularyEmails(String vocabularyName) {
+        ArrayList<VocabInfo> list = getVocabularies();
+        Iterator<VocabInfo> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            VocabInfo info = iterator.next();
+            if (info.getName().equals(vocabularyName)) {
+                ArrayList<String> emails = info.getEmails();
+                return emails.toArray(new String[emails.size()]);
+            }
+        }
+        return new String[0];
     }
 }
