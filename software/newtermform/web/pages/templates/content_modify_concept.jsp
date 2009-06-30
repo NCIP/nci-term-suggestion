@@ -14,13 +14,13 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Session Attribute(s):
+    // Session Attribute(s):
   String email = HTTPUtils.getSessionAttributeString(request, "email");
   String other = HTTPUtils.getSessionAttributeString(request, "other");
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
   String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
   String propertyName = HTTPUtils.getSessionAttributeString(request, "propertyName");
-  Prop.PROPERTY_ACTION propertyAction = (Prop.PROPERTY_ACTION) 
+  Prop.Action propertyAction = (Prop.Action) 
     request.getSession().getAttribute("propertyAction");
   String suggestions = HTTPUtils.getSessionAttributeString(request, "suggestions");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
@@ -46,7 +46,7 @@
       conceptCode = "C12434";
     if (propertyName.length() <= 0)
       propertyName = "Definition";
-    propertyAction = Prop.PROPERTY_ACTION.Add;
+    propertyAction = Prop.Action.Add;
     if (suggestions.length() <= 0)
         suggestions =
         "The smallest units of living structure capable of independent" +
@@ -66,28 +66,30 @@
       <!-- =================================================================== -->
       <%
           if (warnings.length() > 0) {
-                String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
-                for (i=0; i<wList.length; ++i) {
-          String warning = wList[i];
-          warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
-          if (i==0) {
+              String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
+              for (i=0; i<wList.length; ++i) {
+                String warning = wList[i];
+                warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
+                if (i==0) {
       %>
               <tr>
                 <td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
                 <td><i class="warningMsgColor"><%=warning%></i></td>
               </tr>
-      <%    } else { %>
+      <%
+          } else {
+      %>
               <tr>
                 <td <%=LABEL_ARGS%>></td>
                 <td><i class="warningMsgColor"><%=warning%></i></td>
               </tr>
       <%
-            }
           }
+                }
       %>
           <tr><td><br/></td></tr>
       <%
-        }
+          }
       %>
       
       <!-- =================================================================== -->
@@ -118,20 +120,20 @@
         <td>
           <select name="vocabulary" id="url" class="newConceptCB<%=css%>">
             <%
-              selectedItem = vocabulary;
-              ArrayList list = AppProperties.getInstance().getVocabularies();
-              Iterator iterator = list.iterator();
-              while (iterator.hasNext()) {
-                VocabInfo vocab = (VocabInfo) iterator.next();
-                String item = vocab.getName();
-                String url = vocab.getUrl();
-                String args = "";
-                if (item.equals(selectedItem))
-                  args += "selected=\"true\"";
+                selectedItem = vocabulary;
+                  ArrayList list = AppProperties.getInstance().getVocabularies();
+                  Iterator iterator = list.iterator();
+                  while (iterator.hasNext()) {
+                    VocabInfo vocab = (VocabInfo) iterator.next();
+                    String item = vocab.getName();
+                    String url = vocab.getUrl();
+                    String args = "";
+                    if (item.equals(selectedItem))
+                      args += "selected=\"true\"";
             %>
                 <option value="<%=url%>" <%=args%>><%=item%></option>
             <%
-              }
+                }
             %>
           </select>
         </td>
@@ -156,14 +158,14 @@
         <td>
           <select name="propertyAction" class="newConceptCB<%=css%>">
             <%
-              selectedItem = propertyAction.name();
-              list = Prop.PROPERTY_ACTION.names();
-              iterator = list.iterator();
-              while (iterator.hasNext()) {
-                String item = (String) iterator.next();
-                String args = "";
-                if (item.equals(selectedItem))
-                  args += "selected=\"true\"";
+                selectedItem = propertyAction.name();
+                  list = Prop.Action.names();
+                  iterator = list.iterator();
+                  while (iterator.hasNext()) {
+                    String item = (String) iterator.next();
+                    String args = "";
+                    if (item.equals(selectedItem))
+                      args += "selected=\"true\"";
             %>
                 <option value="<%=item%>" <%=args%>><%=item%></option>
             <%
