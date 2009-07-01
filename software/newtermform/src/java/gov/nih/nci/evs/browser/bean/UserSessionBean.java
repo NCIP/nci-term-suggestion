@@ -35,4 +35,14 @@ public class UserSessionBean {
         ModifyConceptRequest request = new ModifyConceptRequest(getRequest());
         return request.clearForm();  
     }
+    
+    public String requestSuggestion() {
+        SuggestionRequest request = new SuggestionRequest(getRequest());
+        return request.submitForm();
+    }
+    
+    public String clearSuggestion() {
+        SuggestionRequest request = new SuggestionRequest(getRequest());
+        return request.clearForm();  
+    }
 }
