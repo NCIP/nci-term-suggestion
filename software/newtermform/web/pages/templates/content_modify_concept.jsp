@@ -149,8 +149,6 @@
         <td colspan="2"><input name="propertyName" value="<%=propertyName%>" alt="propertyName"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
-
-
       <tr>
         <td <%=LABEL_ARGS%>>Action: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
@@ -172,8 +170,6 @@
           </select>
         </td>
       </tr>
-
-
       <tr>
         <td <%=LABEL_ARGS%>>Suggestion(s): <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="suggestions" class="newConceptTA<%=css%>"><%=suggestions%></textarea></td>
@@ -195,14 +191,14 @@
           <h:commandButton
             id="clear"
             value="clear"
-            action="#{userSessionBean.clearNewConcept}"
+            action="#{userSessionBean.clearModifyConcept}"
             image="#{facesContext.externalContext.requestContextPath}/images/clear.gif"
             alt="clear">
           </h:commandButton>
           <h:commandButton
             id="submit"
             value="submit"
-            action="#{userSessionBean.requestNewConcept}"
+            action="#{userSessionBean.requestModifyConcept}"
             image="#{facesContext.externalContext.requestContextPath}/images/submit.gif"
             alt="submit">
           </h:commandButton>

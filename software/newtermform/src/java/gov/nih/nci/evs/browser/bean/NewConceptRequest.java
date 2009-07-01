@@ -1,11 +1,11 @@
 package gov.nih.nci.evs.browser.bean;
 
-import gov.nih.nci.evs.browser.properties.AppProperties;
+import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
 import javax.servlet.http.*;
 
-public class NewConceptRequest extends RequestBase {
+public class NewConceptRequest extends NewTermRequest {
     // List of session attribute name(s):
     private final String EMAIL = "email";
     private final String OTHER = "other";
@@ -15,15 +15,6 @@ public class NewConceptRequest extends RequestBase {
     private final String PARENT_CODE = "parentCode";
     private final String DEFINITION = "definition";
     private final String REASON = "reason";
-    private final String MESSAGE = "message";
-    private final String WARNINGS = "warnings";
-    
-    // List of return state(s):
-    private final String WARNING_STATE = "warnings";
-    private final String SUCCESSFUL_STATE = "successful";
-
-    // List of member variable(s):
-    private final boolean isSendEmail = AppProperties.getInstance().isSendEmail();
 
     public NewConceptRequest(HttpServletRequest request) {
         super(request);
@@ -44,18 +35,6 @@ public class NewConceptRequest extends RequestBase {
         String url = _parametersHashMap.get(VOCABULARY);
         String name = AppProperties.getInstance().getVocabularyName(url);
         _parametersHashMap.put(VOCABULARY, name);
-    }
-    
-    public void clear() {
-        clearSessionAttributes();
-        setParameters(EMPTY_PARAMETERS);
-        _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, null);
-    }
-    
-    public String clearForm() {
-        clear();
-        return WARNING_STATE;
     }
 
     public String submitForm() {
@@ -92,7 +71,7 @@ public class NewConceptRequest extends RequestBase {
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);
-        printSendEmailWarning();
+        printSendEmailWarning(VOCABULARY);
         return SUCCESSFUL_STATE;
     }
     
@@ -110,14 +89,6 @@ public class NewConceptRequest extends RequestBase {
         validate(buffer, term != null && term.length() > 0,
             "* Please enter a term.");
         return buffer.toString();
-    }
-    
-    private void validate(StringBuffer buffer, boolean validValue, String message) {
-        if (validValue)
-            return;
-        if (buffer.length() > 0)
-            buffer.append("\n");
-        buffer.append(message);
     }
 
     private String getSubject() {
@@ -139,33 +110,5 @@ public class NewConceptRequest extends RequestBase {
             new String[] { REASON });
         
         return buffer.toString();
-    }
-
-    private void itemizeParameters(StringBuffer buffer, String header,
-        String[] parameters) {
-        buffer.append(header + "\n");
-        for (int i = 0; i < parameters.length; ++i) {
-            String parameter = parameters[i];
-            buffer.append("* " + parameter + ": ");
-            buffer.append(_parametersHashMap.get(parameter));
-            buffer.append("\n");
-        }
-        buffer.append("\n");
-    }
-
-    private void printSendEmailWarning() {
-        if (isSendEmail)
-            return;
-        String[] recipients = AppProperties.getInstance().getVocabularyEmails(
-            _parametersHashMap.get(VOCABULARY));
-        
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("Warning: Email was never sent:\n");
-        buffer.append("    * send.email configuration flag = " + isSendEmail + ".\n");
-        buffer.append("    * This flag allows us to design and implement our web pages\n");
-        buffer.append("      without having to send a bunch of bogus emails.\n");
-        buffer.append("Debug:\n");
-        buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
-        _request.getSession().setAttribute(WARNINGS, buffer.toString());
     }
 }
