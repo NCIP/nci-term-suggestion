@@ -44,6 +44,11 @@ public class RequestBase {
         return buffer.toString();
     }
     
+    public void clear() {
+        clearSessionAttributes();
+        setParameters(EMPTY_PARAMETERS);
+    }
+    
     protected void updateSessionAttributes(String[] parameters) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
