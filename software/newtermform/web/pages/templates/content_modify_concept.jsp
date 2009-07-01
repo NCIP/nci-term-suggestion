@@ -19,7 +19,7 @@
   String other = HTTPUtils.getSessionAttributeString(request, "other");
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
   String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
-  String propertyName = HTTPUtils.getSessionAttributeString(request, "propertyName");
+  String conceptName = HTTPUtils.getSessionAttributeString(request, "conceptName");
   Prop.Action propertyAction = (Prop.Action) 
     request.getSession().getAttribute("propertyAction");
   String suggestions = HTTPUtils.getSessionAttributeString(request, "suggestions");
@@ -44,8 +44,8 @@
       vocabulary = "NCI Thesaurus";
     if (conceptCode.length() <= 0)
       conceptCode = "C12434";
-    if (propertyName.length() <= 0)
-      propertyName = "CDISC Definition";
+    if (conceptName.length() <= 0)
+        conceptName = "Blood";
     propertyAction = Prop.Action.Modify;
     if (suggestions.length() <= 0)
       suggestions =
@@ -145,8 +145,8 @@
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Property Name: <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><input name="propertyName" value="<%=propertyName%>" alt="propertyName"
+        <td <%=LABEL_ARGS%>>Concept Name:</td>
+        <td colspan="2"><input name="conceptName" value="<%=conceptName%>" alt="conceptName"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
