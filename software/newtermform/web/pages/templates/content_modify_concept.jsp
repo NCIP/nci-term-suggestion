@@ -88,7 +88,7 @@
       %>
       
       <!-- =================================================================== -->
-      <tr><td colspan="2"><b>Contact Information:</b></td></tr>
+      <tr><td class="newConceptSubheader" colspan="2">Contact Information:</td></tr>
       <tr>
         <td <%=LABEL_ARGS%>>Email: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
@@ -109,7 +109,7 @@
 
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
-      <tr><td colspan="2"><b>Term Information:</b></td></tr>
+      <tr><td class="newConceptSubheader" colspan="2">Term Information:</td></tr>
       <tr>
         <td <%=LABEL_ARGS%>>Vocabulary: <i class="warningMsgColor">*</i></td>
         <td>
@@ -153,7 +153,7 @@
 
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
-      <tr><td colspan="2"><b>Additional Information:</b></td></tr>
+      <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
         <td <%=LABEL_ARGS%>>Reason for modification plus any other additional information:</td>
         <td colspan="2"><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
