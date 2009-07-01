@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
-public class NewTermRequest extends RequestBase {
+public class NewTermRequest extends BaseRequest {
     // List of session attribute name(s):
     protected final String MESSAGE = "message";
     protected final String WARNINGS = "warnings";

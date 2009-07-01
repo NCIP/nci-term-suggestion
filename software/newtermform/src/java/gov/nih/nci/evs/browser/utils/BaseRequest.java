@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 import javax.servlet.http.*;
 
-public class RequestBase {
+public class BaseRequest {
     protected final String[] EMPTY_PARAMETERS = new String[] {};
     protected final String INDENT = "    ";
     protected HttpServletRequest _request = null;
     protected String[] _parameters = EMPTY_PARAMETERS;
     protected HashMap<String, String> _parametersHashMap = null;
 
-    public RequestBase(HttpServletRequest request) {
+    public BaseRequest(HttpServletRequest request) {
         _request = request;
     }
 
