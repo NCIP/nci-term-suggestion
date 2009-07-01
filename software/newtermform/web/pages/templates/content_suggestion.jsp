@@ -20,7 +20,7 @@
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
   String term = HTTPUtils.getSessionAttributeString(request, "term");
   String synonyms = HTTPUtils.getSessionAttributeString(request, "synonyms");
-  String parentCode = HTTPUtils.getSessionAttributeString(request, "parentCode");
+  String nearestCode = HTTPUtils.getSessionAttributeString(request, "nearestCode");
   String definition = HTTPUtils.getSessionAttributeString(request, "definition");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
@@ -45,8 +45,8 @@
       term = "Ultra Murine Cell Types";
     if (synonyms.length() <= 0)
       synonyms = "Cell Types; Cell; Murine Cell Types";
-    if (parentCode.length() <= 0)
-      parentCode = "C23442";
+    if (nearestCode.length() <= 0)
+        nearestCode = "C23442";
     if (definition.length() <= 0)
       definition =
         "The smallest units of living structure capable of independent" +
@@ -61,7 +61,7 @@
 %>
 <f:view>
   <form method="post">
-    <div class="texttitle-blue">Suggest New Concept:</div><br/>
+    <div class="texttitle-blue">Term Suggestion:</div><br/>
     <table class="newConceptDT">
       <!-- =================================================================== -->
       <%
@@ -112,7 +112,10 @@
 
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
-      <tr><td class="newConceptSubheader" colspan="2">Term Information:</td></tr>
+      <tr>
+        <td class="newConceptSubheader">Term Information:</td>
+        <td>Fill in the following fields as appropriate:</td>
+      </tr>
       <tr>
         <td <%=LABEL_ARGS%>>Vocabulary: <i class="warningMsgColor">*</i></td>
         <td>
@@ -150,12 +153,12 @@
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Parent Concept Code:</td>
-        <td colspan="2"><input name="parentCode" value="<%=parentCode%>" alt="parentCode"
+        <td <%=LABEL_ARGS%>>Nearest Code/CUI:</td>
+        <td colspan="2"><input name="nearestCode" value="<%=nearestCode%>" alt="nearestCode"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Definition:</td>
+        <td <%=LABEL_ARGS%>>Definition/Other:</td>
         <td colspan="2"><textarea name="definition" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
       </tr>
 
@@ -163,7 +166,7 @@
       <tr><td><br/></td></tr>
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Reason for adding plus any other additional information:</td>
+        <td <%=LABEL_ARGS%>>Reason for suggestion plus any other additional information:</td>
         <td colspan="2"><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
       </tr>
 
