@@ -50,5 +50,5 @@
 Do you want to suggest:
 <br/>
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="group1" onclick="go('<%=basePath%>/pages/new_concept.jsf')">A new concept, or
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="group1" onclick="go('<%=basePath%>/pages/modify_concept_mockup.jsp')">A modification to a concept
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="group1" onclick="go('<%=basePath%>/pages/modify_concept.jsf')">A modification to a concept
 <br/>
