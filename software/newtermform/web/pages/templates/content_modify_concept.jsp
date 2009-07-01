@@ -140,7 +140,7 @@
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Concept Code: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>>Concept Code/CUI: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><input name="conceptCode" value="<%=conceptCode%>" alt="conceptCode"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
