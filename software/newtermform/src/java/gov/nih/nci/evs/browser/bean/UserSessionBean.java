@@ -25,4 +25,14 @@ public class UserSessionBean {
         NewConceptRequest request = new NewConceptRequest(getRequest());
         return request.clearForm();  
     }
+
+    public String requestModifyConcept() {
+        ModifyConceptRequest request = new ModifyConceptRequest(getRequest());
+        return request.submitForm();
+    }
+    
+    public String clearModifyConcept() {
+        ModifyConceptRequest request = new ModifyConceptRequest(getRequest());
+        return request.clearForm();  
+    }
 }
