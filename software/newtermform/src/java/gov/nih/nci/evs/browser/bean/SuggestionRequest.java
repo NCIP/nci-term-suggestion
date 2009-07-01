@@ -12,14 +12,15 @@ public class SuggestionRequest extends NewTermRequest {
     private static final String VOCABULARY = "vocabulary";
     private static final String TERM = "term";
     private static final String SYNONYMS = "synonyms";
-    private static final String PARENT_CODE = "parentCode";
+    private static final String NEAREST_CODE = "nearestCode";
     private static final String DEFINITION = "definition";
     private static final String REASON = "reason";
 
     public SuggestionRequest(HttpServletRequest request) {
         super(request, VOCABULARY);
         setParameters(new String[] { EMAIL, OTHER, VOCABULARY, 
-            TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
+            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON });
+        _isSendEmail = true; //DYEE
     }
 
     public String submitForm() {
@@ -52,7 +53,7 @@ public class SuggestionRequest extends NewTermRequest {
         }
 
         clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
-            TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
+            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON });
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);
@@ -90,7 +91,7 @@ public class SuggestionRequest extends NewTermRequest {
         itemizeParameters(buffer, "Contact information:",
             new String[] { EMAIL, OTHER });
         itemizeParameters(buffer, "Term Information:",
-            new String[] { VOCABULARY, TERM, SYNONYMS, PARENT_CODE, DEFINITION });
+            new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, DEFINITION });
         itemizeParameters(buffer, "Additional information:",
             new String[] { REASON });
         
