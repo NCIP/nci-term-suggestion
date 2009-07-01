@@ -18,8 +18,8 @@ public class NewConceptRequest extends NewTermRequest {
 
     public NewConceptRequest(HttpServletRequest request) {
         super(request, VOCABULARY);
-        setParameters(new String[] { EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS,
-                PARENT_CODE, DEFINITION, REASON });
+        setParameters(new String[] { EMAIL, OTHER, VOCABULARY, 
+            TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
     }
 
     public String submitForm() {
@@ -42,7 +42,7 @@ public class NewConceptRequest extends NewTermRequest {
         String emailMsg = getEmailMesage();
 
         try {
-            if (isSendEmail)
+            if (_isSendEmail)
                 MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
             _request.getSession().setAttribute(WARNINGS,
@@ -52,7 +52,7 @@ public class NewConceptRequest extends NewTermRequest {
         }
 
         clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
-                TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
+            TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);
