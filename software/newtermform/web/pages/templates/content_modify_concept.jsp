@@ -20,8 +20,6 @@
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
   String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
   String conceptName = HTTPUtils.getSessionAttributeString(request, "conceptName");
-  Prop.Action propertyAction = (Prop.Action) 
-    request.getSession().getAttribute("propertyAction");
   String suggestions = HTTPUtils.getSessionAttributeString(request, "suggestions");
   String reason = HTTPUtils.getSessionAttributeString(request, "reason");
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
@@ -46,7 +44,6 @@
       conceptCode = "C12434";
     if (conceptName.length() <= 0)
         conceptName = "Blood";
-    propertyAction = Prop.Action.Modify;
     if (suggestions.length() <= 0)
       suggestions =
         "A liquid tissue with the primary function of transporting" +
@@ -148,27 +145,6 @@
         <td <%=LABEL_ARGS%>>Concept Name:</td>
         <td colspan="2"><input name="conceptName" value="<%=conceptName%>" alt="conceptName"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
-      </tr>
-      <tr>
-        <td <%=LABEL_ARGS%>>Action: <i class="warningMsgColor">*</i></td>
-        <td colspan="2">
-          <select name="propertyAction" class="newConceptCB2<%=css%>">
-            <%
-                selectedItem = propertyAction.name();
-                  list = Prop.Action.names();
-                  iterator = list.iterator();
-                  while (iterator.hasNext()) {
-                    String item = (String) iterator.next();
-                    String args = "";
-                    if (item.equals(selectedItem))
-                      args += "selected=\"true\"";
-            %>
-                <option value="<%=item%>" <%=args%>><%=item%></option>
-            <%
-              }
-            %>
-          </select>
-        </td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>>Suggestion(s): <i class="warningMsgColor">*</i></td>
