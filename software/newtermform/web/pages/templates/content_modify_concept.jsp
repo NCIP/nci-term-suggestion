@@ -32,7 +32,7 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
   
   // The following values are used only for testing purposes:
-  boolean useTestValues = true;
+  boolean useTestValues = false;
   if (useTestValues) {
     if (email.length() <= 0)
       email = "John.Doe@abc.com";

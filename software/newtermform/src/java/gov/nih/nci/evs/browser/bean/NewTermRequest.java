@@ -17,7 +17,7 @@ public class NewTermRequest extends RequestBase {
     
     // List of member variable(s):
     protected String _vocabularyParameter = null;
-    protected final boolean isSendEmail = AppProperties.getInstance().isSendEmail();
+    protected boolean _isSendEmail = AppProperties.getInstance().isSendEmail();
     
     public NewTermRequest(HttpServletRequest request, String vocabularyParameter) {
         super(request);
@@ -80,11 +80,11 @@ public class NewTermRequest extends RequestBase {
     }
 
     protected void printSendEmailWarning() {
-        if (isSendEmail)
+        if (_isSendEmail)
             return;
         StringBuffer buffer = new StringBuffer();
         buffer.append("Warning: Email was never sent:\n");
-        buffer.append("    * send.email configuration flag = " + isSendEmail + ".\n");
+        buffer.append("    * send.email configuration flag = " + _isSendEmail + ".\n");
         buffer.append("    * This flag allows us to design and implement our web pages\n");
         buffer.append("      without having to send a bunch of bogus emails.\n");
 
