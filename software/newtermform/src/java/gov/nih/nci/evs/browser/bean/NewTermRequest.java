@@ -16,15 +16,16 @@ public class NewTermRequest extends RequestBase {
     protected final String WARNING_STATE = "warnings";
     
     // List of member variable(s):
+    protected String _vocabularyParameter = null;
     protected final boolean isSendEmail = AppProperties.getInstance().isSendEmail();
     
-    public NewTermRequest(HttpServletRequest request) {
+    public NewTermRequest(HttpServletRequest request, String vocabularyParameter) {
         super(request);
+        _vocabularyParameter = vocabularyParameter;
     }
     
     public void clear() {
-        clearSessionAttributes();
-        setParameters(EMPTY_PARAMETERS);
+        super.clear();
         _request.getSession().setAttribute(WARNINGS, null);
         _request.getSession().setAttribute(MESSAGE, null);
     }
@@ -37,6 +38,25 @@ public class NewTermRequest extends RequestBase {
     public String submitForm() {
         _request.getSession().setAttribute(MESSAGE, "NewTermRequest.submitForm");
         return MESSAGE_STATE;
+    }
+    
+    protected void setParameters(String[] parameters) {
+        super.setParameters(parameters);
+
+        if (_vocabularyParameter == null)
+            return;
+        // Hack: In content_new_concept.jsp page, the vocabulary comboBox
+        // stores the value as the URL instead of the vocabulary name.
+        // This is done so that the "Browse" button can display the
+        // vocabulary's URL in a separate window kicked off by using
+        // javascript displayLinkInNewWindow method. The following
+        // lines manually replaces the URL with the vocabulary name.
+        // Note: In order for this to work, the URL must be unique.
+        String url = _parametersHashMap.get(_vocabularyParameter);
+        if (url == null)
+            return;
+        String name = AppProperties.getInstance().getVocabularyName(url);
+        _parametersHashMap.put(_vocabularyParameter, name);
     }
     
     protected void validate(StringBuffer buffer, boolean validValue, String message) {
@@ -59,7 +79,7 @@ public class NewTermRequest extends RequestBase {
         buffer.append("\n");
     }
 
-    protected void printSendEmailWarning(String vocabulary) {
+    protected void printSendEmailWarning() {
         if (isSendEmail)
             return;
         StringBuffer buffer = new StringBuffer();
@@ -68,10 +88,10 @@ public class NewTermRequest extends RequestBase {
         buffer.append("    * This flag allows us to design and implement our web pages\n");
         buffer.append("      without having to send a bunch of bogus emails.\n");
 
-        if (vocabulary == null || vocabulary.length() <= 0)
+        if (_vocabularyParameter == null || _vocabularyParameter.length() <= 0)
             return;
         String[] recipients = AppProperties.getInstance().getVocabularyEmails(
-            _parametersHashMap.get(vocabulary));
+            _parametersHashMap.get(_vocabularyParameter));
         buffer.append("Debug:\n");
         buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
         _request.getSession().setAttribute(WARNINGS, buffer.toString());
