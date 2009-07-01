@@ -13,7 +13,7 @@ public class NewTermRequest extends RequestBase {
     // List of return state(s):
     protected final String SUCCESSFUL_STATE = "successful";
     protected final String MESSAGE_STATE = "message";
-    protected final String WARNING_STATE = "warnings";
+    protected final String WARNING_STATE = "warning";
     
     // List of member variable(s):
     protected String _vocabularyParameter = null;
