@@ -148,7 +148,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>>Suggestion(s): <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><textarea name="suggestions" class="newConceptTA<%=css%>"><%=suggestions%></textarea></td>
+        <td colspan="2"><textarea name="suggestions" class="newConceptTA2<%=css%>"><%=suggestions%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
