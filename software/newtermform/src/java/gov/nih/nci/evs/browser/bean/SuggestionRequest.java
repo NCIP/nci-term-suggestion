@@ -20,7 +20,6 @@ public class SuggestionRequest extends NewTermRequest {
         super(request, VOCABULARY);
         setParameters(new String[] { EMAIL, OTHER, VOCABULARY, 
             TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON });
-        _isSendEmail = true; //DYEE
     }
 
     public String submitForm() {
@@ -79,7 +78,7 @@ public class SuggestionRequest extends NewTermRequest {
 
     private String getSubject() {
         String term = _parametersHashMap.get(TERM);
-        String value = "Suggest New Concept";
+        String value = "Term Suggestion for";
         if (term.length() > 0)
             value += ": " + term;
         return value;
