@@ -65,6 +65,12 @@ Build:      ant build:all
 Deploy:     ant deploy:local:install
 Redeploy:   ant deploy:hot
 
+--------------------------------------
+Load balancing
+--------------------------------------
+F5 BIGIP
+========
+Enable persistence checking on the F5 Bigip box so a user is always returned to the same node.
 
 --------------------------------------
 Trouble shooting
