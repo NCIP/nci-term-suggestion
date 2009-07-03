@@ -38,7 +38,7 @@ public class ModifyConceptRequest extends NewTermRequest {
         String from = _parametersHashMap.get(EMAIL);
         String[] recipients = appProperties.getVocabularyEmails(vocabulary);
         String subject = getSubject();
-        String emailMsg = getEmailMesage();
+        String emailMsg = getEmailMessage();
 
         try {
             if (_isSendEmail)
@@ -87,7 +87,7 @@ public class ModifyConceptRequest extends NewTermRequest {
         return value;
     }
     
-    private String getEmailMesage() {
+    private String getEmailMessage() {
         StringBuffer buffer = new StringBuffer();
         buffer.append(getSubject() + "\n\n");
         itemizeParameters(buffer, "Contact information:",

@@ -79,9 +79,9 @@ public class NewTermRequest extends BaseRequest {
         buffer.append("\n");
     }
 
-    protected void printSendEmailWarning() {
+    protected String printSendEmailWarning() {
         if (_isSendEmail)
-            return;
+            return "";
         StringBuffer buffer = new StringBuffer();
         buffer.append("Warning: Email was never sent:\n");
         buffer.append("    * send.email configuration flag = " + _isSendEmail + ".\n");
@@ -89,11 +89,12 @@ public class NewTermRequest extends BaseRequest {
         buffer.append("      without having to send a bunch of bogus emails.\n");
 
         if (_vocabularyParameter == null || _vocabularyParameter.length() <= 0)
-            return;
+            return "";
         String[] recipients = AppProperties.getInstance().getVocabularyEmails(
             _parametersHashMap.get(_vocabularyParameter));
         buffer.append("Debug:\n");
         buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
         _request.getSession().setAttribute(WARNINGS, buffer.toString());
+        return buffer.toString();
     }
 }

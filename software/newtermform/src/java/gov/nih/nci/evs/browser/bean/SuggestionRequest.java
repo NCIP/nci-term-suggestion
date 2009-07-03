@@ -39,7 +39,7 @@ public class SuggestionRequest extends NewTermRequest {
         String from = _parametersHashMap.get(EMAIL);
         String[] recipients = appProperties.getVocabularyEmails(vocabulary);
         String subject = getSubject();
-        String emailMsg = getEmailMesage();
+        String emailMsg = getEmailMessage();
 
         try {
             if (_isSendEmail)
@@ -57,7 +57,7 @@ public class SuggestionRequest extends NewTermRequest {
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);
         printSendEmailWarning();
-        return "message"; //DYEE: SUCCESSFUL_STATE;
+        return SUCCESSFUL_STATE;
     }
     
     private String validate() {
@@ -84,7 +84,7 @@ public class SuggestionRequest extends NewTermRequest {
         return value;
     }
     
-    private String getEmailMesage() {
+    private String getEmailMessage() {
         StringBuffer buffer = new StringBuffer();
         buffer.append(getSubject() + "\n\n");
         itemizeParameters(buffer, "Contact information:",
@@ -93,7 +93,22 @@ public class SuggestionRequest extends NewTermRequest {
             new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, DEFINITION });
         itemizeParameters(buffer, "Additional information:",
             new String[] { REASON });
+        return buffer.toString();
+    }
+    
+    protected String printSendEmailWarning() {
+        if (_isSendEmail)
+            return "";
         
+        String warning = super.printSendEmailWarning();
+        StringBuffer buffer = new StringBuffer(warning);
+        buffer.append("Subject: " + getSubject() + "\n");
+        buffer.append("Message:\n");
+        String emailMsg = getEmailMessage();
+        emailMsg = INDENT + emailMsg.replaceAll("\\\n", "\n" + INDENT);
+        buffer.append(emailMsg);
+        
+        _request.getSession().setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
     }
 }
