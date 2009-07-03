@@ -57,7 +57,7 @@ public class SuggestionRequest extends NewTermRequest {
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);
         printSendEmailWarning();
-        return SUCCESSFUL_STATE;
+        return "message"; //DYEE: SUCCESSFUL_STATE;
     }
     
     private String validate() {
