@@ -47,7 +47,7 @@
 <%
   }
 %>
-Do you want to make another suggest:
+Do you want to suggest a new term or suggest a modification to one:
 <br/>
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="group1" onclick="go('<%=basePath%>/pages/suggestion.jsf')">Yes
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="group1" onclick="javascript:window.close()">Close Window
