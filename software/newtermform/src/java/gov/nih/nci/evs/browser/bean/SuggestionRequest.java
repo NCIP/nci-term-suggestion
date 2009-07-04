@@ -7,14 +7,15 @@ import javax.servlet.http.*;
 
 public class SuggestionRequest extends NewTermRequest {
     // List of session attribute name(s):
-    private static final String EMAIL = "email";
-    private static final String OTHER = "other";
-    private static final String VOCABULARY = "vocabulary";
-    private static final String TERM = "term";
-    private static final String SYNONYMS = "synonyms";
-    private static final String NEAREST_CODE = "nearestCode";
-    private static final String DEFINITION = "definition";
-    private static final String REASON = "reason";
+    public static final String EMAIL = "Email";
+    public static final String OTHER = "Other";
+    public static final String VOCABULARY = "Vocabulary";
+    public static final String TERM = "Term";
+    public static final String SYNONYMS = "Synonym(s)";
+    public static final String NEAREST_CODE = "Nearest Code/CUI";
+    public static final String DEFINITION = "Definition/Other";
+    public static final String REASON = "Reason for suggestion plus any" + 
+        " other additional information";
 
     public SuggestionRequest(HttpServletRequest request) {
         super(request, VOCABULARY);

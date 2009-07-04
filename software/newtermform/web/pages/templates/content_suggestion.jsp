@@ -3,11 +3,22 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ page contentType="text/html;charset=windows-1252"%>
 <%@ page import="java.util.*" %>
+<%@ page import="gov.nih.nci.evs.browser.bean.*" %>
 <%@ page import="gov.nih.nci.evs.browser.newterm.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%!
+  // List of session attribute name(s):
+  private static final String EMAIL = SuggestionRequest.EMAIL;
+  private static final String OTHER = SuggestionRequest.OTHER;
+  private static final String VOCABULARY = SuggestionRequest.VOCABULARY;
+  private static final String TERM = SuggestionRequest.TERM;
+  private static final String SYNONYMS = SuggestionRequest.SYNONYMS;
+  private static final String NEAREST_CODE = SuggestionRequest.NEAREST_CODE;
+  private static final String DEFINITION = SuggestionRequest.DEFINITION;
+  private static final String REASON = SuggestionRequest.REASON;
+
   private static final String INPUT_ARGS =
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
     // " onKeyPress=\"return ifenter(event,this.form)\"";
@@ -15,14 +26,14 @@
 %>
 <%
   // Session Attribute(s):
-  String email = HTTPUtils.getSessionAttributeString(request, "email");
-  String other = HTTPUtils.getSessionAttributeString(request, "other");
-  String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
-  String term = HTTPUtils.getSessionAttributeString(request, "term");
-  String synonyms = HTTPUtils.getSessionAttributeString(request, "synonyms");
-  String nearestCode = HTTPUtils.getSessionAttributeString(request, "nearestCode");
-  String definition = HTTPUtils.getSessionAttributeString(request, "definition");
-  String reason = HTTPUtils.getSessionAttributeString(request, "reason");
+  String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
+  String other = HTTPUtils.getSessionAttributeString(request, OTHER);
+  String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
+  String term = HTTPUtils.getSessionAttributeString(request, TERM);
+  String synonyms = HTTPUtils.getSessionAttributeString(request, SYNONYMS);
+  String nearestCode = HTTPUtils.getSessionAttributeString(request, NEAREST_CODE);
+  String definition = HTTPUtils.getSessionAttributeString(request, DEFINITION);
+  String reason = HTTPUtils.getSessionAttributeString(request, REASON);
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
 
   // Member variable(s):
@@ -33,7 +44,7 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
   
   // The following values are used only for testing purposes:
-  boolean useTestValues = false;
+  boolean useTestValues = true;
   if (useTestValues) {
     if (email.length() <= 0)
       email = "John.Doe@abc.com";
@@ -93,15 +104,15 @@
       <!-- =================================================================== -->
       <tr><td class="newConceptSubheader" colspan="2">Contact Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Email: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><%=EMAIL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
-          <input name="email" value="<%=email%>" alt="email"
+          <input name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Other:</td>
-        <td colspan="2"><textarea name="other" class="newConceptTA<%=css%>"><%=other%></textarea></td>
+        <td <%=LABEL_ARGS%>><%=OTHER%>:</td>
+        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA<%=css%>"><%=other%></textarea></td>
       </tr>
       <tr>
         <td></td>
@@ -117,9 +128,9 @@
         <td>Fill in the following fields as appropriate:</td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Vocabulary: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><%=VOCABULARY%>: <i class="warningMsgColor">*</i></td>
         <td>
-          <select name="vocabulary" id="url" class="newConceptCB<%=css%>">
+          <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
               selectedItem = vocabulary;
               ArrayList list = AppProperties.getInstance().getVocabularies();
@@ -143,31 +154,31 @@
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Term: <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><input name="term" value="<%=term%>" alt="term"
+        <td <%=LABEL_ARGS%>><%=TERM%>: <i class="warningMsgColor">*</i></td>
+        <td colspan="2"><input name="<%=TERM%>" value="<%=term%>" alt="<%=TERM%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Synonym(s):</td>
-        <td colspan="2"><input name="synonyms" value="<%=synonyms%>" alt="synonyms"
+        <td <%=LABEL_ARGS%>><%=SYNONYMS%>:</td>
+        <td colspan="2"><input name="<%=SYNONYMS%>" value="<%=synonyms%>" alt="<%=SYNONYMS%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Nearest Code/CUI:</td>
-        <td colspan="2"><input name="nearestCode" value="<%=nearestCode%>" alt="nearestCode"
+        <td <%=LABEL_ARGS%>><%=NEAREST_CODE%>:</td>
+        <td colspan="2"><input name="<%=NEAREST_CODE%>" value="<%=nearestCode%>" alt="<%=NEAREST_CODE%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Definition/Other:</td>
-        <td colspan="2"><textarea name="definition" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
+        <td <%=LABEL_ARGS%>><%=DEFINITION%>:</td>
+        <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>>Reason for suggestion plus any other additional information:</td>
-        <td colspan="2"><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
+        <td <%=LABEL_ARGS%>><%=REASON%>:</td>
+        <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
