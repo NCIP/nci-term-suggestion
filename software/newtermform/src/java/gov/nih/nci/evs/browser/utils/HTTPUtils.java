@@ -7,17 +7,22 @@ import java.util.regex.*;
 import javax.servlet.http.*;
 
 public class HTTPUtils {
-    public static String getParameter(HttpServletRequest request, String name) {
+    public static String getParameter(HttpServletRequest request, String name,
+            boolean convertNullToBlankString) {
         String value = request.getParameter(name);
-        if (value == null || value.length() <= 0)
+        if (convertNullToBlankString && (value == null || value.length() <= 0))
             return "";
         return cleanXSS(value);
     }
+    
+    public static String getParameter(HttpServletRequest request, String name) {
+        return getParameter(request, name, true);
+    }
 
     public static String getSessionAttributeString(HttpServletRequest request,
-        String name, boolean clear) {
+        String name, boolean convertNullToBlankString, boolean clear) {
         String value = (String) request.getSession().getAttribute(name);
-        if (value == null || value.length() <= 0)
+        if (convertNullToBlankString && (value == null || value.length() <= 0))
             return "";
         if (clear)
             request.getSession().setAttribute(name, null);
@@ -26,7 +31,7 @@ public class HTTPUtils {
 
     public static String getSessionAttributeString(HttpServletRequest request,
         String name) {
-        return getSessionAttributeString(request, name, false);
+        return getSessionAttributeString(request, name, true, false);
     }
 
     public static String cleanXSS(String value) {
