@@ -11,7 +11,7 @@
   String vocabulary = "NCI Thesaurus";
   String conceptCode = "C12434";
   Prop.Modifiable property = Prop.Modifiable.valueOfOrDefault(propertyParam);
-  String selectedProperty = LBUtils.getProperty(property, 1);
+  String selectedProperty = Prop.getProperty(property, 1);
   String suggestion = "";
   Prop.Action action = Prop.Action.Modify;
   String description = "";
@@ -82,7 +82,7 @@
       <br/><b>Select a <%=propertyNameLC%>:</b>
       <table class="newConceptDT">
         <%
-            items = LBUtils.getProperties(property);
+            items = Prop.getProperties(property);
                   selectedItem = selectedProperty;
                   for (i=0; i<items.length; ++i) {
             String item = items[i];
