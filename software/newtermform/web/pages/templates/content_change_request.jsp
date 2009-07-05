@@ -2,8 +2,8 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%
   // Session Attribute(s):
-  String message = HTTPUtils.getSessionAttributeString(request, "message", true);
-  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings", true);
+  String message = HTTPUtils.getSessionAttributeString(request, "message", false, true);
+  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings", false, true);
   
   // Member variable(s):
   String basePath = request.getContextPath();
@@ -29,7 +29,7 @@
     }
 %>
 <%
-    msg = warnings;
+  msg = warnings;
   if (msg != null && msg.length() > 0) {
 %>
     <div class="warningMsgColor">

@@ -35,9 +35,15 @@
   String synonyms = HTTPUtils.getSessionAttributeString(request, SYNONYMS);
   String nearest_code = HTTPUtils.getSessionAttributeString(request, NEAREST_CODE);
   String definition = HTTPUtils.getSessionAttributeString(request, DEFINITION);
-  String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR);
+  String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR, false, false);
   String reason = HTTPUtils.getSessionAttributeString(request, REASON);
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
+  
+  // Parameter(s):
+  String p_cadsr = HTTPUtils.getParameter(request, "cadsr", false);
+  boolean is_cadsr = p_cadsr != null;
+  if (cadsr == null && p_cadsr != null)
+    cadsr = Prop.CADSR.valueOfOrDefault(p_cadsr).name();
   
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
@@ -177,26 +183,33 @@
         <td <%=LABEL_ARGS%>><%=DEFINITION%>:</td>
         <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
       </tr>
-      <tr>            
-        <td <%=LABEL_ARGS%>><%=CADSR%>:</td>
-        <td colspan="2">
-          <select name="<%=CADSR%>" class="newConceptCB2<%=css%>">
-            <%
-              selectedItem = cadsr;
-              Prop.CADSR[] enumValues = Prop.CADSR.values();
-              for (i=0; i<enumValues.length; ++i) {
-                  String item = enumValues[i].name();
-                  String args = "";
-                  if (item.equals(selectedItem))
-                    args += "selected=\"true\"";
-            %>
-                  <option value="<%=item%>" <%=args%>><%=item%></option>
-            <%
-              }
-            %>
-          </select>
-        </td>
-      </tr>
+      
+      <%
+        if (is_cadsr) {
+      %>
+          <tr>
+            <td <%=LABEL_ARGS%>><%=CADSR%>:</td>
+            <td colspan="2">
+              <select name="<%=CADSR%>" class="newConceptCB2<%=css%>">
+                <%
+                  selectedItem = cadsr;
+                  Prop.CADSR[] enumValues = Prop.CADSR.values();
+                  for (i=0; i<enumValues.length; ++i) {
+                      String item = enumValues[i].name();
+                      String args = "";
+                      if (item.equals(selectedItem))
+                        args += "selected=\"true\"";
+                %>
+                      <option value="<%=item%>" <%=args%>><%=item%></option>
+                <%
+                  }
+                %>
+              </select>
+            </td>
+          </tr>
+      <%
+        }
+      %>
 
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
