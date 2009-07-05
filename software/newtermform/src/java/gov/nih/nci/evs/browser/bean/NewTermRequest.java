@@ -7,13 +7,13 @@ import gov.nih.nci.evs.browser.utils.*;
 
 public class NewTermRequest extends BaseRequest {
     // List of session attribute name(s):
-    protected final String MESSAGE = "message";
-    protected final String WARNINGS = "warnings";
+    public static final String MESSAGE = "message";
+    public static final String WARNINGS = "warnings";
     
     // List of return state(s):
-    protected final String SUCCESSFUL_STATE = "successful";
-    protected final String MESSAGE_STATE = "message";
-    protected final String WARNING_STATE = "warning";
+    protected static final String SUCCESSFUL_STATE = "successful";
+    protected static final String MESSAGE_STATE = "message";
+    protected static final String WARNING_STATE = "warning";
     
     // List of member variable(s):
     protected String _vocabularyParameter = null;

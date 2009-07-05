@@ -19,6 +19,7 @@
   private static final String DEFINITION = SuggestionRequest.DEFINITION;
   private static final String REASON = SuggestionRequest.REASON;
   private static final String CADSR = SuggestionRequest.CADSR;
+  private static final String WARNINGS = SuggestionRequest.WARNINGS;
 
   private static final String INPUT_ARGS =
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
@@ -36,7 +37,7 @@
   String definition = HTTPUtils.getSessionAttributeString(request, DEFINITION);
   String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR);
   String reason = HTTPUtils.getSessionAttributeString(request, REASON);
-  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
+  String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
   
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
