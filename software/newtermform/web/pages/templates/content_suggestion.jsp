@@ -32,12 +32,12 @@
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
   String term = HTTPUtils.getSessionAttributeString(request, TERM);
   String synonyms = HTTPUtils.getSessionAttributeString(request, SYNONYMS);
-  String nearestCode = HTTPUtils.getSessionAttributeString(request, NEAREST_CODE);
+  String nearest_code = HTTPUtils.getSessionAttributeString(request, NEAREST_CODE);
   String definition = HTTPUtils.getSessionAttributeString(request, DEFINITION);
   String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR);
   String reason = HTTPUtils.getSessionAttributeString(request, REASON);
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
-
+  
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
   int i=0;
@@ -58,8 +58,8 @@
       term = "Ultra Murine Cell Types";
     if (synonyms.length() <= 0)
       synonyms = "Cell Types; Cell; Murine Cell Types";
-    if (nearestCode.length() <= 0)
-        nearestCode = "C23442";
+    if (nearest_code.length() <= 0)
+    	nearest_code = "C23442";
     if (definition.length() <= 0)
       definition =
         "The smallest units of living structure capable of independent" +
@@ -169,7 +169,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=NEAREST_CODE%>:</td>
-        <td colspan="2"><input name="<%=NEAREST_CODE%>" value="<%=nearestCode%>" alt="<%=NEAREST_CODE%>"
+        <td colspan="2"><input name="<%=NEAREST_CODE%>" value="<%=nearest_code%>" alt="<%=NEAREST_CODE%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
       </tr>
       <tr>
