@@ -1,4 +1,4 @@
-package gov.nih.nci.evs.browser.utils;
+package gov.nih.nci.evs.browser.bean;
 
 import java.util.*;
 
