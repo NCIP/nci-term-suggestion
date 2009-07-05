@@ -16,11 +16,12 @@ public class SuggestionRequest extends NewTermRequest {
     public static final String DEFINITION = "Definition/Other";
     public static final String REASON = "Reason for suggestion plus any" + 
         " other additional information";
+    public static final String CADSR = "caDSR Type";
 
     public SuggestionRequest(HttpServletRequest request) {
         super(request, VOCABULARY);
         setParameters(new String[] { EMAIL, OTHER, VOCABULARY, 
-            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON });
+            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON, CADSR });
     }
 
     public String submitForm() {
@@ -53,7 +54,7 @@ public class SuggestionRequest extends NewTermRequest {
         }
 
         clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
-            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON });
+            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON, CADSR });
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);
@@ -91,7 +92,7 @@ public class SuggestionRequest extends NewTermRequest {
         itemizeParameters(buffer, "Contact information:",
             new String[] { EMAIL, OTHER });
         itemizeParameters(buffer, "Term Information:",
-            new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, DEFINITION });
+            new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, DEFINITION, CADSR });
         itemizeParameters(buffer, "Additional information:",
             new String[] { REASON });
         return buffer.toString();

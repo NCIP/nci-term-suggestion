@@ -18,6 +18,7 @@
   private static final String NEAREST_CODE = SuggestionRequest.NEAREST_CODE;
   private static final String DEFINITION = SuggestionRequest.DEFINITION;
   private static final String REASON = SuggestionRequest.REASON;
+  private static final String CADSR = SuggestionRequest.CADSR;
 
   private static final String INPUT_ARGS =
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
@@ -33,6 +34,7 @@
   String synonyms = HTTPUtils.getSessionAttributeString(request, SYNONYMS);
   String nearestCode = HTTPUtils.getSessionAttributeString(request, NEAREST_CODE);
   String definition = HTTPUtils.getSessionAttributeString(request, DEFINITION);
+  String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR);
   String reason = HTTPUtils.getSessionAttributeString(request, REASON);
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
 
@@ -44,7 +46,7 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
   
   // The following values are used only for testing purposes:
-  boolean useTestValues = true;
+  boolean useTestValues = false;
   if (useTestValues) {
     if (email.length() <= 0)
       email = "John.Doe@abc.com";
@@ -66,6 +68,8 @@
         " and specialized in both structure and function, though all must" +
         " at some stage replicate proteins and nucleic acids, utilize" +
         " energy, and reproduce themselves.";
+    if (cadsr.length() <= 0)
+      cadsr = Prop.CADSR.CADSR_PROP.name();
     if (reason.length() <= 0)
       reason = "New improved version of the previous type.";
   }
@@ -171,6 +175,26 @@
       <tr>
         <td <%=LABEL_ARGS%>><%=DEFINITION%>:</td>
         <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
+      </tr>
+      <tr>            
+        <td <%=LABEL_ARGS%>><%=CADSR%>:</td>
+        <td colspan="2">
+          <select name="<%=CADSR%>" class="newConceptCB2<%=css%>">
+            <%
+              selectedItem = cadsr;
+              Prop.CADSR[] enumValues = Prop.CADSR.values();
+              for (i=0; i<enumValues.length; ++i) {
+                  String item = enumValues[i].name();
+                  String args = "";
+                  if (item.equals(selectedItem))
+                    args += "selected=\"true\"";
+            %>
+                  <option value="<%=item%>" <%=args%>><%=item%></option>
+            <%
+              }
+            %>
+          </select>
+        </td>
       </tr>
 
       <!-- =================================================================== -->
