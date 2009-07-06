@@ -9,6 +9,9 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%!
+  private static final String RESET = "reset";
+  private static final String VERSION = "version";
+
   // List of session attribute name(s):
   private static final String EMAIL = SuggestionRequest.EMAIL;
   private static final String OTHER = SuggestionRequest.OTHER;
@@ -28,7 +31,13 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Session Attribute(s):
+  boolean reset = Prop.Bool.getBoolean(
+    HTTPUtils.getParameter(request, RESET, false));
+  if (reset)
+    request.getSession().setAttribute(VERSION, null);
+
+// Session Attribute(s):
+  String p_version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
   String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
   String other = HTTPUtils.getSessionAttributeString(request, OTHER);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
@@ -42,8 +51,10 @@
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
   
   // Parameter(s):
-  String p_version = HTTPUtils.getParameter(request, "version", false);
+  if (p_version == null)
+    p_version = HTTPUtils.getParameter(request, VERSION, false);
   Prop.Version version = Prop.Version.valueOfOrDefault(p_version);
+  request.getSession().setAttribute(VERSION, version.name());
   
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
