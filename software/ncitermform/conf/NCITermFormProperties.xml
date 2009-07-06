@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <ConfigurableItems>
+
+    <ConfigurableItem>
+      <key>NCITERMFORM_BUILD_INFO</key>
+      <value>@ncitermform.build.info@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>DEBUG_ON</key>
+      <value>@debug.on@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>SEND_EMAIL</key>
+      <value>@send.email@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>MAIL_SMTP_SERVER</key>
+      <value>@mail.smtp.server@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>NCICB_CONTACT_URL</key>
+      <value>@ncicb.contact.url@</value>
+    </ConfigurableItem>
+
+    <!-- Vocabulary List (Begin) =========================================== -->
+    <ConfigurableItem>
+      <key>VOCABULARY_0</key>
+      <value>@vocabulary.0@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_1</key>
+      <value>@vocabulary.1@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_2</key>
+      <value>@vocabulary.2@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_3</key>
+      <value>@vocabulary.3@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_4</key>
+      <value>@vocabulary.4@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_5</key>
+      <value>@vocabulary.5@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_6</key>
+      <value>@vocabulary.6@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_7</key>
+      <value>@vocabulary.7@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_8</key>
+      <value>@vocabulary.8@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_9</key>
+      <value>@vocabulary.9@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_10</key>
+      <value>@vocabulary.10@</value>
+    </ConfigurableItem>
+    <!-- Vocabulary List (End) ============================================= -->
+
+  </ConfigurableItems>
+</root>

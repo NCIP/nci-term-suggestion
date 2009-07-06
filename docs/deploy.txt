@@ -43,6 +43,16 @@ Deploy to DEV remotely from desktop
    ssh.key.file=C:/SVN-Projects/nci-newterm-properties/properties/ssh-keys/id_dsa_bda.
 2. ant -Dproperties.file=C:\SVN-Projects\nci-newterm-properties\properties\dev-upgrade.properties deploy:remote:upgrade
 
+(Note, using this method does not update Ant Hill Pro)
+
+--------------------------------------
+Deploy to QA remotely from desktop
+--------------------------------------
+1. Make sure your local.properties has the following entry in it:
+   ssh.key.file=C:/SVN-Projects/nci-newterm-properties/properties/ssh-keys/id_dsa_bda.
+2. ant -Dproperties.file=C:\SVN-Projects\nci-newterm-properties\properties\qa-upgrade.properties deploy:remote:upgrade
+
+(Note, using this method does not update Ant Hill Pro)
 
 -----------------------
 Other build commands
@@ -55,6 +65,12 @@ Build:      ant build:all
 Deploy:     ant deploy:local:install
 Redeploy:   ant deploy:hot
 
+--------------------------------------
+Load balancing
+--------------------------------------
+F5 BIGIP
+========
+Enable persistence checking on the F5 Bigip box so a user is always returned to the same node.
 
 --------------------------------------
 Trouble shooting

@@ -2,7 +2,7 @@
 
 <!-- bda-build-template version 1.1.0 -->
 
-<project name="newtermform-installer" default="upgrade" basedir="."
+<project name="ncitermform-installer" default="upgrade" basedir="."
     xmlns:ivy="antlib:org.apache.ivy.ant"
     >
 
@@ -73,7 +73,7 @@
         <os family="windows" />
     </condition>
 
-    <property name="project.name" value="newtermform"/>
+    <property name="project.name" value="ncitermform"/>
 
     <!-- Generic properties -->
     <property name="log.dir" value="${basedir}/logs" />
@@ -95,9 +95,9 @@
     <property name="jboss.service.template.location" value="${bda-utils.dir}/resource/${jboss.template.relative.dir}/jboss-service.xml"/>
 
     <!-- WAR -->
-    <property name="newtermform-webapp.dir.dist" value="${basedir}/${newtermform-webapp.dist.relative.dir}" />
-    <property name="newtermform-webapp.war.file" value="newtermform.war" />
-    <property name="newtermform-webapp.prop.file" value="NewTermFormProperties.xml" />
+    <property name="ncitermform-webapp.dir.dist" value="${basedir}/${ncitermform-webapp.dist.relative.dir}" />
+    <property name="ncitermform-webapp.war.file" value="ncitermform.war" />
+    <property name="ncitermform-webapp.prop.file" value="NCITermFormProperties.xml" />
 
     <!-- Grid related properties -->
     <!-- Default to false, properties can override -->
@@ -216,13 +216,13 @@
         <jboss-nci-customizations/>
     </target>
 
-    <target name="install:jboss:newtermform-webapp" description="Deploy newtermform-webapp and common libraries to jboss installation" unless="exclude.jboss"
+    <target name="install:jboss:ncitermform-webapp" description="Deploy ncitermform-webapp and common libraries to jboss installation" unless="exclude.jboss"
         depends="init:install, init:common">
         <!-- added to ensure working.dirs are fresh for our install -->
         <delete dir="${jboss.home}/server/${jboss.server.name}/tmp"/>
         <delete dir="${jboss.home}/server/${jboss.server.name}/work"/>
         <move file="${jboss.home}/server/${jboss.server.name}/log/server.log" tofile="${jboss.home}/server/${jboss.server.name}/log/server/log.${install.time}" failonerror="false"/>
-        <copy file="${newtermform-webapp.dir.dist}/${newtermform-webapp.war.file}"
+        <copy file="${ncitermform-webapp.dir.dist}/${ncitermform-webapp.war.file}"
              todir="${jboss.home}/server/${jboss.server.name}/deploy"
              overwrite="true"
         >
@@ -232,7 +232,7 @@
         -->
     </target>
 
-    <target name="install:jboss:newtermform-webapp:configure" description="Configure newtermform-webapp application, copies over externalized properties or configurations that are not part of the jboss configuration"
+    <target name="install:jboss:ncitermform-webapp:configure" description="Configure ncitermform-webapp application, copies over externalized properties or configurations that are not part of the jboss configuration"
         unless="exclude.jboss" depends="-install:jboss:remove:jsf, -install:jboss:configure:properties-service">
 
         <tstamp>
@@ -242,8 +242,8 @@
         <!-- copy over any other files you may need to configure your application -->
 
         <filterset id="embedded.filterset">
-            <filter token="newtermform.conf.path" value="${application.data.path}/${newtermform.conf.path}"/>
-            <filter token="newtermform.build.info" value="Built: ${BUILD_DATE}"/>
+            <filter token="ncitermform.conf.path" value="${application.data.path}/${ncitermform.conf.path}"/>
+            <filter token="ncitermform.build.info" value="Built: ${BUILD_DATE}"/>
             <filter token="debug.on" value="${debug.on}"/>
             <filter token="send.email" value="${send.email}"/>
             <filter token="mail.smtp.server" value="${mail.smtp.server}"/>
@@ -260,10 +260,10 @@
             <filter token="vocabulary.9" value="${vocabulary.9}"/>
             <filter token="vocabulary.10" value="${vocabulary.10}"/>
         </filterset>
-        <mkdir dir="${application.data.path}/${newtermform.conf.path}" />
-        <copy todir="${application.data.path}/${newtermform.conf.path}" filtering="true" overwrite="true">
+        <mkdir dir="${application.data.path}/${ncitermform.conf.path}" />
+        <copy todir="${application.data.path}/${ncitermform.conf.path}" filtering="true" overwrite="true">
             <filterset refid="embedded.filterset"/>
-            <fileset dir="${newtermform-webapp.dir.dist}/deploy">
+            <fileset dir="${ncitermform-webapp.dir.dist}/deploy">
                 <include name="**/*"/>
             </fileset>
         </copy>
@@ -280,7 +280,7 @@
         <!-- Check if already updated -->
         <condition property="properties-service.updated">
             <isfileselected file="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml">
-                <contains text="NewTermFormProperties" casesensitive="no"/>
+                <contains text="NCITermFormProperties" casesensitive="no"/>
             </isfileselected>
         </condition>
 
@@ -294,9 +294,9 @@
             <then>
                 <xmltask source="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml"
                     dest="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml">
-                    <replace path="/server/mbean/attribute[contains(text(),'NewTermFormProperties')]">
+                    <replace path="/server/mbean/attribute[contains(text(),'NCITermFormProperties')]">
 <![CDATA[<attribute name="Properties">
-    NewTermFormPropertiesFile=${application.data.path}/${newtermform.conf.path}/${newtermform-webapp.prop.file}
+    NCITermFormPropertiesFile=${application.data.path}/${ncitermform.conf.path}/${ncitermform-webapp.prop.file}
 </attribute>]]>
                     </replace>
                 </xmltask>
@@ -306,7 +306,7 @@
                     dest="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml">
                     <insert path="/server/mbean[@code='org.jboss.varia.property.SystemPropertiesService']">
 <![CDATA[<attribute name="Properties">
-    NewTermFormPropertiesFile=${application.data.path}/${newtermform.conf.path}/${newtermform-webapp.prop.file}
+    NCITermFormPropertiesFile=${application.data.path}/${ncitermform.conf.path}/${ncitermform-webapp.prop.file}
 </attribute>]]>
                     </insert>
                 </xmltask>
@@ -458,9 +458,9 @@
         install:clean:jboss,
         install:init,
         install:jboss:binaries,
-        install:jboss:newtermform-webapp:re-configure,
-        install:jboss:newtermform-webapp,
-        install:jboss:newtermform-webapp:configure,
+        install:jboss:ncitermform-webapp:re-configure,
+        install:jboss:ncitermform-webapp,
+        install:jboss:ncitermform-webapp:configure,
         install:jboss:configure,
         install:post,
         install:jboss:start
@@ -481,15 +481,15 @@
         ">
     </target>
 
-    <target name="install:jboss:newtermform-webapp:re-configure" description="Update contents of artifacts if not all properties have been externalized, by extracting artifact, modify it as needed and re-archive it." unless="exclude.jboss">
+    <target name="install:jboss:ncitermform-webapp:re-configure" description="Update contents of artifacts if not all properties have been externalized, by extracting artifact, modify it as needed and re-archive it." unless="exclude.jboss">
         <!-- This is only required if configuration files are not externalized, below is a sample of what you may do.
-        <delete dir="${working.dir}/newtermform-webapp"/>
-        <unzip src="${newtermform-webapp.dir.dist}/${newtermform-webapp.war.file}" dest="${working.dir}/newtermform-webapp"/>
-        <copy todir="${working.dir}/newtermform-webapp/WEB-INF/classes" file="${jboss-conf.dir.dest}/hibernate.cfg.xml"/>
+        <delete dir="${working.dir}/ncitermform-webapp"/>
+        <unzip src="${ncitermform-webapp.dir.dist}/${ncitermform-webapp.war.file}" dest="${working.dir}/ncitermform-webapp"/>
+        <copy todir="${working.dir}/ncitermform-webapp/WEB-INF/classes" file="${jboss-conf.dir.dest}/hibernate.cfg.xml"/>
 
-        <move file="${newtermform-webapp.dir.dist}/${newtermform-webapp.war.file}" tofile="${newtermform-webapp.dir.dist}/${newtermform-webapp.war.file}.orig"/>
-        <war destfile="${newtermform-webapp.dir.dist}/${newtermform-webapp.war.file}" compress="false" webxml="${working.dir}/newtermform-webapp/WEB-INF/web.xml" >
-            <fileset dir="${working.dir}/newtermform-webapp">
+        <move file="${ncitermform-webapp.dir.dist}/${ncitermform-webapp.war.file}" tofile="${ncitermform-webapp.dir.dist}/${ncitermform-webapp.war.file}.orig"/>
+        <war destfile="${ncitermform-webapp.dir.dist}/${ncitermform-webapp.war.file}" compress="false" webxml="${working.dir}/ncitermform-webapp/WEB-INF/web.xml" >
+            <fileset dir="${working.dir}/ncitermform-webapp">
                 <include name="*/**" />
             </fileset>
         </war>
@@ -521,9 +521,9 @@
         install:init,
         install:jboss:binaries,
         install:jboss:configure,
-        install:jboss:newtermform-webapp:re-configure,
-        install:jboss:newtermform-webapp,
-        install:jboss:newtermform-webapp:configure,
+        install:jboss:ncitermform-webapp:re-configure,
+        install:jboss:ncitermform-webapp,
+        install:jboss:ncitermform-webapp:configure,
         install:post:jboss,
         install:jboss:start
         ">
@@ -562,9 +562,9 @@
         install:validation:pre-install:ports,
         install:init,
         install:jboss:configure,
-        install:jboss:newtermform-webapp:re-configure,
-        install:jboss:newtermform-webapp,
-        install:jboss:newtermform-webapp:configure,
+        install:jboss:ncitermform-webapp:re-configure,
+        install:jboss:ncitermform-webapp,
+        install:jboss:ncitermform-webapp:configure,
         install:post:jboss,
         install:jboss:start
         ">
@@ -602,9 +602,9 @@
         install:jboss:stop,
         install:validation:pre-install:ports,
         install:init,
-        install:jboss:newtermform-webapp:re-configure,
-        install:jboss:newtermform-webapp,
-        install:jboss:newtermform-webapp:configure,
+        install:jboss:ncitermform-webapp:re-configure,
+        install:jboss:ncitermform-webapp,
+        install:jboss:ncitermform-webapp:configure,
         install:post:jboss,
         install:jboss:start
         ">
