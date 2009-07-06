@@ -3,8 +3,7 @@
 %>
 <div class="footer">
   <ul>
-    <li><a href="<%=request.getContextPath()%>">Home</a></li>
-    <li> | <a href="http://www.cancer.gov" target="_blank" 
+    <li><a href="http://www.cancer.gov" target="_blank" 
       alt="National Cancer Institute">NCI Home</a></li>
 <%--      
     <li> | <a href="<%= request.getContextPath() %>/pages/contact_us.jsf"
@@ -16,6 +15,9 @@
       alt="National Cancer Institute Accessibility">Accessibility</a></li>
     <li> | <a href="http://www.cancer.gov/policies/page7" target="_blank"
       alt="National Cancer Institute Freedom of Information Act">FOIA</a></li>
+<%--      
+    <li> | <a href="<%=request.getContextPath()%>">Home</a></li>
+--%>      
   </ul>
 
   <p>
