@@ -3,6 +3,34 @@ package gov.nih.nci.evs.browser.bean;
 import java.util.*;
 
 public class Prop {
+    //-- Enum Bool -------------------------------------------------------------
+    public static enum Bool {
+        False, True;
+        
+        public static Bool valueOfOrDefault(String text) {
+            try {
+                String textStr = text.toLowerCase();
+                for (Bool value : values()) {
+                    String valueStr = value.name().toLowerCase();
+                    if (valueStr.equals(textStr))
+                        return value;
+                }
+                if (textStr.equals("f") || textStr.equals("n") || textStr.equals("0"))
+                    return False;
+                if (textStr.equals("t") || textStr.equals("y") || textStr.equals("1"))
+                    return True;
+                return values()[0];
+            } catch (Exception e) {
+                return values()[0];
+            }
+        }
+        
+        public static boolean getBoolean(String text) {
+            Bool value = valueOfOrDefault(text);
+            return value == True;
+        }
+    }
+    
     //-- Enum Modifiable -------------------------------------------------------
     public static enum Modifiable { 
         Definition, Synonym, Others;
