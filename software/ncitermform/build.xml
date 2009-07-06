@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="newterm" default="build:all" basedir=".">
+<project name="ncitermform" default="build:all" basedir=".">
 
     <description>
 
