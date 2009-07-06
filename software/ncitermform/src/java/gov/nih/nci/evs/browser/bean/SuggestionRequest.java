@@ -6,6 +6,10 @@ import gov.nih.nci.evs.browser.utils.*;
 import javax.servlet.http.*;
 
 public class SuggestionRequest extends NewTermRequest {
+    // List of session parameter/attribute name(s):
+    public static final String RESET = "reset";
+    public static final String VERSION = "version";
+
     // List of session attribute name(s):
     public static final String EMAIL = "Email";
     public static final String OTHER = "Other";
@@ -92,9 +96,17 @@ public class SuggestionRequest extends NewTermRequest {
         buffer.append(getSubject() + "\n\n");
         itemizeParameters(buffer, "Contact information:",
             new String[] { EMAIL, OTHER });
-        itemizeParameters(buffer, "Term Information:",
-            new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, DEFINITION, 
-                SOURCE, CADSR });
+        Prop.Version version = Prop.Version.valueOfOrDefault(
+            (String) _request.getSession().getAttribute(VERSION));
+        if (version == Prop.Version.CADSR) {
+            itemizeParameters(buffer, "Term Information:",
+                new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
+                    DEFINITION, SOURCE, CADSR });
+        } else {
+            itemizeParameters(buffer, "Term Information:",
+                new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
+                    DEFINITION });
+        }
         itemizeParameters(buffer, "Additional information:",
             new String[] { REASON });
         return buffer.toString();
