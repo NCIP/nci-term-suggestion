@@ -41,7 +41,7 @@
   
   // Parameter(s):
   String p_cadsr = HTTPUtils.getParameter(request, "cadsr", false);
-  boolean is_cadsr = p_cadsr != null;
+  boolean display_cadsr_fields = p_cadsr != null;
   if (cadsr == null && p_cadsr != null)
     cadsr = Prop.CADSR.valueOfOrDefault(p_cadsr).name();
   
@@ -185,7 +185,7 @@
       </tr>
       
       <%
-        if (is_cadsr) {
+        if (display_cadsr_fields) {
       %>
           <tr>
             <td <%=LABEL_ARGS%>><%=CADSR%>:</td>

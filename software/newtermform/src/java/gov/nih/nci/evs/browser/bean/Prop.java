@@ -9,7 +9,13 @@ public class Prop {
         
         public static Modifiable valueOfOrDefault(String text) {
             try {
-                return valueOf(text);
+                String textStr = text.toLowerCase();
+                for (Modifiable value : values()) {
+                    String valueStr = value.name().toLowerCase();
+                    if (valueStr.equals(textStr))
+                        return value;
+                }
+                return Definition;
             } catch (Exception e) {
                 return Definition;
             }
@@ -70,7 +76,13 @@ public class Prop {
         None, CADSR_OC, CADSR_PROP, CADSR_REP, CADSR_VV;
         public static CADSR valueOfOrDefault(String text) {
             try {
-                return valueOf(text);
+                String textStr = text.toLowerCase();
+                for (CADSR value : values()) {
+                    String valueStr = value.name().toLowerCase();
+                    if (valueStr.equals(textStr))
+                        return value;
+                }
+                return None;
             } catch (Exception e) {
                 return None;
             }
