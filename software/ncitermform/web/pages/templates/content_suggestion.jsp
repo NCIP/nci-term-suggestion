@@ -40,10 +40,8 @@
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
   
   // Parameter(s):
-  String p_cadsr = HTTPUtils.getParameter(request, "cadsr", false);
-  boolean display_cadsr_fields = p_cadsr != null;
-  if (cadsr == null && p_cadsr != null)
-    cadsr = Prop.CADSR.valueOfOrDefault(p_cadsr).name();
+  String p_version = HTTPUtils.getParameter(request, "version", false);
+  Prop.Version version = Prop.Version.valueOfOrDefault(p_version);
   
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
@@ -185,7 +183,7 @@
       </tr>
       
       <%
-        if (display_cadsr_fields) {
+        if (version == Prop.Version.CADSR) {
       %>
           <tr>
             <td <%=LABEL_ARGS%>><%=CADSR%>:</td>
