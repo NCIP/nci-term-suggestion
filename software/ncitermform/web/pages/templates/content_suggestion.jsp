@@ -9,8 +9,9 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%!
-  private static final String RESET = "reset";
-  private static final String VERSION = "version";
+// List of session parameter/attribute name(s):
+  private static final String RESET = SuggestionRequest.RESET;
+  private static final String VERSION = SuggestionRequest.VERSION;
 
   // List of session attribute name(s):
   private static final String EMAIL = SuggestionRequest.EMAIL;
