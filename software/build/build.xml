@@ -11,7 +11,7 @@
         Deployments will call the install.xml from the distribution to install or upgrade the application.
         Lastly this script will run include targets that require manipulation of containers (selenium tests because
         they require starting the application server container (and require a fully deployed application which this
-        process is responsible for). This build script assumes two sub-projects newterm-webapp. The API targets are
+        process is responsible for). This build script assumes two sub-projects ncitermform-webapp. The API targets are
         commented out and can be removed if not needed. Also support for both tomcat and jboss download, install
         and configure are included.  These scripts require Java, Ant and SVN to work.
     </description>
@@ -679,14 +679,14 @@
 
     <target name="findfiles">
             <exec executable="sh" failonerror="true">
-                    <arg line=" -c 'find /local/AnthillPro/work/nci-newterm-autodeploy_(bda).trunk.dev/trunk/software/target/bda-utils  -maxdepth 2 -ls'"/>
+                    <arg line=" -c 'find /local/AnthillPro/work/nci-termform-autodeploy-bda.trunk.dev/trunk/software/target/bda-utils  -maxdepth 2 -ls'"/>
             </exec>
     </target>
 
     <target name="printfile">
             <loadfile
                     property="file.contents"
-                    srcFile="/local/AnthillPro/work/nci-newterm-autodeploy_(bda).trunk.dev/trunk/software/build/build.xml">
+                    srcFile="/local/AnthillPro/work/nci-termform-autodeploy-bda.trunk.dev/trunk/software/build/build.xml">
                     <filterchain>
                             <linecontainsregexp>
                                     <regexp pattern=".*"/>
