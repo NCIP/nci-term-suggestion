@@ -12,8 +12,8 @@
 
     </description>
 
-    <property name="webapp.name"  value="newtermform"/>
-    <property name="webapp.war.name"  value="newtermform.war"/>
+    <property name="webapp.name"  value="ncitermform"/>
+    <property name="webapp.war.name"  value="ncitermform.war"/>
     <property name="src.dir" value="${basedir}/src" />
     <property name="conf.dir" value="${basedir}/conf" />
     <property name="lib.dir" value="${basedir}/lib" />
@@ -22,7 +22,7 @@
     <property name="webapp.build.dir" value="${basedir}/build/web" />
     <property name="webapp.classes.dir" value="${webapp.build.dir}/WEB-INF/classes" />
     <property name="webapp.dist.dir" value="${basedir}/dist" />
-    <property name="newtermform-webapp.prop.file" value="NewTermFormProperties.xml" />
+    <property name="ncitermform-webapp.prop.file" value="NCITermFormProperties.xml" />
 
     <!-- Build class path -->
 
@@ -94,7 +94,7 @@
         <mkdir dir="${dist.dir}/deploy" />
         <copy todir="${dist.dir}/deploy" flatten="true" includeEmptyDirs="no" filtering="false">
             <resources>
-                <file file="${conf.dir}/${newtermform-webapp.prop.file}"/>
+                <file file="${conf.dir}/${ncitermform-webapp.prop.file}"/>
             </resources>
         </copy>
 

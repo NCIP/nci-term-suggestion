@@ -8,8 +8,8 @@ import java.util.*;
 import org.apache.log4j.Logger;
 
 public class AppProperties {
-    private static final String PROPERTY_FILE = "NewTermFormPropertiesFile";
-    private static final String BUILD_INFO = "NEWTERMFORM_BUILD_INFO";
+    private static final String PROPERTY_FILE = "NCITermFormPropertiesFile";
+    private static final String BUILD_INFO = "NCITERMFORM_BUILD_INFO";
     private static final String DEBUG_ON = "DEBUG_ON";
     private static final String SEND_EMAIL = "SEND_EMAIL";
     private static final String MAIL_SMTP_SERVER = "MAIL_SMTP_SERVER";
@@ -37,7 +37,7 @@ public class AppProperties {
         synchronized (AppProperties.class) {
             String propertyFile = System.getProperty(PROPERTY_FILE);
             _log.info("AppProperties File Location= " + propertyFile);
-            
+
             PropertyFileParser parser = new PropertyFileParser(propertyFile);
             parser.run();
             _configurableItemMap = parser.getConfigurableItemMap();
@@ -67,29 +67,29 @@ public class AppProperties {
         System.out.println("getBuildInfo returns " + _buildInfo);
         return _buildInfo;
     }
-    
+
     public boolean isDebugOn() {
         return Boolean.parseBoolean(getProperty(DEBUG_ON));
     }
-    
+
     public boolean isSendEmail() {
         //if (true) return true;
         return Boolean.parseBoolean(getProperty(SEND_EMAIL));
     }
-    
+
     public String getContactUrl() {
         return getProperty(NCICB_CONTACT_URL);
     }
-    
+
     public String[] getContactUsRecipients() {
         String value = getContactUrl();
         return StringUtils.toStrings(value, ";", false);
     }
-    
+
     public String getMailSmtpServer() {
         return getProperty(MAIL_SMTP_SERVER);
     }
-    
+
     private ArrayList<VocabInfo> parseVocabList() {
         ArrayList<VocabInfo> list = new ArrayList<VocabInfo>();
         for (int i=0; i<VOCABULARY_MAX; ++i) {
@@ -100,7 +100,7 @@ public class AppProperties {
         }
         return list;
     }
-    
+
     public ArrayList<VocabInfo> getVocabularies() {
         if (_vocabList == null) {
             _vocabList = parseVocabList();
@@ -109,7 +109,7 @@ public class AppProperties {
         }
         return _vocabList;
     }
-    
+
     public String[] getVocabularyNames() {
         ArrayList<VocabInfo> list = getVocabularies();
         Iterator<VocabInfo> iterator = list.iterator();
@@ -120,7 +120,7 @@ public class AppProperties {
         }
         return names.toArray(new String[names.size()]);
     }
-    
+
     public String getVocabularyName(String url) {
         ArrayList<VocabInfo> list = getVocabularies();
         Iterator<VocabInfo> iterator = list.iterator();
@@ -131,7 +131,7 @@ public class AppProperties {
         }
         return null;
     }
-    
+
     public String[] getVocabularyEmails(String vocabularyName) {
         ArrayList<VocabInfo> list = getVocabularies();
         Iterator<VocabInfo> iterator = list.iterator();

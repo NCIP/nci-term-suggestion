@@ -77,14 +77,14 @@
     <property name="ivy.jar.file" value="ivy-2.0.0.jar" />
     <!-- Properties that relate to how to call build targets from sub-projects-->
     <!-- Working directory passed to Ant tasks -->
-    <property name="newtermform-api.base.dir" value="${software.dir}/newtermform" />
-    <property name="newtermform-webapp.base.dir" value="${software.dir}/newtermform" />
+    <property name="ncitermform-api.base.dir" value="${software.dir}/ncitermform" />
+    <property name="ncitermform-webapp.base.dir" value="${software.dir}/ncitermform" />
     <!-- Build file names relative working dir above, if the basedir of the sub-project ant script is ".." you should set the *.basdir to and the build file should include the dir and build file name from the *.base.dir -->
-    <property name="newtermform-webapp.build.file" value="build.xml" />
-    <property name="newtermform-api.build.file" value="build.xml" />
+    <property name="ncitermform-webapp.build.file" value="build.xml" />
+    <property name="ncitermform-api.build.file" value="build.xml" />
     <!-- The target name that should be called from the sub-project build file -->
-    <property name="newtermform-api.build.target" value="build:all" />
-    <property name="newtermform-webapp.build.target" value="dist" />
+    <property name="ncitermform-api.build.target" value="build:all" />
+    <property name="ncitermform-webapp.build.target" value="dist" />
     <!-- Maven comamnd line arguments, bda profile is inside profiles.xml that gets copied to ear folder before build to override exiting properties -->
     <!-- Used by dist:*:prep to determin list of files to use for incremental build process.
         Directory and files must be in svn to work.
@@ -92,8 +92,8 @@
     <!-- Distribution Structure properties, used to copy files into the distribution area.
             Use project.propertie relative dir names becasue they are used by install also-->
     <property name="dist.exploded.dir" value="${dist.dir}/exploded" />
-    <property name="newtermform-api.dist.dir" value="${dist.exploded.dir}/${newtermform-api.dist.relative.dir}" />
-    <property name="newtermform-webapp.dist.dir" value="${dist.exploded.dir}/${newtermform-webapp.dist.relative.dir}" />
+    <property name="ncitermform-api.dist.dir" value="${dist.exploded.dir}/${ncitermform-api.dist.relative.dir}" />
+    <property name="ncitermform-webapp.dist.dir" value="${dist.exploded.dir}/${ncitermform-webapp.dist.relative.dir}" />
     <property name="tools.dist.dir" value="${dist.exploded.dir}/${tools.dist.relative.dir}" />
     <property name="common.dist.dir" value="${dist.exploded.dir}/${common.dist.relative.dir}" />
     <property name="jboss-conf.dist.dir" value="${dist.exploded.dir}/${jboss-conf.dist.relative.dir}" />
@@ -121,9 +121,9 @@
     <property name="grand.rpt.dir" value="${common.dir}/grand" />
     <!-- Hot deploy variables -->
     <property name="jboss.deploy.dir"  value="${jboss.home}/server/${jboss.server.name}/deploy"/>
-    <property name="newtermform-webapp.name"  value="newtermform"/>
-    <property name="newtermform-webapp.file.name"  value="${newtermform-webapp.name}.war"/>
-    <property name="newtermform-webapp.src.dir" value="${newtermform-webapp.base.dir}/src/web"/>
+    <property name="ncitermform-webapp.name"  value="ncitermform"/>
+    <property name="ncitermform-webapp.file.name"  value="${ncitermform-webapp.name}.war"/>
+    <property name="ncitermform-webapp.src.dir" value="${ncitermform-webapp.base.dir}/src/web"/>
     <!-- retrive ivy files then retrieve bda files and librarires -->
     <property name="commonlibrary.dir" value="" />
     <property name="bda-download.file" value="bda-ivy-2.0.0-build.xml" />
@@ -197,8 +197,8 @@
     <target name="clean">
         <delete dir="${dist.dir}" />
         <delete dir="${temp.dir}" />
-        <delete dir="${newtermform-api.base.dir}/build" />
-        <delete dir="${newtermform-api.base.dir}/dist" />
+        <delete dir="${ncitermform-api.base.dir}/build" />
+        <delete dir="${ncitermform-api.base.dir}/dist" />
     </target>
 
     <target name="init" description="Sets up build are and initalizes variables">
@@ -211,7 +211,7 @@
         <mkdir dir="${target.dir}" />
         <mkdir dir="${dist.dir}" />
         <mkdir dir="${dist.exploded.dir}" />
-        <mkdir dir="${newtermform-webapp.dist.dir}" />
+        <mkdir dir="${ncitermform-webapp.dist.dir}" />
         <mkdir dir="${common.dist.dir}" />
         <mkdir dir="${tools.dist.dir}" />
         <mkdir dir="${temp.dir}" />
@@ -280,14 +280,14 @@
         validate:pre:build,
         clean,
         init,
-        build:newtermform-webapp
+        build:ncitermform-webapp
         " >
     </target>
 
-    <target name="build:newtermform-webapp" depends="init" description="Call webapp sub-projects build target to produce artifiacts">
+    <target name="build:ncitermform-webapp" depends="init" description="Call webapp sub-projects build target to produce artifiacts">
         <!-- setting the property in the ant call overrides the property in the sub-project allowing the artifact to be produced where needed -->
-        <ant inheritAll="false" inheritRefs="false" antfile="${newtermform-webapp.build.file}" target="${newtermform-webapp.build.target}" dir="${newtermform-webapp.base.dir}">
-            <property name="dist.dir" value="${newtermform-webapp.dist.dir}" />
+        <ant inheritAll="false" inheritRefs="false" antfile="${ncitermform-webapp.build.file}" target="${ncitermform-webapp.build.target}" dir="${ncitermform-webapp.base.dir}">
+            <property name="dist.dir" value="${ncitermform-webapp.dist.dir}" />
             <property name="lex.evs.api.default.url" value="${lex.evs.api.default.url}"/>
         </ant>
     </target>
@@ -348,7 +348,7 @@
     </target>
 
     <target name="dist:installer" depends="dist:installer:prep" description="Produces zip file based on installer distribution area. Zip is used by deploy:remote:* or external installations">
-        <delete file="${dist.dir}/${newtermform-webapp.install.zip.file}" />
+        <delete file="${dist.dir}/${ncitermform-webapp.install.zip.file}" />
         <!-- Set environment name to external -->
         <replaceregexp file="${dist.exploded.dir}/install.properties" byline="true" match="^(env.name)=.*" replace="\1=external" />
         <obfuscate-properties-file
@@ -357,7 +357,7 @@
             optional.property.list="ldap.url,ldap.basedn"
             delete.property.list="exclude.jboss.backup"
             />
-        <zip destfile="${dist.dir}/${newtermform-webapp.install.zip.file}" basedir="${dist.exploded.dir}" />
+        <zip destfile="${dist.dir}/${ncitermform-webapp.install.zip.file}" basedir="${dist.exploded.dir}" />
     </target>
 
     <!-- For non DAC upgrades
@@ -374,7 +374,7 @@
     </target>
 
     <target name="dist:upgrader" depends="dist:upgrader:prep" description="Produces zip file based on installer distribution area. Zip is used by deploy:remote:* or external installations">
-        <delete file="${dist.dir}/${newtermform-webapp.upgrade.zip.file}" />
+        <delete file="${dist.dir}/${ncitermform-webapp.upgrade.zip.file}" />
         <!-- Set environment name to external -->
         <copy todir="${dist.exploded.dir}" overwrite="true">
                 <fileset dir="${build.dir}">
@@ -393,7 +393,7 @@
                 delete.property.list=""
                 />
         <replaceregexp file="${dist.exploded.dir}/build.xml" byline="true" match="(&lt;property name=&quot;properties.file&quot;\s+value=&quot;).*(&quot;\s*\/&gt;)" replace="\1upgrade.properties\2" />
-        <zip destfile="${dist.dir}/${newtermform-webapp.upgrade.zip.file}" basedir="${dist.exploded.dir}" />
+        <zip destfile="${dist.dir}/${ncitermform-webapp.upgrade.zip.file}" basedir="${dist.exploded.dir}" />
     </target>
 
     <target name="deploy:local:install" depends="build:all,dist:installer:prep" description="Installs and configures the application and required binaries and re-creates the datbase  on the local machine. Used for developer desktops and ci environments.">
@@ -431,7 +431,7 @@
           * Calls ant from exec task to ensure properties are do not carry over from current ant runtime and also to emulate a manual install, if you want properties to be used at install time they must be included in a proeprties file.
         -->
         <!-- Call macro to deploy files on desired server -->
-        <deploy-files dist.file="${newtermform-webapp.install.zip.file}" />
+        <deploy-files dist.file="${ncitermform-webapp.install.zip.file}" />
         <!-- SSH to machine ant run ant command line to install application -->
         <remote-ssh remotesshcommand=". .bash_profile;cd ${ssh.dir.temp}; ant -Dproperties.file=${properties.file.name} -Dforce.reinstall=true ${install.target}" />
     </target>
@@ -453,7 +453,7 @@
           * Calls ant from exec task to ensure properties are do not carry over from current ant runtime and also to emulate a manual install, if you want properties to be used at install time they must be included in a proeprties file.
         -->
         <!-- Call macro to deploy files on desired server -->
-        <deploy-files dist.file="${newtermform-webapp.upgrade.zip.file}" />
+        <deploy-files dist.file="${ncitermform-webapp.upgrade.zip.file}" />
         <!-- SSH to machine ant run ant command line to install application -->
         <remote-ssh remotesshcommand=". .bash_profile;cd ${ssh.dir.temp}; ant -Dproperties.file=${properties.file.name} -Dforce.reinstall=true ${upgrade.target}" />
     </target>
@@ -473,48 +473,48 @@
     <target name="test:all" description="Runs test target for all sub-projects" depends="
         clean,
         init,
-        test:newtermform-api,
-        test:newtermform-webapp
+        test:ncitermform-api,
+        test:ncitermform-webapp
         " >
     </target>
 
-    <target name="test:newtermform-api" depends="init" description="Calls test target for sub-project">
+    <target name="test:ncitermform-api" depends="init" description="Calls test target for sub-project">
         <!--
-        <ant inheritAll="false" inheritRefs="false" antfile="${newtermform-api.test.file}"
+        <ant inheritAll="false" inheritRefs="false" antfile="${ncitermform-api.test.file}"
             target="test"
-            dir="${newtermform-api.base.dir}" >
-            <property name="dist" value="${newtermform-api.dist.dir}" />
+            dir="${ncitermform-api.base.dir}" >
+            <property name="dist" value="${ncitermform-api.dist.dir}" />
         </ant>
         -->
     </target>
 
-    <target name="test:newtermform-webapp" depends="init" description="Calls test target for sub-project">
-        <ant inheritAll="false" inheritRefs="false" antfile="${newtermform-webapp.test.file}" target="test" dir="${newtermform-webapp.base.dir}">
-            <property name="dist.dir" value="${newtermform-webapp.dist.dir}" />
+    <target name="test:ncitermform-webapp" depends="init" description="Calls test target for sub-project">
+        <ant inheritAll="false" inheritRefs="false" antfile="${ncitermform-webapp.test.file}" target="test" dir="${ncitermform-webapp.base.dir}">
+            <property name="dist.dir" value="${ncitermform-webapp.dist.dir}" />
         </ant>
     </target>
 
     <target name="static-analysis:all" description="Runs static-analysis target for all sub-projects" depends="
         clean,
         init,
-        static-analysis:newtermform-api,
-        static-analysis:newtermform-webapp
+        static-analysis:ncitermform-api,
+        static-analysis:ncitermform-webapp
         " >
     </target>
 
-    <target name="static-analysis:newtermform-api" depends="init" description="Calls static-analysis target for sub-project">
+    <target name="static-analysis:ncitermform-api" depends="init" description="Calls static-analysis target for sub-project">
         <!--
-        <ant inheritAll="false" inheritRefs="false" antfile="${newtermform-api.build.file}"
+        <ant inheritAll="false" inheritRefs="false" antfile="${ncitermform-api.build.file}"
             target="static-analysis"
-            dir="${newtermform-api.base.dir}" >
-            <property name="dist" value="${newtermform-api.dist.dir}" />
+            dir="${ncitermform-api.base.dir}" >
+            <property name="dist" value="${ncitermform-api.dist.dir}" />
         </ant>
         -->
     </target>
 
-    <target name="static-analysis:newtermform-webapp" depends="init" description="Calls static-analysis target for sub-project">
-        <ant inheritAll="false" inheritRefs="false" antfile="${newtermform-webapp.build.file}" target="static-analysis" dir="${newtermform-webapp.base.dir}">
-            <property name="dist.dir" value="${newtermform-webapp.dist.dir}" />
+    <target name="static-analysis:ncitermform-webapp" depends="init" description="Calls static-analysis target for sub-project">
+        <ant inheritAll="false" inheritRefs="false" antfile="${ncitermform-webapp.build.file}" target="static-analysis" dir="${ncitermform-webapp.base.dir}">
+            <property name="dist.dir" value="${ncitermform-webapp.dist.dir}" />
         </ant>
     </target>
 
@@ -599,7 +599,7 @@
         <!--
         <antcall target="test:seleniumrc:start" />
         -->
-        <ant inheritAll="false" inheritRefs="false" antfile="${newtermform-webapp.build.file}" target="test:acceptance:fitnesse" dir="${newtermform-webapp.base.dir}" />
+        <ant inheritAll="false" inheritRefs="false" antfile="${ncitermform-webapp.build.file}" target="test:acceptance:fitnesse" dir="${ncitermform-webapp.base.dir}" />
         <!--
         <antcall target="test:seleniumrc:stop" />
         -->
@@ -620,17 +620,17 @@
     </target>
 
     <target name="deploy:hot" depends="build:all" description="Hot deploys the deployment artifact">
-        <copy file="${newtermform-webapp.dist.dir}/${newtermform-webapp.file.name}" todir="${jboss.deploy.dir}" />
+        <copy file="${ncitermform-webapp.dist.dir}/${ncitermform-webapp.file.name}" todir="${jboss.deploy.dir}" />
     </target>
 
     <target name="deploy:hot:jsp" description="Copies all current JSP code to the deployed application for quick update">
         <for param="toDir">
             <path>
-                <dirset dir="${jboss.deploy.dir}/../tmp/deploy" includes="tmp*${newtermform-webapp.name}*" />
+                <dirset dir="${jboss.deploy.dir}/../tmp/deploy" includes="tmp*${ncitermform-webapp.name}*" />
             </path>
             <sequential>
                 <copy todir="@{toDir}" overwrite="true">
-                    <fileset dir="${newtermform-webapp.src.dir}">
+                    <fileset dir="${ncitermform-webapp.src.dir}">
                         <include name="**/*.jsp" />
                         <include name="**/*.jspf" />
                         <include name="**/*.css" />
@@ -665,15 +665,15 @@
 
     <target name="report:uml">
         <property name="uml.dir" value="${reports.dir}/uml"/>
-        <path id="newtermform.classpath.ref">
+        <path id="ncitermform.classpath.ref">
             <fileset dir="${lib.dir}/runtime">
                 <include name="**/*.jar" />
             </fileset>
         </path>
         <generate-uml
             uml.dir="${uml.dir}"
-            src.java.dir="${newtermform-webapp.base.dir}/src/java"
-            uml.source.path="newtermform.classpath.ref"
+            src.java.dir="${ncitermform-webapp.base.dir}/src/java"
+            uml.source.path="ncitermform.classpath.ref"
             />
     </target>
 
