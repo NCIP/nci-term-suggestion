@@ -71,6 +71,24 @@ public class Prop {
         }
     }
 
+    //-- Enum Version ------------------------------------------------------------
+    public static enum Version {
+        Default, CADSR;
+        public static Version valueOfOrDefault(String text) {
+            try {
+                String textStr = text.toLowerCase();
+                for (Version value : values()) {
+                    String valueStr = value.name().toLowerCase();
+                    if (valueStr.equals(textStr))
+                        return value;
+                }
+                return Default;
+            } catch (Exception e) {
+                return Default;
+            }
+        }
+    }
+    
     //-- Enum CADSR ------------------------------------------------------------
     public static enum CADSR {
         None, CADSR_OC, CADSR_PROP, CADSR_REP, CADSR_VV;
