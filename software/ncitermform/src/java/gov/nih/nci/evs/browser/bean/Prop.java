@@ -15,9 +15,9 @@ public class Prop {
                     if (valueStr.equals(textStr))
                         return value;
                 }
-                return Definition;
+                return values()[0];
             } catch (Exception e) {
-                return Definition;
+                return values()[0];
             }
         }
     }
@@ -64,9 +64,15 @@ public class Prop {
 
         public static Action valueOfOrDefault(String text) {
             try {
-                return valueOf(text);
+                String textStr = text.toLowerCase();
+                for (Action value : values()) {
+                    String valueStr = value.name().toLowerCase();
+                    if (valueStr.equals(textStr))
+                        return value;
+                }
+                return values()[0];
             } catch (Exception e) {
-                return Add;
+                return values()[0];
             }
         }
     }
@@ -82,9 +88,9 @@ public class Prop {
                     if (valueStr.equals(textStr))
                         return value;
                 }
-                return Default;
+                return values()[0];
             } catch (Exception e) {
-                return Default;
+                return values()[0];
             }
         }
     }
@@ -100,9 +106,33 @@ public class Prop {
                     if (valueStr.equals(textStr))
                         return value;
                 }
-                return None;
+                return values()[0];
             } catch (Exception e) {
-                return None;
+                return values()[0];
+            }
+        }
+    }
+    
+    public static enum Source {
+        BioC_0902D, CBO2007_06, CDC_0902D, CDISC_0902D, COH_0902D,
+        CRCH_0902D, CTCAE_0902D, CTEP04, DCP_0902D, DICOM_0902D,
+        DTP_0902D, ELC2001, FDA_0902D, ICD03, ICH_0902D, JAX_0902D,
+        KEGG_0902D, MDBCAC2005_12, MDR10_0, MGED131, 
+        NCI_GLOSS_0902D /* NCI-GLOSS_0902D */, 
+        NCI_HL7_0902D /* NCI-HL7_0902D */, NCI2009_02D, PDQ2009_02,
+        PMA2007, RADLEX2_01, RENI_0902D, UCUM_0902D, ZFIN_0902D;
+        
+        public static Source valueOfOrDefault(String text) {
+            try {
+                String textStr = text.toLowerCase();
+                for (Source value : values()) {
+                    String valueStr = value.name().toLowerCase();
+                    if (valueStr.equals(textStr))
+                        return value;
+                }
+                return values()[0];
+            } catch (Exception e) {
+                return values()[0];
             }
         }
     }

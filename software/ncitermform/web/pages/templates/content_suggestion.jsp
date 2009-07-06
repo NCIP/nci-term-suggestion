@@ -18,6 +18,7 @@
   private static final String NEAREST_CODE = SuggestionRequest.NEAREST_CODE;
   private static final String DEFINITION = SuggestionRequest.DEFINITION;
   private static final String REASON = SuggestionRequest.REASON;
+  private static final String SOURCE = SuggestionRequest.SOURCE;
   private static final String CADSR = SuggestionRequest.CADSR;
   private static final String WARNINGS = SuggestionRequest.WARNINGS;
 
@@ -35,7 +36,8 @@
   String synonyms = HTTPUtils.getSessionAttributeString(request, SYNONYMS);
   String nearest_code = HTTPUtils.getSessionAttributeString(request, NEAREST_CODE);
   String definition = HTTPUtils.getSessionAttributeString(request, DEFINITION);
-  String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR, false, false);
+  String source = HTTPUtils.getSessionAttributeString(request, SOURCE);
+  String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR);
   String reason = HTTPUtils.getSessionAttributeString(request, REASON);
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
   
@@ -73,6 +75,8 @@
         " and specialized in both structure and function, though all must" +
         " at some stage replicate proteins and nucleic acids, utilize" +
         " energy, and reproduce themselves.";
+    if (source.length() <= 0)
+        source = Prop.Source.NCI_GLOSS_0902D.name();
     if (cadsr.length() <= 0)
       cadsr = Prop.CADSR.CADSR_PROP.name();
     if (reason.length() <= 0)
@@ -186,14 +190,34 @@
         if (version == Prop.Version.CADSR) {
       %>
           <tr>
+            <td <%=LABEL_ARGS%>><%=SOURCE%>:</td>
+            <td colspan="2">
+              <select name="<%=SOURCE%>" class="newConceptCB2<%=css%>">
+                <%
+                  selectedItem = source;
+                  Prop.Source[] enumValues = Prop.Source.values();
+                  for (i=0; i<enumValues.length; ++i) {
+                      String item = enumValues[i].name();
+                      String args = "";
+                      if (item.equals(selectedItem))
+                        args += "selected=\"true\"";
+                %>
+                      <option value="<%=item%>" <%=args%>><%=item%></option>
+                <%
+                  }
+                %>
+              </select>
+            </td>
+          </tr>
+          <tr>
             <td <%=LABEL_ARGS%>><%=CADSR%>:</td>
             <td colspan="2">
               <select name="<%=CADSR%>" class="newConceptCB2<%=css%>">
                 <%
                   selectedItem = cadsr;
-                  Prop.CADSR[] enumValues = Prop.CADSR.values();
-                  for (i=0; i<enumValues.length; ++i) {
-                      String item = enumValues[i].name();
+                  Prop.CADSR[] enumValues2 = Prop.CADSR.values();
+                  for (i=0; i<enumValues2.length; ++i) {
+                      String item = enumValues2[i].name();
                       String args = "";
                       if (item.equals(selectedItem))
                         args += "selected=\"true\"";
