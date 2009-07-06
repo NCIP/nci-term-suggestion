@@ -2,22 +2,22 @@
 
 <root>
   <ConfigurableItems>
-  
+
     <ConfigurableItem>
-      <key>NEWTERMFORM_BUILD_INFO</key>
-      <value>@newtermform.build.info@</value>
+      <key>NCITERMFORM_BUILD_INFO</key>
+      <value>@ncitermform.build.info@</value>
     </ConfigurableItem>
-    
+
     <ConfigurableItem>
       <key>DEBUG_ON</key>
       <value>@debug.on@</value>
     </ConfigurableItem>
-    
+
     <ConfigurableItem>
       <key>SEND_EMAIL</key>
       <value>@send.email@</value>
     </ConfigurableItem>
-    
+
     <ConfigurableItem>
       <key>MAIL_SMTP_SERVER</key>
       <value>@mail.smtp.server@</value>
