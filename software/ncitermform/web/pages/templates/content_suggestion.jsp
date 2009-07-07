@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ page contentType="text/html;charset=windows-1252"%>
 <%@ page import="java.util.*" %>
-<%@ page import="gov.nih.nci.evs.browser.bean.*" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
@@ -101,11 +100,11 @@
       <!-- =================================================================== -->
       <%
           if (warnings.length() > 0) {
-              String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
-              for (i=0; i<wList.length; ++i) {
-                String warning = wList[i];
-                warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
-                if (i==0) {
+            String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
+            for (i=0; i<wList.length; ++i) {
+              String warning = wList[i];
+              warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
+              if (i==0) {
       %>
               <tr>
                 <td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
@@ -120,7 +119,7 @@
               </tr>
       <%
           }
-                }
+              }
       %>
           <tr><td><br/></td></tr>
       <%
@@ -161,15 +160,15 @@
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
                 selectedItem = vocabulary;
-                  ArrayList list = AppProperties.getInstance().getVocabularies();
-                  Iterator iterator = list.iterator();
-                  while (iterator.hasNext()) {
-                    VocabInfo vocab = (VocabInfo) iterator.next();
-                    String item = vocab.getName();
-                    String url = vocab.getUrl();
-                    String args = "";
-                    if (item.equals(selectedItem))
-                      args += "selected=\"true\"";
+                      ArrayList list = AppProperties.getInstance().getVocabularies();
+                      Iterator iterator = list.iterator();
+                      while (iterator.hasNext()) {
+                        VocabInfo vocab = (VocabInfo) iterator.next();
+                        String item = vocab.getName();
+                        String url = vocab.getUrl();
+                        String args = "";
+                        if (item.equals(selectedItem))
+                          args += "selected=\"true\"";
             %>
                 <option value="<%=url%>" <%=args%>><%=item%></option>
             <%
@@ -199,8 +198,8 @@
       </tr>
       
       <%
-        if (prop_version == Prop.Version.CADSR) {
-      %>
+                if (prop_version == Prop.Version.CADSR) {
+            %>
           <tr>
             <td <%=LABEL_ARGS%>><%=SOURCE%>:</td>
             <td colspan="2">

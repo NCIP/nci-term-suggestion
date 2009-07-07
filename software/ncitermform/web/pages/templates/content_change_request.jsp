@@ -1,4 +1,3 @@
-<%@ page import="gov.nih.nci.evs.browser.bean.*" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
@@ -9,7 +8,7 @@
   private static final String WARNINGS = NewTermRequest.WARNINGS;
 %>
 <%
-  // Session Attribute(s):
+    // Session Attribute(s):
   String version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
   String message = HTTPUtils.getSessionAttributeString(request, MESSAGE, false, true);
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS, false, true);
