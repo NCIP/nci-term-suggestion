@@ -28,13 +28,13 @@ public class StringUtils {
     }
 
     public static void debug(String msg, String[] list) {
-        System.out.println(SEPARATOR);
+        Debug.println(StringUtils.SEPARATOR);
         if (msg != null && msg.length() > 0)
-            System.out.println(msg);
+            Debug.println("* " + msg);
         if (list == null)
             return;
         for (int i = 0; i < list.length; ++i) {
-            System.out.println("  " + (i + 1) + ") " + list[i]);
+            Debug.println("  * " + (i + 1) + ") " + list[i]);
         }
     }
 

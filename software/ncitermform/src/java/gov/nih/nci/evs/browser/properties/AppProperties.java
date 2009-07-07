@@ -157,7 +157,8 @@ public class AppProperties {
         if (_sourceList == null) {
             String value = getSources();
             _sourceList = StringUtils.toStrings(value, ";", false);
-            StringUtils.debug("Source List", _sourceList);
+            if (isDebugOn())
+                StringUtils.debug("Source List", _sourceList);
         }
         return _sourceList;
     }
@@ -170,7 +171,8 @@ public class AppProperties {
         if (_caDSRTypeList == null) {
             String value = getCADSRTypes();
             _caDSRTypeList = StringUtils.toStrings(value, ";", false);
-            StringUtils.debug("caDSR Type List", _caDSRTypeList);
+            if (isDebugOn())
+                StringUtils.debug("caDSR Type List", _caDSRTypeList);
         }
         return _caDSRTypeList;
     }
