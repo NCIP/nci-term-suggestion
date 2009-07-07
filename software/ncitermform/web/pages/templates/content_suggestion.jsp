@@ -10,7 +10,6 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%!
 // List of session parameter/attribute name(s):
-  private static final String RESET = SuggestionRequest.RESET;
   private static final String VERSION = SuggestionRequest.VERSION;
 
   // List of session attribute name(s):
@@ -32,8 +31,18 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Session Attribute(s):
+  // Checking form version:
   String version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
+  String p_version = HTTPUtils.getParameter(request, VERSION, false);
+  Prop.Version p_prop_version = Prop.Version.valueOfOrDefault(p_version);
+  Prop.Version prop_version = Prop.Version.valueOfOrDefault(version);
+  if (p_prop_version != prop_version) {
+    prop_version = p_prop_version;
+    HTTPUtils.clearSessionAttributes(request, SuggestionRequest.MOST_PARAMETERS);
+  }
+  request.getSession().setAttribute(VERSION, prop_version.name());
+
+  // Session Attribute(s):
   String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
   String other = HTTPUtils.getSessionAttributeString(request, OTHER);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
@@ -46,17 +55,6 @@
   String reason = HTTPUtils.getSessionAttributeString(request, REASON);
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
   
-  String p_version = HTTPUtils.getParameter(request, VERSION, false);
-  Prop.Version p_prop_version = Prop.Version.valueOfOrDefault(p_version);
-  Prop.Version prop_version = Prop.Version.valueOfOrDefault(version);
-  if (p_prop_version != prop_version) {
-    warnings = "";
-    request.getSession().setAttribute(WARNINGS, null);
-    prop_version = p_prop_version;
-  }
-  request.getSession().setAttribute(VERSION, prop_version.name());
-
-
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
   int i=0;

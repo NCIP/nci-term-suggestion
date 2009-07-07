@@ -7,7 +7,6 @@ import javax.servlet.http.*;
 
 public class SuggestionRequest extends NewTermRequest {
     // List of session parameter/attribute name(s):
-    public static final String RESET = "reset";
     public static final String VERSION = "version";
 
     // List of session attribute name(s):
@@ -23,10 +22,17 @@ public class SuggestionRequest extends NewTermRequest {
     public static final String SOURCE = "Source";
     public static final String CADSR = "caDSR Type";
 
+    // Constant(s):
+    public static final String[] ALL_PARAMETERS = new String[] { 
+        EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
+        DEFINITION, REASON, SOURCE, CADSR };
+    public static final String[] MOST_PARAMETERS = new String[] { 
+        /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
+        DEFINITION, REASON, SOURCE, CADSR };
+    
     public SuggestionRequest(HttpServletRequest request) {
         super(request, VOCABULARY);
-        setParameters(new String[] { EMAIL, OTHER, VOCABULARY, 
-            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON, SOURCE, CADSR });
+        setParameters(ALL_PARAMETERS);
     }
 
     public String submitForm() {
@@ -58,8 +64,7 @@ public class SuggestionRequest extends NewTermRequest {
             return WARNING_STATE;
         }
 
-        clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
-            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON, SOURCE, CADSR });
+        clearSessionAttributes(MOST_PARAMETERS);
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);
