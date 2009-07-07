@@ -4,8 +4,10 @@ public class Debug {
     private static final String PREFIX = "DEBUG: ";
     private static boolean _display = true;
     
-    public static void setDisplay(boolean display) {
+    public static boolean setDisplay(boolean display) {
+        boolean prev = _display;
         _display = display;
+        return prev;
     }
     
     public static boolean isDisplay() {

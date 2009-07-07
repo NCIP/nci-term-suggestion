@@ -56,6 +56,8 @@ public class VocabInfo {
     }
     
     public static void debug(List<VocabInfo> list) {
+        if (! Debug.isDisplay())
+            return;
         Iterator<VocabInfo> iterator = list.iterator();
         Debug.println(StringUtils.SEPARATOR);
         Debug.println("List of vocabularies:");

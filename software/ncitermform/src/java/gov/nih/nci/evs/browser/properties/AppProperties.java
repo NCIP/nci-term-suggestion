@@ -32,8 +32,10 @@ public class AppProperties {
     }
 
     public static AppProperties getInstance() {
-        if (_appProperties == null)
+        if (_appProperties == null) {
             _appProperties = new AppProperties();
+            Debug.setDisplay(_appProperties.isDebugOn());
+        }
         return _appProperties;
     }
 
@@ -108,8 +110,7 @@ public class AppProperties {
     public ArrayList<VocabInfo> getVocabularies() {
         if (_vocabList == null) {
             _vocabList = parseVocabList();
-            if (isDebugOn())
-                VocabInfo.debug(_vocabList);
+            VocabInfo.debug(_vocabList);
         }
         return _vocabList;
     }
@@ -157,8 +158,7 @@ public class AppProperties {
         if (_sourceList == null) {
             String value = getSources();
             _sourceList = StringUtils.toStrings(value, ";", false);
-            if (isDebugOn())
-                StringUtils.debug("Source List", _sourceList);
+            StringUtils.debug("Source List", _sourceList);
         }
         return _sourceList;
     }
@@ -171,8 +171,7 @@ public class AppProperties {
         if (_caDSRTypeList == null) {
             String value = getCADSRTypes();
             _caDSRTypeList = StringUtils.toStrings(value, ";", false);
-            if (isDebugOn())
-                StringUtils.debug("caDSR Type List", _caDSRTypeList);
+            StringUtils.debug("caDSR Type List", _caDSRTypeList);
         }
         return _caDSRTypeList;
     }
