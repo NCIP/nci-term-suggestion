@@ -2,11 +2,14 @@ package gov.nih.nci.evs.browser.utils;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
 import java.util.regex.*;
 
 import javax.servlet.http.*;
 
 public class HTTPUtils {
+    public static final String[] EMPTY_PARAMETERS = new String[] {};
+    
     public static String getParameter(HttpServletRequest request, String name,
             boolean convertNullToBlankString) {
         String value = request.getParameter(name);
@@ -61,5 +64,48 @@ public class HTTPUtils {
         Pattern myPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         string = myPattern.matcher(string).replaceAll(replaceWith);
         return string;
+    }
+    
+    public static HashMap<String, String> getParametersHashMap(
+        HttpServletRequest request, String[] parameters) {
+        HashMap<String, String> hashMap = new HashMap<String, String>();
+        for (int i = 0; i < parameters.length; ++i) {
+            String key = parameters[i];
+            String value = (String) request.getParameter(key);
+            if (value == null)
+                value = "[Not Set]";
+            hashMap.put(key, value);
+        }
+        return hashMap;
+    }
+    
+    public static String debugParameters(String text, String[] parameters, 
+        HashMap<String, String> parametersHashMap) {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(text);
+        for (int i = 0; i < parameters.length; ++i) {
+            String parameter = parameters[i];
+            buffer.append("\n* ");
+            buffer.append(parameter + ": ");
+            buffer.append(parametersHashMap.get(parameter));
+        }
+        return buffer.toString();
+    }
+    
+    public static void updateSessionAttributes(HttpServletRequest request, 
+        String[] parameters, HashMap<String, String> parametersHashMap) {
+        for (int i = 0; i < parameters.length; ++i) {
+            String parameter = parameters[i];
+            request.getSession().setAttribute(parameter,
+                parametersHashMap.get(parameter));
+        }
+    }
+    
+    public static void clearSessionAttributes(HttpServletRequest request, 
+            String[] parameters) {
+        for (int i = 0; i < parameters.length; ++i) {
+            String parameter = parameters[i];
+            request.getSession().setAttribute(parameter, null);
+        }
     }
 }
