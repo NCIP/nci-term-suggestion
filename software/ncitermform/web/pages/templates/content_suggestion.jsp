@@ -7,9 +7,9 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/utils.js"></script>
 <%!
-// List of session parameter/attribute name(s):
+  // List of session parameter/attribute name(s):
   private static final String VERSION = SuggestionRequest.VERSION;
 
   // List of session attribute name(s):
@@ -31,7 +31,7 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Checking form version:
+    // Checking form version:
   String version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
   String p_version = HTTPUtils.getParameter(request, VERSION, false);
   Prop.Version p_prop_version = Prop.Version.valueOfOrDefault(p_version);
