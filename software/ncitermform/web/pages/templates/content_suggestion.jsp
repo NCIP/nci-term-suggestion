@@ -38,6 +38,7 @@
   Prop.Version prop_version = Prop.Version.valueOfOrDefault(version);
   if (p_prop_version != prop_version) {
     prop_version = p_prop_version;
+    HTTPUtils.clearSessionAttributes(request, NewTermRequest.ALL_PARAMETERS);
     HTTPUtils.clearSessionAttributes(request, SuggestionRequest.MOST_PARAMETERS);
   }
   request.getSession().setAttribute(VERSION, prop_version.name());
