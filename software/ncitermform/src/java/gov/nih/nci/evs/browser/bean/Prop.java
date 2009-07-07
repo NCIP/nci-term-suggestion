@@ -122,22 +122,4 @@ public class Prop {
             }
         }
     }
-    
-    //-- Enum CADSR ------------------------------------------------------------
-    public static enum CADSR {
-        None, CADSR_OC, CADSR_PROP, CADSR_REP, CADSR_VV;
-        public static CADSR valueOfOrDefault(String text) {
-            try {
-                String textStr = text.toLowerCase();
-                for (CADSR value : values()) {
-                    String valueStr = value.name().toLowerCase();
-                    if (valueStr.equals(textStr))
-                        return value;
-                }
-                return values()[0];
-            } catch (Exception e) {
-                return values()[0];
-            }
-        }
-    }
 }
