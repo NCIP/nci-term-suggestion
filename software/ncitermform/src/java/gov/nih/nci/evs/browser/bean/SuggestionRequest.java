@@ -6,9 +6,6 @@ import gov.nih.nci.evs.browser.utils.*;
 import javax.servlet.http.*;
 
 public class SuggestionRequest extends NewTermRequest {
-    // List of session parameter/attribute name(s):
-    public static final String VERSION = "version";
-
     // List of session attribute name(s):
     public static final String EMAIL = "Email";
     public static final String OTHER = "Other";
