@@ -1,5 +1,7 @@
-package gov.nih.nci.evs.browser.bean;
+package gov.nih.nci.evs.browser.webapp;
 
+import gov.nih.nci.evs.browser.bean.Prop;
+import gov.nih.nci.evs.browser.bean.Prop.Version;
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 

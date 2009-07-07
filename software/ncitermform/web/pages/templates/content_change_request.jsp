@@ -1,4 +1,5 @@
 <%@ page import="gov.nih.nci.evs.browser.bean.*" %>
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%!
