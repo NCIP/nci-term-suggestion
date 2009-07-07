@@ -16,7 +16,8 @@ public class AppProperties {
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String VOCABULARY_PREFIX = "VOCABULARY_";
     private static final int VOCABULARY_MAX = 20;
-    private static final String SOURCE_LIST = "SOURCE_LIST";
+    private static final String SOURCES = "SOURCES";
+    private static final String CADSR_TYPES = "CADSR_TYPES";
 
     private static AppProperties _appProperties = null;
     private Logger _log = Logger.getLogger(AppProperties.class);
@@ -24,6 +25,7 @@ public class AppProperties {
     private String _buildInfo = null;
     private ArrayList<VocabInfo> _vocabList = null;
     private String[] _sourceList = null;
+    private String[] _caDSRTypeList = null;
 
     private AppProperties() { // Singleton Pattern
         loadProperties();
@@ -147,16 +149,29 @@ public class AppProperties {
         return new String[0];
     }
     
-    public String getSourceList() {
-        return getProperty(SOURCE_LIST);
+    public String getSources() {
+        return getProperty(SOURCES);
     }
 
-    public String[] getSourceListArray() {
+    public String[] getSourceList() {
         if (_sourceList == null) {
-            String value = getSourceList();
+            String value = getSources();
             _sourceList = StringUtils.toStrings(value, ";", false);
             StringUtils.debug("Source List", _sourceList);
         }
         return _sourceList;
+    }
+    
+    public String getCADSRTypes() {
+        return getProperty(CADSR_TYPES);
+    }
+
+    public String[] getCADSRTypeList() {
+        if (_caDSRTypeList == null) {
+            String value = getCADSRTypes();
+            _caDSRTypeList = StringUtils.toStrings(value, ";", false);
+            StringUtils.debug("caDSR Type List", _caDSRTypeList);
+        }
+        return _caDSRTypeList;
     }
 }

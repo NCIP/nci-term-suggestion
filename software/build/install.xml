@@ -259,7 +259,8 @@
             <filter token="vocabulary.8" value="${vocabulary.8}"/>
             <filter token="vocabulary.9" value="${vocabulary.9}"/>
             <filter token="vocabulary.10" value="${vocabulary.10}"/>
-            <filter token="source.list" value="${source.list}"/>
+            <filter token="sources" value="${sources}"/>
+            <filter token="cadsr.types" value="${cadsr.types}"/>
         </filterset>
         <mkdir dir="${application.data.path}/${ncitermform.conf.path}" />
         <copy todir="${application.data.path}/${ncitermform.conf.path}" filtering="true" overwrite="true">
