@@ -5,7 +5,7 @@ import gov.nih.nci.evs.browser.utils.*;
 
 import javax.servlet.http.*;
 
-public class SuggestionRequest extends NewTermRequest {
+public class SuggestionRequest extends FormRequest {
     // List of session attribute name(s):
     public static final String EMAIL = "Email";
     public static final String OTHER = "Other";
@@ -33,7 +33,7 @@ public class SuggestionRequest extends NewTermRequest {
     }
 
     public String submitForm() {
-        clearSessionAttributes(NewTermRequest.ALL_PARAMETERS);
+        clearSessionAttributes(FormRequest.ALL_PARAMETERS);
         updateSessionAttributes();
         
         String warnings = validate();
