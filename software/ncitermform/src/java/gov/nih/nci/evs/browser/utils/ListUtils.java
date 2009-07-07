@@ -9,13 +9,4 @@ public class ListUtils {
         Arrays.sort(as);
         return new ArrayList<String>(Arrays.asList(as));
     }
-    
-    public static void debugList(String text, ArrayList<?> list) {
-        Iterator<?> iterator = list.iterator();
-        Debug.println(StringUtils.SEPARATOR);
-        Debug.println("* " + text);
-        while (iterator.hasNext()) {
-            Debug.println("  * " + iterator.next());
-        }
-    }
 }
