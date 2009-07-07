@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
-public class NewTermRequest extends BaseRequest {
+public class FormRequest extends BaseRequest {
     // List of session attribute name(s):
     public static final String VERSION = "version";
     public static final String MESSAGE = "message";
@@ -24,7 +24,7 @@ public class NewTermRequest extends BaseRequest {
     protected String _vocabularyParameter = null;
     protected boolean _isSendEmail = AppProperties.getInstance().isSendEmail();
     
-    public NewTermRequest(HttpServletRequest request, String vocabularyParameter) {
+    public FormRequest(HttpServletRequest request, String vocabularyParameter) {
         super(request);
         _vocabularyParameter = vocabularyParameter;
     }

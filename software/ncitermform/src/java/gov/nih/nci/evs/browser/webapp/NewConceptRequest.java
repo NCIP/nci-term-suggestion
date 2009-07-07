@@ -5,7 +5,7 @@ import gov.nih.nci.evs.browser.utils.*;
 
 import javax.servlet.http.*;
 
-public class NewConceptRequest extends NewTermRequest {
+public class NewConceptRequest extends FormRequest {
     // List of session attribute name(s):
     private static final String EMAIL = "email";
     private static final String OTHER = "other";

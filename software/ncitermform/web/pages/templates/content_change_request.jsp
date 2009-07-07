@@ -3,12 +3,11 @@
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
 <%!
   // List of session attribute name(s):
-  private static final String VERSION = NewTermRequest.VERSION;
-  private static final String MESSAGE = NewTermRequest.MESSAGE;
-  private static final String WARNINGS = NewTermRequest.WARNINGS;
-%>
+  private static final String VERSION = FormRequest.VERSION;
+  private static final String MESSAGE = FormRequest.MESSAGE;
+  private static final String WARNINGS = FormRequest.WARNINGS;%>
 <%
-    // Session Attribute(s):
+  // Session Attribute(s):
   String version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
   String message = HTTPUtils.getSessionAttributeString(request, MESSAGE, false, true);
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS, false, true);
