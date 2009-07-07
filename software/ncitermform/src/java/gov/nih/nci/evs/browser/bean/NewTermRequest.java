@@ -7,6 +7,7 @@ import gov.nih.nci.evs.browser.utils.*;
 
 public class NewTermRequest extends BaseRequest {
     // List of session attribute name(s):
+    public static final String VERSION = "version";
     public static final String MESSAGE = "message";
     public static final String WARNINGS = "warnings";
     
