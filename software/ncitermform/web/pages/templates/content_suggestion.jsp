@@ -88,7 +88,7 @@
         " at some stage replicate proteins and nucleic acids, utilize" +
         " energy, and reproduce themselves.";
     if (source.length() <= 0)
-        source = Prop.Source.NCI_GLOSS_0902D.name();
+        source = AppProperties.getInstance().getSourceListArray()[0];
     if (cadsr.length() <= 0)
       cadsr = Prop.CADSR.CADSR_PROP.name();
     if (reason.length() <= 0)
@@ -207,9 +207,9 @@
               <select name="<%=SOURCE%>" class="newConceptCB2<%=css%>">
                 <%
                   selectedItem = source;
-                  Prop.Source[] enumValues = Prop.Source.values();
-                  for (i=0; i<enumValues.length; ++i) {
-                      String item = enumValues[i].name();
+                  items = AppProperties.getInstance().getSourceListArray();
+                  for (i=0; i<items.length; ++i) {
+                      String item = items[i];
                       String args = "";
                       if (item.equals(selectedItem))
                         args += "selected=\"true\"";
@@ -227,9 +227,9 @@
               <select name="<%=CADSR%>" class="newConceptCB2<%=css%>">
                 <%
                   selectedItem = cadsr;
-                  Prop.CADSR[] enumValues2 = Prop.CADSR.values();
-                  for (i=0; i<enumValues2.length; ++i) {
-                      String item = enumValues2[i].name();
+                  Prop.CADSR[] enumValues = Prop.CADSR.values();
+                  for (i=0; i<enumValues.length; ++i) {
+                      String item = enumValues[i].name();
                       String args = "";
                       if (item.equals(selectedItem))
                         args += "selected=\"true\"";
