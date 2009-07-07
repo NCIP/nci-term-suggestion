@@ -1,13 +1,9 @@
 package gov.nih.nci.evs.browser.utils;
 
-import java.util.Properties;
+import java.util.*;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.*;
+import javax.mail.internet.*;
 
 public class MailUtils extends Object {
     private static final long serialVersionUID = 1L;

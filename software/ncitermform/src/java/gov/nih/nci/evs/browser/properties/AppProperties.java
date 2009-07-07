@@ -5,7 +5,7 @@ import gov.nih.nci.evs.browser.webapp.*;
 
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
 public class AppProperties {
     private static final String PROPERTY_FILE = "NCITermFormPropertiesFile";
