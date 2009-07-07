@@ -142,8 +142,10 @@
       </tr>
       <tr>
         <td></td>
-        <td colspan="2" class="newConceptNotes"><b>Privacy Notice:</b> Your contact information will only be used to contact you
-            <br/>&nbsp;&nbsp;&nbsp;&nbsp;about this topic and not for any other purpose.
+        <td colspan="2" class="newConceptNotes"><b>Privacy Notice: </b>
+          Your name, phone, or other contact information will only be used
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+          to contact you about this topic and not for any other purpose.
         </td>
       </tr>
 
