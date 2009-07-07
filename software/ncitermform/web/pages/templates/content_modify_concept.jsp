@@ -98,7 +98,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>>Other:</td>
-        <td colspan="2"><textarea name="other" class="newConceptTA<%=css%>"><%=other%></textarea></td>
+        <td colspan="2"><textarea name="other" class="newConceptTA6<%=css%>"><%=other%></textarea></td>
       </tr>
       <tr>
         <td></td>
@@ -148,7 +148,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>>Suggestion(s): <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><textarea name="suggestions" class="newConceptTA2<%=css%>"><%=suggestions%></textarea></td>
+        <td colspan="2"><textarea name="suggestions" class="newConceptTA12<%=css%>"><%=suggestions%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
@@ -156,7 +156,7 @@
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
         <td <%=LABEL_ARGS%>>Reason for modification plus any other additional information:</td>
-        <td colspan="2"><textarea name="reason" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
+        <td colspan="2"><textarea name="reason" class="newConceptTA6<%=css%>"><%=reason%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->

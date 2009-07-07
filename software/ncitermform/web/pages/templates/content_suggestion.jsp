@@ -138,7 +138,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=OTHER%>:</td>
-        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA<%=css%>"><%=other%></textarea></td>
+        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA6<%=css%>"><%=other%></textarea></td>
       </tr>
       <tr>
         <td></td>
@@ -198,7 +198,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=DEFINITION%>:</td>
-        <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
+        <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA6<%=css%>"><%=definition%></textarea></td>
       </tr>
       
       <%
@@ -253,7 +253,7 @@
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=REASON%>:</td>
-        <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
+        <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA6<%=css%>"><%=reason%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
