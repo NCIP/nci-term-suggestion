@@ -1,4 +1,4 @@
-package gov.nih.nci.evs.browser.newterm;
+package gov.nih.nci.evs.browser.webapp;
 
 import gov.nih.nci.evs.browser.utils.*;
 
