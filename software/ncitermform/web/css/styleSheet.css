@@ -582,6 +582,36 @@ h3
   height: 24px;
   font-size: 10px;
 }
+.newConceptTA2 {
+  width: 400px;
+  height: 26px;
+  font-size: 10px;
+}
+.newConceptTA2_IE {
+  width: 400px;
+  height: 29px;
+  font-size: 11px;
+}
+.newConceptTA3 {
+  width: 400px;
+  height: 40px;
+  font-size: 10px;
+}
+.newConceptTA3_IE {
+  width: 400px;
+  height: 45px;
+  font-size: 11px;
+}
+.newConceptTA4 {
+  width: 400px;
+  height: 52px;
+  font-size: 10px;
+}
+.newConceptTA4_IE {
+  width: 400px;
+  height: 58px;
+  font-size: 11px;
+}
 .newConceptTA6 {
   width: 400px;
   height: 75px;
