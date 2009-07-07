@@ -45,6 +45,8 @@ public class VocabInfo {
     }
 
     public static void debug(VocabInfo list) {
+        if (! Debug.isDisplay())
+            return;
         Debug.println("* Name: " + list.getName());
         Debug.println("  * Url: " + list.getUrl());
         ArrayList<String> emails = list.getEmails();

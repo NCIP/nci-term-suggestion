@@ -2,13 +2,13 @@ package gov.nih.nci.evs.browser.utils;
 
 import java.util.*;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.*;
 
 public class WebUtils {
     public static void debugHeaders(HttpServletRequest request) {
         ArrayList<String> list = getHeaders(request);
         list = ListUtils.sort(list);
-        ListUtils.debugList("Request Headers", list);
+        Debug.printList("Request Headers", list);
     }
     
     public static ArrayList<String> getHeaders(HttpServletRequest request) {
