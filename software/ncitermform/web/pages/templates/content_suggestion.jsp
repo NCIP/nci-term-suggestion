@@ -138,7 +138,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=OTHER%>:</td>
-        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA6<%=css%>"><%=other%></textarea></td>
+        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA4<%=css%>"><%=other%></textarea></td>
       </tr>
       <tr>
         <td></td>
@@ -183,18 +183,15 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=TERM%>: <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><input name="<%=TERM%>" value="<%=term%>" alt="<%=TERM%>"
-          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+        <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=SYNONYMS%>:</td>
-        <td colspan="2"><input name="<%=SYNONYMS%>" value="<%=synonyms%>" alt="<%=SYNONYMS%>"
-          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+        <td colspan="2"><textarea name="<%=SYNONYMS%>" class="newConceptTA2<%=css%>"><%=synonyms%></textarea></td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=NEAREST_CODE%>:</td>
-        <td colspan="2"><input name="<%=NEAREST_CODE%>" value="<%=nearest_code%>" alt="<%=NEAREST_CODE%>"
-          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+        <td colspan="2"><textarea name="<%=NEAREST_CODE%>" class="newConceptTA2<%=css%>"><%=nearest_code%></textarea></td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=DEFINITION%>:</td>
