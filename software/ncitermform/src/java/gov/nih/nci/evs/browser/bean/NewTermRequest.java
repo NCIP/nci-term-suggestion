@@ -10,6 +10,10 @@ public class NewTermRequest extends BaseRequest {
     public static final String VERSION = "version";
     public static final String MESSAGE = "message";
     public static final String WARNINGS = "warnings";
+
+    // Parameter list(s):
+    public static final String[] ALL_PARAMETERS = 
+        new String[] { MESSAGE, WARNINGS };
     
     // List of return state(s):
     protected static final String SUCCESSFUL_STATE = "successful";
@@ -27,8 +31,7 @@ public class NewTermRequest extends BaseRequest {
     
     public void clear() {
         super.clear();
-        _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, null);
+        clearSessionAttributes(ALL_PARAMETERS);
     }
     
     public String clearForm() {

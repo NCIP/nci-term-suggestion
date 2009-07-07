@@ -19,7 +19,7 @@ public class SuggestionRequest extends NewTermRequest {
     public static final String SOURCE = "Source";
     public static final String CADSR = "caDSR Type";
 
-    // Constant(s):
+    // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
         EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
         DEFINITION, REASON, SOURCE, CADSR };
@@ -33,8 +33,7 @@ public class SuggestionRequest extends NewTermRequest {
     }
 
     public String submitForm() {
-        _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, null);
+        clearSessionAttributes(NewTermRequest.ALL_PARAMETERS);
         updateSessionAttributes();
         
         String warnings = validate();
