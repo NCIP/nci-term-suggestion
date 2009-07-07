@@ -16,12 +16,14 @@ public class AppProperties {
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String VOCABULARY_PREFIX = "VOCABULARY_";
     private static final int VOCABULARY_MAX = 20;
+    private static final String SOURCE_LIST = "SOURCE_LIST";
 
     private static AppProperties _appProperties = null;
     private Logger _log = Logger.getLogger(AppProperties.class);
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
     private ArrayList<VocabInfo> _vocabList = null;
+    private String[] _sourceList = null;
 
     private AppProperties() { // Singleton Pattern
         loadProperties();
@@ -143,5 +145,18 @@ public class AppProperties {
             }
         }
         return new String[0];
+    }
+    
+    public String getSourceList() {
+        return getProperty(SOURCE_LIST);
+    }
+
+    public String[] getSourceListArray() {
+        if (_sourceList == null) {
+            String value = getSourceList();
+            _sourceList = StringUtils.toStrings(value, ";", false);
+            StringUtils.debug("Source List", _sourceList);
+        }
+        return _sourceList;
     }
 }
