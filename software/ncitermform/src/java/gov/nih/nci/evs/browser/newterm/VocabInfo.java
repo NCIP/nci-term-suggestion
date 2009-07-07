@@ -43,26 +43,22 @@ public class VocabInfo {
         }
         return ! info.isEmpty() ? info : null;
     }
-    
-    private static void debug(String text) {
-        System.out.println("DEBUG: " + text);
-    }
 
     public static void debug(VocabInfo list) {
-        debug("* Name: " + list.getName());
-        debug("  * Url: " + list.getUrl());
+        Debug.println("* Name: " + list.getName());
+        Debug.println("  * Url: " + list.getUrl());
         ArrayList<String> emails = list.getEmails();
         Iterator<String> iterator = emails.iterator();
         while (iterator.hasNext()) {
             String email = iterator.next();
-            debug("  * Email: " + email);
+            Debug.println("  * Email: " + email);
         }
     }
     
     public static void debug(List<VocabInfo> list) {
         Iterator<VocabInfo> iterator = list.iterator();
-        debug(StringUtils.SEPARATOR);
-        debug("List of vocabularies:");
+        Debug.println(StringUtils.SEPARATOR);
+        Debug.println("List of vocabularies:");
         while (iterator.hasNext())
             debug(iterator.next());
     }
@@ -78,12 +74,12 @@ public class VocabInfo {
             "   ",
         };
         for (int i=0; i<values.length; ++i) {
-            debug("----------------------------------------");
+            Debug.println(StringUtils.SEPARATOR);
             String value = values[i];
-            debug("Value: \"" + value + "\"");
+            Debug.println("Value: \"" + value + "\"");
             VocabInfo vocab = VocabInfo.parse(value);
             debug(vocab);
-            debug("");
+            Debug.println("");
         }
     }
 }

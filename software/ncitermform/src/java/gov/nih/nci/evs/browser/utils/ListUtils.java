@@ -12,9 +12,10 @@ public class ListUtils {
     
     public static void debugList(String text, ArrayList<?> list) {
         Iterator<?> iterator = list.iterator();
-        System.out.println("DEBUG: * " + text);
+        Debug.println(StringUtils.SEPARATOR);
+        Debug.println("* " + text);
         while (iterator.hasNext()) {
-            System.out.println("DEBUG:   * " + iterator.next());
+            Debug.println("  * " + iterator.next());
         }
     }
 }
