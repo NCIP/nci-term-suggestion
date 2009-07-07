@@ -1,7 +1,9 @@
 package gov.nih.nci.evs.browser.bean;
 
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import gov.nih.nci.evs.browser.webapp.*;
+
+import javax.faces.context.*;
+import javax.servlet.http.*;
 
 public class UserSessionBean {
 	private HttpServletRequest getRequest() {

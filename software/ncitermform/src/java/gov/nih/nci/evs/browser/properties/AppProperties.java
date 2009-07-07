@@ -1,11 +1,11 @@
 package gov.nih.nci.evs.browser.properties;
 
-import gov.nih.nci.evs.browser.newterm.*;
 import gov.nih.nci.evs.browser.utils.*;
+import gov.nih.nci.evs.browser.webapp.*;
 
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
 public class AppProperties {
     private static final String PROPERTY_FILE = "NCITermFormPropertiesFile";
@@ -16,20 +16,26 @@ public class AppProperties {
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String VOCABULARY_PREFIX = "VOCABULARY_";
     private static final int VOCABULARY_MAX = 20;
+    private static final String SOURCES = "SOURCES";
+    private static final String CADSR_TYPES = "CADSR_TYPES";
 
     private static AppProperties _appProperties = null;
     private Logger _log = Logger.getLogger(AppProperties.class);
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
     private ArrayList<VocabInfo> _vocabList = null;
+    private String[] _sourceList = null;
+    private String[] _caDSRTypeList = null;
 
     private AppProperties() { // Singleton Pattern
         loadProperties();
     }
 
     public static AppProperties getInstance() {
-        if (_appProperties == null)
+        if (_appProperties == null) {
             _appProperties = new AppProperties();
+            Debug.setDisplay(_appProperties.isDebugOn());
+        }
         return _appProperties;
     }
 
@@ -104,8 +110,7 @@ public class AppProperties {
     public ArrayList<VocabInfo> getVocabularies() {
         if (_vocabList == null) {
             _vocabList = parseVocabList();
-            if (isDebugOn())
-                VocabInfo.debug(_vocabList);
+            VocabInfo.debug(_vocabList);
         }
         return _vocabList;
     }
@@ -143,5 +148,31 @@ public class AppProperties {
             }
         }
         return new String[0];
+    }
+    
+    public String getSources() {
+        return getProperty(SOURCES);
+    }
+
+    public String[] getSourceList() {
+        if (_sourceList == null) {
+            String value = getSources();
+            _sourceList = StringUtils.toStrings(value, ";", false);
+            Debug.printList("Source List", _sourceList);
+        }
+        return _sourceList;
+    }
+    
+    public String getCADSRTypes() {
+        return getProperty(CADSR_TYPES);
+    }
+
+    public String[] getCADSRTypeList() {
+        if (_caDSRTypeList == null) {
+            String value = getCADSRTypes();
+            _caDSRTypeList = StringUtils.toStrings(value, ";", false);
+            Debug.printList("caDSR Type List", _caDSRTypeList);
+        }
+        return _caDSRTypeList;
     }
 }

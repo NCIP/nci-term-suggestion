@@ -259,6 +259,8 @@
             <filter token="vocabulary.8" value="${vocabulary.8}"/>
             <filter token="vocabulary.9" value="${vocabulary.9}"/>
             <filter token="vocabulary.10" value="${vocabulary.10}"/>
+            <filter token="sources" value="${sources}"/>
+            <filter token="cadsr.types" value="${cadsr.types}"/>
         </filterset>
         <mkdir dir="${application.data.path}/${ncitermform.conf.path}" />
         <copy todir="${application.data.path}/${ncitermform.conf.path}" filtering="true" overwrite="true">
@@ -276,7 +278,7 @@
     </target>
 
     <target name="-install:jboss:configure:properties-service" depends="init:install">
-
+
         <!-- Check if already updated -->
         <condition property="properties-service.updated">
             <isfileselected file="${jboss.home}/server/${jboss.server.name}/deploy/properties-service.xml">

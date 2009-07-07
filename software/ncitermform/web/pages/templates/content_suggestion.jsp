@@ -3,14 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ page contentType="text/html;charset=windows-1252"%>
 <%@ page import="java.util.*" %>
-<%@ page import="gov.nih.nci.evs.browser.bean.*" %>
-<%@ page import="gov.nih.nci.evs.browser.newterm.*" %>
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/utils.js"></script>
 <%!
-// List of session parameter/attribute name(s):
-  private static final String RESET = SuggestionRequest.RESET;
+  // List of session parameter/attribute name(s):
   private static final String VERSION = SuggestionRequest.VERSION;
 
   // List of session attribute name(s):
@@ -32,13 +30,19 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  boolean reset = Prop.Bool.getBoolean(
-    HTTPUtils.getParameter(request, RESET, false));
-  if (reset)
-    request.getSession().setAttribute(VERSION, null);
+    // Checking form version:
+  String version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
+  String p_version = HTTPUtils.getParameter(request, VERSION, false);
+  Prop.Version p_prop_version = Prop.Version.valueOfOrDefault(p_version);
+  Prop.Version prop_version = Prop.Version.valueOfOrDefault(version);
+  if (p_prop_version != prop_version) {
+    prop_version = p_prop_version;
+    HTTPUtils.clearSessionAttributes(request, FormRequest.ALL_PARAMETERS);
+    HTTPUtils.clearSessionAttributes(request, SuggestionRequest.MOST_PARAMETERS);
+  }
+  request.getSession().setAttribute(VERSION, prop_version.name());
 
-// Session Attribute(s):
-  String p_version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
+  // Session Attribute(s):
   String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
   String other = HTTPUtils.getSessionAttributeString(request, OTHER);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
@@ -50,12 +54,6 @@
   String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR);
   String reason = HTTPUtils.getSessionAttributeString(request, REASON);
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
-  
-  // Parameter(s):
-  if (p_version == null)
-    p_version = HTTPUtils.getParameter(request, VERSION, false);
-  Prop.Version version = Prop.Version.valueOfOrDefault(p_version);
-  request.getSession().setAttribute(VERSION, version.name());
   
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
@@ -88,9 +86,9 @@
         " at some stage replicate proteins and nucleic acids, utilize" +
         " energy, and reproduce themselves.";
     if (source.length() <= 0)
-        source = Prop.Source.NCI_GLOSS_0902D.name();
+      source = AppProperties.getInstance().getSourceList()[0];
     if (cadsr.length() <= 0)
-      cadsr = Prop.CADSR.CADSR_PROP.name();
+      cadsr = AppProperties.getInstance().getCADSRTypeList()[0];
     if (reason.length() <= 0)
       reason = "New improved version of the previous type.";
   }
@@ -102,28 +100,30 @@
       <!-- =================================================================== -->
       <%
           if (warnings.length() > 0) {
-                String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
-                for (i=0; i<wList.length; ++i) {
-          String warning = wList[i];
-          warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
-          if (i==0) {
+            String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
+            for (i=0; i<wList.length; ++i) {
+              String warning = wList[i];
+              warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
+              if (i==0) {
       %>
               <tr>
                 <td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
                 <td><i class="warningMsgColor"><%=warning%></i></td>
               </tr>
-      <%    } else { %>
+      <%
+          } else {
+      %>
               <tr>
                 <td <%=LABEL_ARGS%>></td>
                 <td><i class="warningMsgColor"><%=warning%></i></td>
               </tr>
       <%
-            }
           }
+              }
       %>
           <tr><td><br/></td></tr>
       <%
-        }
+          }
       %>
       
       <!-- =================================================================== -->
@@ -137,12 +137,14 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=OTHER%>:</td>
-        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA<%=css%>"><%=other%></textarea></td>
+        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA4<%=css%>"><%=other%></textarea></td>
       </tr>
       <tr>
         <td></td>
-        <td colspan="2" class="newConceptNotes"><b>Privacy Notice:</b> Your contact information will only be used to contact you
-            <br/>&nbsp;&nbsp;&nbsp;&nbsp;about this topic and not for any other purpose.
+        <td colspan="2" class="newConceptNotes"><b class="warningMsgColor">Privacy Notice: </b>
+          Your email, name, phone, or other contact information will only be used
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+          to contact you about this topic and not for any other purpose.
         </td>
       </tr>
 
@@ -157,20 +159,20 @@
         <td>
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
-              selectedItem = vocabulary;
-              ArrayList list = AppProperties.getInstance().getVocabularies();
-              Iterator iterator = list.iterator();
-              while (iterator.hasNext()) {
-                VocabInfo vocab = (VocabInfo) iterator.next();
-                String item = vocab.getName();
-                String url = vocab.getUrl();
-                String args = "";
-                if (item.equals(selectedItem))
-                  args += "selected=\"true\"";
+                selectedItem = vocabulary;
+                      ArrayList list = AppProperties.getInstance().getVocabularies();
+                      Iterator iterator = list.iterator();
+                      while (iterator.hasNext()) {
+                        VocabInfo vocab = (VocabInfo) iterator.next();
+                        String item = vocab.getName();
+                        String url = vocab.getUrl();
+                        String args = "";
+                        if (item.equals(selectedItem))
+                          args += "selected=\"true\"";
             %>
                 <option value="<%=url%>" <%=args%>><%=item%></option>
             <%
-              }
+                }
             %>
           </select>
         </td>
@@ -180,39 +182,36 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=TERM%>: <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><input name="<%=TERM%>" value="<%=term%>" alt="<%=TERM%>"
-          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+        <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=SYNONYMS%>:</td>
-        <td colspan="2"><input name="<%=SYNONYMS%>" value="<%=synonyms%>" alt="<%=SYNONYMS%>"
-          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+        <td colspan="2"><textarea name="<%=SYNONYMS%>" class="newConceptTA2<%=css%>"><%=synonyms%></textarea></td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=NEAREST_CODE%>:</td>
-        <td colspan="2"><input name="<%=NEAREST_CODE%>" value="<%=nearest_code%>" alt="<%=NEAREST_CODE%>"
-          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>></td>
+        <td colspan="2"><textarea name="<%=NEAREST_CODE%>" class="newConceptTA2<%=css%>"><%=nearest_code%></textarea></td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=DEFINITION%>:</td>
-        <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA<%=css%>"><%=definition%></textarea></td>
+        <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA6<%=css%>"><%=definition%></textarea></td>
       </tr>
       
       <%
-        if (version == Prop.Version.CADSR) {
-      %>
+                if (prop_version == Prop.Version.CADSR) {
+            %>
           <tr>
             <td <%=LABEL_ARGS%>><%=SOURCE%>:</td>
             <td colspan="2">
               <select name="<%=SOURCE%>" class="newConceptCB2<%=css%>">
                 <%
                   selectedItem = source;
-                  Prop.Source[] enumValues = Prop.Source.values();
-                  for (i=0; i<enumValues.length; ++i) {
-                      String item = enumValues[i].name();
-                      String args = "";
-                      if (item.equals(selectedItem))
-                        args += "selected=\"true\"";
+                  items = AppProperties.getInstance().getSourceList();
+                  for (i=0; i<items.length; ++i) {
+                    String item = items[i];
+                    String args = "";
+                    if (item.equals(selectedItem))
+                      args += "selected=\"true\"";
                 %>
                       <option value="<%=item%>" <%=args%>><%=item%></option>
                 <%
@@ -227,12 +226,12 @@
               <select name="<%=CADSR%>" class="newConceptCB2<%=css%>">
                 <%
                   selectedItem = cadsr;
-                  Prop.CADSR[] enumValues2 = Prop.CADSR.values();
-                  for (i=0; i<enumValues2.length; ++i) {
-                      String item = enumValues2[i].name();
-                      String args = "";
-                      if (item.equals(selectedItem))
-                        args += "selected=\"true\"";
+                  items = AppProperties.getInstance().getCADSRTypeList();
+                  for (i=0; i<items.length; ++i) {
+                    String item = items[i];
+                    String args = "";
+                    if (item.equals(selectedItem))
+                      args += "selected=\"true\"";
                 %>
                       <option value="<%=item%>" <%=args%>><%=item%></option>
                 <%
@@ -250,7 +249,7 @@
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=REASON%>:</td>
-        <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA<%=css%>"><%=reason%></textarea></td>
+        <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA6<%=css%>"><%=reason%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->

@@ -27,16 +27,6 @@ public class StringUtils {
         return toStrings(value, delimiter, includeDelimiter, true);
     }
 
-    public static void debug(String msg, String[] list) {
-        if (msg != null && msg.length() > 0)
-            System.out.println(msg);
-        if (list == null)
-            return;
-        for (int i = 0; i < list.length; ++i) {
-            System.out.println("  " + (i + 1) + ") " + list[i]);
-        }
-    }
-
     public static String toHtml(String text) {
         text = text.replaceAll("\n", "<br/>");
         text = text.replaceAll("  ", "&nbsp;&nbsp;");

@@ -2,9 +2,9 @@
   String basePath = request.getContextPath();
   String changeRequestForm = basePath + "/pages/change_request.jsp";
   String newConceptForm = basePath + "/pages/new_concept.jsf";
-  String definitionChangeForm = basePath + "/pages/modify_concept.jsp?property=Definition";
-  String synonymChangeForm = basePath + "/pages/modify_concept.jsp?property=Synonym";
-  String othersChangeForm = basePath + "/pages/modify_concept.jsp?property=Others";
+  String definitionChangeForm = basePath + "/pages/modify_concept_mockup.jsf?property=Definition";
+  String synonymChangeForm = basePath + "/pages/modify_concept_mockup.jsf?property=Synonym";
+  String othersChangeForm = basePath + "/pages/modify_concept_mockup.jsf?property=Others";
 %>
 <div class="texttitle-blue">Mock Up Forms for Suggest New Term:</div><br/>
 <p>

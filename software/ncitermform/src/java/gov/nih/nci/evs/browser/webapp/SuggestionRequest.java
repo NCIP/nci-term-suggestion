@@ -1,15 +1,11 @@
-package gov.nih.nci.evs.browser.bean;
+package gov.nih.nci.evs.browser.webapp;
 
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
 import javax.servlet.http.*;
 
-public class SuggestionRequest extends NewTermRequest {
-    // List of session parameter/attribute name(s):
-    public static final String RESET = "reset";
-    public static final String VERSION = "version";
-
+public class SuggestionRequest extends FormRequest {
     // List of session attribute name(s):
     public static final String EMAIL = "Email";
     public static final String OTHER = "Other";
@@ -23,15 +19,21 @@ public class SuggestionRequest extends NewTermRequest {
     public static final String SOURCE = "Source";
     public static final String CADSR = "caDSR Type";
 
+    // Parameter list(s):
+    public static final String[] ALL_PARAMETERS = new String[] { 
+        EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
+        DEFINITION, REASON, SOURCE, CADSR };
+    public static final String[] MOST_PARAMETERS = new String[] { 
+        /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
+        DEFINITION, REASON, SOURCE, CADSR };
+    
     public SuggestionRequest(HttpServletRequest request) {
         super(request, VOCABULARY);
-        setParameters(new String[] { EMAIL, OTHER, VOCABULARY, 
-            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON, SOURCE, CADSR });
+        setParameters(ALL_PARAMETERS);
     }
 
     public String submitForm() {
-        _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, null);
+        clearSessionAttributes(FormRequest.ALL_PARAMETERS);
         updateSessionAttributes();
         
         String warnings = validate();
@@ -58,8 +60,7 @@ public class SuggestionRequest extends NewTermRequest {
             return WARNING_STATE;
         }
 
-        clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
-            TERM, SYNONYMS, NEAREST_CODE, DEFINITION, REASON, SOURCE, CADSR });
+        clearSessionAttributes(MOST_PARAMETERS);
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
         _request.getSession().setAttribute(MESSAGE, msg);

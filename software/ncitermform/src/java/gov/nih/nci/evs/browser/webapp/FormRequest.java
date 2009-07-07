@@ -1,14 +1,19 @@
-package gov.nih.nci.evs.browser.bean;
+package gov.nih.nci.evs.browser.webapp;
 
 import javax.servlet.http.*;
 
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
-public class NewTermRequest extends BaseRequest {
+public class FormRequest extends BaseRequest {
     // List of session attribute name(s):
+    public static final String VERSION = "version";
     public static final String MESSAGE = "message";
     public static final String WARNINGS = "warnings";
+
+    // Parameter list(s):
+    public static final String[] ALL_PARAMETERS = 
+        new String[] { MESSAGE, WARNINGS };
     
     // List of return state(s):
     protected static final String SUCCESSFUL_STATE = "successful";
@@ -19,15 +24,14 @@ public class NewTermRequest extends BaseRequest {
     protected String _vocabularyParameter = null;
     protected boolean _isSendEmail = AppProperties.getInstance().isSendEmail();
     
-    public NewTermRequest(HttpServletRequest request, String vocabularyParameter) {
+    public FormRequest(HttpServletRequest request, String vocabularyParameter) {
         super(request);
         _vocabularyParameter = vocabularyParameter;
     }
     
     public void clear() {
         super.clear();
-        _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, null);
+        clearSessionAttributes(ALL_PARAMETERS);
     }
     
     public String clearForm() {

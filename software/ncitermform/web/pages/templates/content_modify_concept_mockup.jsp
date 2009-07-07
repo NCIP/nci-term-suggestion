@@ -1,4 +1,4 @@
-<%@ page import="gov.nih.nci.evs.browser.bean.*" %>
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%!
@@ -31,12 +31,12 @@
         <select name="vocabulary">
           <%
               items = AppProperties.getInstance().getVocabularyNames();
-                selectedItem = vocabulary;
-                for (i=0; i<items.length; ++i) {
-                  String item = items[i];
-                  String args = "";
-                  if (item.equals(selectedItem))
-                    args += "selected=\"true\"";
+                  selectedItem = vocabulary;
+                  for (i=0; i<items.length; ++i) {
+                    String item = items[i];
+                    String args = "";
+                    if (item.equals(selectedItem))
+                      args += "selected=\"true\"";
           %>
               <option value="<%=item%>" <%=args%>><%=item%></option>
           <%
@@ -57,12 +57,12 @@
       <td>
         <select name="property">
           <%
-            Prop.Modifiable[] mprops = Prop.Modifiable.values();
-            for (i=0; i<mprops.length; ++i) {
-              Prop.Modifiable mprop = mprops[i];
-              String args = "";
-              if (mprop.equals(property))
-                args += "selected=\"true\"";
+              Prop.Modifiable[] mprops = Prop.Modifiable.values();
+              for (i=0; i<mprops.length; ++i) {
+                Prop.Modifiable mprop = mprops[i];
+                String args = "";
+                if (mprop.equals(property))
+                  args += "selected=\"true\"";
           %>
               <option value="<%=mprop%>" <%=args%>><%=mprop%></option>
           <%
@@ -76,7 +76,7 @@
   <!-- --------------------------------------------------------------------- -->
   <%
       String propertyNameLC = property.name().toLowerCase();
-        if (property != Prop.Modifiable.Others) {
+          if (property != Prop.Modifiable.Others) {
   %>
       <!-- ----------------------------------------------------------------- -->
       <br/><b>Select a <%=propertyNameLC%>:</b>
@@ -109,11 +109,11 @@
           <td valign="top">
             <table class="newConceptDT">
               <%
-                Prop.Action[] pActions = Prop.Action.values();
-                for (i=0; i<pActions.length; ++i) {
-                  Prop.Action pAction = pActions[i];
-                  String checked = pAction==action ? "checked=\"checked\" " : "";
-                  String pActionName = pAction.name();
+                  Prop.Action[] pActions = Prop.Action.values();
+                      for (i=0; i<pActions.length; ++i) {
+                        Prop.Action pAction = pActions[i];
+                        String checked = pAction==action ? "checked=\"checked\" " : "";
+                        String pActionName = pAction.name();
               %>
                 <tr>
                   <td><input type="radio" name="action" value="<%=pActionName%>" <%=checked%>/></td>
