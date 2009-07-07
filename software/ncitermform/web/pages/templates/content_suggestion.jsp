@@ -32,13 +32,8 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-    boolean reset = Prop.Bool.getBoolean(
-    HTTPUtils.getParameter(request, RESET, false));
-  if (reset)
-    request.getSession().setAttribute(VERSION, null);
-
-// Session Attribute(s):
-  String p_version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
+  // Session Attribute(s):
+  String version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
   String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
   String other = HTTPUtils.getSessionAttributeString(request, OTHER);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
@@ -51,12 +46,17 @@
   String reason = HTTPUtils.getSessionAttributeString(request, REASON);
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
   
-  // Parameter(s):
-  if (p_version == null)
-    p_version = HTTPUtils.getParameter(request, VERSION, false);
-  Prop.Version version = Prop.Version.valueOfOrDefault(p_version);
-  request.getSession().setAttribute(VERSION, version.name());
-  
+  String p_version = HTTPUtils.getParameter(request, VERSION, false);
+  Prop.Version p_prop_version = Prop.Version.valueOfOrDefault(p_version);
+  Prop.Version prop_version = Prop.Version.valueOfOrDefault(version);
+  if (p_prop_version != prop_version) {
+    warnings = "";
+    request.getSession().setAttribute(WARNINGS, null);
+    prop_version = p_prop_version;
+  }
+  request.getSession().setAttribute(VERSION, prop_version.name());
+
+
   // Member variable(s):
   String imagePath = request.getContextPath() + "/images";
   int i=0;
@@ -201,8 +201,8 @@
       </tr>
       
       <%
-                if (version == Prop.Version.CADSR) {
-            %>
+        if (prop_version == Prop.Version.CADSR) {
+      %>
           <tr>
             <td <%=LABEL_ARGS%>><%=SOURCE%>:</td>
             <td colspan="2">
