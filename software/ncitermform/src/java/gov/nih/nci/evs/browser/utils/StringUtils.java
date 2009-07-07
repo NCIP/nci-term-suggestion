@@ -28,6 +28,8 @@ public class StringUtils {
     }
 
     public static void debug(String msg, String[] list) {
+        if (! Debug.isDisplay())
+            return;
         Debug.println(StringUtils.SEPARATOR);
         if (msg != null && msg.length() > 0)
             Debug.println("* " + msg);
