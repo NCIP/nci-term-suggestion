@@ -28,6 +28,7 @@ public class StringUtils {
     }
 
     public static void debug(String msg, String[] list) {
+        System.out.println(SEPARATOR);
         if (msg != null && msg.length() > 0)
             System.out.println(msg);
         if (list == null)
