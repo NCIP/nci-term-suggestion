@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=windows-1252"%>
 <%@ page import="java.util.*" %>
 <%@ page import="gov.nih.nci.evs.browser.bean.*" %>
-<%@ page import="gov.nih.nci.evs.browser.newterm.*" %>
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
