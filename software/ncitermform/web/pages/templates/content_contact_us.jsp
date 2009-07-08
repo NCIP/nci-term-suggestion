@@ -11,7 +11,7 @@
   String ncicb_contact_url = AppProperties.getInstance().getContactUrl();
   String subject = HTTPUtils.getParameter(request, "subject");
   String message = HTTPUtils.getParameter(request, "message");
-  String emailaddress = HTTPUtils.getParameter(request, "message");
+  String emailaddress = HTTPUtils.getParameter(request, "emailaddress");
   String errorMsg = HTTPUtils.getSessionAttributeString(request, "errorMsg");
   String errorType = HTTPUtils.getSessionAttributeString(request, "errorType");
   boolean userError = errorType.equalsIgnoreCase("user");
