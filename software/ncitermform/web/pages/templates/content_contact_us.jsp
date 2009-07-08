@@ -89,4 +89,38 @@
       }
     %>
   </p>
+  
+  <form method="post">
+    <p>
+      <% if (userError) %> <i style="color:#FF0000;">* Required)</i>
+      <i>Subject of your email:</i>
+    </p>
+    <input class="textbody" size="100" name="subject" alt="Subject" value="<%= subject %>" onFocus="active = true" onBlur="active = false" onKeyPress="return ifenter(event,this.form)">
+    <p>
+      <% if (userError) %> <i style="color:#FF0000;">* Required)</i>
+      <i>Detailed description of your problem or suggestion (no attachments):</i>
+    </p>
+    <TEXTAREA class="textbody" Name="message" alt="Message" rows="4" cols="98"><%= message %></TEXTAREA>
+    <p>
+      <% if (userError) %> <i style="color:#FF0000;">* Required)</i>
+      <i>Your e-mail address:</i>
+    </p>
+    <input class="textbody" size="100" name="emailaddress" alt="Email Address" value="<%= emailaddress %>" onFocus="active = true" onBlur="active = false" onKeyPress="return ifenter(event,this.form)">
+    <br/><br/>
+    
+    <h:commandButton
+      id="mail"
+      value="Submit"
+      alt="Submit"
+      action="#{userSessionBean.contactUs}" >
+    </h:commandButton>
+    &nbsp;&nbsp;<INPUT type="reset" value="Clear" alt="Clear">
+  </form>
+  <br/>
+  
+  <a href="http://www.cancer.gov/policies/page3" target="_blank"
+      alt="National Cancer Institute Policies">
+    <i>Privacy Policy on E-mail Messages Sent to the NCI Web Site</i>
+  </a>
+  
 </f:view>
