@@ -67,5 +67,26 @@
       EVS Web site</a>.
   </div>
 
-
+  <%
+    String color = ""; 
+    if (userError)
+      color = "style=\"color:#FF0000;\"";
+  %>
+  <p><b>Online Form</b></p>
+  <p <%= color %>>
+    To use this web form, please fill in every box below and then click on 'Submit'. 
+    <%
+      if (errorMsg != null && errorMsg.length() > 0) {
+          errorMsg = errorMsg.replaceAll("&lt;br/&gt;", "\n");
+          String[] list = StringUtils.toStrings(errorMsg, "\n", false, false);
+          for (int i=0; i<list.length; ++i) {
+            String text = list[i];
+            text = StringUtils.toHtml(text); // For leading spaces (indentation)
+    %>
+            <br/><i style="color:#FF0000;"><%= text %></i>
+    <%
+          }
+      }
+    %>
+  </p>
 </f:view>
