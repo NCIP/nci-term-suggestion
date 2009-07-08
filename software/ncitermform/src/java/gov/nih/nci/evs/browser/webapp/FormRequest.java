@@ -97,7 +97,7 @@ public class FormRequest extends BaseRequest {
         buffer.append("      without having to send a bunch of bogus emails.\n");
 
         if (_vocabularyParameter == null || _vocabularyParameter.length() <= 0)
-            return "";
+            return buffer.toString();
         String[] recipients = AppProperties.getInstance().getVocabularyEmails(
             _parametersHashMap.get(_vocabularyParameter));
         buffer.append("Debug:\n");
