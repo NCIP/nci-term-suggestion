@@ -13,6 +13,7 @@
   private static final String EMAIL_MSG = ContactUsRequest.EMAIL_MSG;
   private static final String EMAIL_ADDRESS = ContactUsRequest.EMAIL_ADDRESS;
   private static final String WARNINGS = ContactUsRequest.WARNINGS;
+  private static final String WARNING_TYPE = ContactUsRequest.WARNING_TYPE;
 %>
 <%
   String ncicb_contact_url = AppProperties.getInstance().getContactUrl();
@@ -20,8 +21,8 @@
   String email_msg = HTTPUtils.getSessionAttributeString(request, EMAIL_MSG);
   String email_address = HTTPUtils.getSessionAttributeString(request, EMAIL_ADDRESS);
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
-  String errorType = HTTPUtils.getSessionAttributeString(request, "errorType");
-  boolean userError = errorType.equalsIgnoreCase("user");
+  String warningType = HTTPUtils.getSessionAttributeString(request, WARNING_TYPE);
+  boolean isUserError = Prop.WarningType.valueOfOrDefault(warningType) == Prop.WarningType.User;
 %>
 <f:view>
   <div class="texttitle-blue">Contact Us</div>
@@ -76,7 +77,7 @@
 
   <%
     String color = ""; 
-    if (userError)
+    if (isUserError)
       color = "style=\"color:#FF0000;\"";
   %>
   <p><b>Online Form</b></p>
@@ -99,17 +100,17 @@
   
   <form method="post">
     <p>
-      <% if (userError) %> <i style="color:#FF0000;">* Required)</i>
+      <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Subject of your email:</i>
     </p>
     <input class="textbody" size="100" name="subject" alt="Subject" value="<%= subject %>" onFocus="active = true" onBlur="active = false" onKeyPress="return ifenter(event,this.form)">
     <p>
-      <% if (userError) %> <i style="color:#FF0000;">* Required)</i>
+      <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Detailed description of your problem or suggestion (no attachments):</i>
     </p>
     <TEXTAREA class="textbody" Name="<%= EMAIL_MSG %>" alt="<%= EMAIL_MSG %>" rows="4" cols="98"><%= email_msg %></TEXTAREA>
     <p>
-      <% if (userError) %> <i style="color:#FF0000;">* Required)</i>
+      <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Your e-mail address:</i>
     </p>
     <input class="textbody" size="100" name="<%= EMAIL_ADDRESS %>" alt="<%= EMAIL_ADDRESS %>" value="<%= email_address %>" onFocus="active = true" onBlur="active = false" onKeyPress="return ifenter(event,this.form)">
