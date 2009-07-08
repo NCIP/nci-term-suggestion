@@ -39,7 +39,8 @@ public class ContactUsRequest extends FormRequest {
             String emailMsg = _request.getParameter(EMAIL_MSG);
             String from = _request.getParameter(EMAIL_ADDRESS);
             String recipients[] = appProperties.getContactUsRecipients();
-            MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
+            if (_isSendEmail)
+                MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (UserInputException e) {
             String warnings = e.getMessage();
             _request.getSession().setAttribute(WARNINGS, StringUtils.toHtml(warnings));
@@ -56,10 +57,28 @@ public class ContactUsRequest extends FormRequest {
             return WARNING_STATE;
         }
 
-        String msg = "Your message was successfully sent.";
         clearSessionAttributes(MOST_PARAMETERS);
-        _request.getSession().setAttribute("message", StringUtils.toHtml(msg));
+        String msg = "Your message was successfully sent.";
+        _request.getSession().setAttribute(MESSAGE, StringUtils.toHtml(msg));
+        printSendEmailWarning();
         return SUCCESSFUL_STATE;
+    }
+    
+    protected String printSendEmailWarning() {
+        if (_isSendEmail)
+            return "";
+        
+        String warning = super.printSendEmailWarning();
+        StringBuffer buffer = new StringBuffer(warning);
+        buffer.append("* Subject: " + _request.getParameter(SUBJECT) + "\n");
+        buffer.append("* Message:\n");
+        String emailMsg = _request.getParameter(EMAIL_MSG);
+        emailMsg = INDENT + emailMsg.replaceAll("\\\n", "\n" + INDENT);
+        buffer.append(emailMsg + "\n");
+        buffer.append("* Email: " + _request.getParameter(EMAIL_ADDRESS) + "\n");
+        
+        _request.getSession().setAttribute(WARNINGS, buffer.toString());
+        return buffer.toString();
     }
 }
 
