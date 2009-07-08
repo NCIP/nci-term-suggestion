@@ -1,5 +1,7 @@
 package gov.nih.nci.evs.browser.common;
 
+import gov.nih.nci.evs.browser.webapp.FormUtils;
+
 import java.io.*;
 
 import javax.faces.context.*;
@@ -12,7 +14,7 @@ import javax.servlet.http.*;
  */
 public class AErrorHandler implements Constants {
 
-    public static final String ERROR_PAGE = "/pages/error_handler.jsf";
+    public static final String ERROR_PAGE = "/error_handler.jsf";
 
     /**
      * @param _facesContext
@@ -26,7 +28,7 @@ public class AErrorHandler implements Constants {
                 .getExternalContext().getRequest();
         try {
             setPageErrorData(_ex, request);
-            response.sendRedirect(request.getContextPath() + ERROR_PAGE);
+            response.sendRedirect(FormUtils.getPagesPath(request) + ERROR_PAGE);
             _facesContext.responseComplete();
             _ex.printStackTrace();
         } catch (IOException ex) {

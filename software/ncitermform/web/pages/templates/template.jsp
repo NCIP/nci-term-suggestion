@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-  String imagePath = request.getContextPath() + "/images";
+  String imagePath = FormUtils.getImagePath(request);
   String content_title = request.getParameter("content_title");
   if (content_title == null || content_title.trim().length() <= 0)
       content_title = "Suggest New Term";
@@ -15,7 +16,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title><%=content_title%></title>
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/styleSheet.css" />
+    <link rel="stylesheet" type="text/css" href="<%= FormUtils.getCSSPath(request) %>/styleSheet.css" />
   </head>
   <body>
     <jsp:include page="/pages/templates/header.jsp" />

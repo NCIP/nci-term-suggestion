@@ -7,6 +7,30 @@ import javax.servlet.http.HttpServletRequest;
 public class FormUtils {
     private static final String VERSION = FormRequest.VERSION;
     
+    public static String getBasePath(HttpServletRequest request) {
+        return request.getContextPath();
+    }
+    
+    public static String getPagesPath(HttpServletRequest request) {
+        String basePath = getBasePath(request);
+        return basePath + "/pages";
+    }
+
+    public static String getImagePath(HttpServletRequest request) {
+        String basePath = getBasePath(request);
+        return basePath + "/images";
+    }
+
+    public static String getJSPath(HttpServletRequest request) {
+        String basePath = getBasePath(request);
+        return basePath + "/js";
+    }
+
+    public static String getCSSPath(HttpServletRequest request) {
+        String basePath = getBasePath(request);
+        return basePath + "/css";
+    }
+
     public static void clearAllSessionAttributes(HttpServletRequest request) {
         HTTPUtils.clearSessionAttributes(request, FormRequest.ALL_PARAMETERS);
         HTTPUtils.clearSessionAttributes(request, SuggestionRequest.MOST_PARAMETERS);
@@ -15,7 +39,7 @@ public class FormUtils {
     public static String getIndexPage(HttpServletRequest request) {
         String version = HTTPUtils.getSessionAttributeString(
             request, VERSION, false, false);
-        String basePath = request.getContextPath();
+        String basePath = getBasePath(request);
         String indexPage = basePath + "/" + Prop.Version.getUrlParameter(version);
         clearAllSessionAttributes(request);
         return indexPage;

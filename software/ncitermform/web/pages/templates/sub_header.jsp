@@ -1,5 +1,6 @@
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
-  String imagePath = request.getContextPath() + "/images";
+  String imagePath = FormUtils.getImagePath(request);
 %>
 <div>
   <a href="http://evs.nci.nih.gov/" target="_blank"

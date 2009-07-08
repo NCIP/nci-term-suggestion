@@ -1,5 +1,6 @@
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
-  String imagePath = request.getContextPath() + "/images";
+  String imagePath = FormUtils.getImagePath(request);
 %>
 <div class="ncibanner">
   <a href="http://www.cancer.gov" target="_blank"
