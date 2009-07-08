@@ -1,6 +1,6 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
+<script type="text/javascript" src="<%= FormUtils.getJSPath(request) %>/utils.js"></script>
 <%!
   // List of session attribute name(s):
   private static final String MESSAGE = FormRequest.MESSAGE;
