@@ -20,4 +20,19 @@ public class FormUtils {
         clearAllSessionAttributes(request);
         return indexPage;
     }
+    
+    public static Prop.Version getVersion(HttpServletRequest request) {
+        String currVersion = HTTPUtils.getSessionAttributeString(
+            request, VERSION, false, false);
+        String parameterVersion = HTTPUtils.getParameter(
+            request, VERSION, false);
+        Prop.Version curr_version = Prop.Version.valueOfOrDefault(currVersion);
+        Prop.Version parameter_version = Prop.Version.valueOfOrDefault(parameterVersion);
+        if (parameter_version != curr_version) {
+          curr_version = parameter_version;
+          clearAllSessionAttributes(request);
+        }
+        request.getSession().setAttribute(VERSION, curr_version.name());
+        return curr_version;
+    }
 }

@@ -8,9 +8,6 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/utils.js"></script>
 <%!
-  // List of session parameter/attribute name(s):
-  private static final String VERSION = SuggestionRequest.VERSION;
-
   // List of session attribute name(s):
   private static final String EMAIL = SuggestionRequest.EMAIL;
   private static final String OTHER = SuggestionRequest.OTHER;
@@ -30,17 +27,9 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-    // Checking form version:
-  String version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
-  String p_version = HTTPUtils.getParameter(request, VERSION, false);
-  Prop.Version p_prop_version = Prop.Version.valueOfOrDefault(p_version);
-  Prop.Version prop_version = Prop.Version.valueOfOrDefault(version);
-  if (p_prop_version != prop_version) {
-    prop_version = p_prop_version;
-    HTTPUtils.clearSessionAttributes(request, FormRequest.ALL_PARAMETERS);
-    HTTPUtils.clearSessionAttributes(request, SuggestionRequest.MOST_PARAMETERS);
-  }
-  request.getSession().setAttribute(VERSION, prop_version.name());
+  // Member variable(s):
+  String imagePath = request.getContextPath() + "/images";
+  Prop.Version version = FormUtils.getVersion(request);
 
   // Session Attribute(s):
   String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
@@ -56,7 +45,6 @@
   String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
   
   // Member variable(s):
-  String imagePath = request.getContextPath() + "/images";
   int i=0;
   String[] items = null;
   String selectedItem = null;
@@ -198,8 +186,8 @@
       </tr>
       
       <%
-                if (prop_version == Prop.Version.CADSR) {
-            %>
+         if (version == Prop.Version.CADSR) {
+      %>
           <tr>
             <td <%=LABEL_ARGS%>><%=SOURCE%>:</td>
             <td colspan="2">
