@@ -1,10 +1,11 @@
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
-  String basePath = request.getContextPath();
-  String changeRequestForm = basePath + "/pages/change_request.jsp";
-  String newConceptForm = basePath + "/pages/new_concept.jsf";
-  String definitionChangeForm = basePath + "/pages/modify_concept_mockup.jsf?property=Definition";
-  String synonymChangeForm = basePath + "/pages/modify_concept_mockup.jsf?property=Synonym";
-  String othersChangeForm = basePath + "/pages/modify_concept_mockup.jsf?property=Others";
+  String pagesPath = FormUtils.getPagesPath(request);
+  String changeRequestForm = pagesPath + "/change_request.jsp";
+  String newConceptForm = pagesPath + "/new_concept.jsf";
+  String definitionChangeForm = pagesPath + "/modify_concept_mockup.jsf?property=Definition";
+  String synonymChangeForm = pagesPath + "/modify_concept_mockup.jsf?property=Synonym";
+  String othersChangeForm = pagesPath + "/modify_concept_mockup.jsf?property=Others";
 %>
 <div class="texttitle-blue">Mock Up Forms for Suggest New Term:</div><br/>
 <p>

@@ -6,7 +6,7 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
+<script type="text/javascript" src="<%= FormUtils.getJSPath(request) %>/utils.js"></script>
 <%!
   private static final String INPUT_ARGS =
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
@@ -25,7 +25,7 @@
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
 
   // Member variable(s):
-  String imagePath = request.getContextPath() + "/images";
+  String imagePath = FormUtils.getImagePath(request);
   int i=0;
   String[] items = null;
   String selectedItem = null;
