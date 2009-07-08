@@ -5,9 +5,10 @@ import java.util.*;
 import javax.servlet.http.*;
 
 public class BaseRequest {
+    protected final String[] EMPTY_PARAMETERS = HTTPUtils.EMPTY_PARAMETERS;
     protected final String INDENT = "    ";
     protected HttpServletRequest _request = null;
-    protected String[] _parameters = HTTPUtils.EMPTY_PARAMETERS;
+    protected String[] _parameters = EMPTY_PARAMETERS;
     protected HashMap<String, String> _parametersHashMap = null;
 
     public BaseRequest(HttpServletRequest request) {
@@ -25,7 +26,7 @@ public class BaseRequest {
     
     public void clear() {
         clearSessionAttributes();
-        setParameters(HTTPUtils.EMPTY_PARAMETERS);
+        setParameters(EMPTY_PARAMETERS);
     }
     
     protected void updateSessionAttributes(String[] parameters) {

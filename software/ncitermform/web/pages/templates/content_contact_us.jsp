@@ -112,7 +112,7 @@
       id="clear"
       value="clear"
       image="#{facesContext.externalContext.requestContextPath}/images/clear.gif"
-      action="#{userSessionBean.contactUsClear}"
+      action="#{userSessionBean.clearContactUs}"
       alt="clear">
     </h:commandButton>
     <h:commandButton

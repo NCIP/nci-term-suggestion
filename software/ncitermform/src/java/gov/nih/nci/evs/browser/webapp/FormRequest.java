@@ -24,6 +24,10 @@ public class FormRequest extends BaseRequest {
     protected String _vocabularyParameter = null;
     protected boolean _isSendEmail = AppProperties.getInstance().isSendEmail();
     
+    public FormRequest(HttpServletRequest request) {
+        super(request);
+    }
+    
     public FormRequest(HttpServletRequest request, String vocabularyParameter) {
         super(request);
         _vocabularyParameter = vocabularyParameter;

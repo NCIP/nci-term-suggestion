@@ -47,4 +47,14 @@ public class UserSessionBean {
         SuggestionRequest request = new SuggestionRequest(getRequest());
         return request.clearForm();  
     }
+
+    public String contactUs() {
+        ContactUsRequest request = new ContactUsRequest(getRequest());
+        return request.submitForm();
+    }
+    
+    public String clearContactUs() {
+        ContactUsRequest request = new ContactUsRequest(getRequest());
+        return request.clearForm();  
+    }
 }
