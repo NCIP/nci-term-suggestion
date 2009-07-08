@@ -1,18 +1,25 @@
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%!
   private static final String TELEPHONE = "301.451.4384 or Toll-Free: 888.478.4423";
   private static final String MAIL_TO = "ncicb@pop.nci.nih.gov";
   private static final String NCICB_URL = "http://ncicb.nci.nih.gov/support";
+  
+  // List of session attribute name(s):
+  private static final String SUBJECT = ContactUsRequest.SUBJECT;
+  private static final String EMAIL_MSG = ContactUsRequest.EMAIL_MSG;
+  private static final String EMAIL_ADDRESS = ContactUsRequest.EMAIL_ADDRESS;
+  private static final String WARNINGS = ContactUsRequest.WARNINGS;
 %>
 <%
   String ncicb_contact_url = AppProperties.getInstance().getContactUrl();
-  String subject = HTTPUtils.getParameter(request, "subject");
-  String message = HTTPUtils.getParameter(request, "message");
-  String emailaddress = HTTPUtils.getParameter(request, "emailaddress");
-  String errorMsg = HTTPUtils.getSessionAttributeString(request, "errorMsg");
+  String subject = HTTPUtils.getSessionAttributeString(request, SUBJECT);
+  String email_msg = HTTPUtils.getSessionAttributeString(request, EMAIL_MSG);
+  String email_address = HTTPUtils.getSessionAttributeString(request, EMAIL_ADDRESS);
+  String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
   String errorType = HTTPUtils.getSessionAttributeString(request, "errorType");
   boolean userError = errorType.equalsIgnoreCase("user");
 %>
@@ -76,9 +83,9 @@
   <p <%= color %>>
     To use this web form, please fill in every box below and then click on 'Submit'. 
     <%
-      if (errorMsg != null && errorMsg.length() > 0) {
-          errorMsg = errorMsg.replaceAll("&lt;br/&gt;", "\n");
-          String[] list = StringUtils.toStrings(errorMsg, "\n", false, false);
+      if (warnings != null && warnings.length() > 0) {
+          warnings = warnings.replaceAll("&lt;br/&gt;", "\n");
+          String[] list = StringUtils.toStrings(warnings, "\n", false, false);
           for (int i=0; i<list.length; ++i) {
             String text = list[i];
             text = StringUtils.toHtml(text); // For leading spaces (indentation)
@@ -100,12 +107,12 @@
       <% if (userError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Detailed description of your problem or suggestion (no attachments):</i>
     </p>
-    <TEXTAREA class="textbody" Name="message" alt="Message" rows="4" cols="98"><%= message %></TEXTAREA>
+    <TEXTAREA class="textbody" Name="<%= EMAIL_MSG %>" alt="<%= EMAIL_MSG %>" rows="4" cols="98"><%= email_msg %></TEXTAREA>
     <p>
       <% if (userError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Your e-mail address:</i>
     </p>
-    <input class="textbody" size="100" name="emailaddress" alt="Email Address" value="<%= emailaddress %>" onFocus="active = true" onBlur="active = false" onKeyPress="return ifenter(event,this.form)">
+    <input class="textbody" size="100" name="<%= EMAIL_ADDRESS %>" alt="<%= EMAIL_ADDRESS %>" value="<%= email_address %>" onFocus="active = true" onBlur="active = false" onKeyPress="return ifenter(event,this.form)">
     <br/><br/>
     
     <h:commandButton

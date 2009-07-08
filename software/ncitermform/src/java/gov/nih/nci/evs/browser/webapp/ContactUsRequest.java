@@ -3,45 +3,55 @@ package gov.nih.nci.evs.browser.webapp;
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.*;
 
 public class ContactUsRequest extends FormRequest {
+    // List of session attribute name(s):
+    public static final String SUBJECT = "subject";
+    public static final String EMAIL_MSG = "email_msg";
+    public static final String EMAIL_ADDRESS = "email_address";
+    public static final String[] ALL_PARAMETERS = new String[] { 
+        SUBJECT, EMAIL_MSG, EMAIL_ADDRESS };
+    public static final String[] MOST_PARAMETERS = new String[] { 
+        SUBJECT, EMAIL_MSG };
+    
     public ContactUsRequest(HttpServletRequest request) {
         super(request);
+        setParameters(ALL_PARAMETERS);
     }
     
     public String submitForm() {
-        String msg = "Your message was successfully sent.";
-        HttpServletRequest request = (HttpServletRequest) FacesContext
-                .getCurrentInstance().getExternalContext().getRequest();
+        clearSessionAttributes(FormRequest.ALL_PARAMETERS);
+        updateSessionAttributes();
         AppProperties appProperties = AppProperties.getInstance();
         
         try {
             String mailServer = appProperties.getMailSmtpServer();
-            String subject = request.getParameter("subject");
-            String emailMsg = request.getParameter("message");
-            String from = request.getParameter("emailaddress");
+            String subject = _request.getParameter(SUBJECT);
+            String emailMsg = _request.getParameter(EMAIL_MSG);
+            String from = _request.getParameter(EMAIL_ADDRESS);
             String recipients[] = appProperties.getContactUsRecipients();
             MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (UserInputException e) {
-            msg = e.getMessage();
-            request.setAttribute("errorMsg", StringUtils.toHtml(msg));
-            request.setAttribute("errorType", "user");
-            return "error";
+            String warnings = e.getMessage();
+            _request.getSession().setAttribute(WARNINGS, StringUtils.toHtml(warnings));
+            _request.getSession().setAttribute("errorType", "user");
+            return WARNING_STATE;
         } catch (Exception e) {
-            msg = "System Error: Your message was not sent.\n";
-            msg += "    (If possible, please contact NCI systems team.)\n";
-            msg += "\n";
-            msg += e.getMessage();
-            request.setAttribute("errorMsg", StringUtils.toHtml(msg));
-            request.setAttribute("errorType", "system");
+            String warnings = "System Error: Your message was not sent.\n";
+            warnings += "    (If possible, please contact NCI systems team.)\n";
+            warnings += "\n";
+            warnings += e.getMessage();
+            _request.getSession().setAttribute(WARNINGS, StringUtils.toHtml(warnings));
+            _request.getSession().setAttribute("errorType", "system");
             e.printStackTrace();
-            return "error";
+            return WARNING_STATE;
         }
 
-        request.getSession().setAttribute("message", StringUtils.toHtml(msg));
-        return "message";
+        String msg = "Your message was successfully sent.";
+        clearSessionAttributes(MOST_PARAMETERS);
+        _request.getSession().setAttribute("message", StringUtils.toHtml(msg));
+        return SUCCESSFUL_STATE;
     }
 }
 
