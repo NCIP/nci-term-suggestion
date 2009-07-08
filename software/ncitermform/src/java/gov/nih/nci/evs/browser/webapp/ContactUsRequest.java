@@ -22,6 +22,11 @@ public class ContactUsRequest extends FormRequest {
         setParameters(ALL_PARAMETERS);
     }
     
+    public void clear() {
+        super.clear();
+        clearSessionAttributes(new String[] { WARNING_TYPE });
+    }
+    
     public String submitForm() {
         clearSessionAttributes(FormRequest.ALL_PARAMETERS);
         clearSessionAttributes(new String[] { WARNING_TYPE });
