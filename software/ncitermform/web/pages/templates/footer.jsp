@@ -1,23 +1,22 @@
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
-  String imagePath = request.getContextPath() + "/images";
+  // Session Attribute(s):
+  String basePath = request.getContextPath();
+  String imagePath = basePath + "/images";
 %>
 <div class="footer">
   <ul>
-    <li><a href="http://www.cancer.gov" target="_blank" 
+    <li><a href="<%=FormUtils.getIndexPage(request)%>">Home</a></li>
+    <li> | <a href="http://www.cancer.gov" target="_blank" 
       alt="National Cancer Institute">NCI Home</a></li>
-<%--      
     <li> | <a href="<%= request.getContextPath() %>/pages/contact_us.jsf"
       alt="NCIt Contact Us">Contact Us</a></li>
---%>      
     <li> | <a href="http://www.cancer.gov/policies" target="_blank"
       alt="National Cancer Institute Policies">Policies</a></li>
     <li> | <a href="http://www.cancer.gov/policies/page4" target="_blank"
       alt="National Cancer Institute Accessibility">Accessibility</a></li>
     <li> | <a href="http://www.cancer.gov/policies/page7" target="_blank"
       alt="National Cancer Institute Freedom of Information Act">FOIA</a></li>
-<%--      
-    <li> | <a href="<%=request.getContextPath()%>">Home</a></li>
---%>      
   </ul>
 
   <p>
