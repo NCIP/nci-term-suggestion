@@ -6,7 +6,7 @@
   private static final String TEXTAREA_ARGS = "rows=\"4\" cols=\"80\"";
 %>
 <%
-  String imagePath = FormUtils.getImagePath(request);
+  String imagesPath = FormUtils.getImagesPath(request);
   String pagesPath = FormUtils.getPagesPath(request);
   String propertyParam = HTTPUtils.getParameter(request, "property");
   String vocabulary = "NCI Thesaurus";
@@ -155,7 +155,7 @@
      <!-- <td><a href="<%=pagesPath%>/change_request.jsp">Back</a></td> -->
      <!-- <td align="right"><INPUT type="submit" name="submit" value="Submit"></td> -->
      <td align="right"><a href="<%=pagesPath%>/change_request.jsp">
-       <img src="<%=imagePath%>/submit.gif" width="51" height="21"
+       <img src="<%=imagesPath%>/submit.gif" width="51" height="21"
          alt="Submit" border="0"/></a></td>
     </tr>
   </table>

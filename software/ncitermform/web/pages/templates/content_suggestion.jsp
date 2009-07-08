@@ -28,7 +28,7 @@
 %>
 <%
   // Member variable(s):
-  String imagePath = FormUtils.getImagePath(request);
+  String imagesPath = FormUtils.getImagesPath(request);
   Prop.Version version = FormUtils.getVersion(request);
 
   // Session Attribute(s):
@@ -165,7 +165,7 @@
           </select>
         </td>
         <td align="right">
-          <img src="<%=imagePath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
+          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
         </td>
       </tr>
       <tr>

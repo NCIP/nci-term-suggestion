@@ -14,7 +14,7 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Session Attribute(s):
+    // Session Attribute(s):
   String email = HTTPUtils.getSessionAttributeString(request, "email");
   String other = HTTPUtils.getSessionAttributeString(request, "other");
   String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
@@ -26,7 +26,7 @@
   String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
 
   // Member variable(s):
-  String imagePath = FormUtils.getImagePath(request);
+  String imagesPath = FormUtils.getImagesPath(request);
   int i=0;
   String[] items = null;
   String selectedItem = null;
@@ -136,7 +136,7 @@
           </select>
         </td>
         <td align="right">
-          <img src="<%=imagePath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
+          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
         </td>
       </tr>
       <tr>
