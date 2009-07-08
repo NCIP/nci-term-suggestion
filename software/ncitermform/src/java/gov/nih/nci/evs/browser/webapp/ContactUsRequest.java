@@ -39,8 +39,7 @@ public class ContactUsRequest extends FormRequest {
             String emailMsg = _request.getParameter(EMAIL_MSG);
             String from = _request.getParameter(EMAIL_ADDRESS);
             String recipients[] = appProperties.getContactUsRecipients();
-            if (_isSendEmail)
-                MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
+            MailUtils.postMail(mailServer, from, recipients, subject, emailMsg, _isSendEmail);
         } catch (UserInputException e) {
             String warnings = e.getMessage();
             _request.getSession().setAttribute(WARNINGS, StringUtils.toHtml(warnings));
@@ -70,12 +69,16 @@ public class ContactUsRequest extends FormRequest {
         
         String warning = super.printSendEmailWarning();
         StringBuffer buffer = new StringBuffer(warning);
-        buffer.append("* Subject: " + _request.getParameter(SUBJECT) + "\n");
-        buffer.append("* Message:\n");
+        AppProperties appProperties = AppProperties.getInstance();
+        String[] recipients = appProperties.getContactUsRecipients();
+        buffer.append("Debug:\n");
+        buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
+        buffer.append("    * Subject: " + _request.getParameter(SUBJECT) + "\n");
+        buffer.append("    * Message: ");
         String emailMsg = _request.getParameter(EMAIL_MSG);
         emailMsg = INDENT + emailMsg.replaceAll("\\\n", "\n" + INDENT);
         buffer.append(emailMsg + "\n");
-        buffer.append("* Email: " + _request.getParameter(EMAIL_ADDRESS) + "\n");
+        buffer.append("    * Email: " + _request.getParameter(EMAIL_ADDRESS) + "\n");
         
         _request.getSession().setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
