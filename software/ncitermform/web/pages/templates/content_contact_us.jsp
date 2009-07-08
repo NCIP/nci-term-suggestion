@@ -109,12 +109,19 @@
     <br/><br/>
     
     <h:commandButton
-      id="mail"
-      value="Submit"
-      alt="Submit"
-      action="#{userSessionBean.contactUs}" >
+      id="clear"
+      value="clear"
+      image="#{facesContext.externalContext.requestContextPath}/images/clear.gif"
+      action="#{userSessionBean.contactUsClear}"
+      alt="clear">
     </h:commandButton>
-    &nbsp;&nbsp;<INPUT type="reset" value="Clear" alt="Clear">
+    <h:commandButton
+      id="mail"
+      value="submit"
+      image="#{facesContext.externalContext.requestContextPath}/images/submit.gif"
+      action="#{userSessionBean.contactUs}"
+      alt="submit" >
+    </h:commandButton>
   </form>
   <br/>
   
