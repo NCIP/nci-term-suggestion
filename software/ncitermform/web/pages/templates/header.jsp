@@ -1,28 +1,28 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
-  String imagePath = FormUtils.getImagePath(request);
+  String imagesPath = FormUtils.getImagesPath(request);
 %>
 <div class="ncibanner">
   <a href="http://www.cancer.gov" target="_blank"
      alt="National Cancer Institute" >
-    <img src="<%=imagePath%>/logotype.gif"
+    <img src="<%=imagesPath%>/logotype.gif"
       width="440" height="39" border="0"
       alt="National Cancer Institute" />
   </a>
   <a href="http://www.cancer.gov" target="_blank"
      alt="National Cancer Institute" >
-    <img src="<%=imagePath%>/spacer.gif"
+    <img src="<%=imagesPath%>/spacer.gif"
       width="48" height="39" border="0" 
       alt="National Cancer Institute" class="print-header" /></a>
   <a href="http://www.nih.gov" target="_blank"
       alt="U.S. National Institutes of Health">
-    <img src="<%=imagePath%>/tagline_nologo.gif"
+    <img src="<%=imagesPath%>/tagline_nologo.gif"
       width="173" height="39" border="0"
       alt="U.S. National Institutes of Health" />
   </a>
   <a href="http://www.cancer.gov" target="_blank"
       alt="www.cancer.gov">
-    <img src="<%=imagePath%>/cancer-gov.gif"
+    <img src="<%=imagesPath%>/cancer-gov.gif"
       width="99" height="39" border="0"
       alt="www.cancer.gov" />
   </a>

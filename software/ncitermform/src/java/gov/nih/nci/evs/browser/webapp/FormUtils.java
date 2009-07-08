@@ -16,7 +16,7 @@ public class FormUtils {
         return basePath + "/pages";
     }
 
-    public static String getImagePath(HttpServletRequest request) {
+    public static String getImagesPath(HttpServletRequest request) {
         String basePath = getBasePath(request);
         return basePath + "/images";
     }
