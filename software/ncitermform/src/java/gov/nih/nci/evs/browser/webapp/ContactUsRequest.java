@@ -9,13 +9,15 @@ public class ContactUsRequest extends FormRequest {
     // List of attribute name(s):
     public static final String SUBJECT = "subject";
     public static final String EMAIL_MSG = "email_msg";
-    public static final String EMAIL_ADDRESS = SuggestionRequest.EMAIL;
+    public static final String EMAIL_ADDRESS = "email_address";
     public static final String WARNING_TYPE = "warning_type";
 
     public static final String[] ALL_PARAMETERS = new String[] { 
         SUBJECT, EMAIL_MSG, EMAIL_ADDRESS };
     public static final String[] MOST_PARAMETERS = new String[] { 
         SUBJECT, EMAIL_MSG };
+    public static final String[] SESSION_ATTRIBUTES = new String[] {
+        EMAIL_ADDRESS };
 
     public ContactUsRequest(HttpServletRequest request) {
         super(request);
@@ -25,12 +27,14 @@ public class ContactUsRequest extends FormRequest {
     public void clear() {
         super.clear();
         clearAttributes(new String[] { WARNING_TYPE });
+        clearSessionAttributes(SESSION_ATTRIBUTES);
     }
     
     public String submitForm() {
         clearAttributes(FormRequest.ALL_PARAMETERS);
         clearAttributes(new String[] { WARNING_TYPE });
         updateAttributes();
+        updateSessionAttributes(SESSION_ATTRIBUTES);
         AppProperties appProperties = AppProperties.getInstance();
         
         try {
