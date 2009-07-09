@@ -32,9 +32,9 @@
   Prop.Version version = FormUtils.getVersion(request);
 
   // Attribute(s):
-  String email = HTTPUtils.getAttributeString(request, EMAIL);
-  String other = HTTPUtils.getAttributeString(request, OTHER);
-  String vocabulary = HTTPUtils.getAttributeString(request, VOCABULARY);
+  String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
+  String other = HTTPUtils.getSessionAttributeString(request, OTHER);
+  String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
   String term = HTTPUtils.getAttributeString(request, TERM);
   String synonyms = HTTPUtils.getAttributeString(request, SYNONYMS);
   String nearest_code = HTTPUtils.getAttributeString(request, NEAREST_CODE);
@@ -148,17 +148,17 @@
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
                 selectedItem = vocabulary;
-                      ArrayList list = AppProperties.getInstance().getVocabularies();
-                      Iterator iterator = list.iterator();
-                      while (iterator.hasNext()) {
-                        VocabInfo vocab = (VocabInfo) iterator.next();
-                        String item = vocab.getName();
-                        String url = vocab.getUrl();
-                        String args = "";
-                        if (item.equals(selectedItem))
-                          args += "selected=\"true\"";
+                ArrayList list = AppProperties.getInstance().getVocabularies();
+                Iterator iterator = list.iterator();
+                while (iterator.hasNext()) {
+                  VocabInfo vocab = (VocabInfo) iterator.next();
+                  String item = vocab.getName();
+                  String url = vocab.getUrl();
+                  String args = "";
+                  if (url.equals(selectedItem))
+                    args += "selected=\"true\"";
             %>
-                <option value="<%=url%>" <%=args%>><%=item%></option>
+                  <option value="<%=url%>" <%=args%>><%=item%></option>
             <%
                 }
             %>

@@ -116,6 +116,8 @@ public class HTTPUtils {
             request.setAttribute(parameter,
                 parametersHashMap.get(parameter));
         }
+        debugParameters("HTTPUtils.updateAttributes:", 
+            parameters, parametersHashMap);
     }
     
     public static void clearAttributes(HttpServletRequest request, 
@@ -123,6 +125,23 @@ public class HTTPUtils {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
             request.setAttribute(parameter, null);
+        }
+    }
+    
+    public static void updateSessionAttributes(HttpServletRequest request, 
+        String[] parameters) {
+        for (int i = 0; i < parameters.length; ++i) {
+            String name = parameters[i];
+            String value = request.getParameter(name);
+            request.getSession().setAttribute(name, value);
+        }
+    }
+
+    public static void clearSessionAttributes(HttpServletRequest request, 
+        String[] parameters) {
+        for (int i = 0; i < parameters.length; ++i) {
+            String name = parameters[i];
+            request.getSession().setAttribute(name, null);
         }
     }
 }
