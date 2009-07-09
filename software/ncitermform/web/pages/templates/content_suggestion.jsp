@@ -8,6 +8,10 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%=FormUtils.getJSPath(request)%>/utils.js"></script>
 <%!
+  // List of parameter name(s):
+  private static final String DICTIONARY = "dictionary";
+  private static final String CODE = "code";
+
   // List of attribute name(s):
   private static final String EMAIL = SuggestionRequest.EMAIL;
   private static final String OTHER = SuggestionRequest.OTHER;
@@ -27,7 +31,7 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-    // Member variable(s):
+  // Member variable(s):
   String imagesPath = FormUtils.getImagesPath(request);
   Prop.Version version = FormUtils.getVersion(request);
 
@@ -43,6 +47,11 @@
   String cadsr = HTTPUtils.getAttributeString(request, CADSR);
   String reason = HTTPUtils.getAttributeString(request, REASON);
   String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
+
+  String pDictionary = HTTPUtils.getParameter(request, DICTIONARY);
+  String pCode = HTTPUtils.getParameter(request, CODE, false);
+  if (pCode != null)
+    nearest_code = pCode;
   
   // Member variable(s):
   int i=0;
@@ -156,6 +165,8 @@
                   String url = vocab.getUrl();
                   String args = "";
                   if (url.equals(selectedItem))
+                    args += "selected=\"true\"";
+                  else if (item.equalsIgnoreCase(pDictionary))
                     args += "selected=\"true\"";
             %>
                   <option value="<%=url%>" <%=args%>><%=item%></option>
