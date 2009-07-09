@@ -33,14 +33,16 @@ public class SuggestionRequest extends FormRequest {
     }
 
     public String submitForm() {
+        HTTPUtils.debugParameters("submitForm 1", _parameters, _parametersHashMap);
         clearSessionAttributes(FormRequest.ALL_PARAMETERS);
         updateSessionAttributes();
         
         String warnings = validate();
         if (warnings.length() > 0) {
-            _request.getSession().setAttribute(WARNINGS, warnings);
+            _request.setAttribute(WARNINGS, warnings);
             return WARNING_STATE;
         }
+        HTTPUtils.debugParameters("submitForm 2", _parameters, _parametersHashMap);
 
         AppProperties appProperties = AppProperties.getInstance();
         String vocabulary = _parametersHashMap.get(VOCABULARY);
@@ -54,7 +56,7 @@ public class SuggestionRequest extends FormRequest {
             if (_isSendEmail)
                 MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
-            _request.getSession().setAttribute(WARNINGS,
+            _request.setAttribute(WARNINGS,
                     e.getLocalizedMessage());
             e.printStackTrace();
             return WARNING_STATE;
@@ -63,7 +65,7 @@ public class SuggestionRequest extends FormRequest {
         clearSessionAttributes(MOST_PARAMETERS);
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
-        _request.getSession().setAttribute(MESSAGE, msg);
+        _request.setAttribute(MESSAGE, msg);
         printSendEmailWarning();
         return SUCCESSFUL_STATE;
     }
@@ -125,7 +127,7 @@ public class SuggestionRequest extends FormRequest {
         emailMsg = INDENT + emailMsg.replaceAll("\\\n", "\n" + INDENT);
         buffer.append(emailMsg);
         
-        _request.getSession().setAttribute(WARNINGS, buffer.toString());
+        _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
     }
 }

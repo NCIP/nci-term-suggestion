@@ -16,9 +16,9 @@ public class FormRequest extends BaseRequest {
         new String[] { MESSAGE, WARNINGS };
     
     // List of return state(s):
-    protected static final String SUCCESSFUL_STATE = "successful";
-    protected static final String MESSAGE_STATE = "message";
-    protected static final String WARNING_STATE = "warning";
+    public static final String SUCCESSFUL_STATE = "successful";
+    public static final String MESSAGE_STATE = "message";
+    public static final String WARNING_STATE = "warning";
     
     // List of member variable(s):
     protected String _vocabularyParameter = null;
@@ -44,7 +44,7 @@ public class FormRequest extends BaseRequest {
     }
     
     public String submitForm() {
-        _request.getSession().setAttribute(MESSAGE, "NewTermRequest.submitForm");
+        _request.setAttribute(MESSAGE, "NewTermRequest.submitForm");
         return MESSAGE_STATE;
     }
     
@@ -102,7 +102,7 @@ public class FormRequest extends BaseRequest {
             _parametersHashMap.get(_vocabularyParameter));
         buffer.append("Debug:\n");
         buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
-        _request.getSession().setAttribute(WARNINGS, buffer.toString());
+        _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
     }
 }

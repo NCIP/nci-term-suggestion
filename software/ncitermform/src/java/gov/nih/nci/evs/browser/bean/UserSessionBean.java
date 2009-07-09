@@ -13,9 +13,9 @@ public class UserSessionBean {
 	}
 	
     public String changeRequest() {
-        getRequest().getSession().setAttribute(
-                "message", "UserSessionBean.changeRequest");
-        return "message";
+        getRequest().setAttribute(
+                FormRequest.MESSAGE, "UserSessionBean.changeRequest");
+        return FormRequest.MESSAGE_STATE;
     }
     
     public String requestNewConcept() {

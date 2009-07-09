@@ -9,7 +9,7 @@ public class ContactUsRequest extends FormRequest {
     // List of session attribute name(s):
     public static final String SUBJECT = "subject";
     public static final String EMAIL_MSG = "email_msg";
-    public static final String EMAIL_ADDRESS = "email_address";
+    public static final String EMAIL_ADDRESS = SuggestionRequest.EMAIL;
     public static final String WARNING_TYPE = "warning_type";
 
     public static final String[] ALL_PARAMETERS = new String[] { 
@@ -42,23 +42,23 @@ public class ContactUsRequest extends FormRequest {
             MailUtils.postMail(mailServer, from, recipients, subject, emailMsg, _isSendEmail);
         } catch (UserInputException e) {
             String warnings = e.getMessage();
-            _request.getSession().setAttribute(WARNINGS, StringUtils.toHtml(warnings));
-            _request.getSession().setAttribute(WARNING_TYPE, Prop.WarningType.User.name());
+            _request.setAttribute(WARNINGS, StringUtils.toHtml(warnings));
+            _request.setAttribute(WARNING_TYPE, Prop.WarningType.User.name());
             return WARNING_STATE;
         } catch (Exception e) {
             String warnings = "System Error: Your message was not sent.\n";
             warnings += "    (If possible, please contact NCI systems team.)\n";
             warnings += "\n";
             warnings += e.getMessage();
-            _request.getSession().setAttribute(WARNINGS, StringUtils.toHtml(warnings));
-            _request.getSession().setAttribute(WARNING_TYPE, Prop.WarningType.System.name());
+            _request.setAttribute(WARNINGS, StringUtils.toHtml(warnings));
+            _request.setAttribute(WARNING_TYPE, Prop.WarningType.System.name());
             e.printStackTrace();
             return WARNING_STATE;
         }
 
         clearSessionAttributes(MOST_PARAMETERS);
         String msg = "Your message was successfully sent.";
-        _request.getSession().setAttribute(MESSAGE, StringUtils.toHtml(msg));
+        _request.setAttribute(MESSAGE, StringUtils.toHtml(msg));
         printSendEmailWarning();
         return SUCCESSFUL_STATE;
     }
@@ -80,7 +80,7 @@ public class ContactUsRequest extends FormRequest {
         buffer.append(emailMsg + "\n");
         buffer.append("    * Email: " + _request.getParameter(EMAIL_ADDRESS) + "\n");
         
-        _request.getSession().setAttribute(WARNINGS, buffer.toString());
+        _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
     }
 }
