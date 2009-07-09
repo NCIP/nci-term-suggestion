@@ -7,8 +7,8 @@
   private static final String WARNINGS = FormRequest.WARNINGS;%>
 <%
   // Session Attribute(s):
-  String message = HTTPUtils.getSessionAttributeString(request, MESSAGE, false, true);
-  String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS, false, true);
+  String message = HTTPUtils.getAttributeString(request, MESSAGE, false, true);
+  String warnings = HTTPUtils.getAttributeString(request, WARNINGS, false, true);
 %>
 <div class="texttitle-blue">Change Request:</div><br/>
 <%

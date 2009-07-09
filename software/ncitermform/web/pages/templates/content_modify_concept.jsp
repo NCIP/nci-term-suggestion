@@ -14,15 +14,15 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-    // Session Attribute(s):
-  String email = HTTPUtils.getSessionAttributeString(request, "email");
-  String other = HTTPUtils.getSessionAttributeString(request, "other");
-  String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
-  String conceptCode = HTTPUtils.getSessionAttributeString(request, "conceptCode");
-  String conceptName = HTTPUtils.getSessionAttributeString(request, "conceptName");
-  String suggestions = HTTPUtils.getSessionAttributeString(request, "suggestions");
-  String reason = HTTPUtils.getSessionAttributeString(request, "reason");
-  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
+  // Session Attribute(s):
+  String email = HTTPUtils.getAttributeString(request, "email");
+  String other = HTTPUtils.getAttributeString(request, "other");
+  String vocabulary = HTTPUtils.getAttributeString(request, "vocabulary");
+  String conceptCode = HTTPUtils.getAttributeString(request, "conceptCode");
+  String conceptName = HTTPUtils.getAttributeString(request, "conceptName");
+  String suggestions = HTTPUtils.getAttributeString(request, "suggestions");
+  String reason = HTTPUtils.getAttributeString(request, "reason");
+  String warnings = HTTPUtils.getAttributeString(request, "warnings");
 
   // Member variable(s):
   String imagesPath = FormUtils.getImagesPath(request);

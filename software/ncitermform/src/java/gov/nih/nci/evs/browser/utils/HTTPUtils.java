@@ -22,7 +22,7 @@ public class HTTPUtils {
         return getParameter(request, name, true);
     }
 
-    public static String getSessionAttributeString(HttpServletRequest request,
+    public static String getAttributeString(HttpServletRequest request,
         String name, boolean convertNullToBlankString, boolean clear) {
         String value = (String) request.getAttribute(name);
         if (convertNullToBlankString && (value == null || value.length() <= 0))
@@ -32,9 +32,9 @@ public class HTTPUtils {
         return cleanXSS(value);
     }
 
-    public static String getSessionAttributeString(HttpServletRequest request,
+    public static String getAttributeString(HttpServletRequest request,
         String name) {
-        return getSessionAttributeString(request, name, true, false);
+        return getAttributeString(request, name, true, false);
     }
 
     public static String cleanXSS(String value) {
