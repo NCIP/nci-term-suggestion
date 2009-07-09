@@ -27,22 +27,22 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Member variable(s):
+    // Member variable(s):
   String imagesPath = FormUtils.getImagesPath(request);
   Prop.Version version = FormUtils.getVersion(request);
 
   // Session Attribute(s):
-  String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
-  String other = HTTPUtils.getSessionAttributeString(request, OTHER);
-  String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
-  String term = HTTPUtils.getSessionAttributeString(request, TERM);
-  String synonyms = HTTPUtils.getSessionAttributeString(request, SYNONYMS);
-  String nearest_code = HTTPUtils.getSessionAttributeString(request, NEAREST_CODE);
-  String definition = HTTPUtils.getSessionAttributeString(request, DEFINITION);
-  String source = HTTPUtils.getSessionAttributeString(request, SOURCE);
-  String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR);
-  String reason = HTTPUtils.getSessionAttributeString(request, REASON);
-  String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
+  String email = HTTPUtils.getAttributeString(request, EMAIL);
+  String other = HTTPUtils.getAttributeString(request, OTHER);
+  String vocabulary = HTTPUtils.getAttributeString(request, VOCABULARY);
+  String term = HTTPUtils.getAttributeString(request, TERM);
+  String synonyms = HTTPUtils.getAttributeString(request, SYNONYMS);
+  String nearest_code = HTTPUtils.getAttributeString(request, NEAREST_CODE);
+  String definition = HTTPUtils.getAttributeString(request, DEFINITION);
+  String source = HTTPUtils.getAttributeString(request, SOURCE);
+  String cadsr = HTTPUtils.getAttributeString(request, CADSR);
+  String reason = HTTPUtils.getAttributeString(request, REASON);
+  String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
   
   // Member variable(s):
   int i=0;

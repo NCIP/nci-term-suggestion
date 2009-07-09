@@ -37,7 +37,7 @@ public class FormUtils {
     }
 
     public static String getIndexPage(HttpServletRequest request) {
-        String version = HTTPUtils.getSessionAttributeString(
+        String version = HTTPUtils.getAttributeString(
             request, VERSION, false, false);
         String basePath = getBasePath(request);
         String indexPage = basePath + "/" + Prop.Version.getUrlParameter(version);
@@ -46,7 +46,7 @@ public class FormUtils {
     }
     
     public static Prop.Version getVersion(HttpServletRequest request) {
-        String currVersion = HTTPUtils.getSessionAttributeString(
+        String currVersion = HTTPUtils.getAttributeString(
             request, VERSION, false, false);
         String parameterVersion = HTTPUtils.getParameter(
             request, VERSION, false);
