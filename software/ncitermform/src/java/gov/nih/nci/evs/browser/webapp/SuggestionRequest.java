@@ -6,7 +6,7 @@ import gov.nih.nci.evs.browser.utils.*;
 import javax.servlet.http.*;
 
 public class SuggestionRequest extends FormRequest {
-    // List of session attribute name(s):
+    // List of attribute name(s):
     public static final String EMAIL = "Email";
     public static final String OTHER = "Other";
     public static final String VOCABULARY = "Vocabulary";
@@ -33,16 +33,14 @@ public class SuggestionRequest extends FormRequest {
     }
 
     public String submitForm() {
-        HTTPUtils.debugParameters("submitForm 1", _parameters, _parametersHashMap);
-        clearSessionAttributes(FormRequest.ALL_PARAMETERS);
-        updateSessionAttributes();
+        clearAttributes(FormRequest.ALL_PARAMETERS);
+        updateAttributes();
         
         String warnings = validate();
         if (warnings.length() > 0) {
             _request.setAttribute(WARNINGS, warnings);
             return WARNING_STATE;
         }
-        HTTPUtils.debugParameters("submitForm 2", _parameters, _parametersHashMap);
 
         AppProperties appProperties = AppProperties.getInstance();
         String vocabulary = _parametersHashMap.get(VOCABULARY);
@@ -62,7 +60,7 @@ public class SuggestionRequest extends FormRequest {
             return WARNING_STATE;
         }
 
-        clearSessionAttributes(MOST_PARAMETERS);
+        clearAttributes(MOST_PARAMETERS);
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
         _request.setAttribute(MESSAGE, msg);

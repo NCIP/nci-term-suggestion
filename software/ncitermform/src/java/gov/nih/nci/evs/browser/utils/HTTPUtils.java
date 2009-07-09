@@ -109,7 +109,7 @@ public class HTTPUtils {
         return buffer.toString();
     }
     
-    public static void updateSessionAttributes(HttpServletRequest request, 
+    public static void updateAttributes(HttpServletRequest request, 
         String[] parameters, HashMap<String, String> parametersHashMap) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
@@ -118,7 +118,7 @@ public class HTTPUtils {
         }
     }
     
-    public static void clearSessionAttributes(HttpServletRequest request, 
+    public static void clearAttributes(HttpServletRequest request, 
             String[] parameters) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];

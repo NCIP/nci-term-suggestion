@@ -25,24 +25,24 @@ public class BaseRequest {
     }
     
     public void clear() {
-        clearSessionAttributes();
+        clearAttributes();
         setParameters(EMPTY_PARAMETERS);
     }
     
-    protected void updateSessionAttributes(String[] parameters) {
-        HTTPUtils.updateSessionAttributes(_request, parameters, 
+    protected void updateAttributes(String[] parameters) {
+        HTTPUtils.updateAttributes(_request, parameters, 
             _parametersHashMap);
     }
 
-    protected void updateSessionAttributes() {
-        updateSessionAttributes(_parameters);
+    protected void updateAttributes() {
+        updateAttributes(_parameters);
     }
     
-    protected void clearSessionAttributes(String[] parameters) {
-        HTTPUtils.clearSessionAttributes(_request, parameters);
+    protected void clearAttributes(String[] parameters) {
+        HTTPUtils.clearAttributes(_request, parameters);
     }
     
-    protected void clearSessionAttributes() {
-        clearSessionAttributes(_parameters);
+    protected void clearAttributes() {
+        clearAttributes(_parameters);
     }
 }

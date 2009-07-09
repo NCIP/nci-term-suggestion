@@ -6,7 +6,7 @@ import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
 public class FormRequest extends BaseRequest {
-    // List of session attribute name(s):
+    // List of attribute name(s):
     public static final String VERSION = "version";
     public static final String MESSAGE = "message";
     public static final String WARNINGS = "warnings";
@@ -35,7 +35,7 @@ public class FormRequest extends BaseRequest {
     
     public void clear() {
         super.clear();
-        clearSessionAttributes(ALL_PARAMETERS);
+        clearAttributes(ALL_PARAMETERS);
     }
     
     public String clearForm() {

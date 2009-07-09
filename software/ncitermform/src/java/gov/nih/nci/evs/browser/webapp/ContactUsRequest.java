@@ -6,7 +6,7 @@ import gov.nih.nci.evs.browser.utils.*;
 import javax.servlet.http.*;
 
 public class ContactUsRequest extends FormRequest {
-    // List of session attribute name(s):
+    // List of attribute name(s):
     public static final String SUBJECT = "subject";
     public static final String EMAIL_MSG = "email_msg";
     public static final String EMAIL_ADDRESS = SuggestionRequest.EMAIL;
@@ -24,13 +24,13 @@ public class ContactUsRequest extends FormRequest {
     
     public void clear() {
         super.clear();
-        clearSessionAttributes(new String[] { WARNING_TYPE });
+        clearAttributes(new String[] { WARNING_TYPE });
     }
     
     public String submitForm() {
-        clearSessionAttributes(FormRequest.ALL_PARAMETERS);
-        clearSessionAttributes(new String[] { WARNING_TYPE });
-        updateSessionAttributes();
+        clearAttributes(FormRequest.ALL_PARAMETERS);
+        clearAttributes(new String[] { WARNING_TYPE });
+        updateAttributes();
         AppProperties appProperties = AppProperties.getInstance();
         
         try {
@@ -56,7 +56,7 @@ public class ContactUsRequest extends FormRequest {
             return WARNING_STATE;
         }
 
-        clearSessionAttributes(MOST_PARAMETERS);
+        clearAttributes(MOST_PARAMETERS);
         String msg = "Your message was successfully sent.";
         _request.setAttribute(MESSAGE, StringUtils.toHtml(msg));
         printSendEmailWarning();

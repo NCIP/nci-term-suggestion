@@ -14,7 +14,7 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Session Attribute(s):
+  // Attribute(s):
   String email = HTTPUtils.getAttributeString(request, "email");
   String other = HTTPUtils.getAttributeString(request, "other");
   String vocabulary = HTTPUtils.getAttributeString(request, "vocabulary");
