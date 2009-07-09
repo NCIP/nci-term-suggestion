@@ -47,10 +47,11 @@
   String cadsr = HTTPUtils.getAttributeString(request, CADSR);
   String reason = HTTPUtils.getAttributeString(request, REASON);
   String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
+  boolean isWarnings = warnings.length() > 0;
 
   String pDictionary = HTTPUtils.getParameter(request, DICTIONARY);
   String pCode = HTTPUtils.getParameter(request, CODE, false);
-  if (pCode != null)
+  if (! isWarnings && pCode != null)
     nearest_code = pCode;
   
   // Member variable(s):
@@ -96,7 +97,7 @@
     <table class="newConceptDT">
       <!-- =================================================================== -->
       <%
-          if (warnings.length() > 0) {
+          if (isWarnings) {
             String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
             for (i=0; i<wList.length; ++i) {
               String warning = wList[i];
@@ -159,15 +160,18 @@
                 selectedItem = vocabulary;
                 ArrayList list = AppProperties.getInstance().getVocabularies();
                 Iterator iterator = list.iterator();
+                boolean isSelected = false;
                 while (iterator.hasNext()) {
                   VocabInfo vocab = (VocabInfo) iterator.next();
                   String item = vocab.getName();
                   String url = vocab.getUrl();
                   String args = "";
-                  if (url.equals(selectedItem))
-                    args += "selected=\"true\"";
-                  else if (item.equalsIgnoreCase(pDictionary))
-                    args += "selected=\"true\"";
+                  if (! isSelected) {
+                    if (! isWarnings && item.equalsIgnoreCase(pDictionary))
+                      { args += "selected=\"true\""; isSelected = true; }
+                    else if (url.equals(selectedItem))
+                      { args += "selected=\"true\""; isSelected = true; }
+                  }
             %>
                   <option value="<%=url%>" <%=args%>><%=item%></option>
             <%
