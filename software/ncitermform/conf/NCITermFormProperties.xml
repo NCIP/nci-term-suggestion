@@ -94,5 +94,16 @@
       <key>CADSR_TYPES</key>
       <value>@cadsr.types@</value>
     </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_REQUEST_TYPES</key>
+      <value>@cdisc.request.types@</value>
+    </ConfigurableItem>
+    
+    <ConfigurableItem>
+      <key>CDISC_CODES</key>
+      <value>@cdisc.codes@</value>
+    </ConfigurableItem>
+    
   </ConfigurableItems>
 </root>
