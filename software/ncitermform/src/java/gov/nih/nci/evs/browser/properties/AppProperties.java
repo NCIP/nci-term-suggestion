@@ -79,8 +79,6 @@ public class AppProperties {
     }
 
     public boolean isDebugOn() {
-        getCDISCRequestTypeList();
-        getCDISCCodesList();
         return Boolean.parseBoolean(getProperty(DEBUG_ON));
     }
 

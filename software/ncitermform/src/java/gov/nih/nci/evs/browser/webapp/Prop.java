@@ -107,7 +107,7 @@ public class Prop {
 
     //-- Enum Version ------------------------------------------------------------
     public static enum Version {
-        Default, CADSR;
+        Default, CADSR, CDISC;
         public static Version valueOfOrDefault(String text) {
             try {
                 String textStr = text.toLowerCase();
