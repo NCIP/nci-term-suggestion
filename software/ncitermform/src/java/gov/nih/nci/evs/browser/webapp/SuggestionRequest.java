@@ -18,14 +18,16 @@ public class SuggestionRequest extends FormRequest {
         " other additional information";
     public static final String SOURCE = "Source";
     public static final String CADSR = "caDSR Type";
+    public static final String CDISC_REQUEST_TYPE = "Request Type";
+    public static final String CDISC_CODES = "CDISC Code List";
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
         EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, SOURCE, CADSR };
+        DEFINITION, REASON, SOURCE, CADSR, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] MOST_PARAMETERS = new String[] { 
         /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, SOURCE, CADSR };
+        DEFINITION, REASON, SOURCE, CADSR, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, OTHER, VOCABULARY };
     
@@ -111,6 +113,10 @@ public class SuggestionRequest extends FormRequest {
             itemizeParameters(buffer, "Term Information:",
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
                     DEFINITION, SOURCE, CADSR });
+        } else if (version == Prop.Version.CDISC) {
+            itemizeParameters(buffer, "Term Information:",
+                new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
+                    DEFINITION, CDISC_REQUEST_TYPE, CDISC_CODES });
         } else {
             itemizeParameters(buffer, "Term Information:",
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
