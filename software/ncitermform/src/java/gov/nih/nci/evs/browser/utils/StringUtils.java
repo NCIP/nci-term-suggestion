@@ -86,4 +86,14 @@ public class StringUtils {
         } while (text.length() > 0);
         return buffer.toString();
     }
+
+    public static String truncate(int maxChar, String text) {
+        if (text.length() <= maxChar)
+            return text;
+        
+        String dots = " ...";
+        text = text.substring(0, maxChar - dots.length());
+        text += dots;
+        return text;
+    }
 }
