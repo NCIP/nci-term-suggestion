@@ -45,4 +45,12 @@ public class BaseRequest {
     protected void clearAttributes() {
         clearAttributes(_parameters);
     }
+    
+    protected void updateSessionAttributes(String[] parameters) {
+        HTTPUtils.updateSessionAttributes(_request, parameters);
+    }
+    
+    protected void clearSessionAttributes(String[] parameters) {
+        HTTPUtils.clearSessionAttributes(_request, parameters);
+    }
 }

@@ -26,6 +26,8 @@ public class SuggestionRequest extends FormRequest {
     public static final String[] MOST_PARAMETERS = new String[] { 
         /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
         DEFINITION, REASON, SOURCE, CADSR };
+    public static final String[] SESSION_ATTRIBUTES = new String[] {
+        EMAIL, OTHER, VOCABULARY };
     
     public SuggestionRequest(HttpServletRequest request) {
         super(request, VOCABULARY);
@@ -35,6 +37,7 @@ public class SuggestionRequest extends FormRequest {
     public String submitForm() {
         clearAttributes(FormRequest.ALL_PARAMETERS);
         updateAttributes();
+        updateSessionAttributes(SESSION_ATTRIBUTES);
         
         String warnings = validate();
         if (warnings.length() > 0) {
