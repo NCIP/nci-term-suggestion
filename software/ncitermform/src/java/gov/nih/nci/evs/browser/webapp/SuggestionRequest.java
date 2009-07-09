@@ -72,7 +72,7 @@ public class SuggestionRequest extends FormRequest {
 
         clearAttributes(MOST_PARAMETERS);
         String msg = "FYI: The following request has been sent:\n";
-        msg += "    * " + getSubject();
+        msg += "    * " + StringUtils.wrap(80, getSubject());
         _request.setAttribute(MESSAGE, msg);
         printSendEmailWarning();
         return SUCCESSFUL_STATE;
