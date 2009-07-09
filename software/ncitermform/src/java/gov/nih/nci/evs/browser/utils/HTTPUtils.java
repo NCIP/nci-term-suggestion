@@ -37,6 +37,21 @@ public class HTTPUtils {
         return getAttributeString(request, name, true, false);
     }
 
+    public static String getSessionAttributeString(HttpServletRequest request,
+        String name, boolean convertNullToBlankString, boolean clear) {
+        String value = (String) request.getSession().getAttribute(name);
+        if (convertNullToBlankString && (value == null || value.length() <= 0))
+            return "";
+        if (clear)
+            request.setAttribute(name, null);
+        return cleanXSS(value);
+    }
+
+    public static String getSessionAttributeString(HttpServletRequest request,
+        String name) {
+        return getSessionAttributeString(request, name, true, false);
+    }
+    
     public static String cleanXSS(String value) {
         if (value == null || value.length() < 1)
             return value;
