@@ -33,6 +33,11 @@ public class SuggestionRequest extends FormRequest {
         super(request, VOCABULARY);
         setParameters(ALL_PARAMETERS);
     }
+    
+    public void clear() {
+        super.clear();
+        clearSessionAttributes(SESSION_ATTRIBUTES);
+    }
 
     public String submitForm() {
         clearAttributes(FormRequest.ALL_PARAMETERS);
