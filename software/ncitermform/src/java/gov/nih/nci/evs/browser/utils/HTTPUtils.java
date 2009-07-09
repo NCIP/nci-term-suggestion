@@ -24,11 +24,11 @@ public class HTTPUtils {
 
     public static String getSessionAttributeString(HttpServletRequest request,
         String name, boolean convertNullToBlankString, boolean clear) {
-        String value = (String) request.getSession().getAttribute(name);
+        String value = (String) request.getAttribute(name);
         if (convertNullToBlankString && (value == null || value.length() <= 0))
             return "";
         if (clear)
-            request.getSession().setAttribute(name, null);
+            request.setAttribute(name, null);
         return cleanXSS(value);
     }
 
@@ -82,13 +82,15 @@ public class HTTPUtils {
     public static String debugParameters(String text, String[] parameters, 
         HashMap<String, String> parametersHashMap) {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(text);
+        buffer.append(text + "\n");
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            buffer.append("\n* ");
+            buffer.append("  * ");
             buffer.append(parameter + ": ");
             buffer.append(parametersHashMap.get(parameter));
+            buffer.append("\n");
         }
+        Debug.println(buffer.toString());
         return buffer.toString();
     }
     
@@ -96,7 +98,7 @@ public class HTTPUtils {
         String[] parameters, HashMap<String, String> parametersHashMap) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            request.getSession().setAttribute(parameter,
+            request.setAttribute(parameter,
                 parametersHashMap.get(parameter));
         }
     }
@@ -105,7 +107,7 @@ public class HTTPUtils {
             String[] parameters) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            request.getSession().setAttribute(parameter, null);
+            request.setAttribute(parameter, null);
         }
     }
 }

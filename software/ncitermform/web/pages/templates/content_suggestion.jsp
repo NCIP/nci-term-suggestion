@@ -248,14 +248,14 @@
           <h:commandButton
             id="clear"
             value="clear"
-            action="#{userSessionBean.clearContactUs}"
+            action="#{userSessionBean.clearSuggestion}"
             image="#{facesContext.externalContext.requestContextPath}/images/clear.gif"
             alt="clear">
           </h:commandButton>
           <h:commandButton
             id="submit"
             value="submit"
-            action="#{userSessionBean.contactUs}"
+            action="#{userSessionBean.requestSuggestion}"
             image="#{facesContext.externalContext.requestContextPath}/images/submit.gif"
             alt="submit">
           </h:commandButton>
