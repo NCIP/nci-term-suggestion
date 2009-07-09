@@ -47,7 +47,7 @@ public class Debug {
         if (list == null)
             return;
         for (int i = 0; i < list.length; ++i) {
-            println("  * " + (i + 1) + ") " + list[i]);
+            println("  " + (i + 1) + ") " + list[i]);
         }
     }
 }
