@@ -6,7 +6,7 @@ import gov.nih.nci.evs.browser.utils.*;
 import javax.servlet.http.*;
 
 public class NewConceptRequest extends FormRequest {
-    // List of session attribute name(s):
+    // List of attribute name(s):
     private static final String EMAIL = "email";
     private static final String OTHER = "other";
     private static final String VOCABULARY = "vocabulary";
@@ -25,7 +25,7 @@ public class NewConceptRequest extends FormRequest {
     public String submitForm() {
         _request.setAttribute(WARNINGS, null);
         _request.setAttribute(MESSAGE, null);
-        updateSessionAttributes();
+        updateAttributes();
         
         String warnings = validate();
         if (warnings.length() > 0) {
@@ -51,7 +51,7 @@ public class NewConceptRequest extends FormRequest {
             return WARNING_STATE;
         }
 
-        clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
+        clearAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
             TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();

@@ -8,7 +8,7 @@
   private static final String MAIL_TO = "ncicb@pop.nci.nih.gov";
   private static final String NCICB_URL = "http://ncicb.nci.nih.gov/support";
   
-  // List of session attribute name(s):
+  // List of attribute name(s):
   private static final String SUBJECT = ContactUsRequest.SUBJECT;
   private static final String EMAIL_MSG = ContactUsRequest.EMAIL_MSG;
   private static final String EMAIL_ADDRESS = ContactUsRequest.EMAIL_ADDRESS;

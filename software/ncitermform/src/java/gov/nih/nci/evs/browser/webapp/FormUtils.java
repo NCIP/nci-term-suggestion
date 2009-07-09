@@ -31,9 +31,9 @@ public class FormUtils {
         return basePath + "/css";
     }
 
-    public static void clearAllSessionAttributes(HttpServletRequest request) {
-        HTTPUtils.clearSessionAttributes(request, FormRequest.ALL_PARAMETERS);
-        HTTPUtils.clearSessionAttributes(request, SuggestionRequest.MOST_PARAMETERS);
+    public static void clearAllAttributes(HttpServletRequest request) {
+        HTTPUtils.clearAttributes(request, FormRequest.ALL_PARAMETERS);
+        HTTPUtils.clearAttributes(request, SuggestionRequest.MOST_PARAMETERS);
     }
 
     public static String getIndexPage(HttpServletRequest request) {
@@ -41,7 +41,7 @@ public class FormUtils {
             request, VERSION, false, false);
         String basePath = getBasePath(request);
         String indexPage = basePath + "/" + Prop.Version.getUrlParameter(version);
-        clearAllSessionAttributes(request);
+        clearAllAttributes(request);
         return indexPage;
     }
     
@@ -54,7 +54,7 @@ public class FormUtils {
         Prop.Version parameter_version = Prop.Version.valueOfOrDefault(parameterVersion);
         if (parameter_version != curr_version) {
           curr_version = parameter_version;
-          clearAllSessionAttributes(request);
+          clearAllAttributes(request);
         }
         request.getSession().setAttribute(VERSION, curr_version.name());
         return curr_version;

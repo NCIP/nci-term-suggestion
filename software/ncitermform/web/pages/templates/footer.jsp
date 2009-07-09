@@ -1,6 +1,5 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
-  // Session Attribute(s):
   String imagesPath = FormUtils.getImagesPath(request);
   String pagesPath = FormUtils.getPagesPath(request);
 %>

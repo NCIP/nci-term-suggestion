@@ -2,11 +2,11 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%= FormUtils.getJSPath(request) %>/utils.js"></script>
 <%!
-  // List of session attribute name(s):
+  // List of attribute name(s):
   private static final String MESSAGE = FormRequest.MESSAGE;
   private static final String WARNINGS = FormRequest.WARNINGS;%>
 <%
-  // Session Attribute(s):
+  // Attribute(s):
   String message = HTTPUtils.getAttributeString(request, MESSAGE, false, true);
   String warnings = HTTPUtils.getAttributeString(request, WARNINGS, false, true);
 %>

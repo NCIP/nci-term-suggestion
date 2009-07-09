@@ -8,7 +8,7 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <script type="text/javascript" src="<%=FormUtils.getJSPath(request)%>/utils.js"></script>
 <%!
-  // List of session attribute name(s):
+  // List of attribute name(s):
   private static final String EMAIL = SuggestionRequest.EMAIL;
   private static final String OTHER = SuggestionRequest.OTHER;
   private static final String VOCABULARY = SuggestionRequest.VOCABULARY;
@@ -31,7 +31,7 @@
   String imagesPath = FormUtils.getImagesPath(request);
   Prop.Version version = FormUtils.getVersion(request);
 
-  // Session Attribute(s):
+  // Attribute(s):
   String email = HTTPUtils.getAttributeString(request, EMAIL);
   String other = HTTPUtils.getAttributeString(request, OTHER);
   String vocabulary = HTTPUtils.getAttributeString(request, VOCABULARY);
