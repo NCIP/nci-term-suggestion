@@ -13,9 +13,9 @@ public class UserSessionBean {
 	}
 	
     public String changeRequest() {
-        getRequest().getSession().setAttribute(
-                "message", "UserSessionBean.changeRequest");
-        return "message";
+        getRequest().setAttribute(
+                FormRequest.MESSAGE, "UserSessionBean.changeRequest");
+        return FormRequest.MESSAGE_STATE;
     }
     
     public String requestNewConcept() {
@@ -45,6 +45,16 @@ public class UserSessionBean {
     
     public String clearSuggestion() {
         SuggestionRequest request = new SuggestionRequest(getRequest());
+        return request.clearForm();  
+    }
+
+    public String contactUs() {
+        ContactUsRequest request = new ContactUsRequest(getRequest());
+        return request.submitForm();
+    }
+    
+    public String clearContactUs() {
+        ContactUsRequest request = new ContactUsRequest(getRequest());
         return request.clearForm();  
     }
 }

@@ -22,13 +22,28 @@ public class HTTPUtils {
         return getParameter(request, name, true);
     }
 
+    public static String getAttributeString(HttpServletRequest request,
+        String name, boolean convertNullToBlankString, boolean clear) {
+        String value = (String) request.getAttribute(name);
+        if (convertNullToBlankString && (value == null || value.length() <= 0))
+            return "";
+        if (clear)
+            request.setAttribute(name, null);
+        return cleanXSS(value);
+    }
+
+    public static String getAttributeString(HttpServletRequest request,
+        String name) {
+        return getAttributeString(request, name, true, false);
+    }
+
     public static String getSessionAttributeString(HttpServletRequest request,
         String name, boolean convertNullToBlankString, boolean clear) {
         String value = (String) request.getSession().getAttribute(name);
         if (convertNullToBlankString && (value == null || value.length() <= 0))
             return "";
         if (clear)
-            request.getSession().setAttribute(name, null);
+            request.setAttribute(name, null);
         return cleanXSS(value);
     }
 
@@ -36,7 +51,7 @@ public class HTTPUtils {
         String name) {
         return getSessionAttributeString(request, name, true, false);
     }
-
+    
     public static String cleanXSS(String value) {
         if (value == null || value.length() < 1)
             return value;
@@ -82,30 +97,51 @@ public class HTTPUtils {
     public static String debugParameters(String text, String[] parameters, 
         HashMap<String, String> parametersHashMap) {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(text);
+        buffer.append(text + "\n");
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            buffer.append("\n* ");
+            buffer.append("  * ");
             buffer.append(parameter + ": ");
             buffer.append(parametersHashMap.get(parameter));
+            buffer.append("\n");
         }
+        Debug.println(buffer.toString());
         return buffer.toString();
     }
     
-    public static void updateSessionAttributes(HttpServletRequest request, 
+    public static void updateAttributes(HttpServletRequest request, 
         String[] parameters, HashMap<String, String> parametersHashMap) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            request.getSession().setAttribute(parameter,
+            request.setAttribute(parameter,
                 parametersHashMap.get(parameter));
         }
+        debugParameters("HTTPUtils.updateAttributes:", 
+            parameters, parametersHashMap);
     }
     
-    public static void clearSessionAttributes(HttpServletRequest request, 
+    public static void clearAttributes(HttpServletRequest request, 
             String[] parameters) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            request.getSession().setAttribute(parameter, null);
+            request.setAttribute(parameter, null);
+        }
+    }
+    
+    public static void updateSessionAttributes(HttpServletRequest request, 
+        String[] parameters) {
+        for (int i = 0; i < parameters.length; ++i) {
+            String name = parameters[i];
+            String value = request.getParameter(name);
+            request.getSession().setAttribute(name, value);
+        }
+    }
+
+    public static void clearSessionAttributes(HttpServletRequest request, 
+        String[] parameters) {
+        for (int i = 0; i < parameters.length; ++i) {
+            String name = parameters[i];
+            request.getSession().setAttribute(name, null);
         }
     }
 }

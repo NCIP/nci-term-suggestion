@@ -6,7 +6,7 @@ import gov.nih.nci.evs.browser.utils.*;
 import javax.servlet.http.*;
 
 public class SuggestionRequest extends FormRequest {
-    // List of session attribute name(s):
+    // List of attribute name(s):
     public static final String EMAIL = "Email";
     public static final String OTHER = "Other";
     public static final String VOCABULARY = "Vocabulary";
@@ -18,27 +18,37 @@ public class SuggestionRequest extends FormRequest {
         " other additional information";
     public static final String SOURCE = "Source";
     public static final String CADSR = "caDSR Type";
+    public static final String CDISC_REQUEST_TYPE = "Request Type";
+    public static final String CDISC_CODES = "CDISC Code List";
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
         EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, SOURCE, CADSR };
+        DEFINITION, REASON, SOURCE, CADSR, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] MOST_PARAMETERS = new String[] { 
         /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, SOURCE, CADSR };
+        DEFINITION, REASON, SOURCE, CADSR, CDISC_REQUEST_TYPE, CDISC_CODES };
+    public static final String[] SESSION_ATTRIBUTES = new String[] {
+        EMAIL, OTHER, VOCABULARY };
     
     public SuggestionRequest(HttpServletRequest request) {
         super(request, VOCABULARY);
         setParameters(ALL_PARAMETERS);
     }
+    
+    public void clear() {
+        super.clear();
+        clearSessionAttributes(SESSION_ATTRIBUTES);
+    }
 
     public String submitForm() {
-        clearSessionAttributes(FormRequest.ALL_PARAMETERS);
-        updateSessionAttributes();
+        clearAttributes(FormRequest.ALL_PARAMETERS);
+        updateAttributes();
+        updateSessionAttributes(SESSION_ATTRIBUTES);
         
         String warnings = validate();
         if (warnings.length() > 0) {
-            _request.getSession().setAttribute(WARNINGS, warnings);
+            _request.setAttribute(WARNINGS, warnings);
             return WARNING_STATE;
         }
 
@@ -54,16 +64,16 @@ public class SuggestionRequest extends FormRequest {
             if (_isSendEmail)
                 MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
-            _request.getSession().setAttribute(WARNINGS,
+            _request.setAttribute(WARNINGS,
                     e.getLocalizedMessage());
             e.printStackTrace();
             return WARNING_STATE;
         }
 
-        clearSessionAttributes(MOST_PARAMETERS);
+        clearAttributes(MOST_PARAMETERS);
         String msg = "FYI: The following request has been sent:\n";
-        msg += "    * " + getSubject();
-        _request.getSession().setAttribute(MESSAGE, msg);
+        msg += "    * " + StringUtils.wrap(80, getSubject());
+        _request.setAttribute(MESSAGE, msg);
         printSendEmailWarning();
         return SUCCESSFUL_STATE;
     }
@@ -103,6 +113,10 @@ public class SuggestionRequest extends FormRequest {
             itemizeParameters(buffer, "Term Information:",
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
                     DEFINITION, SOURCE, CADSR });
+        } else if (version == Prop.Version.CDISC) {
+            itemizeParameters(buffer, "Term Information:",
+                new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
+                    DEFINITION, CDISC_REQUEST_TYPE, CDISC_CODES });
         } else {
             itemizeParameters(buffer, "Term Information:",
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
@@ -125,7 +139,7 @@ public class SuggestionRequest extends FormRequest {
         emailMsg = INDENT + emailMsg.replaceAll("\\\n", "\n" + INDENT);
         buffer.append(emailMsg);
         
-        _request.getSession().setAttribute(WARNINGS, buffer.toString());
+        _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
     }
 }

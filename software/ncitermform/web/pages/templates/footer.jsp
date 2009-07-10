@@ -1,28 +1,26 @@
+<%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
-  String imagePath = request.getContextPath() + "/images";
+  String imagesPath = FormUtils.getImagesPath(request);
+  String pagesPath = FormUtils.getPagesPath(request);
 %>
 <div class="footer">
   <ul>
-    <li><a href="http://www.cancer.gov" target="_blank" 
+    <li><a href="<%=FormUtils.getIndexPage(request)%>">Home</a></li>
+    <li> | <a href="http://www.cancer.gov" target="_blank" 
       alt="National Cancer Institute">NCI Home</a></li>
-<%--      
-    <li> | <a href="<%= request.getContextPath() %>/pages/contact_us.jsf"
+    <li> | <a href="<%=pagesPath%>/contact_us.jsf"
       alt="NCIt Contact Us">Contact Us</a></li>
---%>      
     <li> | <a href="http://www.cancer.gov/policies" target="_blank"
       alt="National Cancer Institute Policies">Policies</a></li>
     <li> | <a href="http://www.cancer.gov/policies/page4" target="_blank"
       alt="National Cancer Institute Accessibility">Accessibility</a></li>
     <li> | <a href="http://www.cancer.gov/policies/page7" target="_blank"
       alt="National Cancer Institute Freedom of Information Act">FOIA</a></li>
-<%--      
-    <li> | <a href="<%=request.getContextPath()%>">Home</a></li>
---%>      
   </ul>
 
   <p>
     A Service of the National Cancer Institute<br />
-    <img src="<%=imagePath%>/external-footer-logos.gif"
+    <img src="<%=imagesPath%>/external-footer-logos.gif"
       alt="External Footer Logos" width="238" height="34" border="0"
       usemap="#external-footer" />
   </p>

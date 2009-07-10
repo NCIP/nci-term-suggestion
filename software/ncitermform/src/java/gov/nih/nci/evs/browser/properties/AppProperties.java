@@ -18,6 +18,8 @@ public class AppProperties {
     private static final int VOCABULARY_MAX = 20;
     private static final String SOURCES = "SOURCES";
     private static final String CADSR_TYPES = "CADSR_TYPES";
+    private static final String CDISC_REQUEST_TYPES = "CDISC_REQUEST_TYPES";
+    private static final String CDISC_CODES = "CDISC_CODES";
 
     private static AppProperties _appProperties = null;
     private Logger _log = Logger.getLogger(AppProperties.class);
@@ -26,6 +28,8 @@ public class AppProperties {
     private ArrayList<VocabInfo> _vocabList = null;
     private String[] _sourceList = null;
     private String[] _caDSRTypeList = null;
+    private String[] _cdiscRequestTypeList = null;
+    private String[] _cdiscCodeList = null;
 
     private AppProperties() { // Singleton Pattern
         loadProperties();
@@ -155,12 +159,13 @@ public class AppProperties {
     }
 
     public String[] getSourceList() {
-        if (_sourceList == null) {
+        String[] list = _sourceList;
+        if (list == null) {
             String value = getSources();
-            _sourceList = StringUtils.toStrings(value, ";", false);
-            Debug.printList("Source List", _sourceList);
+            list = StringUtils.toStrings(value, ";", false);
+            Debug.printList("Source List", list);
         }
-        return _sourceList;
+        return _sourceList = list;
     }
     
     public String getCADSRTypes() {
@@ -168,11 +173,40 @@ public class AppProperties {
     }
 
     public String[] getCADSRTypeList() {
-        if (_caDSRTypeList == null) {
+        String[] list = _caDSRTypeList;
+        if (list == null) {
             String value = getCADSRTypes();
-            _caDSRTypeList = StringUtils.toStrings(value, ";", false);
-            Debug.printList("caDSR Type List", _caDSRTypeList);
+            list = StringUtils.toStrings(value, ";", false);
+            Debug.printList("caDSR Type List", list);
         }
-        return _caDSRTypeList;
+        return _caDSRTypeList = list;
+    }
+
+    public String getCDISCRequestTypes() {
+        return getProperty(CDISC_REQUEST_TYPES);
+    }
+
+    public String[] getCDISCRequestTypeList() {
+        String[] list = _cdiscRequestTypeList;
+        if (list == null) {
+            String value = getCDISCRequestTypes();
+            list = StringUtils.toStrings(value, ";", false);
+            Debug.printList("CDISC Request Type List", list);
+        }
+        return _cdiscRequestTypeList = list;
+    }
+    
+    public String getCDISCCodes() {
+        return getProperty(CDISC_CODES);
+    }
+
+    public String[] getCDISCCodesList() {
+        String[] list = _cdiscCodeList;
+        if (list == null) {
+            String value = getCDISCCodes();
+            list = StringUtils.toStrings(value, ";", false);
+            Debug.printList("CDISC Code List", list);
+        }
+        return _cdiscCodeList = list;
     }
 }

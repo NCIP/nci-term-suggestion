@@ -7,6 +7,7 @@ import javax.mail.internet.*;
 
 public class MailUtils extends Object {
     private static final long serialVersionUID = 1L;
+    private static final int MAX_SUBJECT_CHAR = 256;
 
     public static boolean isValidEmailAddress(String text) {
         int posOfAtChar = text.indexOf('@');
@@ -57,12 +58,14 @@ public class MailUtils extends Object {
             throw new UserInputException(error.toString());
         }
     }
-
+    
     public static void postMail(String mail_smtp_server, String from, 
-        String recipients[], String subject, String message) 
+        String recipients[], String subject, String message, boolean send) 
             throws MessagingException, Exception {
         if (mail_smtp_server == null || mail_smtp_server.length() <= 0)
             throw new MessagingException("SMTP host not set.");
+        
+        subject = StringUtils.truncate(MAX_SUBJECT_CHAR, subject);
         postMailValidation(from, recipients, subject, message);
 
         // Sets the host smtp address.
@@ -92,6 +95,13 @@ public class MailUtils extends Object {
         // Setting the Subject and Content Type.
         msg.setSubject(subject);
         msg.setContent(message, "text/plain");
-        Transport.send(msg);
+        if (send)
+            Transport.send(msg);
+    }
+    
+    public static void postMail(String mail_smtp_server, String from, 
+        String recipients[], String subject, String message) 
+            throws MessagingException, Exception {
+        postMail(mail_smtp_server, from, recipients, subject, message, true);
     }
 }

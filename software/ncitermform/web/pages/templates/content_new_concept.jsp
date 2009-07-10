@@ -6,7 +6,7 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/utils.js"></script>
+<script type="text/javascript" src="<%= FormUtils.getJSPath(request) %>/utils.js"></script>
 <%!
   private static final String INPUT_ARGS =
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
@@ -14,19 +14,19 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Session Attribute(s):
-  String email = HTTPUtils.getSessionAttributeString(request, "email");
-  String other = HTTPUtils.getSessionAttributeString(request, "other");
-  String vocabulary = HTTPUtils.getSessionAttributeString(request, "vocabulary");
-  String term = HTTPUtils.getSessionAttributeString(request, "term");
-  String synonyms = HTTPUtils.getSessionAttributeString(request, "synonyms");
-  String parentCode = HTTPUtils.getSessionAttributeString(request, "parentCode");
-  String definition = HTTPUtils.getSessionAttributeString(request, "definition");
-  String reason = HTTPUtils.getSessionAttributeString(request, "reason");
-  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings");
+  // Attribute(s):
+  String email = HTTPUtils.getAttributeString(request, "email");
+  String other = HTTPUtils.getAttributeString(request, "other");
+  String vocabulary = HTTPUtils.getAttributeString(request, "vocabulary");
+  String term = HTTPUtils.getAttributeString(request, "term");
+  String synonyms = HTTPUtils.getAttributeString(request, "synonyms");
+  String parentCode = HTTPUtils.getAttributeString(request, "parentCode");
+  String definition = HTTPUtils.getAttributeString(request, "definition");
+  String reason = HTTPUtils.getAttributeString(request, "reason");
+  String warnings = HTTPUtils.getAttributeString(request, "warnings");
 
   // Member variable(s):
-  String imagePath = request.getContextPath() + "/images";
+  String imagesPath = FormUtils.getImagesPath(request);
   int i=0;
   String[] items = null;
   String selectedItem = null;
@@ -136,7 +136,7 @@
           </select>
         </td>
         <td align="right">
-          <img src="<%=imagePath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
+          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
         </td>
       </tr>
       <tr>

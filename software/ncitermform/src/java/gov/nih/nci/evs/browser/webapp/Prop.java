@@ -107,7 +107,7 @@ public class Prop {
 
     //-- Enum Version ------------------------------------------------------------
     public static enum Version {
-        Default, CADSR;
+        Default, CADSR, CDISC;
         public static Version valueOfOrDefault(String text) {
             try {
                 String textStr = text.toLowerCase();
@@ -127,6 +127,25 @@ public class Prop {
             if (version == Default)
                 return "";
             return "?version=" + version.name().toLowerCase();
+        }
+    }
+    
+    //-- Enum WarningType ------------------------------------------------------
+    public static enum WarningType { 
+        None, System, User;
+        
+        public static WarningType valueOfOrDefault(String text) {
+            try {
+                String textStr = text.toLowerCase();
+                for (WarningType value : values()) {
+                    String valueStr = value.name().toLowerCase();
+                    if (valueStr.equals(textStr))
+                        return value;
+                }
+                return values()[0];
+            } catch (Exception e) {
+                return values()[0];
+            }
         }
     }
 }

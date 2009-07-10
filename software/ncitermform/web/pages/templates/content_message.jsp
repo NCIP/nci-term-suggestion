@@ -1,7 +1,7 @@
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%
-  String message = HTTPUtils.getSessionAttributeString(request, "message", false, true);
-  String warnings = HTTPUtils.getSessionAttributeString(request, "warnings", false, true);
+  String message = HTTPUtils.getAttributeString(request, "message", false, true);
+  String warnings = HTTPUtils.getAttributeString(request, "warnings", false, true);
 %>
 <%
   String msg = message;

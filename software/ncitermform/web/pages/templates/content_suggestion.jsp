@@ -6,12 +6,13 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.utils.*" %>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/utils.js"></script>
+<script type="text/javascript" src="<%=FormUtils.getJSPath(request)%>/utils.js"></script>
 <%!
-  // List of session parameter/attribute name(s):
-  private static final String VERSION = SuggestionRequest.VERSION;
+  // List of parameter name(s):
+  private static final String DICTIONARY = "dictionary";
+  private static final String CODE = "code";
 
-  // List of session attribute name(s):
+  // List of attribute name(s):
   private static final String EMAIL = SuggestionRequest.EMAIL;
   private static final String OTHER = SuggestionRequest.OTHER;
   private static final String VOCABULARY = SuggestionRequest.VOCABULARY;
@@ -19,9 +20,11 @@
   private static final String SYNONYMS = SuggestionRequest.SYNONYMS;
   private static final String NEAREST_CODE = SuggestionRequest.NEAREST_CODE;
   private static final String DEFINITION = SuggestionRequest.DEFINITION;
-  private static final String REASON = SuggestionRequest.REASON;
   private static final String SOURCE = SuggestionRequest.SOURCE;
   private static final String CADSR = SuggestionRequest.CADSR;
+  private static final String CDISC_REQUEST_TYPE = SuggestionRequest.CDISC_REQUEST_TYPE;
+  private static final String CDISC_CODES = SuggestionRequest.CDISC_CODES;
+  private static final String REASON = SuggestionRequest.REASON;
   private static final String WARNINGS = SuggestionRequest.WARNINGS;
 
   private static final String INPUT_ARGS =
@@ -30,33 +33,32 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-    // Checking form version:
-  String version = HTTPUtils.getSessionAttributeString(request, VERSION, false, false);
-  String p_version = HTTPUtils.getParameter(request, VERSION, false);
-  Prop.Version p_prop_version = Prop.Version.valueOfOrDefault(p_version);
-  Prop.Version prop_version = Prop.Version.valueOfOrDefault(version);
-  if (p_prop_version != prop_version) {
-    prop_version = p_prop_version;
-    HTTPUtils.clearSessionAttributes(request, FormRequest.ALL_PARAMETERS);
-    HTTPUtils.clearSessionAttributes(request, SuggestionRequest.MOST_PARAMETERS);
-  }
-  request.getSession().setAttribute(VERSION, prop_version.name());
+  // Member variable(s):
+  String imagesPath = FormUtils.getImagesPath(request);
+  Prop.Version version = FormUtils.getVersion(request);
 
-  // Session Attribute(s):
+  // Attribute(s):
   String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
   String other = HTTPUtils.getSessionAttributeString(request, OTHER);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
-  String term = HTTPUtils.getSessionAttributeString(request, TERM);
-  String synonyms = HTTPUtils.getSessionAttributeString(request, SYNONYMS);
-  String nearest_code = HTTPUtils.getSessionAttributeString(request, NEAREST_CODE);
-  String definition = HTTPUtils.getSessionAttributeString(request, DEFINITION);
-  String source = HTTPUtils.getSessionAttributeString(request, SOURCE);
-  String cadsr = HTTPUtils.getSessionAttributeString(request, CADSR);
-  String reason = HTTPUtils.getSessionAttributeString(request, REASON);
-  String warnings = HTTPUtils.getSessionAttributeString(request, WARNINGS);
+  String term = HTTPUtils.getAttributeString(request, TERM);
+  String synonyms = HTTPUtils.getAttributeString(request, SYNONYMS);
+  String nearest_code = HTTPUtils.getAttributeString(request, NEAREST_CODE);
+  String definition = HTTPUtils.getAttributeString(request, DEFINITION);
+  String source = HTTPUtils.getAttributeString(request, SOURCE);
+  String cadsr = HTTPUtils.getAttributeString(request, CADSR);
+  String cdisc_request_type = HTTPUtils.getAttributeString(request, CDISC_REQUEST_TYPE);
+  String cdisc_codes = HTTPUtils.getAttributeString(request, CDISC_CODES);
+  String reason = HTTPUtils.getAttributeString(request, REASON);
+  String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
+  boolean isWarnings = warnings.length() > 0;
+
+  String pDictionary = HTTPUtils.getParameter(request, DICTIONARY);
+  String pCode = HTTPUtils.getParameter(request, CODE, false);
+  if (! isWarnings && pCode != null)
+    nearest_code = pCode;
   
   // Member variable(s):
-  String imagePath = request.getContextPath() + "/images";
   int i=0;
   String[] items = null;
   String selectedItem = null;
@@ -99,7 +101,7 @@
     <table class="newConceptDT">
       <!-- =================================================================== -->
       <%
-          if (warnings.length() > 0) {
+          if (isWarnings) {
             String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
             for (i=0; i<wList.length; ++i) {
               String warning = wList[i];
@@ -160,24 +162,29 @@
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
                 selectedItem = vocabulary;
-                      ArrayList list = AppProperties.getInstance().getVocabularies();
-                      Iterator iterator = list.iterator();
-                      while (iterator.hasNext()) {
-                        VocabInfo vocab = (VocabInfo) iterator.next();
-                        String item = vocab.getName();
-                        String url = vocab.getUrl();
-                        String args = "";
-                        if (item.equals(selectedItem))
-                          args += "selected=\"true\"";
+                ArrayList list = AppProperties.getInstance().getVocabularies();
+                Iterator iterator = list.iterator();
+                boolean isSelected = false;
+                while (iterator.hasNext()) {
+                  VocabInfo vocab = (VocabInfo) iterator.next();
+                  String item = vocab.getName();
+                  String url = vocab.getUrl();
+                  String args = "";
+                  if (! isSelected) {
+                    if (! isWarnings && item.equalsIgnoreCase(pDictionary))
+                      { args += "selected=\"true\""; isSelected = true; }
+                    else if (url.equals(selectedItem))
+                      { args += "selected=\"true\""; isSelected = true; }
+                  }
             %>
-                <option value="<%=url%>" <%=args%>><%=item%></option>
+                  <option value="<%=url%>" <%=args%>><%=item%></option>
             <%
                 }
             %>
           </select>
         </td>
         <td align="right">
-          <img src="<%=imagePath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
+          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
         </td>
       </tr>
       <tr>
@@ -197,9 +204,10 @@
         <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA6<%=css%>"><%=definition%></textarea></td>
       </tr>
       
+      <!-- =================================================================== -->
       <%
-                if (prop_version == Prop.Version.CADSR) {
-            %>
+         if (version == Prop.Version.CADSR) {
+      %>
           <tr>
             <td <%=LABEL_ARGS%>><%=SOURCE%>:</td>
             <td colspan="2">
@@ -227,6 +235,54 @@
                 <%
                   selectedItem = cadsr;
                   items = AppProperties.getInstance().getCADSRTypeList();
+                  for (i=0; i<items.length; ++i) {
+                    String item = items[i];
+                    String args = "";
+                    if (item.equals(selectedItem))
+                      args += "selected=\"true\"";
+                %>
+                      <option value="<%=item%>" <%=args%>><%=item%></option>
+                <%
+                  }
+                %>
+              </select>
+            </td>
+          </tr>
+      <%
+        }
+      %>
+
+      <!-- =================================================================== -->
+      <%
+         if (version == Prop.Version.CDISC) {
+      %>
+          <tr>
+            <td <%=LABEL_ARGS%>><%=CDISC_REQUEST_TYPE%>:</td>
+            <td colspan="2">
+              <select name="<%=CDISC_REQUEST_TYPE%>" class="newConceptCB2<%=css%>">
+                <%
+                  selectedItem = cdisc_request_type;
+                  items = AppProperties.getInstance().getCDISCRequestTypeList();
+                  for (i=0; i<items.length; ++i) {
+                    String item = items[i];
+                    String args = "";
+                    if (item.equals(selectedItem))
+                      args += "selected=\"true\"";
+                %>
+                      <option value="<%=item%>" <%=args%>><%=item%></option>
+                <%
+                  }
+                %>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td <%=LABEL_ARGS%>><%=CDISC_CODES%>:</td>
+            <td colspan="2">
+              <select name="<%=CDISC_CODES%>" class="newConceptCB2<%=css%>">
+                <%
+                  selectedItem = cdisc_codes;
+                  items = AppProperties.getInstance().getCDISCCodesList();
                   for (i=0; i<items.length; ++i) {
                     String item = items[i];
                     String args = "";

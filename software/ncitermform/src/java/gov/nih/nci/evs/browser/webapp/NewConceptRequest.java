@@ -6,7 +6,7 @@ import gov.nih.nci.evs.browser.utils.*;
 import javax.servlet.http.*;
 
 public class NewConceptRequest extends FormRequest {
-    // List of session attribute name(s):
+    // List of attribute name(s):
     private static final String EMAIL = "email";
     private static final String OTHER = "other";
     private static final String VOCABULARY = "vocabulary";
@@ -23,13 +23,13 @@ public class NewConceptRequest extends FormRequest {
     }
 
     public String submitForm() {
-        _request.getSession().setAttribute(WARNINGS, null);
-        _request.getSession().setAttribute(MESSAGE, null);
-        updateSessionAttributes();
+        _request.setAttribute(WARNINGS, null);
+        _request.setAttribute(MESSAGE, null);
+        updateAttributes();
         
         String warnings = validate();
         if (warnings.length() > 0) {
-            _request.getSession().setAttribute(WARNINGS, warnings);
+            _request.setAttribute(WARNINGS, warnings);
             return WARNING_STATE;
         }
 
@@ -45,17 +45,17 @@ public class NewConceptRequest extends FormRequest {
             if (_isSendEmail)
                 MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
         } catch (Exception e) {
-            _request.getSession().setAttribute(WARNINGS,
+            _request.setAttribute(WARNINGS,
                     e.getLocalizedMessage());
             e.printStackTrace();
             return WARNING_STATE;
         }
 
-        clearSessionAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
+        clearAttributes(new String[] { /* EMAIL, OTHER, VOCABULARY, */
             TERM, SYNONYMS, PARENT_CODE, DEFINITION, REASON });
         String msg = "FYI: The following request has been sent:\n";
         msg += "    * " + getSubject();
-        _request.getSession().setAttribute(MESSAGE, msg);
+        _request.setAttribute(MESSAGE, msg);
         printSendEmailWarning();
         return SUCCESSFUL_STATE;
     }

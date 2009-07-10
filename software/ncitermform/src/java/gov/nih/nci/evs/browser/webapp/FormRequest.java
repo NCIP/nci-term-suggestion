@@ -6,7 +6,7 @@ import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
 public class FormRequest extends BaseRequest {
-    // List of session attribute name(s):
+    // List of attribute name(s):
     public static final String VERSION = "version";
     public static final String MESSAGE = "message";
     public static final String WARNINGS = "warnings";
@@ -16,13 +16,17 @@ public class FormRequest extends BaseRequest {
         new String[] { MESSAGE, WARNINGS };
     
     // List of return state(s):
-    protected static final String SUCCESSFUL_STATE = "successful";
-    protected static final String MESSAGE_STATE = "message";
-    protected static final String WARNING_STATE = "warning";
+    public static final String SUCCESSFUL_STATE = "successful";
+    public static final String MESSAGE_STATE = "message";
+    public static final String WARNING_STATE = "warning";
     
     // List of member variable(s):
     protected String _vocabularyParameter = null;
     protected boolean _isSendEmail = AppProperties.getInstance().isSendEmail();
+    
+    public FormRequest(HttpServletRequest request) {
+        super(request);
+    }
     
     public FormRequest(HttpServletRequest request, String vocabularyParameter) {
         super(request);
@@ -31,7 +35,7 @@ public class FormRequest extends BaseRequest {
     
     public void clear() {
         super.clear();
-        clearSessionAttributes(ALL_PARAMETERS);
+        clearAttributes(ALL_PARAMETERS);
     }
     
     public String clearForm() {
@@ -40,7 +44,7 @@ public class FormRequest extends BaseRequest {
     }
     
     public String submitForm() {
-        _request.getSession().setAttribute(MESSAGE, "NewTermRequest.submitForm");
+        _request.setAttribute(MESSAGE, "NewTermRequest.submitForm");
         return MESSAGE_STATE;
     }
     
@@ -93,12 +97,12 @@ public class FormRequest extends BaseRequest {
         buffer.append("      without having to send a bunch of bogus emails.\n");
 
         if (_vocabularyParameter == null || _vocabularyParameter.length() <= 0)
-            return "";
+            return buffer.toString();
         String[] recipients = AppProperties.getInstance().getVocabularyEmails(
             _parametersHashMap.get(_vocabularyParameter));
         buffer.append("Debug:\n");
         buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
-        _request.getSession().setAttribute(WARNINGS, buffer.toString());
+        _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
     }
 }
