@@ -282,7 +282,7 @@
               <select name="<%=CDISC_CODES%>" class="newConceptCB2<%=css%>">
                 <%
                   selectedItem = cdisc_codes;
-                  items = AppProperties.getInstance().getCDISCCodesList();
+                  items = AppProperties.getInstance().getCDISCCodeList();
                   for (i=0; i<items.length; ++i) {
                     String item = items[i];
                     String args = "";
