@@ -154,18 +154,23 @@ public class AppProperties {
         return new String[0];
     }
     
+    public String[] getList(String propertyName, String[] list, String debugText) {
+        if (list != null)
+            return list;
+        String value = getProperty(propertyName);
+        list = StringUtils.toStrings(value, ";", false);
+        if (debugText != null)
+            Debug.printList(debugText, list);
+        return list;
+    }
+
     public String getSources() {
         return getProperty(SOURCES);
     }
 
     public String[] getSourceList() {
-        String[] list = _sourceList;
-        if (list == null) {
-            String value = getSources();
-            list = StringUtils.toStrings(value, ";", false);
-            Debug.printList("Source List", list);
-        }
-        return _sourceList = list;
+        return _sourceList = getList(
+            SOURCES, _sourceList, "_sourceList");
     }
     
     public String getCADSRTypes() {
@@ -173,13 +178,8 @@ public class AppProperties {
     }
 
     public String[] getCADSRTypeList() {
-        String[] list = _caDSRTypeList;
-        if (list == null) {
-            String value = getCADSRTypes();
-            list = StringUtils.toStrings(value, ";", false);
-            Debug.printList("caDSR Type List", list);
-        }
-        return _caDSRTypeList = list;
+        return _caDSRTypeList = getList(
+            CADSR_TYPES, _caDSRTypeList, "_caDSRTypeList");
     }
 
     public String getCDISCRequestTypes() {
@@ -187,26 +187,16 @@ public class AppProperties {
     }
 
     public String[] getCDISCRequestTypeList() {
-        String[] list = _cdiscRequestTypeList;
-        if (list == null) {
-            String value = getCDISCRequestTypes();
-            list = StringUtils.toStrings(value, ";", false);
-            Debug.printList("CDISC Request Type List", list);
-        }
-        return _cdiscRequestTypeList = list;
+        return _cdiscRequestTypeList = getList(
+            CDISC_REQUEST_TYPES, _cdiscRequestTypeList, "_cdiscRequestTypeList");
     }
     
     public String getCDISCCodes() {
         return getProperty(CDISC_CODES);
     }
 
-    public String[] getCDISCCodesList() {
-        String[] list = _cdiscCodeList;
-        if (list == null) {
-            String value = getCDISCCodes();
-            list = StringUtils.toStrings(value, ";", false);
-            Debug.printList("CDISC Code List", list);
-        }
-        return _cdiscCodeList = list;
+    public String[] getCDISCCodeList() {
+        return _cdiscCodeList = getList(
+            CDISC_CODES, _cdiscCodeList, "_cdiscCodeList");
     }
 }
