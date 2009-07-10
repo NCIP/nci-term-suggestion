@@ -33,7 +33,7 @@
   private static final String LABEL_ARGS = "valign=\"top\"";
 %>
 <%
-  // Member variable(s):
+    // Member variable(s):
   String imagesPath = FormUtils.getImagesPath(request);
   Prop.Version version = FormUtils.getVersion(request);
 
@@ -88,7 +88,7 @@
         " at some stage replicate proteins and nucleic acids, utilize" +
         " energy, and reproduce themselves.";
     if (source.length() <= 0)
-      source = AppProperties.getInstance().getSourceList()[0];
+      source = AppProperties.getInstance().getCADSRSourceList()[0];
     if (cadsr.length() <= 0)
       cadsr = AppProperties.getInstance().getCADSRTypeList()[0];
     if (reason.length() <= 0)
@@ -102,11 +102,11 @@
       <!-- =================================================================== -->
       <%
           if (isWarnings) {
-            String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
-            for (i=0; i<wList.length; ++i) {
-              String warning = wList[i];
-              warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
-              if (i==0) {
+          String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
+          for (i=0; i<wList.length; ++i) {
+            String warning = wList[i];
+            warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
+            if (i==0) {
       %>
               <tr>
                 <td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
@@ -121,7 +121,7 @@
               </tr>
       <%
           }
-              }
+            }
       %>
           <tr><td><br/></td></tr>
       <%
@@ -162,20 +162,20 @@
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
                 selectedItem = vocabulary;
-                ArrayList list = AppProperties.getInstance().getVocabularies();
-                Iterator iterator = list.iterator();
-                boolean isSelected = false;
-                while (iterator.hasNext()) {
-                  VocabInfo vocab = (VocabInfo) iterator.next();
-                  String item = vocab.getName();
-                  String url = vocab.getUrl();
-                  String args = "";
-                  if (! isSelected) {
-                    if (! isWarnings && item.equalsIgnoreCase(pDictionary))
-                      { args += "selected=\"true\""; isSelected = true; }
-                    else if (url.equals(selectedItem))
-                      { args += "selected=\"true\""; isSelected = true; }
-                  }
+                    ArrayList list = AppProperties.getInstance().getVocabularies();
+                    Iterator iterator = list.iterator();
+                    boolean isSelected = false;
+                    while (iterator.hasNext()) {
+                      VocabInfo vocab = (VocabInfo) iterator.next();
+                      String item = vocab.getName();
+                      String url = vocab.getUrl();
+                      String args = "";
+                      if (! isSelected) {
+                        if (! isWarnings && item.equalsIgnoreCase(pDictionary))
+                          { args += "selected=\"true\""; isSelected = true; }
+                        else if (url.equals(selectedItem))
+                          { args += "selected=\"true\""; isSelected = true; }
+                      }
             %>
                   <option value="<%=url%>" <%=args%>><%=item%></option>
             <%
@@ -206,7 +206,7 @@
       
       <!-- =================================================================== -->
       <%
-         if (version == Prop.Version.CADSR) {
+          if (version == Prop.Version.CADSR) {
       %>
           <tr>
             <td <%=LABEL_ARGS%>><%=SOURCE%>:</td>
@@ -214,7 +214,7 @@
               <select name="<%=SOURCE%>" class="newConceptCB2<%=css%>">
                 <%
                   selectedItem = source;
-                  items = AppProperties.getInstance().getSourceList();
+                  items = AppProperties.getInstance().getCADSRSourceList();
                   for (i=0; i<items.length; ++i) {
                     String item = items[i];
                     String args = "";
@@ -282,7 +282,7 @@
               <select name="<%=CDISC_CODES%>" class="newConceptCB2<%=css%>">
                 <%
                   selectedItem = cdisc_codes;
-                  items = AppProperties.getInstance().getCDISCCodesList();
+                  items = AppProperties.getInstance().getCDISCCodeList();
                   for (i=0; i<items.length; ++i) {
                     String item = items[i];
                     String args = "";

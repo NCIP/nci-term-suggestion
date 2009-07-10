@@ -16,7 +16,7 @@ public class AppProperties {
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String VOCABULARY_PREFIX = "VOCABULARY_";
     private static final int VOCABULARY_MAX = 20;
-    private static final String SOURCES = "SOURCES";
+    private static final String CADSR_SOURCES = "CADSR_SOURCES";
     private static final String CADSR_TYPES = "CADSR_TYPES";
     private static final String CDISC_REQUEST_TYPES = "CDISC_REQUEST_TYPES";
     private static final String CDISC_CODES = "CDISC_CODES";
@@ -26,7 +26,7 @@ public class AppProperties {
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
     private ArrayList<VocabInfo> _vocabList = null;
-    private String[] _sourceList = null;
+    private String[] _caDSRSourceList = null;
     private String[] _caDSRTypeList = null;
     private String[] _cdiscRequestTypeList = null;
     private String[] _cdiscCodeList = null;
@@ -154,18 +154,23 @@ public class AppProperties {
         return new String[0];
     }
     
-    public String getSources() {
-        return getProperty(SOURCES);
+    public String[] getList(String propertyName, String[] list, String debugText) {
+        if (list != null)
+            return list;
+        String value = getProperty(propertyName);
+        list = StringUtils.toStrings(value, ";", false);
+        if (debugText != null)
+            Debug.printList(debugText, list);
+        return list;
     }
 
-    public String[] getSourceList() {
-        String[] list = _sourceList;
-        if (list == null) {
-            String value = getSources();
-            list = StringUtils.toStrings(value, ";", false);
-            Debug.printList("Source List", list);
-        }
-        return _sourceList = list;
+    public String getSources() {
+        return getProperty(CADSR_SOURCES);
+    }
+
+    public String[] getCADSRSourceList() {
+        return _caDSRSourceList = getList(
+            CADSR_SOURCES, _caDSRSourceList, "_caDSRSourceList");
     }
     
     public String getCADSRTypes() {
@@ -173,13 +178,8 @@ public class AppProperties {
     }
 
     public String[] getCADSRTypeList() {
-        String[] list = _caDSRTypeList;
-        if (list == null) {
-            String value = getCADSRTypes();
-            list = StringUtils.toStrings(value, ";", false);
-            Debug.printList("caDSR Type List", list);
-        }
-        return _caDSRTypeList = list;
+        return _caDSRTypeList = getList(
+            CADSR_TYPES, _caDSRTypeList, "_caDSRTypeList");
     }
 
     public String getCDISCRequestTypes() {
@@ -187,26 +187,16 @@ public class AppProperties {
     }
 
     public String[] getCDISCRequestTypeList() {
-        String[] list = _cdiscRequestTypeList;
-        if (list == null) {
-            String value = getCDISCRequestTypes();
-            list = StringUtils.toStrings(value, ";", false);
-            Debug.printList("CDISC Request Type List", list);
-        }
-        return _cdiscRequestTypeList = list;
+        return _cdiscRequestTypeList = getList(
+            CDISC_REQUEST_TYPES, _cdiscRequestTypeList, "_cdiscRequestTypeList");
     }
     
     public String getCDISCCodes() {
         return getProperty(CDISC_CODES);
     }
 
-    public String[] getCDISCCodesList() {
-        String[] list = _cdiscCodeList;
-        if (list == null) {
-            String value = getCDISCCodes();
-            list = StringUtils.toStrings(value, ";", false);
-            Debug.printList("CDISC Code List", list);
-        }
-        return _cdiscCodeList = list;
+    public String[] getCDISCCodeList() {
+        return _cdiscCodeList = getList(
+            CDISC_CODES, _cdiscCodeList, "_cdiscCodeList");
     }
 }
