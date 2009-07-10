@@ -16,7 +16,7 @@ public class AppProperties {
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String VOCABULARY_PREFIX = "VOCABULARY_";
     private static final int VOCABULARY_MAX = 20;
-    private static final String SOURCES = "SOURCES";
+    private static final String CADSR_SOURCES = "CADSR_SOURCES";
     private static final String CADSR_TYPES = "CADSR_TYPES";
     private static final String CDISC_REQUEST_TYPES = "CDISC_REQUEST_TYPES";
     private static final String CDISC_CODES = "CDISC_CODES";
@@ -26,7 +26,7 @@ public class AppProperties {
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
     private ArrayList<VocabInfo> _vocabList = null;
-    private String[] _sourceList = null;
+    private String[] _caDSRSourceList = null;
     private String[] _caDSRTypeList = null;
     private String[] _cdiscRequestTypeList = null;
     private String[] _cdiscCodeList = null;
@@ -165,12 +165,12 @@ public class AppProperties {
     }
 
     public String getSources() {
-        return getProperty(SOURCES);
+        return getProperty(CADSR_SOURCES);
     }
 
-    public String[] getSourceList() {
-        return _sourceList = getList(
-            SOURCES, _sourceList, "_sourceList");
+    public String[] getCADSRSourceList() {
+        return _caDSRSourceList = getList(
+            CADSR_SOURCES, _caDSRSourceList, "_caDSRSourceList");
     }
     
     public String getCADSRTypes() {

@@ -86,8 +86,8 @@
     <!-- Vocabulary List (End) ============================================= -->
 
     <ConfigurableItem>
-      <key>SOURCES</key>
-      <value>@sources@</value>
+      <key>CADSR_SOURCES</key>
+      <value>@cadsr.sources@</value>
     </ConfigurableItem>
 
     <ConfigurableItem>
