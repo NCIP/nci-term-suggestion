@@ -7,7 +7,10 @@ import java.util.regex.*;
 
 import javax.servlet.http.*;
 
+import org.apache.log4j.*;
+
 public class HTTPUtils {
+    private static Logger _logger = Logger.getLogger(HTTPUtils.class);
     public static final String[] EMPTY_PARAMETERS = new String[] {};
     
     public static String getParameter(HttpServletRequest request, String name,
@@ -112,7 +115,8 @@ public class HTTPUtils {
             buffer.append(parametersHashMap.get(parameter));
             buffer.append("\n");
         }
-        Debug.println(buffer.toString());
+        _logger.debug(StringUtils.SEPARATOR);
+        _logger.debug(buffer.toString());
         return buffer.toString();
     }
     

@@ -5,16 +5,6 @@ import java.util.*;
 import org.apache.log4j.*;
 
 public class Debug {
-    private static Logger _logger = Logger.getLogger(Debug.class);
-
-    public static void println(String text) {
-        if (! _logger.isDebugEnabled())
-            return;
-        if (text != null)
-            _logger.debug(text);
-        else _logger.debug("");
-    }
-    
     public static void printList(Logger logger, String text, ArrayList<?> list) {
         if (! logger.isDebugEnabled())
             return;
