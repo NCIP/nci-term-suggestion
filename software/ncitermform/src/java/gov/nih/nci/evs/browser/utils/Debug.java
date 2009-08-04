@@ -26,11 +26,6 @@ public class Debug {
         else _logger.debug("");
     }
     
-    public static void println() {
-        if (isDisplay())
-            println(null);
-    }
-    
     public static void printList(Logger logger, String text, ArrayList<?> list) {
         if (! logger.isDebugEnabled())
             return;

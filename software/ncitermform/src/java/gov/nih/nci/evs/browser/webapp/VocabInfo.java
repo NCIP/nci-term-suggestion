@@ -4,7 +4,10 @@ import gov.nih.nci.evs.browser.utils.*;
 
 import java.util.*;
 
+import org.apache.log4j.*;
+
 public class VocabInfo {
+    private static Logger _logger = Logger.getLogger(VocabInfo.class);
     private static final String DELIM = ";";
     private String _name = "";
     private String _url = "";
@@ -45,24 +48,24 @@ public class VocabInfo {
     }
 
     public static void debug(VocabInfo list) {
-        if (! Debug.isDisplay())
+        if (! _logger.isInfoEnabled())
             return;
-        Debug.println("* Name: " + list.getName());
-        Debug.println("  * Url: " + list.getUrl());
+        _logger.info("* Name: " + list.getName());
+        _logger.info("  * Url: " + list.getUrl());
         ArrayList<String> emails = list.getEmails();
         Iterator<String> iterator = emails.iterator();
         while (iterator.hasNext()) {
             String email = iterator.next();
-            Debug.println("  * Email: " + email);
+            _logger.info("  * Email: " + email);
         }
     }
     
     public static void debug(List<VocabInfo> list) {
-        if (! Debug.isDisplay())
+        if (! _logger.isInfoEnabled())
             return;
         Iterator<VocabInfo> iterator = list.iterator();
-        Debug.println(StringUtils.SEPARATOR);
-        Debug.println("List of vocabularies:");
+        _logger.info(StringUtils.SEPARATOR);
+        _logger.info("List of vocabularies:");
         while (iterator.hasNext())
             debug(iterator.next());
     }
@@ -78,12 +81,12 @@ public class VocabInfo {
             "   ",
         };
         for (int i=0; i<values.length; ++i) {
-            Debug.println(StringUtils.SEPARATOR);
+            _logger.info(StringUtils.SEPARATOR);
             String value = values[i];
-            Debug.println("Value: \"" + value + "\"");
+            _logger.info("Value: \"" + value + "\"");
             VocabInfo vocab = VocabInfo.parse(value);
             debug(vocab);
-            Debug.println("");
+            _logger.info("");
         }
     }
 }
