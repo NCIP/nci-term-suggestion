@@ -4,11 +4,15 @@ import java.util.*;
 
 import javax.servlet.http.*;
 
+import org.apache.log4j.*;
+
 public class WebUtils {
+    private static Logger _log = Logger.getLogger(WebUtils.class);
+    
     public static void debugHeaders(HttpServletRequest request) {
         ArrayList<String> list = getHeaders(request);
         list = ListUtils.sort(list);
-        Debug.printList("Request Headers", list);
+        Debug.printList(_log, "Request Headers", list);
     }
     
     public static ArrayList<String> getHeaders(HttpServletRequest request) {

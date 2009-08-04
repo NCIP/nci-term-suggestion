@@ -5,12 +5,12 @@ import java.util.*;
 import org.apache.log4j.*;
 
 public class Debug {
-    private static Logger _log = Logger.getLogger(Debug.class);
-    private static boolean _display = _log.isDebugEnabled();
+    private static Logger _logger = Logger.getLogger(Debug.class);
+    private static boolean _display = _logger.isDebugEnabled();
     
     public static boolean setDisplay(boolean display) {
         boolean prev = _display;
-        _display = display && _log.isDebugEnabled();
+        _display = display && _logger.isDebugEnabled();
         return prev;
     }
     
@@ -22,8 +22,8 @@ public class Debug {
         if (! isDisplay())
             return;
         if (text != null)
-            _log.debug(text);
-        else _log.debug("");
+            _logger.debug(text);
+        else _logger.debug("");
     }
     
     public static void println() {
@@ -31,28 +31,28 @@ public class Debug {
             println(null);
     }
     
-    public static void printList(String text, ArrayList<?> list) {
-        if (! isDisplay())
+    public static void printList(Logger logger, String text, ArrayList<?> list) {
+        if (! logger.isDebugEnabled())
             return;
-        println(StringUtils.SEPARATOR);
+        logger.debug(StringUtils.SEPARATOR);
         if (text != null && text.length() > 0)
-            println("* " + text);
+            logger.debug("* " + text);
         Iterator<?> iterator = list.iterator();
         while (iterator.hasNext()) {
-            println("  * " + iterator.next());
+            logger.debug("  * " + iterator.next());
         }
     }
 
-    public static void printList(String text, String[] list) {
-        if (! isDisplay())
+    public static void printList(Logger logger, String text, String[] list) {
+        if (! logger.isDebugEnabled())
             return;
-        println(StringUtils.SEPARATOR);
+        logger.debug(StringUtils.SEPARATOR);
         if (text != null && text.length() > 0)
-            println("* " + text);
+            logger.debug("* " + text);
         if (list == null)
             return;
         for (int i = 0; i < list.length; ++i) {
-            println("  " + (i + 1) + ") " + list[i]);
+            logger.debug("  " + (i + 1) + ") " + list[i]);
         }
     }
 }
