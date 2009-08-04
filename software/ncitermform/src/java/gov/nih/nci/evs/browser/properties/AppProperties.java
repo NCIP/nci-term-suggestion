@@ -36,17 +36,16 @@ public class AppProperties {
     }
 
     public static AppProperties getInstance() {
-        if (_appProperties == null) {
+        if (_appProperties == null)
             _appProperties = new AppProperties();
-            Debug.setDisplay(_appProperties.isDebugOn());
-        }
         return _appProperties;
     }
 
     private void loadProperties() {
         synchronized (AppProperties.class) {
             String propertyFile = System.getProperty(PROPERTY_FILE);
-            _logger.info("AppProperties File Location= " + propertyFile);
+            _logger.info(StringUtils.SEPARATOR);
+            _logger.info("AppProperties: " + propertyFile);
 
             PropertyFileParser parser = new PropertyFileParser(propertyFile);
             parser.run();
@@ -74,7 +73,7 @@ public class AppProperties {
             _buildInfo = ex.getMessage();
         }
 
-        System.out.println("getBuildInfo returns " + _buildInfo);
+        _logger.info("getBuildInfo returns " + _buildInfo);
         return _buildInfo;
     }
 

@@ -6,20 +6,9 @@ import org.apache.log4j.*;
 
 public class Debug {
     private static Logger _logger = Logger.getLogger(Debug.class);
-    private static boolean _display = _logger.isDebugEnabled();
-    
-    public static boolean setDisplay(boolean display) {
-        boolean prev = _display;
-        _display = display && _logger.isDebugEnabled();
-        return prev;
-    }
-    
-    public static boolean isDisplay() {
-        return _display;
-    }
 
     public static void println(String text) {
-        if (! isDisplay())
+        if (! _logger.isDebugEnabled())
             return;
         if (text != null)
             _logger.debug(text);
