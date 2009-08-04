@@ -22,7 +22,7 @@ public class AppProperties {
     private static final String CDISC_CODES = "CDISC_CODES";
 
     private static AppProperties _appProperties = null;
-    private Logger _log = Logger.getLogger(AppProperties.class);
+    private Logger _logger = Logger.getLogger(AppProperties.class);
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
     private ArrayList<VocabInfo> _vocabList = null;
@@ -46,7 +46,7 @@ public class AppProperties {
     private void loadProperties() {
         synchronized (AppProperties.class) {
             String propertyFile = System.getProperty(PROPERTY_FILE);
-            _log.info("AppProperties File Location= " + propertyFile);
+            _logger.info("AppProperties File Location= " + propertyFile);
 
             PropertyFileParser parser = new PropertyFileParser(propertyFile);
             parser.run();
@@ -160,7 +160,7 @@ public class AppProperties {
         String value = getProperty(propertyName);
         list = StringUtils.toStrings(value, ";", false);
         if (debugText != null)
-            Debug.printList(debugText, list);
+            Debug.printList(_logger, debugText, list);
         return list;
     }
 
