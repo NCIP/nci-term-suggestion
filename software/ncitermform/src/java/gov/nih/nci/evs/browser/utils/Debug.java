@@ -2,13 +2,15 @@ package gov.nih.nci.evs.browser.utils;
 
 import java.util.*;
 
+import org.apache.log4j.*;
+
 public class Debug {
-    private static final String PREFIX = "DEBUG: ";
-    private static boolean _display = true;
+    private static Logger _log = Logger.getLogger(Debug.class);
+    private static boolean _display = _log.isDebugEnabled();
     
     public static boolean setDisplay(boolean display) {
         boolean prev = _display;
-        _display = display;
+        _display = display && _log.isDebugEnabled();
         return prev;
     }
     
@@ -17,13 +19,16 @@ public class Debug {
     }
 
     public static void println(String text) {
-        if (_display)
-            System.out.println(PREFIX + text);
+        if (! isDisplay())
+            return;
+        if (text != null)
+            _log.debug(text);
+        else _log.debug("");
     }
     
     public static void println() {
-        if (_display)
-            println("");
+        if (isDisplay())
+            println(null);
     }
     
     public static void printList(String text, ArrayList<?> list) {
