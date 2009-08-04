@@ -2,7 +2,9 @@
 <!DOCTYPE log4j:configuration SYSTEM ".\log4j.dtd">
 
 <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
-    <!-- Appender(s): ====================================================== -->
+    <!-- =================================================================== -->
+    <!-- Appender(s):                                                        -->
+    <!-- =================================================================== -->
     <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
         <!-- <errorHandler class="org.jboss.logging.util.OnlyOnceErrorHandler"/>-->
         <param name="Target" value="System.out" />
@@ -29,7 +31,9 @@
         <appender-ref ref="CONSOLE" />
     </root>
     
-    <!-- Package: Common Logging Model (CLM) & Common Security Model (CSM):  --><!--
+    <!-- =================================================================== -->
+    <!-- Package: Common Logging Model (CLM) & Common Security Model (CSM):  -->    <!-- =================================================================== -->
+<!--
     <appender name="CLM_APPENDER"
         class="gov.nih.nci.logging.api.appender.jdbc.JDBCAppender">
         <param name="application" value="rwdbserver" />
@@ -59,7 +63,9 @@
     </category>
 -->
 
-    <!-- Miscellaneous Package(s): ========================================= -->
+    <!-- =================================================================== -->
+    <!-- Miscellaneous Package(s):                                           -->
+    <!-- =================================================================== -->
     <logger name="org.apache">
         <level value="warn" />
     </logger>
@@ -108,7 +114,9 @@
     </category>
 -->
 
-    <!-- NCI Package(s): =================================================== -->
+    <!-- =================================================================== -->
+    <!-- NCI Package(s):                                                     -->
+    <!-- =================================================================== -->
     <logger name="gov.nih.nci">
         <level value="debug" />
     </logger>
