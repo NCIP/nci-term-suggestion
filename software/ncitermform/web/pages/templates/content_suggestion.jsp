@@ -20,8 +20,8 @@
   private static final String SYNONYMS = SuggestionRequest.SYNONYMS;
   private static final String NEAREST_CODE = SuggestionRequest.NEAREST_CODE;
   private static final String DEFINITION = SuggestionRequest.DEFINITION;
-  private static final String SOURCE = SuggestionRequest.SOURCE;
-  private static final String CADSR = SuggestionRequest.CADSR;
+  private static final String CADSR_SOURCE = SuggestionRequest.CADSR_SOURCE;
+  private static final String CADSR_TYPE = SuggestionRequest.CADSR_TYPE;
   private static final String CDISC_REQUEST_TYPE = SuggestionRequest.CDISC_REQUEST_TYPE;
   private static final String CDISC_CODES = SuggestionRequest.CDISC_CODES;
   private static final String REASON = SuggestionRequest.REASON;
@@ -35,8 +35,8 @@
   private static final String SYNONYMS_LABEL = SuggestionRequest.SYNONYMS_LABEL;
   private static final String NEAREST_CODE_LABEL = SuggestionRequest.NEAREST_CODE_LABEL;
   private static final String DEFINITION_LABEL = SuggestionRequest.DEFINITION_LABEL;
-  private static final String SOURCE_LABEL = SuggestionRequest.SOURCE_LABEL;
-  private static final String CADSR_LABEL = SuggestionRequest.CADSR_LABEL;
+  private static final String CADSR_SOURCE_LABEL = SuggestionRequest.CADSR_SOURCE_LABEL;
+  private static final String CADSR_TYPE_LABEL = SuggestionRequest.CADSR_TYPE_LABEL;
   private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionRequest.CDISC_REQUEST_TYPE_LABEL;
   private static final String CDISC_CODES_LABEL = SuggestionRequest.CDISC_CODES_LABEL;
   private static final String REASON_LABEL = SuggestionRequest.REASON_LABEL;
@@ -59,8 +59,8 @@
   String synonyms = HTTPUtils.getAttributeString(request, SYNONYMS);
   String nearest_code = HTTPUtils.getAttributeString(request, NEAREST_CODE);
   String definition = HTTPUtils.getAttributeString(request, DEFINITION);
-  String source = HTTPUtils.getAttributeString(request, SOURCE);
-  String cadsr = HTTPUtils.getAttributeString(request, CADSR);
+  String cadsr_source = HTTPUtils.getAttributeString(request, CADSR_SOURCE);
+  String cadsr_type = HTTPUtils.getAttributeString(request, CADSR_TYPE);
   String cdisc_request_type = HTTPUtils.getAttributeString(request, CDISC_REQUEST_TYPE);
   String cdisc_codes = HTTPUtils.getAttributeString(request, CDISC_CODES);
   String reason = HTTPUtils.getAttributeString(request, REASON);
@@ -101,10 +101,10 @@
         " and specialized in both structure and function, though all must" +
         " at some stage replicate proteins and nucleic acids, utilize" +
         " energy, and reproduce themselves.";
-    if (source.length() <= 0)
-      source = AppProperties.getInstance().getCADSRSourceList()[0];
-    if (cadsr.length() <= 0)
-      cadsr = AppProperties.getInstance().getCADSRTypeList()[0];
+    if (cadsr_source.length() <= 0)
+      cadsr_source = AppProperties.getInstance().getCADSRSourceList()[0];
+    if (cadsr_type.length() <= 0)
+      cadsr_type = AppProperties.getInstance().getCADSRTypeList()[0];
     if (reason.length() <= 0)
       reason = "New improved version of the previous type.";
   }
@@ -223,11 +223,11 @@
           if (version == Prop.Version.CADSR) {
       %>
           <tr>
-            <td <%=LABEL_ARGS%>><%=SOURCE_LABEL%>:</td>
+            <td <%=LABEL_ARGS%>><%=CADSR_SOURCE_LABEL%>:</td>
             <td colspan="2">
-              <select name="<%=SOURCE%>" class="newConceptCB2<%=css%>">
+              <select name="<%=CADSR_SOURCE%>" class="newConceptCB2<%=css%>">
                 <%
-                  selectedItem = source;
+                  selectedItem = cadsr_source;
                   items = AppProperties.getInstance().getCADSRSourceList();
                   for (i=0; i<items.length; ++i) {
                     String item = items[i];
@@ -243,11 +243,11 @@
             </td>
           </tr>
           <tr>
-            <td <%=LABEL_ARGS%>><%=CADSR_LABEL%>:</td>
+            <td <%=LABEL_ARGS%>><%=CADSR_TYPE_LABEL%>:</td>
             <td colspan="2">
-              <select name="<%=CADSR%>" class="newConceptCB2<%=css%>">
+              <select name="<%=CADSR_TYPE%>" class="newConceptCB2<%=css%>">
                 <%
-                  selectedItem = cadsr;
+                  selectedItem = cadsr_type;
                   items = AppProperties.getInstance().getCADSRTypeList();
                   for (i=0; i<items.length; ++i) {
                     String item = items[i];
