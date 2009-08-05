@@ -1,25 +1,43 @@
 package gov.nih.nci.evs.browser.webapp;
 
+import java.util.*;
+
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
 import javax.servlet.http.*;
 
 public class SuggestionRequest extends FormRequest {
-    // List of attribute name(s):
-    public static final String EMAIL = "Email";
-    public static final String OTHER = "Other";
-    public static final String VOCABULARY = "Vocabulary";
-    public static final String TERM = "Term";
-    public static final String SYNONYMS = "Synonym(s)";
-    public static final String NEAREST_CODE = "Nearest Code/CUI";
-    public static final String DEFINITION = "Definition/Other";
-    public static final String REASON = "Reason for suggestion plus any" + 
+    public static final HashMap<String, String> LABELS_HASHMAP = getLabelsHashMap();
+
+    // List of parameter/attribute name(s):
+    public static final String EMAIL = "email";
+    public static final String OTHER = "other";
+    public static final String VOCABULARY = "vocabulary";
+    public static final String TERM = "term";
+    public static final String SYNONYMS = "synonyms";
+    public static final String NEAREST_CODE = "code";
+    public static final String DEFINITION = "definition";
+    public static final String REASON = "reason";
+    public static final String SOURCE = "source";
+    public static final String CADSR = "cadsr";
+    public static final String CDISC_REQUEST_TYPE = "cdiscRequestType";
+    public static final String CDISC_CODES = "cdiscCodeList";
+    
+    // List of field label(s):
+    public static final String EMAIL_LABEL = "Email";
+    public static final String OTHER_LABEL = "Other";
+    public static final String VOCABULARY_LABEL = "Vocabulary";
+    public static final String TERM_LABEL = "Term";
+    public static final String SYNONYMS_LABEL = "Synonym(s)";
+    public static final String NEAREST_CODE_LABEL = "Nearest Code/CUI";
+    public static final String DEFINITION_LABEL = "Definition/Other";
+    public static final String REASON_LABEL = "Reason for suggestion plus any" + 
         " other additional information";
-    public static final String SOURCE = "Source";
-    public static final String CADSR = "caDSR Type";
-    public static final String CDISC_REQUEST_TYPE = "Request Type";
-    public static final String CDISC_CODES = "CDISC Code List";
+    public static final String SOURCE_LABEL = "Source";
+    public static final String CADSR_LABEL = "caDSR Type";
+    public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
+    public static final String CDISC_CODES_LABEL = "CDISC Code List";
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
@@ -34,6 +52,23 @@ public class SuggestionRequest extends FormRequest {
     public SuggestionRequest(HttpServletRequest request) {
         super(request, VOCABULARY);
         setParameters(ALL_PARAMETERS);
+    }
+    
+    private static HashMap<String, String> getLabelsHashMap() {
+        HashMap<String, String> hashMap = new HashMap<String, String>();
+        hashMap.put(EMAIL, EMAIL_LABEL);
+        hashMap.put(OTHER, OTHER_LABEL);
+        hashMap.put(VOCABULARY, VOCABULARY_LABEL);
+        hashMap.put(TERM, TERM_LABEL);
+        hashMap.put(SYNONYMS, SYNONYMS_LABEL);
+        hashMap.put(NEAREST_CODE, NEAREST_CODE_LABEL);
+        hashMap.put(DEFINITION, DEFINITION_LABEL);
+        hashMap.put(REASON, REASON_LABEL);
+        hashMap.put(SOURCE, SOURCE_LABEL);
+        hashMap.put(CADSR, CADSR_LABEL);
+        hashMap.put(CDISC_REQUEST_TYPE, CDISC_REQUEST_TYPE_LABEL);
+        hashMap.put(CDISC_CODES, CDISC_CODES_LABEL);
+        return hashMap;
     }
     
     public void clear() {
@@ -105,24 +140,24 @@ public class SuggestionRequest extends FormRequest {
     private String getEmailMessage() {
         StringBuffer buffer = new StringBuffer();
         buffer.append(getSubject() + "\n\n");
-        itemizeParameters(buffer, "Contact information:",
+        itemizeParameters(buffer, "Contact information:", LABELS_HASHMAP,
             new String[] { EMAIL, OTHER });
         Prop.Version version = Prop.Version.valueOfOrDefault(
             (String) _request.getSession().getAttribute(VERSION));
         if (version == Prop.Version.CADSR) {
-            itemizeParameters(buffer, "Term Information:",
+            itemizeParameters(buffer, "Term Information:", LABELS_HASHMAP,
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
                     DEFINITION, SOURCE, CADSR });
         } else if (version == Prop.Version.CDISC) {
-            itemizeParameters(buffer, "Term Information:",
+            itemizeParameters(buffer, "Term Information:", LABELS_HASHMAP,
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
                     DEFINITION, CDISC_REQUEST_TYPE, CDISC_CODES });
         } else {
-            itemizeParameters(buffer, "Term Information:",
+            itemizeParameters(buffer, "Term Information:", LABELS_HASHMAP,
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
                     DEFINITION });
         }
-        itemizeParameters(buffer, "Additional information:",
+        itemizeParameters(buffer, "Additional information:", LABELS_HASHMAP,
             new String[] { REASON });
         return buffer.toString();
     }
