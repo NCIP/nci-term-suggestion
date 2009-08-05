@@ -12,7 +12,7 @@ public class WebUtils {
     public static void debugHeaders(HttpServletRequest request) {
         ArrayList<String> list = getHeaders(request);
         list = ListUtils.sort(list);
-        Debug.printList(_log, "Request Headers", list);
+        ListUtils.debug(_log, "Request Headers", list);
     }
     
     public static ArrayList<String> getHeaders(HttpServletRequest request) {
