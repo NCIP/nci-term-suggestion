@@ -5,6 +5,7 @@ import java.net.*;
 import java.util.*;
 import java.util.regex.*;
 
+import javax.faces.context.*;
 import javax.servlet.http.*;
 
 import org.apache.log4j.*;
@@ -12,6 +13,12 @@ import org.apache.log4j.*;
 public class HTTPUtils {
     private static Logger _logger = Logger.getLogger(HTTPUtils.class);
     public static final String[] EMPTY_PARAMETERS = new String[] {};
+    
+    public static HttpServletRequest getRequest() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.
+        getCurrentInstance().getExternalContext().getRequest();
+        return request;
+    }
     
     public static String getParameter(HttpServletRequest request, String name,
             boolean convertNullToBlankString) {
@@ -68,8 +75,6 @@ public class HTTPUtils {
             // Note: The following exception was triggered:
             //   java.lang.IllegalArgumentException: URLDecoder: Illegal hex
             //     characters in escape (%) pattern - For input string: "^&"
-            //   when QA entered:
-            //     ~!@#$%^&*()_+-={}|:”<>?[]\;’,./-+/*&&()||==`”%”!\’=    
         }
 
         // Remove XSS attacks

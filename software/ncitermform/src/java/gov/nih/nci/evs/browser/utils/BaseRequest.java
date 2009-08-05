@@ -7,13 +7,9 @@ import javax.servlet.http.*;
 public class BaseRequest {
     protected final String[] EMPTY_PARAMETERS = HTTPUtils.EMPTY_PARAMETERS;
     protected final String INDENT = "    ";
-    protected HttpServletRequest _request = null;
+    protected HttpServletRequest _request = HTTPUtils.getRequest();
     protected String[] _parameters = EMPTY_PARAMETERS;
     protected HashMap<String, String> _parametersHashMap = null;
-
-    public BaseRequest(HttpServletRequest request) {
-        _request = request;
-    }
 
     protected void setParameters(String[] parameters) {
         _parameters = parameters;

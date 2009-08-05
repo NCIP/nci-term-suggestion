@@ -5,8 +5,6 @@ import java.util.*;
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
-import javax.servlet.http.*;
-
 public class SuggestionRequest extends FormRequest {
     public static final HashMap<String, String> LABELS_HASHMAP = getLabelsHashMap();
 
@@ -49,8 +47,8 @@ public class SuggestionRequest extends FormRequest {
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, OTHER, VOCABULARY };
     
-    public SuggestionRequest(HttpServletRequest request) {
-        super(request, VOCABULARY);
+    public SuggestionRequest() {
+        super(VOCABULARY);
         setParameters(ALL_PARAMETERS);
     }
     

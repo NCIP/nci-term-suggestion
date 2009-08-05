@@ -2,8 +2,6 @@ package gov.nih.nci.evs.browser.webapp;
 
 import java.util.*;
 
-import javax.servlet.http.*;
-
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
@@ -26,12 +24,11 @@ public class FormRequest extends BaseRequest {
     protected String _vocabularyParameter = null;
     protected boolean _isSendEmail = AppProperties.getInstance().isSendEmail();
     
-    public FormRequest(HttpServletRequest request) {
-        super(request);
+    public FormRequest() {
+        super();
     }
     
-    public FormRequest(HttpServletRequest request, String vocabularyParameter) {
-        super(request);
+    public FormRequest(String vocabularyParameter) {
         _vocabularyParameter = vocabularyParameter;
     }
     
