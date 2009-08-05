@@ -19,8 +19,7 @@ public class ContactUsRequest extends FormRequest {
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL_ADDRESS };
 
-    public ContactUsRequest(HttpServletRequest request) {
-        super(request);
+    public ContactUsRequest() {
         setParameters(ALL_PARAMETERS);
     }
     

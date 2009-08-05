@@ -3,8 +3,6 @@ package gov.nih.nci.evs.browser.webapp;
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
-import javax.servlet.http.*;
-
 public class ModifyConceptRequest extends FormRequest {
     // List of attribute name(s):
     private static final String EMAIL = "email";
@@ -15,8 +13,8 @@ public class ModifyConceptRequest extends FormRequest {
     private static final String SUGGESTIONS = "suggestions";
     private static final String REASON = "reason";
 
-    public ModifyConceptRequest(HttpServletRequest request) {
-        super(request, VOCABULARY);
+    public ModifyConceptRequest() {
+        super(VOCABULARY);
         setParameters(new String[] { EMAIL, OTHER, VOCABULARY, 
             CONCEPT_CODE, CONCEPT_NAME, SUGGESTIONS, REASON });
     }
