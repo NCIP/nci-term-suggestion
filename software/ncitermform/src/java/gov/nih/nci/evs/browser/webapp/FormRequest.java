@@ -1,5 +1,7 @@
 package gov.nih.nci.evs.browser.webapp;
 
+import java.util.*;
+
 import javax.servlet.http.*;
 
 import gov.nih.nci.evs.browser.properties.*;
@@ -76,11 +78,12 @@ public class FormRequest extends BaseRequest {
     }
 
     protected void itemizeParameters(StringBuffer buffer, String header,
-        String[] parameters) {
+        HashMap<String, String> labels, String[] parameters) {
         buffer.append(header + "\n");
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            buffer.append("* " + parameter + ": ");
+            String label = labels != null ? labels.get(parameter) : parameter;
+            buffer.append("* " + label + ": ");
             buffer.append(_parametersHashMap.get(parameter));
             buffer.append("\n");
         }

@@ -27,6 +27,20 @@
   private static final String REASON = SuggestionRequest.REASON;
   private static final String WARNINGS = SuggestionRequest.WARNINGS;
 
+  // List of label(s):
+  private static final String EMAIL_LABEL = SuggestionRequest.EMAIL_LABEL;
+  private static final String OTHER_LABEL = SuggestionRequest.OTHER_LABEL;
+  private static final String VOCABULARY_LABEL = SuggestionRequest.VOCABULARY_LABEL;
+  private static final String TERM_LABEL = SuggestionRequest.TERM_LABEL;
+  private static final String SYNONYMS_LABEL = SuggestionRequest.SYNONYMS_LABEL;
+  private static final String NEAREST_CODE_LABEL = SuggestionRequest.NEAREST_CODE_LABEL;
+  private static final String DEFINITION_LABEL = SuggestionRequest.DEFINITION_LABEL;
+  private static final String SOURCE_LABEL = SuggestionRequest.SOURCE_LABEL;
+  private static final String CADSR_LABEL = SuggestionRequest.CADSR_LABEL;
+  private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionRequest.CDISC_REQUEST_TYPE_LABEL;
+  private static final String CDISC_CODES_LABEL = SuggestionRequest.CDISC_CODES_LABEL;
+  private static final String REASON_LABEL = SuggestionRequest.REASON_LABEL;
+
   private static final String INPUT_ARGS =
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
     // " onKeyPress=\"return ifenter(event,this.form)\"";
@@ -131,14 +145,14 @@
       <!-- =================================================================== -->
       <tr><td class="newConceptSubheader" colspan="2">Contact Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=EMAIL%>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><%=EMAIL_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
           <input name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=OTHER%>:</td>
+        <td <%=LABEL_ARGS%>><%=OTHER_LABEL%>:</td>
         <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA4<%=css%>"><%=other%></textarea></td>
       </tr>
       <tr>
@@ -157,7 +171,7 @@
         <td>Fill in the following fields as appropriate:</td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=VOCABULARY%>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><%=VOCABULARY_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td>
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
@@ -188,19 +202,19 @@
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=TERM%>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=SYNONYMS%>:</td>
+        <td <%=LABEL_ARGS%>><%=SYNONYMS_LABEL%>:</td>
         <td colspan="2"><textarea name="<%=SYNONYMS%>" class="newConceptTA2<%=css%>"><%=synonyms%></textarea></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=NEAREST_CODE%>:</td>
+        <td <%=LABEL_ARGS%>><%=NEAREST_CODE_LABEL%>:</td>
         <td colspan="2"><textarea name="<%=NEAREST_CODE%>" class="newConceptTA2<%=css%>"><%=nearest_code%></textarea></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=DEFINITION%>:</td>
+        <td <%=LABEL_ARGS%>><%=DEFINITION_LABEL%>:</td>
         <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA6<%=css%>"><%=definition%></textarea></td>
       </tr>
       
@@ -209,7 +223,7 @@
           if (version == Prop.Version.CADSR) {
       %>
           <tr>
-            <td <%=LABEL_ARGS%>><%=SOURCE%>:</td>
+            <td <%=LABEL_ARGS%>><%=SOURCE_LABEL%>:</td>
             <td colspan="2">
               <select name="<%=SOURCE%>" class="newConceptCB2<%=css%>">
                 <%
@@ -229,7 +243,7 @@
             </td>
           </tr>
           <tr>
-            <td <%=LABEL_ARGS%>><%=CADSR%>:</td>
+            <td <%=LABEL_ARGS%>><%=CADSR_LABEL%>:</td>
             <td colspan="2">
               <select name="<%=CADSR%>" class="newConceptCB2<%=css%>">
                 <%
@@ -257,7 +271,7 @@
          if (version == Prop.Version.CDISC) {
       %>
           <tr>
-            <td <%=LABEL_ARGS%>><%=CDISC_REQUEST_TYPE%>:</td>
+            <td <%=LABEL_ARGS%>><%=CDISC_REQUEST_TYPE_LABEL%>:</td>
             <td colspan="2">
               <select name="<%=CDISC_REQUEST_TYPE%>" class="newConceptCB2<%=css%>">
                 <%
@@ -277,7 +291,7 @@
             </td>
           </tr>
           <tr>
-            <td <%=LABEL_ARGS%>><%=CDISC_CODES%>:</td>
+            <td <%=LABEL_ARGS%>><%=CDISC_CODES_LABEL%>:</td>
             <td colspan="2">
               <select name="<%=CDISC_CODES%>" class="newConceptCB2<%=css%>">
                 <%
@@ -304,7 +318,7 @@
       <tr><td><br/></td></tr>
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=REASON%>:</td>
+        <td <%=LABEL_ARGS%>><%=REASON_LABEL%>:</td>
         <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA6<%=css%>"><%=reason%></textarea></td>
       </tr>
 

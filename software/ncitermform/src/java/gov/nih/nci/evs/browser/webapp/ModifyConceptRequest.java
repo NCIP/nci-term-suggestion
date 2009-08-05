@@ -90,11 +90,11 @@ public class ModifyConceptRequest extends FormRequest {
     private String getEmailMessage() {
         StringBuffer buffer = new StringBuffer();
         buffer.append(getSubject() + "\n\n");
-        itemizeParameters(buffer, "Contact information:",
+        itemizeParameters(buffer, "Contact information:", null,
             new String[] { EMAIL, OTHER });
-        itemizeParameters(buffer, "Term Information:",
+        itemizeParameters(buffer, "Term Information:", null,
             new String[] { VOCABULARY, CONCEPT_CODE, CONCEPT_NAME, SUGGESTIONS });
-        itemizeParameters(buffer, "Additional information:",
+        itemizeParameters(buffer, "Additional information:", null,
             new String[] { REASON });
         
         return buffer.toString();
