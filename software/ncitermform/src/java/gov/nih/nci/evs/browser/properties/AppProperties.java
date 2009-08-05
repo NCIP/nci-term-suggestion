@@ -159,7 +159,7 @@ public class AppProperties {
         String value = getProperty(propertyName);
         list = StringUtils.toStrings(value, ";", false);
         if (debugText != null)
-            Debug.printList(_logger, debugText, list);
+            ListUtils.debug(_logger, debugText, list);
         return list;
     }
 
