@@ -19,8 +19,8 @@ public class SuggestionRequest extends FormRequest {
     public static final String NEAREST_CODE = "code";
     public static final String DEFINITION = "definition";
     public static final String REASON = "reason";
-    public static final String SOURCE = "source";
-    public static final String CADSR = "cadsr";
+    public static final String CADSR_SOURCE = "cadsrSource";
+    public static final String CADSR_TYPE = "cadsrType";
     public static final String CDISC_REQUEST_TYPE = "cdiscRequestType";
     public static final String CDISC_CODES = "cdiscCodeList";
     
@@ -34,18 +34,18 @@ public class SuggestionRequest extends FormRequest {
     public static final String DEFINITION_LABEL = "Definition/Other";
     public static final String REASON_LABEL = "Reason for suggestion plus any" + 
         " other additional information";
-    public static final String SOURCE_LABEL = "Source";
-    public static final String CADSR_LABEL = "caDSR Type";
+    public static final String CADSR_SOURCE_LABEL = "Source";
+    public static final String CADSR_TYPE_LABEL = "caDSR Type";
     public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
     public static final String CDISC_CODES_LABEL = "CDISC Code List";
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
         EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, SOURCE, CADSR, CDISC_REQUEST_TYPE, CDISC_CODES };
+        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] MOST_PARAMETERS = new String[] { 
         /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, SOURCE, CADSR, CDISC_REQUEST_TYPE, CDISC_CODES };
+        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, OTHER, VOCABULARY };
     
@@ -64,8 +64,8 @@ public class SuggestionRequest extends FormRequest {
         hashMap.put(NEAREST_CODE, NEAREST_CODE_LABEL);
         hashMap.put(DEFINITION, DEFINITION_LABEL);
         hashMap.put(REASON, REASON_LABEL);
-        hashMap.put(SOURCE, SOURCE_LABEL);
-        hashMap.put(CADSR, CADSR_LABEL);
+        hashMap.put(CADSR_SOURCE, CADSR_SOURCE_LABEL);
+        hashMap.put(CADSR_TYPE, CADSR_TYPE_LABEL);
         hashMap.put(CDISC_REQUEST_TYPE, CDISC_REQUEST_TYPE_LABEL);
         hashMap.put(CDISC_CODES, CDISC_CODES_LABEL);
         return hashMap;
@@ -147,7 +147,7 @@ public class SuggestionRequest extends FormRequest {
         if (version == Prop.Version.CADSR) {
             itemizeParameters(buffer, "Term Information:", LABELS_HASHMAP,
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-                    DEFINITION, SOURCE, CADSR });
+                    DEFINITION, CADSR_SOURCE, CADSR_TYPE });
         } else if (version == Prop.Version.CDISC) {
             itemizeParameters(buffer, "Term Information:", LABELS_HASHMAP,
                 new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
