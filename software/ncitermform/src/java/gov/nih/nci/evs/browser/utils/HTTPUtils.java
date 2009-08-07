@@ -62,6 +62,20 @@ public class HTTPUtils {
         return getSessionAttributeString(request, name, true, false);
     }
     
+    public static void setDefaulSessiontAttribute(
+        HttpServletRequest request, String name, Object value) {
+        Object v = request.getSession().getAttribute(name);
+        if (v == null)
+            request.getSession().setAttribute(name, value);
+    }
+    
+    public static void setDefaultAttribute(
+        HttpServletRequest request, String name, Object value) {
+        Object v = request.getAttribute(name);
+        if (v == null)
+            request.setAttribute(name, value);
+    }
+    
     public static String cleanXSS(String value) {
         if (value == null || value.length() < 1)
             return value;
