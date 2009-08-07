@@ -2,6 +2,8 @@ package gov.nih.nci.evs.browser.webapp;
 
 import java.util.*;
 
+import javax.servlet.http.*;
+
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
@@ -174,5 +176,37 @@ public class SuggestionRequest extends FormRequest {
         
         _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
+    }
+
+    public static void setupTestData() {
+        boolean useTestData = false;
+        if (! useTestData)
+            return;
+        
+        HttpServletRequest request = HTTPUtils.getRequest();
+        HTTPUtils.setDefaulSessiontAttribute(request, EMAIL, "John.Doe@abc.com");
+        HTTPUtils.setDefaulSessiontAttribute(request, OTHER, "Phone: 987-654-3210");
+        HTTPUtils.setDefaulSessiontAttribute(request, VOCABULARY, "NCI Thesaurus");
+        HTTPUtils.setDefaultAttribute(request, TERM, "Ultra Murine Cell Types");
+        HTTPUtils.setDefaultAttribute(request, SYNONYMS, 
+            "Cell Types; Cell; Murine Cell Types");
+        HTTPUtils.setDefaultAttribute(request, NEAREST_CODE, "C23442");
+        HTTPUtils.setDefaultAttribute(request, DEFINITION, 
+            "The smallest units of living structure capable of independent" +
+            " existence, composed of a membrane-enclosed mass of protoplasm" +
+            " and containing a nucleus or nucleoid. Cells are highly variable" +
+            " and specialized in both structure and function, though all must" +
+            " at some stage replicate proteins and nucleic acids, utilize" +
+            " energy, and reproduce themselves.");
+        HTTPUtils.setDefaultAttribute(request, CADSR_SOURCE,
+            AppProperties.getInstance().getCADSRSourceList()[1]);
+        HTTPUtils.setDefaultAttribute(request, CADSR_TYPE, 
+            AppProperties.getInstance().getCADSRTypeList()[1]);
+        HTTPUtils.setDefaultAttribute(request, CDISC_REQUEST_TYPE,
+            AppProperties.getInstance().getCDISCRequestTypeList()[1]);
+        HTTPUtils.setDefaultAttribute(request, CDISC_CODES, 
+            AppProperties.getInstance().getCDISCCodeList()[1]);
+        HTTPUtils.setDefaultAttribute(request, REASON, 
+            "New improved version of the previous type.");
     }
 }
