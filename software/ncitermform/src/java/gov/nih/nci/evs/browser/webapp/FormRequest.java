@@ -80,13 +80,18 @@ public class FormRequest extends BaseRequest {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
             String label = labels != null ? labels.get(parameter) : parameter;
-            buffer.append("* " + label + ": ");
-            buffer.append(_parametersHashMap.get(parameter));
-            buffer.append("\n");
+            buffer_append(buffer, label, parameter);
         }
         buffer.append("\n");
     }
 
+    protected void buffer_append(StringBuffer buffer, String label, 
+        String parameter) {
+        buffer.append("* " + label + ": ");
+        buffer.append(_parametersHashMap.get(parameter));
+        buffer.append("\n");
+    }
+    
     protected String printSendEmailWarning() {
         if (_isSendEmail)
             return "";

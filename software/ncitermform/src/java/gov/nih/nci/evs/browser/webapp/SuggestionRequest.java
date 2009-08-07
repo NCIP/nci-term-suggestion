@@ -138,30 +138,34 @@ public class SuggestionRequest extends FormRequest {
     }
     
     private String getEmailMessage() {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append(getSubject() + "\n\n");
-        itemizeParameters(buffer, "Contact information:", LABELS_HASHMAP,
-            new String[] { EMAIL, OTHER });
         Prop.Version version = Prop.Version.valueOfOrDefault(
             (String) _request.getSession().getAttribute(VERSION));
+
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(getSubject() + "\n\n");
+        buffer.append("Contact information:\n");
+        buffer_append(buffer, EMAIL_LABEL, EMAIL);
+        buffer_append(buffer, OTHER_LABEL, OTHER);
+        buffer.append("\n");
+        buffer.append("Term Information:\n");
+        buffer_append(buffer, VOCABULARY_LABEL, VOCABULARY);
+        buffer_append(buffer, TERM_LABEL, TERM);
+        buffer_append(buffer, SYNONYMS_LABEL, SYNONYMS);
+        buffer_append(buffer, NEAREST_CODE_LABEL, NEAREST_CODE);
+        buffer_append(buffer, DEFINITION_LABEL, DEFINITION);
         if (version == Prop.Version.CADSR) {
-            itemizeParameters(buffer, "Term Information:", LABELS_HASHMAP,
-                new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-                    DEFINITION, CADSR_SOURCE, CADSR_TYPE });
+            buffer_append(buffer, CADSR_SOURCE_LABEL, CADSR_SOURCE);
+            buffer_append(buffer, CADSR_TYPE_LABEL, CADSR_TYPE);
         } else if (version == Prop.Version.CDISC) {
-            itemizeParameters(buffer, "Term Information:", LABELS_HASHMAP,
-                new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-                    DEFINITION, CDISC_REQUEST_TYPE, CDISC_CODES });
-        } else {
-            itemizeParameters(buffer, "Term Information:", LABELS_HASHMAP,
-                new String[] { VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-                    DEFINITION });
+            buffer_append(buffer, CDISC_REQUEST_TYPE_LABEL, CDISC_REQUEST_TYPE);
+            buffer_append(buffer, CDISC_CODES_LABEL, CDISC_CODES);
         }
-        itemizeParameters(buffer, "Additional information:", LABELS_HASHMAP,
-            new String[] { REASON });
+        buffer.append("\n");
+        buffer.append("Additional Information:\n");
+        buffer_append(buffer, REASON_LABEL, REASON);
         return buffer.toString();
     }
-    
+
     protected String printSendEmailWarning() {
         if (_isSendEmail)
             return "";
