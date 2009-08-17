@@ -72,7 +72,14 @@
                 </patternset>
             </fileset>
         </copy>
-
+        <copy todir="${webapp.classes.dir}" flatten="true" includeEmptyDirs="no" filtering="true">
+            <filterset>
+                <filter token="lex.evs.api.default.url" value="${lex.evs.api.default.url}"/>
+            </filterset>
+            <resources>
+                <file file="${conf.dir}/application-config-client.xml"/>
+            </resources>
+        </copy>
     </target>
 
     <target name="-war" depends="compile:application-code">
