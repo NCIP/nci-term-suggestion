@@ -13,6 +13,13 @@ function displayLinkInNewWindow(id) {
   element.onclick=window.open(url);
 }
 
+function displayNewWindow(url) {
+  if (url != "#")
+  {
+    window.open(url, "_blank", "alwaysRaised,dependent,status,scrollbars,resizable,width=800,height=600"); 
+  }
+}
+
 function go(loc) {
   window.location.href = loc;
 }
