@@ -6,7 +6,7 @@ import org.LexGrid.LexBIG.DataModel.Core.*;
 import org.LexGrid.LexBIG.LexBIGService.*;
 
 public class LicenseUtils extends Object {
-    private static HashMap<String, String> copyrightHashMap = new HashMap<String, String>();
+    private static HashMap<String, String> licenseHashMap = new HashMap<String, String>();
     private static final String UNAVAILABLE = "Copyright information unavailable";
 
     private static String getHashMapKey(String codingSchemeName, String version) {
@@ -16,15 +16,15 @@ public class LicenseUtils extends Object {
     }
 
     public static boolean isLicensed(String codingSchemeName, String version) {
-        String value = getCopyright(codingSchemeName, version);
+        String key = getHashMapKey(codingSchemeName, version);
+        String value = licenseHashMap.get(key);
         return value != null && value.length() > 0
             && !value.contains(UNAVAILABLE);
     }
 
-    public static String getCopyright(String codingSchemeName, String version) {
-        System.out.println("LicenseUtils.getCopyright");
+    public static String getLicense(String codingSchemeName, String version) {
         String key = getHashMapKey(codingSchemeName, version);
-        String value = copyrightHashMap.get(key);
+        String value = licenseHashMap.get(key);
         if (value == null) {
             try {
                 LexBIGService lbs = RemoteServerUtil.createLexBIGService();
@@ -38,29 +38,59 @@ public class LicenseUtils extends Object {
                 value = UNAVAILABLE;
             }
         }
-        copyrightHashMap.put(key, value);
+        licenseHashMap.put(key, value);
         return value;
     }
-
-    private static void debug(String codingSchemeName, String version) {
+    
+    private static void isLicensedTest(String codingSchemeName, String version) {
         boolean isLicensed = isLicensed(codingSchemeName, version);
         System.out.println("* " + codingSchemeName + ", " + version + ": "
             + isLicensed);
-        if (isLicensed)
-            System.out.println("  * copyright: " + getCopyright(codingSchemeName, version));
     }
 
+    private static void acceptLicensedTest(String codingSchemeName, String version) {
+        boolean isLicensed = isLicensed(codingSchemeName, version);
+        if (isLicensed) {
+            System.out.println("  * Alreadied licensed.");
+            return;
+        }
+        
+        String license = getLicense(codingSchemeName, version);
+        System.out.println("  * Get license: " + license);
+        isLicensed = isLicensed(codingSchemeName, version);
+        if (isLicensed) 
+            System.out.println("  * Got license.");
+        else System.out.println("  * Failed to get license.");
+    }
+    
     public static void main(String[] args) {
         String vocabulary = "MedDRA";
         String version = "10.1";
 
-        debug(vocabulary, version);
-        debug(vocabulary, version);
-        debug(vocabulary, "10.2");
-        debug(vocabulary, "10.2");
-        debug(vocabulary, null);
-        debug(vocabulary, null);
-        debug(vocabulary, version);
-        debug(vocabulary, version);
+        System.out.println("-------------------------------------------------");
+        vocabulary = "MedDRA";
+        version = "10.1";
+        isLicensedTest(vocabulary, version);
+        acceptLicensedTest(vocabulary, version);
+        isLicensedTest(vocabulary, version);
+
+        System.out.println("-------------------------------------------------");
+        vocabulary = "MedDRA";
+        version = "10.2";
+        isLicensedTest(vocabulary, version);
+        acceptLicensedTest(vocabulary, version);
+        isLicensedTest(vocabulary, version);
+
+        System.out.println("-------------------------------------------------");
+        vocabulary = "MedDRA";
+        version = null;
+        isLicensedTest(vocabulary, version);
+        acceptLicensedTest(vocabulary, version);
+        isLicensedTest(vocabulary, version);
+
+        System.out.println("-------------------------------------------------");
+        vocabulary = "MedDRA"; version = "10.1"; isLicensedTest(vocabulary, version);
+        vocabulary = "MedDRA"; version = "10.2"; isLicensedTest(vocabulary, version);
+        vocabulary = "MedDRA"; version = null;   isLicensedTest(vocabulary, version);
     }
 }
