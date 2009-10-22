@@ -5,11 +5,24 @@
 setlocal
 cls
 if "%1" == "" (
-    ant usage
+    echo.
+    echo Available targets are:
+    echo.
+    echo   clean        -- Remove classes directory for clean build
+    echo   all          -- Normal build of application
+    echo   install      -- Builds, installs JBoss locally
+    echo   upgrade      -- Build and upgrade application
+    echo   dev          -- Builds, upgrades JBoss on DEV
+    echo   qa           -- Builds, upgrades JBoss on QA
+    echo   deploy       -- Redeploy application
     goto DONE
 )
 if "%1" == "all" (
     ant build:all
+    goto DONE
+)
+if "%1" == "install" (
+    ant deploy:local:install
     goto DONE
 )
 if "%1" == "upgrade" (
@@ -28,10 +41,12 @@ if "%1" == "clean" (
     goto DONE
 )
 if "%1" == "dev" (
-    rem ant -Dproperties.file=C:\SVN-Projects\nci-newterm-properties\properties\dev-upgrade.properties deploy:remote:upgrade
-    ant -Dproperties.file=C:\@\src\browsers\ncit.properties\dev-upgrade.properties deploy:remote:upgrade
+    ant -Dproperties.file=C:\SVN-Projects\ncireportwriter-properties\properties\dev-upgrade.properties deploy:remote:upgrade
     goto DONE
 )
-
+if "%1" == "qa" (
+    ant -Dproperties.file=C:\SVN-Projects\ncireportwriter-properties\properties\qa-upgrade.properties deploy:remote:upgrade
+    goto DONE
+)
 :DONE
 endlocal

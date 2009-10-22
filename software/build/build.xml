@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<!-- bda-build-templage verison 1.1.0 -->
+<!-- bda-build-templage verison 1.2.2 -->
 
 <project name="build-bda-template" default="usage" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:cs="antlib:com.puppycrawl.tools.checkstyle">
 
@@ -264,7 +264,7 @@
                 <property name="commonlibrary.dir" value="" />
         </ant>
         <!--
-        <ant inheritAll="false" inheritRefs="false" antfile="${bda-blueprints-webapp.build.file}" target="ivy-clean" dir="${bda-blueprints-webapp.base.dir}" />
+        <ant inheritAll="false" inheritRefs="false" antfile="${ncitermform-webapp.build.file}" target="ivy-clean" dir="${ncitermform-webapp.base.dir}" />
         -->
     </target>
 
