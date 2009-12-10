@@ -26,6 +26,10 @@
       <div class="mainbox-top"><img src="<%=imagesPath%>/mainbox-top.gif"
         width="745" height="5" alt="Mainbox Top" /></div>
       <div id="main-area">
+        <div class="bannerarea">
+          <a href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/images/banner.gif" alt="Suggest Term Logo" border="0"/></a>
+        </div>
+        <div class="bluebar"></div>
         <div class="pagecontent">
           <jsp:include page="<%=content_page%>" />
           <jsp:include page="/pages/templates/footer.jsp" />
@@ -35,4 +39,5 @@
         width="745" height="5" alt="Mainbox Bottom" /></div>
     </div>
   </body>
+  <br>
 </html>

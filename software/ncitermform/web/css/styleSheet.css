@@ -143,11 +143,6 @@ h3
 }
 
 /* ---------- end nci banner ------------------ */
-.banner
-{
- float: left;
- width: 383px;
-}
 
 .texttitle-blue
 {
@@ -318,6 +313,7 @@ h3
 
 .bluebar
 {
+ width: 743px;
  background-image: url(../images/quicklinks.gif);
  background-repeat: repeat-x;
  height: 32px;

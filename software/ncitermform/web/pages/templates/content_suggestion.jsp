@@ -72,7 +72,7 @@
   String pCode = HTTPUtils.getParameter(request, CODE, false);
   if (! isWarnings && pCode != null)
     nearest_code = pCode;
-  
+
   // Member variable(s):
   int i=0;
   String[] items = null;
@@ -81,7 +81,6 @@
 %>
 <f:view>
   <form method="post">
-    <div class="texttitle-blue">Term Suggestion:</div><br/>
     <table class="newConceptDT">
       <!-- =================================================================== -->
       <%
@@ -111,7 +110,7 @@
       <%
           }
       %>
-      
+
       <!-- =================================================================== -->
       <tr><td class="newConceptSubheader" colspan="2">Contact Information:</td></tr>
       <tr>
@@ -187,7 +186,7 @@
         <td <%=LABEL_ARGS%>><%=DEFINITION_LABEL%>:</td>
         <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA6<%=css%>"><%=definition%></textarea></td>
       </tr>
-      
+
       <!-- =================================================================== -->
       <%
           if (version == Prop.Version.CADSR) {
