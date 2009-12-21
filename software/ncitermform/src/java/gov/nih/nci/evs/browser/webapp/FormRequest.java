@@ -103,11 +103,14 @@ public class FormRequest extends BaseRequest {
 
         if (_vocabularyParameter == null || _vocabularyParameter.length() <= 0)
             return buffer.toString();
-        String[] recipients = AppProperties.getInstance().getVocabularyEmails(
-            _parametersHashMap.get(_vocabularyParameter));
+        String[] recipients = getRecipients();
         buffer.append("Debug:\n");
         buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
         _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
+    }
+    
+    protected String[] getRecipients() {
+        return null;
     }
 }

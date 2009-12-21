@@ -86,6 +86,11 @@
     <!-- Vocabulary List (End) ============================================= -->
 
     <ConfigurableItem>
+      <key>CADSR_EMAIL</key>
+      <value>@cadsr.email@</value>
+    </ConfigurableItem>
+    
+    <ConfigurableItem>
       <key>CADSR_SOURCES</key>
       <value>@cadsr.sources@</value>
     </ConfigurableItem>
@@ -93,6 +98,11 @@
     <ConfigurableItem>
       <key>CADSR_TYPES</key>
       <value>@cadsr.types@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_EMAIL</key>
+      <value>@cdisc.email@</value>
     </ConfigurableItem>
 
     <ConfigurableItem>

@@ -290,8 +290,20 @@
             <filter token="vocabulary.8" value="${vocabulary.8}"/>
             <filter token="vocabulary.9" value="${vocabulary.9}"/>
             <filter token="vocabulary.10" value="${vocabulary.10}"/>
+            <filter token="vocabulary.11" value="${vocabulary.11}"/>
+            <filter token="vocabulary.12" value="${vocabulary.12}"/>
+            <filter token="vocabulary.13" value="${vocabulary.13}"/>
+            <filter token="vocabulary.14" value="${vocabulary.14}"/>
+            <filter token="vocabulary.15" value="${vocabulary.15}"/>
+            <filter token="vocabulary.16" value="${vocabulary.16}"/>
+            <filter token="vocabulary.17" value="${vocabulary.17}"/>
+            <filter token="vocabulary.18" value="${vocabulary.18}"/>
+            <filter token="vocabulary.19" value="${vocabulary.19}"/>
+            <filter token="vocabulary.20" value="${vocabulary.20}"/>
+            <filter token="cadsr.email" value="${cadsr.email}"/>
             <filter token="cadsr.sources" value="${cadsr.sources}"/>
             <filter token="cadsr.types" value="${cadsr.types}"/>
+            <filter token="cdisc.email" value="${cdisc.email}"/>
             <filter token="cdisc.request.types" value="${cdisc.request.types}"/>
             <filter token="cdisc.codes" value="${cdisc.codes}"/>
             <filter token="application.base.path" value="${application.base.path}"/>

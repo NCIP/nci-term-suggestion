@@ -16,8 +16,10 @@ public class AppProperties {
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String VOCABULARY_PREFIX = "VOCABULARY_";
     private static final int VOCABULARY_MAX = 20;
+    private static final String CADSR_EMAIL = "CADSR_EMAIL";
     private static final String CADSR_SOURCES = "CADSR_SOURCES";
     private static final String CADSR_TYPES = "CADSR_TYPES";
+    private static final String CDISC_EMAIL = "CDISC_EMAIL";
     private static final String CDISC_REQUEST_TYPES = "CDISC_REQUEST_TYPES";
     private static final String CDISC_CODES = "CDISC_CODES";
 
@@ -26,8 +28,10 @@ public class AppProperties {
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
     private ArrayList<VocabInfo> _vocabList = null;
-    private String[] _caDSRSourceList = null;
-    private String[] _caDSRTypeList = null;
+    private String[] _cadsrEmail = null;
+    private String[] _cadsrSourceList = null;
+    private String[] _cadsrTypeList = null;
+    private String[] _cdiscEmail = null;
     private String[] _cdiscRequestTypeList = null;
     private String[] _cdiscCodeList = null;
 
@@ -166,10 +170,19 @@ public class AppProperties {
     public String getSources() {
         return getProperty(CADSR_SOURCES);
     }
+    
+    public String[] getCADSREmail() {
+        if (_cadsrEmail != null)
+            return _cadsrEmail;
+        
+        String value = getProperty(CADSR_EMAIL);
+        String[] list = StringUtils.toStrings(value, ";", false);
+        return _cadsrEmail = list;
+    }
 
     public String[] getCADSRSourceList() {
-        return _caDSRSourceList = getList(
-            CADSR_SOURCES, _caDSRSourceList, "_caDSRSourceList");
+        return _cadsrSourceList = getList(
+            CADSR_SOURCES, _cadsrSourceList, "_cadsrSourceList");
     }
     
     public String getCADSRTypes() {
@@ -177,8 +190,17 @@ public class AppProperties {
     }
 
     public String[] getCADSRTypeList() {
-        return _caDSRTypeList = getList(
-            CADSR_TYPES, _caDSRTypeList, "_caDSRTypeList");
+        return _cadsrTypeList = getList(
+            CADSR_TYPES, _cadsrTypeList, "_cadsrTypeList");
+    }
+    
+    public String[] getCDISCEmail() {
+        if (_cdiscEmail != null)
+            return _cdiscEmail;
+        
+        String value = getProperty(CDISC_EMAIL);
+        String[] list = StringUtils.toStrings(value, ";", false);
+        return _cdiscEmail = list;
     }
 
     public String getCDISCRequestTypes() {
