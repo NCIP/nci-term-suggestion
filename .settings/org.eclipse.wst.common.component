@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/" source-path="/software/ncitermform/web"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/software/ncitermform/src/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/software/ncitermform/web/pages"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/software/test/src/java"/>
         <property name="context-root" value="newterm"/>
         <property name="java-output-path"/>
     </wb-module>
