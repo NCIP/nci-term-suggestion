@@ -10,26 +10,6 @@ public class UserSessionBean {
         return FormRequest.MESSAGE_STATE;
     }
     
-    public String requestNewConcept() {
-        NewConceptRequest request = new NewConceptRequest();
-        return request.submitForm();
-    }
-    
-    public String clearNewConcept() {
-        NewConceptRequest request = new NewConceptRequest();
-        return request.clearForm();  
-    }
-
-    public String requestModifyConcept() {
-        ModifyConceptRequest request = new ModifyConceptRequest();
-        return request.submitForm();
-    }
-    
-    public String clearModifyConcept() {
-        ModifyConceptRequest request = new ModifyConceptRequest();
-        return request.clearForm();  
-    }
-    
     public String requestSuggestion() {
         SuggestionRequest request = new SuggestionRequest();
         return request.submitForm();
