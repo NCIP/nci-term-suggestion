@@ -156,7 +156,7 @@
                       if (! isSelected) {
                         if (! isWarnings && item.equalsIgnoreCase(pDictionary))
                           { args += "selected=\"true\""; isSelected = true; }
-                        else if (url.equals(selectedItem))
+                        else if (url.length() > 0 && url.equals(selectedItem))
                           { args += "selected=\"true\""; isSelected = true; }
                       }
             %>
