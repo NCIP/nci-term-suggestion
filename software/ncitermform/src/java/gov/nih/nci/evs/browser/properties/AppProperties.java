@@ -105,6 +105,7 @@ public class AppProperties {
 
     private ArrayList<VocabInfo> parseVocabList() {
         ArrayList<VocabInfo> list = new ArrayList<VocabInfo>();
+        list.add(new VocabInfo());
         for (int i=0; i<VOCABULARY_MAX; ++i) {
             String value = getProperty(VOCABULARY_PREFIX + i);
             VocabInfo vocab = VocabInfo.parse(value);

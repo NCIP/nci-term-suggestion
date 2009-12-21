@@ -10,7 +10,10 @@
 function displayLinkInNewWindow(id) {
   var element = document.getElementById(id);
   var url = element.value;
-  element.onclick=window.open(url);
+  if (url != "")
+    element.onclick=window.open(url);
+  else
+	alert("Please select a vocabulary.");
 }
 
 function go(loc) {
