@@ -36,7 +36,7 @@
         <servlet-class>gov.nih.nci.evs.browser.servlet.AFacesServlet</servlet-class>
         <init-param>
             <param-name>errorPage</param-name>
-            <param-value>/pages/main/error_handler.jsf</param-value>
+            <param-value>/pages/error_handler.jsf</param-value>
         </init-param>
         <load-on-startup>-1</load-on-startup>
     </servlet>
