@@ -83,6 +83,56 @@
       <key>VOCABULARY_10</key>
       <value>@vocabulary.10@</value>
     </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_11</key>
+      <value>@vocabulary.11@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_12</key>
+      <value>@vocabulary.12@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_13</key>
+      <value>@vocabulary.13@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_14</key>
+      <value>@vocabulary.14@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_15</key>
+      <value>@vocabulary.15@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_16</key>
+      <value>@vocabulary.16@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_17</key>
+      <value>@vocabulary.17@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_18</key>
+      <value>@vocabulary.18@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_19</key>
+      <value>@vocabulary.19@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_20</key>
+      <value>@vocabulary.20@</value>
+    </ConfigurableItem>
     <!-- Vocabulary List (End) ============================================= -->
 
     <ConfigurableItem>
