@@ -146,10 +146,12 @@
             <%
                 selectedItem = vocabulary;
                 ArrayList list = AppProperties.getInstance().getVocabularies();
-                Iterator iterator = list.iterator();
+                VocabInfo[] vocabs  = (VocabInfo[]) 
+                  list.toArray(new VocabInfo[list.size()]);
                 boolean isSelected = false;
-                while (iterator.hasNext()) {
-                  VocabInfo vocab = (VocabInfo) iterator.next();
+                int n = vocabs.length;
+                for (i=0; i<n; ++i) {
+                  VocabInfo vocab = vocabs[i];
                   String displayName = vocab.getDisplayName();
                   String name = vocab.getName();
                   String url = vocab.getUrl();
@@ -158,6 +160,8 @@
                     if (! isWarnings && name.equalsIgnoreCase(pDictionary))
                       { args += "selected=\"true\""; isSelected = true; }
                     else if (url.length() > 0 && url.equals(selectedItem))
+                      { args += "selected=\"true\""; isSelected = true; }
+                    else if (i >= n-1) // Default it to the last one.
                       { args += "selected=\"true\""; isSelected = true; }
                   }
             %>
@@ -168,7 +172,7 @@
           </select>
         </td>
         <td align="right">
-          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayLinkInNewWindow('url')" />
+          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayVocabLinkInNewWindow('url')" />
         </td>
       </tr>
       <tr>

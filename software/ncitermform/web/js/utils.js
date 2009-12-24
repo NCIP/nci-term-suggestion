@@ -13,7 +13,16 @@ function displayLinkInNewWindow(id) {
   if (url != "")
     element.onclick=window.open(url);
   else
-	alert("Please select a vocabulary.");
+	alert("URL not set.");
+}
+
+function displayVocabLinkInNewWindow(id) {
+  var element = document.getElementById(id);
+  var url = element.value;
+  if (url != "")
+    element.onclick=window.open(url);
+  else
+	alert("This vocabulary does not have\nan associated home page.");
 }
 
 function go(loc) {
