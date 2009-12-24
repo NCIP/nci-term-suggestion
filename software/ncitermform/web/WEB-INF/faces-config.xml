@@ -35,7 +35,7 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>java.lang.Exception</from-outcome>
-            <to-view-id>/pages/main/error_handler.jsp</to-view-id>
+            <to-view-id>/error_page.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
 
