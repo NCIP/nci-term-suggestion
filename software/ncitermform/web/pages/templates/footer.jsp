@@ -8,7 +8,7 @@
     <li><a href="<%=FormUtils.getIndexPage(request)%>">Home</a></li>
     <li> | <a href="http://www.cancer.gov" target="_blank" 
       alt="National Cancer Institute">NCI Home</a></li>
-    <li> | <a href="<%=pagesPath%>/contact_us.jsf"
+    <li> | <a href="<%=pagesPath%>/main/contact_us.jsf"
       alt="NCIt Contact Us">Contact Us</a></li>
     <li> | <a href="http://www.cancer.gov/policies" target="_blank"
       alt="National Cancer Institute Policies">Policies</a></li>
