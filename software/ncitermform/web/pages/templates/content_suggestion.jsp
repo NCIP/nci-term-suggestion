@@ -68,7 +68,11 @@
   String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
   boolean isWarnings = warnings.length() > 0;
 
-  String pDictionary = HTTPUtils.getParameter(request, DICTIONARY);
+  String pVocabulary = HTTPUtils.getParameter(request, VOCABULARY);
+  if (pVocabulary == null || pVocabulary.length() <= 0) {
+    // Note: This is how NCIt/TB and NCIm is passing in this value.  
+    pVocabulary = HTTPUtils.getParameter(request, DICTIONARY);
+  }
   String pCode = HTTPUtils.getParameter(request, CODE, false);
   if (! isWarnings && pCode != null)
     nearest_code = pCode;
@@ -157,11 +161,11 @@
                   String url = vocab.getUrl();
                   String args = "";
                   if (! isSelected) {
-                    if (! isWarnings && name.equalsIgnoreCase(pDictionary))
+                    if (! isWarnings && name.equalsIgnoreCase(pVocabulary))
                       { args += "selected=\"true\""; isSelected = true; }
                     else if (url.length() > 0 && url.equals(selectedItem))
                       { args += "selected=\"true\""; isSelected = true; }
-                    else if (i >= n-1 && pDictionary.length() > 0) // Default it to the last one.
+                    else if (i >= n-1 && pVocabulary.length() > 0) // Default it to the last one.
                       { args += "selected=\"true\""; isSelected = true; }
                   }
             %>
