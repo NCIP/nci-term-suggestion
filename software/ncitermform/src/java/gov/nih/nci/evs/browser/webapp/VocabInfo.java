@@ -9,10 +9,13 @@ import org.apache.log4j.*;
 public class VocabInfo {
     private static Logger _logger = Logger.getLogger(VocabInfo.class);
     private static final String DELIM = ";";
+    private String _displayName = "";
     private String _name = "";
     private String _url = "";
     private ArrayList<String> _emails = new ArrayList<String>();
 
+    public void setDisplayName(String name) { _displayName = name; }
+    public String getDisplayName() { return _displayName; }
     public void setName(String name) { _name = name; }
     public String getName() { return _name; }
     public void setUrl(String url) { _url = url; }
@@ -38,8 +41,10 @@ public class VocabInfo {
             if (token.equals(DELIM))
                 { ++i; continue; }
             if (i == 0)
+                info.setDisplayName(token);
+            if (i == 1)
                 info.setName(token);
-            else if (i == 1)
+            else if (i == 2)
                 info.setUrl(token);
             else if (token.length() > 0)
                 info.addEmail(token);
@@ -50,7 +55,8 @@ public class VocabInfo {
     public static void debug(VocabInfo list) {
         if (! _logger.isInfoEnabled())
             return;
-        _logger.info("* Name: " + list.getName());
+        _logger.info("* Display Name: " + list.getDisplayName());
+        _logger.info("  * Name: " + list.getName());
         _logger.info("  * Url: " + list.getUrl());
         ArrayList<String> emails = list.getEmails();
         Iterator<String> iterator = emails.iterator();
@@ -72,13 +78,7 @@ public class VocabInfo {
 
     public static void main(String[] args) {
         String[] values = new String[] {
-            "NCI Thesaurus ; http://ncit-qa.nci.nih.gov/; ncicb@pop.nci.nih.gov; NCIThesaurus@mail.nih.gov",
-            "; http://ncit-qa.nci.nih.gov/; ncicb@pop.nci.nih.gov; NCIThesaurus@mail.nih.gov",
-            "  ;  ;  ncicb@pop.nci.nih.gov;NCIThesaurus@mail.nih.gov",
-            " ; ; ncicb@pop.nci.nih.gov;NCIThesaurus@mail.nih.gov",
-            ";;ncicb@pop.nci.nih.gov;NCIThesaurus@mail.nih.gov",
-            ";;ncicb@pop.nci.nih.gov;NCIThesaurus@mail.nih.gov; ncicb@pop.nci.nih.gov",
-            "   ",
+            "NCIt ; NCI Thesaurus ; http://ncit-qa.nci.nih.gov/; ncicb@pop.nci.nih.gov; NCIThesaurus@mail.nih.gov",
         };
         for (int i=0; i<values.length; ++i) {
             _logger.info(StringUtils.SEPARATOR);

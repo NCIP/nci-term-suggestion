@@ -143,8 +143,8 @@ public class HTTPUtils {
         String[] parameters, HashMap<String, String> parametersHashMap) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            request.setAttribute(parameter,
-                parametersHashMap.get(parameter));
+            String value = parametersHashMap.get(parameter);
+            request.setAttribute(parameter, value);
         }
         debugParameters("HTTPUtils.updateAttributes:", 
             parameters, parametersHashMap);
