@@ -7,8 +7,7 @@
   String content_title = request.getParameter("content_title");
   if (content_title == null || content_title.trim().length() <= 0)
       content_title = "Suggest New Term";
-  String content_page = "/pages/templates/";
-  content_page += request.getParameter("content_page");
+  String content_page = request.getParameter("content_page");
   String buildInfo = AppProperties.getInstance().getBuildInfo();
 %>
 <!-- Build info: <%=buildInfo%> -->
