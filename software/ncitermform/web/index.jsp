@@ -1,5 +1,5 @@
 <html>
   <body>
-    <jsp:forward page="/pages/suggestion.jsf"/>
+    <jsp:forward page="/pages/main/suggestion.jsf"/>
   </body>
 </html>
