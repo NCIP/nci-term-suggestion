@@ -87,9 +87,8 @@ public class FormRequest extends BaseRequest {
 
     protected void buffer_append(StringBuffer buffer, String label, 
         String parameter) {
-        buffer.append("* " + label + ": ");
-        buffer.append(_parametersHashMap.get(parameter));
-        buffer.append("\n");
+        String value = _parametersHashMap.get(parameter);
+        buffer.append("* " + label + ": " + value + "\n");
     }
     
     protected String printSendEmailWarning() {

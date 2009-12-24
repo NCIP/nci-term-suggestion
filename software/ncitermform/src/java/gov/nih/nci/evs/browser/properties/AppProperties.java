@@ -140,7 +140,7 @@ public class AppProperties {
         while (iterator.hasNext()) {
             VocabInfo info = iterator.next();
             if (info.getUrl().equals(url))
-                return info.getName();
+                return info.getDisplayName();
         }
         return null;
     }

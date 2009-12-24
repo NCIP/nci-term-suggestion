@@ -145,22 +145,23 @@
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
                 selectedItem = vocabulary;
-                    ArrayList list = AppProperties.getInstance().getVocabularies();
-                    Iterator iterator = list.iterator();
-                    boolean isSelected = false;
-                    while (iterator.hasNext()) {
-                      VocabInfo vocab = (VocabInfo) iterator.next();
-                      String item = vocab.getName();
-                      String url = vocab.getUrl();
-                      String args = "";
-                      if (! isSelected) {
-                        if (! isWarnings && item.equalsIgnoreCase(pDictionary))
-                          { args += "selected=\"true\""; isSelected = true; }
-                        else if (url.length() > 0 && url.equals(selectedItem))
-                          { args += "selected=\"true\""; isSelected = true; }
-                      }
+                ArrayList list = AppProperties.getInstance().getVocabularies();
+                Iterator iterator = list.iterator();
+                boolean isSelected = false;
+                while (iterator.hasNext()) {
+                  VocabInfo vocab = (VocabInfo) iterator.next();
+                  String displayName = vocab.getDisplayName();
+                  String name = vocab.getName();
+                  String url = vocab.getUrl();
+                  String args = "";
+                  if (! isSelected) {
+                    if (! isWarnings && name.equalsIgnoreCase(pDictionary))
+                      { args += "selected=\"true\""; isSelected = true; }
+                    else if (url.length() > 0 && url.equals(selectedItem))
+                      { args += "selected=\"true\""; isSelected = true; }
+                  }
             %>
-                  <option value="<%=url%>" <%=args%>><%=item%></option>
+                  <option value="<%=url%>" <%=args%>><%=displayName%></option>
             <%
                 }
             %>
