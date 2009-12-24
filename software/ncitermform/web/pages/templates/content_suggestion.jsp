@@ -161,7 +161,7 @@
                       { args += "selected=\"true\""; isSelected = true; }
                     else if (url.length() > 0 && url.equals(selectedItem))
                       { args += "selected=\"true\""; isSelected = true; }
-                    else if (i >= n-1) // Default it to the last one.
+                    else if (i >= n-1 && pDictionary.length() > 0) // Default it to the last one.
                       { args += "selected=\"true\""; isSelected = true; }
                   }
             %>

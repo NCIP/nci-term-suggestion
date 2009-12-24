@@ -106,6 +106,7 @@ public class AppProperties {
     private VocabInfo getOtherVocab() {
         VocabInfo info = new VocabInfo();
         info.setDisplayName("Other");
+        info.setName("Other");
         return info;
     }
 
