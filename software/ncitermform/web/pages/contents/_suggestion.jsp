@@ -157,11 +157,11 @@
                 for (i=0; i<n; ++i) {
                   VocabInfo vocab = vocabs[i];
                   String displayName = vocab.getDisplayName();
-                  String name = vocab.getName();
+                  String vocabName = vocab.getName();
                   String url = vocab.getUrl();
                   String args = "";
                   if (! isSelected) {
-                    if (! isWarnings && name.equalsIgnoreCase(pVocabulary))
+                    if (! isWarnings && vocabName.equalsIgnoreCase(pVocabulary))
                       { args += "selected=\"true\""; isSelected = true; }
                     else if (url.length() > 0 && url.equals(selectedItem))
                       { args += "selected=\"true\""; isSelected = true; }
