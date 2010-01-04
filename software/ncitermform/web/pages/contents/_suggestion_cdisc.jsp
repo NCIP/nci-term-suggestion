@@ -13,33 +13,37 @@
   private static final String CODE = "code";
 
   // List of attribute name(s):
-  private static final String EMAIL = SuggestionRequest.EMAIL;
-  private static final String OTHER = SuggestionRequest.OTHER;
-  private static final String VOCABULARY = SuggestionRequest.VOCABULARY;
-  private static final String TERM = SuggestionRequest.TERM;
-  private static final String SYNONYMS = SuggestionRequest.SYNONYMS;
-  private static final String NEAREST_CODE = SuggestionRequest.NEAREST_CODE;
-  private static final String DEFINITION = SuggestionRequest.DEFINITION;
-  private static final String CADSR_SOURCE = SuggestionRequest.CADSR_SOURCE;
-  private static final String CADSR_TYPE = SuggestionRequest.CADSR_TYPE;
-  private static final String CDISC_REQUEST_TYPE = SuggestionRequest.CDISC_REQUEST_TYPE;
-  private static final String CDISC_CODES = SuggestionRequest.CDISC_CODES;
-  private static final String REASON = SuggestionRequest.REASON;
-  private static final String WARNINGS = SuggestionRequest.WARNINGS;
+  private static final String EMAIL = SuggestionCDISCRequest.EMAIL;
+  private static final String NAME = SuggestionCDISCRequest.NAME;
+  private static final String PHONE_NUMBER = SuggestionCDISCRequest.PHONE_NUMBER;
+  private static final String ORGANIZATION = SuggestionCDISCRequest.ORGANIZATION;
+  private static final String VOCABULARY = SuggestionCDISCRequest.VOCABULARY;
+  private static final String TERM = SuggestionCDISCRequest.TERM;
+  private static final String SYNONYMS = SuggestionCDISCRequest.SYNONYMS;
+  private static final String NEAREST_CODE = SuggestionCDISCRequest.NEAREST_CODE;
+  private static final String DEFINITION = SuggestionCDISCRequest.DEFINITION;
+  private static final String CADSR_SOURCE = SuggestionCDISCRequest.CADSR_SOURCE;
+  private static final String CADSR_TYPE = SuggestionCDISCRequest.CADSR_TYPE;
+  private static final String CDISC_REQUEST_TYPE = SuggestionCDISCRequest.CDISC_REQUEST_TYPE;
+  private static final String CDISC_CODES = SuggestionCDISCRequest.CDISC_CODES;
+  private static final String REASON = SuggestionCDISCRequest.REASON;
+  private static final String WARNINGS = SuggestionCDISCRequest.WARNINGS;
 
   // List of label(s):
-  private static final String EMAIL_LABEL = SuggestionRequest.EMAIL_LABEL;
-  private static final String OTHER_LABEL = SuggestionRequest.OTHER_LABEL;
-  private static final String VOCABULARY_LABEL = SuggestionRequest.VOCABULARY_LABEL;
-  private static final String TERM_LABEL = SuggestionRequest.TERM_LABEL;
-  private static final String SYNONYMS_LABEL = SuggestionRequest.SYNONYMS_LABEL;
-  private static final String NEAREST_CODE_LABEL = SuggestionRequest.NEAREST_CODE_LABEL;
-  private static final String DEFINITION_LABEL = SuggestionRequest.DEFINITION_LABEL;
-  private static final String CADSR_SOURCE_LABEL = SuggestionRequest.CADSR_SOURCE_LABEL;
-  private static final String CADSR_TYPE_LABEL = SuggestionRequest.CADSR_TYPE_LABEL;
-  private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionRequest.CDISC_REQUEST_TYPE_LABEL;
-  private static final String CDISC_CODES_LABEL = SuggestionRequest.CDISC_CODES_LABEL;
-  private static final String REASON_LABEL = SuggestionRequest.REASON_LABEL;
+  private static final String EMAIL_LABEL = SuggestionCDISCRequest.EMAIL_LABEL;
+  private static final String NAME_LABEL = SuggestionCDISCRequest.NAME_LABEL;
+  private static final String PHONE_NUMBER_LABEL = SuggestionCDISCRequest.PHONE_NUMBER_LABEL;
+  private static final String ORGANIZATION_LABEL = SuggestionCDISCRequest.ORGANIZATION_LABEL;
+  private static final String VOCABULARY_LABEL = SuggestionCDISCRequest.VOCABULARY_LABEL;
+  private static final String TERM_LABEL = SuggestionCDISCRequest.TERM_LABEL;
+  private static final String SYNONYMS_LABEL = SuggestionCDISCRequest.SYNONYMS_LABEL;
+  private static final String NEAREST_CODE_LABEL = SuggestionCDISCRequest.NEAREST_CODE_LABEL;
+  private static final String DEFINITION_LABEL = SuggestionCDISCRequest.DEFINITION_LABEL;
+  private static final String CADSR_SOURCE_LABEL = SuggestionCDISCRequest.CADSR_SOURCE_LABEL;
+  private static final String CADSR_TYPE_LABEL = SuggestionCDISCRequest.CADSR_TYPE_LABEL;
+  private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionCDISCRequest.CDISC_REQUEST_TYPE_LABEL;
+  private static final String CDISC_CODES_LABEL = SuggestionCDISCRequest.CDISC_CODES_LABEL;
+  private static final String REASON_LABEL = SuggestionCDISCRequest.REASON_LABEL;
 
   private static final String INPUT_ARGS =
     "class=\"textbody\" onFocus=\"active=true\" onBlur=\"active=false\"";
@@ -50,11 +54,13 @@
     // Member variable(s):
   String imagesPath = FormUtils.getImagesPath(request);
   Prop.Version version = FormUtils.getVersion(request);
-  SuggestionRequest.setupTestData();
+  SuggestionCDISCRequest.setupTestData();
 
   // Attribute(s):
   String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
-  String other = HTTPUtils.getSessionAttributeString(request, OTHER);
+  String name = HTTPUtils.getSessionAttributeString(request, NAME);
+  String phone_number = HTTPUtils.getSessionAttributeString(request, PHONE_NUMBER);
+  String organization = HTTPUtils.getSessionAttributeString(request, ORGANIZATION);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
   String term = HTTPUtils.getAttributeString(request, TERM);
   String synonyms = HTTPUtils.getAttributeString(request, SYNONYMS);
@@ -125,8 +131,25 @@
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=OTHER_LABEL%>:</td>
-        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA4<%=css%>"><%=other%></textarea></td>
+        <td <%=LABEL_ARGS%>><%=NAME_LABEL%>:</td>
+        <td colspan="2">
+          <input name="<%=NAME%>" value="<%=name%>" alt="<%=NAME%>"
+          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
+        </td>
+      </tr>
+      <tr>
+        <td <%=LABEL_ARGS%>><%=PHONE_NUMBER_LABEL%>:</td>
+        <td colspan="2">
+          <input name="<%=PHONE_NUMBER%>" value="<%=phone_number%>" alt="<%=PHONE_NUMBER%>"
+          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
+        </td>
+      </tr>
+      <tr>
+        <td <%=LABEL_ARGS%>><%=ORGANIZATION_LABEL%>:</td>
+        <td colspan="2">
+          <input name="<%=ORGANIZATION%>" value="<%=organization%>" alt="<%=ORGANIZATION%>"
+          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
+        </td>
       </tr>
       <tr>
         <td></td>
@@ -157,11 +180,11 @@
                 for (i=0; i<n; ++i) {
                   VocabInfo vocab = vocabs[i];
                   String displayName = vocab.getDisplayName();
-                  String name = vocab.getName();
+                  String vocabName = vocab.getName();
                   String url = vocab.getUrl();
                   String args = "";
                   if (! isSelected) {
-                    if (! isWarnings && name.equalsIgnoreCase(pVocabulary))
+                    if (! isWarnings && vocabName.equalsIgnoreCase(pVocabulary))
                       { args += "selected=\"true\""; isSelected = true; }
                     else if (url.length() > 0 && url.equals(selectedItem))
                       { args += "selected=\"true\""; isSelected = true; }
