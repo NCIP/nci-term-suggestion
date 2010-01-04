@@ -1,19 +1,22 @@
 package gov.nih.nci.evs.browser.bean;
 
+import javax.servlet.http.*;
+
 import gov.nih.nci.evs.browser.utils.*;
 import gov.nih.nci.evs.browser.webapp.*;
 
 public class UserSessionBean {
     public String changeRequest() {
         HTTPUtils.getRequest().setAttribute(
-                FormRequest.MESSAGE, "UserSessionBean.changeRequest");
+            FormRequest.MESSAGE, "UserSessionBean.changeRequest");
         return FormRequest.MESSAGE_STATE;
     }
     
     private Prop.Version getVersion() {
-        String version = (String) 
-            HTTPUtils.getRequest().getSession().getAttribute(FormRequest.VERSION);
-        return Prop.Version.valueOfOrDefault(version);
+        HttpServletRequest request = HTTPUtils.getRequest();
+        Prop.Version version = (Prop.Version) 
+            request.getSession().getAttribute(FormRequest.VERSION);
+        return version;
     }
     
     public String requestSuggestion() {
