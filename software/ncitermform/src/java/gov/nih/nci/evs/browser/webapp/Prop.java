@@ -122,11 +122,10 @@ public class Prop {
             }
         }
         
-        public static String getUrlParameter(String text) {
-            Version version = Version.valueOfOrDefault(text);
-            if (version == Default)
+        public String getUrlParameter() {
+            if (this == Default)
                 return "";
-            return "?version=" + version.name().toLowerCase();
+            return "?version=" + name().toLowerCase();
         }
     }
     

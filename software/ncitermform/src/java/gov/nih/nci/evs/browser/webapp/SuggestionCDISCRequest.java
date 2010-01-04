@@ -115,8 +115,8 @@ public class SuggestionCDISCRequest extends FormRequest {
     protected String[] getRecipients() {
         AppProperties appProperties = AppProperties.getInstance();
         String vocabulary = _parametersHashMap.get(VOCABULARY);
-        Prop.Version version = Prop.Version.valueOfOrDefault(
-            (String) _request.getSession().getAttribute(VERSION));
+        Prop.Version version = (Prop.Version)
+            _request.getSession().getAttribute(VERSION);
         
         if (version == Prop.Version.CADSR && 
                 appProperties.getCADSREmail().length > 0)
@@ -152,8 +152,8 @@ public class SuggestionCDISCRequest extends FormRequest {
     }
     
     private String getEmailMessage() {
-        Prop.Version version = Prop.Version.valueOfOrDefault(
-            (String) _request.getSession().getAttribute(VERSION));
+        Prop.Version version = (Prop.Version)
+            _request.getSession().getAttribute(VERSION);
 
         StringBuffer buffer = new StringBuffer();
         buffer.append(getSubject() + "\n\n");

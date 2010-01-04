@@ -37,26 +37,26 @@ public class FormUtils {
     }
 
     public static String getIndexPage(HttpServletRequest request) {
-        String version = HTTPUtils.getSessionAttributeString(
-            request, VERSION, false, false);
+        Prop.Version version = (Prop.Version) 
+            request.getSession().getAttribute(VERSION);
+        
         String basePath = getBasePath(request);
-        String indexPage = basePath + "/" + Prop.Version.getUrlParameter(version);
+        String indexPage = basePath + "/" + version.getUrlParameter();
         clearAllAttributes(request);
         return indexPage;
     }
     
     public static Prop.Version getVersion(HttpServletRequest request) {
-        String currVersion = HTTPUtils.getSessionAttributeString(
-            request, VERSION, false, false);
+        Prop.Version curr_version = (Prop.Version) 
+            request.getSession().getAttribute(VERSION);
         String parameterVersion = HTTPUtils.getParameter(
             request, VERSION, false);
-        Prop.Version curr_version = Prop.Version.valueOfOrDefault(currVersion);
         Prop.Version parameter_version = Prop.Version.valueOfOrDefault(parameterVersion);
         if (parameter_version != curr_version) {
           curr_version = parameter_version;
           clearAllAttributes(request);
         }
-        request.getSession().setAttribute(VERSION, curr_version.name());
+        request.getSession().setAttribute(VERSION, curr_version);
         return curr_version;
     }
 }
