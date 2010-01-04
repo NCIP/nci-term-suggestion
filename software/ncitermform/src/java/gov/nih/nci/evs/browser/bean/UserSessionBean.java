@@ -19,23 +19,20 @@ public class UserSessionBean {
         return version;
     }
     
-    public String requestSuggestion() {
+    private IFormRequest getFormRequest() {
         Prop.Version version = getVersion();
-        if (version == Prop.Version.CDISC) {
-            SuggestionCDISCRequest request = new SuggestionCDISCRequest();
-            return request.submitForm();
-        }
-        SuggestionRequest request = new SuggestionRequest();
+        if (version == Prop.Version.CDISC)
+            return new SuggestionCDISCRequest();
+        return new SuggestionRequest();
+    }
+    
+    public String requestSuggestion() {
+        IFormRequest request = getFormRequest();
         return request.submitForm();
     }
     
     public String clearSuggestion() {
-        Prop.Version version = getVersion();
-        if (version == Prop.Version.CDISC) {
-            SuggestionCDISCRequest request = new SuggestionCDISCRequest();
-            return request.clearForm();  
-        }
-        SuggestionRequest request = new SuggestionRequest();
+        IFormRequest request = getFormRequest();
         return request.clearForm();  
     }
 
