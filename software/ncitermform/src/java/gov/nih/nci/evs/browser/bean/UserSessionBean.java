@@ -10,12 +10,28 @@ public class UserSessionBean {
         return FormRequest.MESSAGE_STATE;
     }
     
+    private Prop.Version getVersion() {
+        String version = (String) 
+            HTTPUtils.getRequest().getSession().getAttribute(FormRequest.VERSION);
+        return Prop.Version.valueOfOrDefault(version);
+    }
+    
     public String requestSuggestion() {
+        Prop.Version version = getVersion();
+        if (version == Prop.Version.CDISC) {
+            SuggestionCDISCRequest request = new SuggestionCDISCRequest();
+            return request.submitForm();
+        }
         SuggestionRequest request = new SuggestionRequest();
         return request.submitForm();
     }
     
     public String clearSuggestion() {
+        Prop.Version version = getVersion();
+        if (version == Prop.Version.CDISC) {
+            SuggestionCDISCRequest request = new SuggestionCDISCRequest();
+            return request.clearForm();  
+        }
         SuggestionRequest request = new SuggestionRequest();
         return request.clearForm();  
     }
