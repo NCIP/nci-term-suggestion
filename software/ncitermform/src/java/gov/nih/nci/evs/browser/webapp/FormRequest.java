@@ -5,7 +5,7 @@ import java.util.*;
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
-public class FormRequest extends BaseRequest {
+public class FormRequest extends BaseRequest implements IFormRequest {
     // List of attribute name(s):
     public static final String VERSION = "version";
     public static final String MESSAGE = "message";
