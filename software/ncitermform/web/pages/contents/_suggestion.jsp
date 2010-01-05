@@ -144,7 +144,7 @@
         <td>Fill in the following fields as appropriate:</td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=VOCABULARY_LABEL%>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><%=VOCABULARY_LABEL%>:</td>
         <td>
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
