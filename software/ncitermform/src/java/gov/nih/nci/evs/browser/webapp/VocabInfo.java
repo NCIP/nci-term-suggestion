@@ -27,6 +27,19 @@ public class VocabInfo {
     public boolean isEmpty() {
         return _name.length() <= 0 && _url.length() <= 0 && _emails.size() <= 0;
     }
+    
+    public VocabInfo() {
+    }
+    
+    public VocabInfo(String displayName, String name) {
+        setDisplayName(displayName);
+        setName(name);
+    }
+
+    public VocabInfo(String name) {
+        setDisplayName(name);
+        setName(name);
+    }
 
     public static VocabInfo parse(String text) {
         if (text == null || text.trim().length() <= 0 || 

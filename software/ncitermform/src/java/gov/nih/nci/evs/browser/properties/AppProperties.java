@@ -28,6 +28,7 @@ public class AppProperties {
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
     private ArrayList<VocabInfo> _vocabList = null;
+    private ArrayList<VocabInfo> _vocabListCDISC = null;
     private String[] _cadsrEmail = null;
     private String[] _cadsrSourceList = null;
     private String[] _cadsrTypeList = null;
@@ -103,13 +104,6 @@ public class AppProperties {
         return getProperty(MAIL_SMTP_SERVER);
     }
     
-    private VocabInfo getOtherVocab() {
-        VocabInfo info = new VocabInfo();
-        info.setDisplayName("Other");
-        info.setName("Other");
-        return info;
-    }
-
     private ArrayList<VocabInfo> parseVocabList() {
         ArrayList<VocabInfo> list = new ArrayList<VocabInfo>();
         for (int i=0; i<VOCABULARY_MAX; ++i) {
@@ -118,7 +112,7 @@ public class AppProperties {
             if (vocab != null)
                 list.add(vocab);
         }
-        list.add(getOtherVocab());
+        list.add(new VocabInfo("Other"));
         return list;
     }
 
@@ -128,6 +122,15 @@ public class AppProperties {
             VocabInfo.debug(_vocabList);
         }
         return _vocabList;
+    }
+
+    public ArrayList<VocabInfo> getVocabulariesCDISC() {
+        if (_vocabListCDISC == null) {
+            _vocabListCDISC = parseVocabList();
+            _vocabListCDISC.add(0, new VocabInfo("CDISC Terminology"));
+            VocabInfo.debug(_vocabListCDISC);
+        }
+        return _vocabListCDISC;
     }
 
     public String[] getVocabularyNames() {
