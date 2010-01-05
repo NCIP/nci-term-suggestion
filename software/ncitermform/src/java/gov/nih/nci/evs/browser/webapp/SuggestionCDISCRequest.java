@@ -181,7 +181,7 @@ public class SuggestionCDISCRequest extends FormRequest {
     }
 
     public static void setupTestData() {
-        boolean useTestData = true; //false;
+        boolean useTestData = false;
         if (! useTestData)
             return;
         
