@@ -19,9 +19,6 @@
   private static final String ORGANIZATION = SuggestionCDISCRequest.ORGANIZATION;
   private static final String VOCABULARY = SuggestionCDISCRequest.VOCABULARY;
   private static final String TERM = SuggestionCDISCRequest.TERM;
-  private static final String SYNONYMS = SuggestionCDISCRequest.SYNONYMS;
-  private static final String NEAREST_CODE = SuggestionCDISCRequest.NEAREST_CODE;
-  private static final String DEFINITION = SuggestionCDISCRequest.DEFINITION;
   private static final String CADSR_SOURCE = SuggestionCDISCRequest.CADSR_SOURCE;
   private static final String CADSR_TYPE = SuggestionCDISCRequest.CADSR_TYPE;
   private static final String CDISC_REQUEST_TYPE = SuggestionCDISCRequest.CDISC_REQUEST_TYPE;
@@ -36,9 +33,6 @@
   private static final String ORGANIZATION_LABEL = SuggestionCDISCRequest.ORGANIZATION_LABEL;
   private static final String VOCABULARY_LABEL = SuggestionCDISCRequest.VOCABULARY_LABEL;
   private static final String TERM_LABEL = SuggestionCDISCRequest.TERM_LABEL;
-  private static final String SYNONYMS_LABEL = SuggestionCDISCRequest.SYNONYMS_LABEL;
-  private static final String NEAREST_CODE_LABEL = SuggestionCDISCRequest.NEAREST_CODE_LABEL;
-  private static final String DEFINITION_LABEL = SuggestionCDISCRequest.DEFINITION_LABEL;
   private static final String CADSR_SOURCE_LABEL = SuggestionCDISCRequest.CADSR_SOURCE_LABEL;
   private static final String CADSR_TYPE_LABEL = SuggestionCDISCRequest.CADSR_TYPE_LABEL;
   private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionCDISCRequest.CDISC_REQUEST_TYPE_LABEL;
@@ -63,9 +57,6 @@
   String organization = HTTPUtils.getSessionAttributeString(request, ORGANIZATION);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
   String term = HTTPUtils.getAttributeString(request, TERM);
-  String synonyms = HTTPUtils.getAttributeString(request, SYNONYMS);
-  String nearest_code = HTTPUtils.getAttributeString(request, NEAREST_CODE);
-  String definition = HTTPUtils.getAttributeString(request, DEFINITION);
   String cadsr_source = HTTPUtils.getAttributeString(request, CADSR_SOURCE);
   String cadsr_type = HTTPUtils.getAttributeString(request, CADSR_TYPE);
   String cdisc_request_type = HTTPUtils.getAttributeString(request, CDISC_REQUEST_TYPE);
@@ -79,9 +70,6 @@
     // Note: This is how NCIt/TB and NCIm is passing in this value.  
     pVocabulary = HTTPUtils.getParameter(request, DICTIONARY);
   }
-  String pCode = HTTPUtils.getParameter(request, CODE, false);
-  if (! isWarnings && pCode != null)
-    nearest_code = pCode;
 
   // Member variable(s):
   int i=0;
@@ -154,7 +142,7 @@
       <tr>
         <td></td>
         <td colspan="2" class="newConceptNotes"><b class="warningMsgColor">Privacy Notice: </b>
-          Your email, name, phone, or other contact information will only be used
+          Your email, name, phone number, or other contact information will only be used
           <br/>&nbsp;&nbsp;&nbsp;&nbsp;
           to contact you about this topic and not for any other purpose.
         </td>
@@ -205,18 +193,6 @@
       <tr>
         <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
-      </tr>
-      <tr>
-        <td <%=LABEL_ARGS%>><%=SYNONYMS_LABEL%>:</td>
-        <td colspan="2"><textarea name="<%=SYNONYMS%>" class="newConceptTA2<%=css%>"><%=synonyms%></textarea></td>
-      </tr>
-      <tr>
-        <td <%=LABEL_ARGS%>><%=NEAREST_CODE_LABEL%>:</td>
-        <td colspan="2"><textarea name="<%=NEAREST_CODE%>" class="newConceptTA2<%=css%>"><%=nearest_code%></textarea></td>
-      </tr>
-      <tr>
-        <td <%=LABEL_ARGS%>><%=DEFINITION_LABEL%>:</td>
-        <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA6<%=css%>"><%=definition%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
