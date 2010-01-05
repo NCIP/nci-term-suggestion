@@ -23,6 +23,11 @@ public class VocabInfo {
     public void addEmail(String email) {
         if (! _emails.contains(email)) _emails.add(email); 
     }
+    public void addEmails(String emails) {
+        String[] list = StringUtils.toStrings(emails, ";", false);
+        for (int i=0; i<list.length; ++i)
+            addEmail(list[i]);
+    }
     public ArrayList<String> getEmails() { return _emails; }
     public boolean isEmpty() {
         return _name.length() <= 0 && _url.length() <= 0 && _emails.size() <= 0;
@@ -31,11 +36,6 @@ public class VocabInfo {
     public VocabInfo() {
     }
     
-    public VocabInfo(String displayName, String name) {
-        setDisplayName(displayName);
-        setName(name);
-    }
-
     public VocabInfo(String name) {
         setDisplayName(name);
         setName(name);

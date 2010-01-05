@@ -154,7 +154,7 @@
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
                 selectedItem = vocabulary;
-                ArrayList list = AppProperties.getInstance().getVocabulariesCDISC();
+                ArrayList list = AppProperties.getInstance().getVocabularies(version);
                 VocabInfo[] vocabs  = (VocabInfo[]) 
                   list.toArray(new VocabInfo[list.size()]);
                 boolean isSelected = false;

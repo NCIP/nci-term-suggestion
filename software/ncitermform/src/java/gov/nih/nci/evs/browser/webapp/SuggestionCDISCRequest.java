@@ -112,7 +112,7 @@ public class SuggestionCDISCRequest extends FormRequest {
         if (version == Prop.Version.CDISC && 
                 appProperties.getCDISCEmail().length > 0)
             return appProperties.getCDISCEmail();
-        return appProperties.getVocabularyEmails(vocabulary);
+        return appProperties.getVocabularyEmails(version, vocabulary);
     }
     
     private String validate() {
@@ -182,6 +182,7 @@ public class SuggestionCDISCRequest extends FormRequest {
 
     public static void setupTestData() {
         boolean useTestData = false;
+        //useTestData = true; //DYEE
         if (! useTestData)
             return;
         
@@ -190,7 +191,7 @@ public class SuggestionCDISCRequest extends FormRequest {
         HTTPUtils.setDefaulSessiontAttribute(request, NAME, "John Doe");
         HTTPUtils.setDefaulSessiontAttribute(request, PHONE_NUMBER, "987-654-3210\n987-654-3211");
         HTTPUtils.setDefaulSessiontAttribute(request, ORGANIZATION, "Google");
-        HTTPUtils.setDefaulSessiontAttribute(request, VOCABULARY, "NCI Thesaurus");
+        //HTTPUtils.setDefaulSessiontAttribute(request, VOCABULARY, "NCI Thesaurus");
         HTTPUtils.setDefaultAttribute(request, TERM, "Ultra Murine Cell Types");
         HTTPUtils.setDefaultAttribute(request, CDISC_REQUEST_TYPE,
             AppProperties.getInstance().getCDISCRequestTypeList()[1]);
