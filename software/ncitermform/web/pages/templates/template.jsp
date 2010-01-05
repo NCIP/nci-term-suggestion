@@ -8,6 +8,8 @@
   if (content_title == null || content_title.trim().length() <= 0)
       content_title = "Suggest New Term";
   String content_quickLink = request.getParameter("content_quickLink");
+  if (content_quickLink == null)
+      content_quickLink = "";
   String content_page = request.getParameter("content_page");
   String buildInfo = AppProperties.getInstance().getBuildInfo();
 %>
