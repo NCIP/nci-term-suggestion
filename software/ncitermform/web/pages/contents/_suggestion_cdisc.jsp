@@ -18,9 +18,9 @@
   private static final String PHONE_NUMBER = SuggestionCDISCRequest.PHONE_NUMBER;
   private static final String ORGANIZATION = SuggestionCDISCRequest.ORGANIZATION;
   private static final String VOCABULARY = SuggestionCDISCRequest.VOCABULARY;
-  private static final String TERM = SuggestionCDISCRequest.TERM;
   private static final String CDISC_REQUEST_TYPE = SuggestionCDISCRequest.CDISC_REQUEST_TYPE;
   private static final String CDISC_CODES = SuggestionCDISCRequest.CDISC_CODES;
+  private static final String TERM = SuggestionCDISCRequest.TERM;
   private static final String REASON = SuggestionCDISCRequest.REASON;
   private static final String WARNINGS = SuggestionCDISCRequest.WARNINGS;
 
@@ -30,9 +30,9 @@
   private static final String PHONE_NUMBER_LABEL = SuggestionCDISCRequest.PHONE_NUMBER_LABEL;
   private static final String ORGANIZATION_LABEL = SuggestionCDISCRequest.ORGANIZATION_LABEL;
   private static final String VOCABULARY_LABEL = SuggestionCDISCRequest.VOCABULARY_LABEL;
-  private static final String TERM_LABEL = SuggestionCDISCRequest.TERM_LABEL;
   private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionCDISCRequest.CDISC_REQUEST_TYPE_LABEL;
   private static final String CDISC_CODES_LABEL = SuggestionCDISCRequest.CDISC_CODES_LABEL;
+  private static final String TERM_LABEL = SuggestionCDISCRequest.TERM_LABEL;
   private static final String REASON_LABEL = SuggestionCDISCRequest.REASON_LABEL;
 
   private static final String INPUT_ARGS =
@@ -52,9 +52,9 @@
   String phone_number = HTTPUtils.getSessionAttributeString(request, PHONE_NUMBER);
   String organization = HTTPUtils.getSessionAttributeString(request, ORGANIZATION);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
-  String term = HTTPUtils.getAttributeString(request, TERM);
   String cdisc_request_type = HTTPUtils.getAttributeString(request, CDISC_REQUEST_TYPE);
   String cdisc_codes = HTTPUtils.getAttributeString(request, CDISC_CODES);
+  String term = HTTPUtils.getAttributeString(request, TERM);
   String reason = HTTPUtils.getAttributeString(request, REASON);
   String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
   boolean isWarnings = warnings.length() > 0;
@@ -185,57 +185,49 @@
         </td>
       </tr>
       <tr>
+        <td <%=LABEL_ARGS%>><%=CDISC_REQUEST_TYPE_LABEL%>:</td>
+        <td colspan="2">
+          <select name="<%=CDISC_REQUEST_TYPE%>" class="newConceptCB2<%=css%>">
+            <%
+              selectedItem = cdisc_request_type;
+              items = AppProperties.getInstance().getCDISCRequestTypeList();
+              for (i=0; i<items.length; ++i) {
+                String item = items[i];
+                String args = "";
+                if (item.equals(selectedItem))
+                  args += "selected=\"true\"";
+            %>
+                  <option value="<%=item%>" <%=args%>><%=item%></option>
+            <%
+              }
+            %>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td <%=LABEL_ARGS%>><%=CDISC_CODES_LABEL%>:</td>
+        <td colspan="2">
+          <select name="<%=CDISC_CODES%>" class="newConceptCB2<%=css%>">
+            <%
+              selectedItem = cdisc_codes;
+              items = AppProperties.getInstance().getCDISCCodeList();
+              for (i=0; i<items.length; ++i) {
+                String item = items[i];
+                String args = "";
+                if (item.equals(selectedItem))
+                  args += "selected=\"true\"";
+            %>
+                  <option value="<%=item%>" <%=args%>><%=item%></option>
+            <%
+              }
+            %>
+          </select>
+        </td>
+      </tr>
+      <tr>
         <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
       </tr>
-
-      <!-- =================================================================== -->
-      <%
-         if (version == Prop.Version.CDISC) {
-      %>
-          <tr>
-            <td <%=LABEL_ARGS%>><%=CDISC_REQUEST_TYPE_LABEL%>:</td>
-            <td colspan="2">
-              <select name="<%=CDISC_REQUEST_TYPE%>" class="newConceptCB2<%=css%>">
-                <%
-                  selectedItem = cdisc_request_type;
-                  items = AppProperties.getInstance().getCDISCRequestTypeList();
-                  for (i=0; i<items.length; ++i) {
-                    String item = items[i];
-                    String args = "";
-                    if (item.equals(selectedItem))
-                      args += "selected=\"true\"";
-                %>
-                      <option value="<%=item%>" <%=args%>><%=item%></option>
-                <%
-                  }
-                %>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td <%=LABEL_ARGS%>><%=CDISC_CODES_LABEL%>:</td>
-            <td colspan="2">
-              <select name="<%=CDISC_CODES%>" class="newConceptCB2<%=css%>">
-                <%
-                  selectedItem = cdisc_codes;
-                  items = AppProperties.getInstance().getCDISCCodeList();
-                  for (i=0; i<items.length; ++i) {
-                    String item = items[i];
-                    String args = "";
-                    if (item.equals(selectedItem))
-                      args += "selected=\"true\"";
-                %>
-                      <option value="<%=item%>" <%=args%>><%=item%></option>
-                <%
-                  }
-                %>
-              </select>
-            </td>
-          </tr>
-      <%
-        }
-      %>
 
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
