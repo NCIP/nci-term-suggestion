@@ -18,8 +18,6 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String VOCABULARY = "vocabulary";
     public static final String TERM = "term";
     public static final String REASON = "reason";
-    public static final String CADSR_SOURCE = "cadsrSource";
-    public static final String CADSR_TYPE = "cadsrType";
     public static final String CDISC_REQUEST_TYPE = "cdiscRequestType";
     public static final String CDISC_CODES = "cdiscCodeList";
     
@@ -32,18 +30,16 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String TERM_LABEL = "New Term/Existing Term or Codelist";
     public static final String REASON_LABEL = "Reason for suggestion plus any" + 
         " other additional information";
-    public static final String CADSR_SOURCE_LABEL = "Source";
-    public static final String CADSR_TYPE_LABEL = "caDSR Type";
     public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
     public static final String CDISC_CODES_LABEL = "CDISC Code List";
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
         EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, VOCABULARY, TERM, 
-        REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
+        REASON, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] MOST_PARAMETERS = new String[] { 
         /* EMAIL, OTHER, VOCABULARY, */ TERM, 
-        REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
+        REASON, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, VOCABULARY };
     
@@ -61,8 +57,6 @@ public class SuggestionCDISCRequest extends FormRequest {
         hashMap.put(VOCABULARY, VOCABULARY_LABEL);
         hashMap.put(TERM, TERM_LABEL);
         hashMap.put(REASON, REASON_LABEL);
-        hashMap.put(CADSR_SOURCE, CADSR_SOURCE_LABEL);
-        hashMap.put(CADSR_TYPE, CADSR_TYPE_LABEL);
         hashMap.put(CDISC_REQUEST_TYPE, CDISC_REQUEST_TYPE_LABEL);
         hashMap.put(CDISC_CODES, CDISC_CODES_LABEL);
         return hashMap;
@@ -115,9 +109,6 @@ public class SuggestionCDISCRequest extends FormRequest {
         Prop.Version version = (Prop.Version)
             _request.getSession().getAttribute(VERSION);
         
-        if (version == Prop.Version.CADSR && 
-                appProperties.getCADSREmail().length > 0)
-            return appProperties.getCADSREmail();
         if (version == Prop.Version.CDISC && 
                 appProperties.getCDISCEmail().length > 0)
             return appProperties.getCDISCEmail();
@@ -163,10 +154,7 @@ public class SuggestionCDISCRequest extends FormRequest {
         buffer.append("Term Information:\n");
         buffer_append(buffer, VOCABULARY_LABEL, VOCABULARY);
         buffer_append(buffer, TERM_LABEL, TERM);
-        if (version == Prop.Version.CADSR) {
-            buffer_append(buffer, CADSR_SOURCE_LABEL, CADSR_SOURCE);
-            buffer_append(buffer, CADSR_TYPE_LABEL, CADSR_TYPE);
-        } else if (version == Prop.Version.CDISC) {
+        if (version == Prop.Version.CDISC) {
             buffer_append(buffer, CDISC_REQUEST_TYPE_LABEL, CDISC_REQUEST_TYPE);
             buffer_append(buffer, CDISC_CODES_LABEL, CDISC_CODES);
         }
@@ -204,10 +192,6 @@ public class SuggestionCDISCRequest extends FormRequest {
         HTTPUtils.setDefaulSessiontAttribute(request, ORGANIZATION, "Google");
         HTTPUtils.setDefaulSessiontAttribute(request, VOCABULARY, "NCI Thesaurus");
         HTTPUtils.setDefaultAttribute(request, TERM, "Ultra Murine Cell Types");
-        HTTPUtils.setDefaultAttribute(request, CADSR_SOURCE,
-            AppProperties.getInstance().getCADSRSourceList()[1]);
-        HTTPUtils.setDefaultAttribute(request, CADSR_TYPE, 
-            AppProperties.getInstance().getCADSRTypeList()[1]);
         HTTPUtils.setDefaultAttribute(request, CDISC_REQUEST_TYPE,
             AppProperties.getInstance().getCDISCRequestTypeList()[1]);
         HTTPUtils.setDefaultAttribute(request, CDISC_CODES, 
