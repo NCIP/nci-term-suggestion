@@ -19,8 +19,6 @@
   private static final String ORGANIZATION = SuggestionCDISCRequest.ORGANIZATION;
   private static final String VOCABULARY = SuggestionCDISCRequest.VOCABULARY;
   private static final String TERM = SuggestionCDISCRequest.TERM;
-  private static final String CADSR_SOURCE = SuggestionCDISCRequest.CADSR_SOURCE;
-  private static final String CADSR_TYPE = SuggestionCDISCRequest.CADSR_TYPE;
   private static final String CDISC_REQUEST_TYPE = SuggestionCDISCRequest.CDISC_REQUEST_TYPE;
   private static final String CDISC_CODES = SuggestionCDISCRequest.CDISC_CODES;
   private static final String REASON = SuggestionCDISCRequest.REASON;
@@ -33,8 +31,6 @@
   private static final String ORGANIZATION_LABEL = SuggestionCDISCRequest.ORGANIZATION_LABEL;
   private static final String VOCABULARY_LABEL = SuggestionCDISCRequest.VOCABULARY_LABEL;
   private static final String TERM_LABEL = SuggestionCDISCRequest.TERM_LABEL;
-  private static final String CADSR_SOURCE_LABEL = SuggestionCDISCRequest.CADSR_SOURCE_LABEL;
-  private static final String CADSR_TYPE_LABEL = SuggestionCDISCRequest.CADSR_TYPE_LABEL;
   private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionCDISCRequest.CDISC_REQUEST_TYPE_LABEL;
   private static final String CDISC_CODES_LABEL = SuggestionCDISCRequest.CDISC_CODES_LABEL;
   private static final String REASON_LABEL = SuggestionCDISCRequest.REASON_LABEL;
@@ -57,8 +53,6 @@
   String organization = HTTPUtils.getSessionAttributeString(request, ORGANIZATION);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
   String term = HTTPUtils.getAttributeString(request, TERM);
-  String cadsr_source = HTTPUtils.getAttributeString(request, CADSR_SOURCE);
-  String cadsr_type = HTTPUtils.getAttributeString(request, CADSR_TYPE);
   String cdisc_request_type = HTTPUtils.getAttributeString(request, CDISC_REQUEST_TYPE);
   String cdisc_codes = HTTPUtils.getAttributeString(request, CDISC_CODES);
   String reason = HTTPUtils.getAttributeString(request, REASON);
@@ -194,54 +188,6 @@
         <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
       </tr>
-
-      <!-- =================================================================== -->
-      <%
-          if (version == Prop.Version.CADSR) {
-      %>
-          <tr>
-            <td <%=LABEL_ARGS%>><%=CADSR_SOURCE_LABEL%>:</td>
-            <td colspan="2">
-              <select name="<%=CADSR_SOURCE%>" class="newConceptCB2<%=css%>">
-                <%
-                  selectedItem = cadsr_source;
-                  items = AppProperties.getInstance().getCADSRSourceList();
-                  for (i=0; i<items.length; ++i) {
-                    String item = items[i];
-                    String args = "";
-                    if (item.equals(selectedItem))
-                      args += "selected=\"true\"";
-                %>
-                      <option value="<%=item%>" <%=args%>><%=item%></option>
-                <%
-                  }
-                %>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td <%=LABEL_ARGS%>><%=CADSR_TYPE_LABEL%>:</td>
-            <td colspan="2">
-              <select name="<%=CADSR_TYPE%>" class="newConceptCB2<%=css%>">
-                <%
-                  selectedItem = cadsr_type;
-                  items = AppProperties.getInstance().getCADSRTypeList();
-                  for (i=0; i<items.length; ++i) {
-                    String item = items[i];
-                    String args = "";
-                    if (item.equals(selectedItem))
-                      args += "selected=\"true\"";
-                %>
-                      <option value="<%=item%>" <%=args%>><%=item%></option>
-                <%
-                  }
-                %>
-              </select>
-            </td>
-          </tr>
-      <%
-        }
-      %>
 
       <!-- =================================================================== -->
       <%
