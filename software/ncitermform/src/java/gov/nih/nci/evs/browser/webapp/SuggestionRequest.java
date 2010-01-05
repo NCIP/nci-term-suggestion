@@ -124,7 +124,7 @@ public class SuggestionRequest extends FormRequest {
         if (version == Prop.Version.CDISC && 
                 appProperties.getCDISCEmail().length > 0)
             return appProperties.getCDISCEmail();
-        return appProperties.getVocabularyEmails(vocabulary);
+        return appProperties.getVocabularyEmails(version, vocabulary);
     }
     
     private String validate() {

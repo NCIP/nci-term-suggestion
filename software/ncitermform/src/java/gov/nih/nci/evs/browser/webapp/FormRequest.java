@@ -2,6 +2,8 @@ package gov.nih.nci.evs.browser.webapp;
 
 import java.util.*;
 
+import javax.servlet.http.*;
+
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.browser.utils.*;
 
@@ -62,7 +64,12 @@ public class FormRequest extends BaseRequest implements IFormRequest {
         String url = _parametersHashMap.get(_vocabularyParameter);
         if (url == null)
             return;
-        String name = AppProperties.getInstance().getVocabularyName(url);
+        
+        HttpServletRequest request = HTTPUtils.getRequest();
+        Prop.Version version = (Prop.Version) 
+            request.getSession().getAttribute(FormRequest.VERSION);
+
+        String name = AppProperties.getInstance().getVocabularyName(version, url);
         _parametersHashMap.put(_vocabularyParameter, name);
     }
     

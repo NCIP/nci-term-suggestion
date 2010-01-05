@@ -116,7 +116,13 @@ public class AppProperties {
         return list;
     }
 
-    public ArrayList<VocabInfo> getVocabularies() {
+    public ArrayList<VocabInfo> getVocabularies(Prop.Version version) {
+        if (version == Prop.Version.CDISC)
+            return getVocabulariesCDISC();
+        return getVocabulariesDefault();
+    }
+
+    private ArrayList<VocabInfo> getVocabulariesDefault() {
         if (_vocabList == null) {
             _vocabList = parseVocabList();
             VocabInfo.debug(_vocabList);
@@ -124,17 +130,20 @@ public class AppProperties {
         return _vocabList;
     }
 
-    public ArrayList<VocabInfo> getVocabulariesCDISC() {
+    private ArrayList<VocabInfo> getVocabulariesCDISC() {
         if (_vocabListCDISC == null) {
             _vocabListCDISC = parseVocabList();
-            _vocabListCDISC.add(0, new VocabInfo("CDISC Terminology"));
+            VocabInfo vocabInfo = new VocabInfo("CDISC Terminology");
+            vocabInfo.setUrl("http://www.cancer.gov/cancertopics/terminologyresources/page6");
+            vocabInfo.addEmails(getProperty(CDISC_EMAIL));
+            _vocabListCDISC.add(0, vocabInfo);
             VocabInfo.debug(_vocabListCDISC);
         }
         return _vocabListCDISC;
     }
 
-    public String[] getVocabularyNames() {
-        ArrayList<VocabInfo> list = getVocabularies();
+    public String[] getVocabularyNames(Prop.Version version) {
+        ArrayList<VocabInfo> list = getVocabularies(version);
         Iterator<VocabInfo> iterator = list.iterator();
         ArrayList<String> names = new ArrayList<String>();
         while (iterator.hasNext()) {
@@ -144,8 +153,8 @@ public class AppProperties {
         return names.toArray(new String[names.size()]);
     }
 
-    public String getVocabularyName(String url) {
-        ArrayList<VocabInfo> list = getVocabularies();
+    public String getVocabularyName(Prop.Version version, String url) {
+        ArrayList<VocabInfo> list = getVocabularies(version);
         Iterator<VocabInfo> iterator = list.iterator();
         while (iterator.hasNext()) {
             VocabInfo info = iterator.next();
@@ -155,8 +164,9 @@ public class AppProperties {
         return null;
     }
 
-    public String[] getVocabularyEmails(String vocabularyName) {
-        ArrayList<VocabInfo> list = getVocabularies();
+    public String[] getVocabularyEmails(Prop.Version version, 
+        String vocabularyName) {
+        ArrayList<VocabInfo> list = getVocabularies(version);
         Iterator<VocabInfo> iterator = list.iterator();
         while (iterator.hasNext()) {
             VocabInfo info = iterator.next();
