@@ -17,9 +17,6 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String ORGANIZATION = "organization";
     public static final String VOCABULARY = "vocabulary";
     public static final String TERM = "term";
-    public static final String SYNONYMS = "synonyms";
-    public static final String NEAREST_CODE = "code";
-    public static final String DEFINITION = "definition";
     public static final String REASON = "reason";
     public static final String CADSR_SOURCE = "cadsrSource";
     public static final String CADSR_TYPE = "cadsrType";
@@ -32,10 +29,7 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String PHONE_NUMBER_LABEL = "Phone Number";
     public static final String ORGANIZATION_LABEL = "Organization";
     public static final String VOCABULARY_LABEL = "Vocabulary";
-    public static final String TERM_LABEL = "Term";
-    public static final String SYNONYMS_LABEL = "Synonym(s)";
-    public static final String NEAREST_CODE_LABEL = "Nearest Code/CUI";
-    public static final String DEFINITION_LABEL = "Definition/Other";
+    public static final String TERM_LABEL = "New Term/Existing Term or Codelist";
     public static final String REASON_LABEL = "Reason for suggestion plus any" + 
         " other additional information";
     public static final String CADSR_SOURCE_LABEL = "Source";
@@ -45,11 +39,11 @@ public class SuggestionCDISCRequest extends FormRequest {
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
-        EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
+        EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, VOCABULARY, TERM, 
+        REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] MOST_PARAMETERS = new String[] { 
-        /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
+        /* EMAIL, OTHER, VOCABULARY, */ TERM, 
+        REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, VOCABULARY };
     
@@ -66,9 +60,6 @@ public class SuggestionCDISCRequest extends FormRequest {
         hashMap.put(ORGANIZATION, ORGANIZATION_LABEL);
         hashMap.put(VOCABULARY, VOCABULARY_LABEL);
         hashMap.put(TERM, TERM_LABEL);
-        hashMap.put(SYNONYMS, SYNONYMS_LABEL);
-        hashMap.put(NEAREST_CODE, NEAREST_CODE_LABEL);
-        hashMap.put(DEFINITION, DEFINITION_LABEL);
         hashMap.put(REASON, REASON_LABEL);
         hashMap.put(CADSR_SOURCE, CADSR_SOURCE_LABEL);
         hashMap.put(CADSR_TYPE, CADSR_TYPE_LABEL);
@@ -172,9 +163,6 @@ public class SuggestionCDISCRequest extends FormRequest {
         buffer.append("Term Information:\n");
         buffer_append(buffer, VOCABULARY_LABEL, VOCABULARY);
         buffer_append(buffer, TERM_LABEL, TERM);
-        buffer_append(buffer, SYNONYMS_LABEL, SYNONYMS);
-        buffer_append(buffer, NEAREST_CODE_LABEL, NEAREST_CODE);
-        buffer_append(buffer, DEFINITION_LABEL, DEFINITION);
         if (version == Prop.Version.CADSR) {
             buffer_append(buffer, CADSR_SOURCE_LABEL, CADSR_SOURCE);
             buffer_append(buffer, CADSR_TYPE_LABEL, CADSR_TYPE);
@@ -216,16 +204,6 @@ public class SuggestionCDISCRequest extends FormRequest {
         HTTPUtils.setDefaulSessiontAttribute(request, ORGANIZATION, "Google");
         HTTPUtils.setDefaulSessiontAttribute(request, VOCABULARY, "NCI Thesaurus");
         HTTPUtils.setDefaultAttribute(request, TERM, "Ultra Murine Cell Types");
-        HTTPUtils.setDefaultAttribute(request, SYNONYMS, 
-            "Cell Types; Cell; Murine Cell Types");
-        HTTPUtils.setDefaultAttribute(request, NEAREST_CODE, "C23442");
-        HTTPUtils.setDefaultAttribute(request, DEFINITION, 
-            "The smallest units of living structure capable of independent" +
-            " existence, composed of a membrane-enclosed mass of protoplasm" +
-            " and containing a nucleus or nucleoid. Cells are highly variable" +
-            " and specialized in both structure and function, though all must" +
-            " at some stage replicate proteins and nucleic acids, utilize" +
-            " energy, and reproduce themselves.");
         HTTPUtils.setDefaultAttribute(request, CADSR_SOURCE,
             AppProperties.getInstance().getCADSRSourceList()[1]);
         HTTPUtils.setDefaultAttribute(request, CADSR_TYPE, 
