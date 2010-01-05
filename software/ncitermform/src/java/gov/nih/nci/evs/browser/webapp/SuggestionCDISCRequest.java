@@ -16,10 +16,10 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String PHONE_NUMBER = "phone";
     public static final String ORGANIZATION = "organization";
     public static final String VOCABULARY = "vocabulary";
-    public static final String TERM = "term";
-    public static final String REASON = "reason";
     public static final String CDISC_REQUEST_TYPE = "cdiscRequestType";
     public static final String CDISC_CODES = "cdiscCodeList";
+    public static final String TERM = "term";
+    public static final String REASON = "reason";
     
     // List of field label(s):
     public static final String EMAIL_LABEL = "Email";
@@ -27,19 +27,19 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String PHONE_NUMBER_LABEL = "Phone Number";
     public static final String ORGANIZATION_LABEL = "Organization";
     public static final String VOCABULARY_LABEL = "Vocabulary";
+    public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
+    public static final String CDISC_CODES_LABEL = "CDISC Code List";
     public static final String TERM_LABEL = "New Term/Existing Term or Codelist";
     public static final String REASON_LABEL = "Reason for suggestion plus any" + 
         " other additional information";
-    public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
-    public static final String CDISC_CODES_LABEL = "CDISC Code List";
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
-        EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, VOCABULARY, TERM, 
-        REASON, CDISC_REQUEST_TYPE, CDISC_CODES };
+        EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, VOCABULARY, 
+        CDISC_REQUEST_TYPE, CDISC_CODES, TERM, REASON };
     public static final String[] MOST_PARAMETERS = new String[] { 
-        /* EMAIL, OTHER, VOCABULARY, */ TERM, 
-        REASON, CDISC_REQUEST_TYPE, CDISC_CODES };
+        /* EMAIL, OTHER, VOCABULARY, */ 
+        CDISC_REQUEST_TYPE, CDISC_CODES, TERM, REASON, };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, VOCABULARY };
     
@@ -55,10 +55,10 @@ public class SuggestionCDISCRequest extends FormRequest {
         hashMap.put(PHONE_NUMBER, PHONE_NUMBER_LABEL);
         hashMap.put(ORGANIZATION, ORGANIZATION_LABEL);
         hashMap.put(VOCABULARY, VOCABULARY_LABEL);
-        hashMap.put(TERM, TERM_LABEL);
-        hashMap.put(REASON, REASON_LABEL);
         hashMap.put(CDISC_REQUEST_TYPE, CDISC_REQUEST_TYPE_LABEL);
         hashMap.put(CDISC_CODES, CDISC_CODES_LABEL);
+        hashMap.put(TERM, TERM_LABEL);
+        hashMap.put(REASON, REASON_LABEL);
         return hashMap;
     }
     
@@ -105,14 +105,7 @@ public class SuggestionCDISCRequest extends FormRequest {
     
     protected String[] getRecipients() {
         AppProperties appProperties = AppProperties.getInstance();
-        String vocabulary = _parametersHashMap.get(VOCABULARY);
-        Prop.Version version = (Prop.Version)
-            _request.getSession().getAttribute(VERSION);
-        
-        if (version == Prop.Version.CDISC && 
-                appProperties.getCDISCEmail().length > 0)
-            return appProperties.getCDISCEmail();
-        return appProperties.getVocabularyEmails(version, vocabulary);
+        return appProperties.getCDISCEmail();
     }
     
     private String validate() {
@@ -140,9 +133,6 @@ public class SuggestionCDISCRequest extends FormRequest {
     }
     
     private String getEmailMessage() {
-        Prop.Version version = (Prop.Version)
-            _request.getSession().getAttribute(VERSION);
-
         StringBuffer buffer = new StringBuffer();
         buffer.append(getSubject() + "\n\n");
         buffer.append("Contact information:\n");
@@ -153,11 +143,9 @@ public class SuggestionCDISCRequest extends FormRequest {
         buffer.append("\n");
         buffer.append("Term Information:\n");
         buffer_append(buffer, VOCABULARY_LABEL, VOCABULARY);
+        buffer_append(buffer, CDISC_REQUEST_TYPE_LABEL, CDISC_REQUEST_TYPE);
+        buffer_append(buffer, CDISC_CODES_LABEL, CDISC_CODES);
         buffer_append(buffer, TERM_LABEL, TERM);
-        if (version == Prop.Version.CDISC) {
-            buffer_append(buffer, CDISC_REQUEST_TYPE_LABEL, CDISC_REQUEST_TYPE);
-            buffer_append(buffer, CDISC_CODES_LABEL, CDISC_CODES);
-        }
         buffer.append("\n");
         buffer.append("Additional Information:\n");
         buffer_append(buffer, REASON_LABEL, REASON);
@@ -192,11 +180,11 @@ public class SuggestionCDISCRequest extends FormRequest {
         HTTPUtils.setDefaulSessiontAttribute(request, PHONE_NUMBER, "987-654-3210\n987-654-3211");
         HTTPUtils.setDefaulSessiontAttribute(request, ORGANIZATION, "Google");
         //HTTPUtils.setDefaulSessiontAttribute(request, VOCABULARY, "NCI Thesaurus");
-        HTTPUtils.setDefaultAttribute(request, TERM, "Ultra Murine Cell Types");
         HTTPUtils.setDefaultAttribute(request, CDISC_REQUEST_TYPE,
             AppProperties.getInstance().getCDISCRequestTypeList()[1]);
         HTTPUtils.setDefaultAttribute(request, CDISC_CODES, 
             AppProperties.getInstance().getCDISCCodeList()[1]);
+        HTTPUtils.setDefaultAttribute(request, TERM, "Ultra Murine Cell Types");
         HTTPUtils.setDefaultAttribute(request, REASON, 
             "New improved version of the previous type.");
     }
