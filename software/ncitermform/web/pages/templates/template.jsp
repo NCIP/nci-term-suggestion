@@ -7,6 +7,7 @@
   String content_title = request.getParameter("content_title");
   if (content_title == null || content_title.trim().length() <= 0)
       content_title = "Suggest New Term";
+  String content_quickLink = request.getParameter("content_quickLink");
   String content_page = request.getParameter("content_page");
   String buildInfo = AppProperties.getInstance().getBuildInfo();
 %>
@@ -28,7 +29,11 @@
         <div class="bannerarea">
           <a href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/images/banner.gif" alt="Suggest Term Logo" border="0"/></a>
         </div>
-        <div class="bluebar"></div>
+        <div class="bluebar">
+          <% if (content_quickLink.length() > 0) { %>
+            <jsp:include page="<%=content_quickLink%>" />
+          <% } %>
+        </div>
         <div class="pagecontent">
           <jsp:include page="<%=content_page%>" />
           <jsp:include page="/pages/templates/footer.jsp" />
