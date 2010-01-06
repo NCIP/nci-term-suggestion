@@ -581,7 +581,8 @@ h3
 }
 .newConceptTA2 {
   width: 575px;
-  height: 32px;  /* Must be at least 32 pixels for scroll bar to show up in Firefox */
+  height: 34px;  /* Must be at least 32 pixels for scroll bar to show up in Firefox */
+                 /* Must be at least 34 on Will's machine; However, 32 on Kim's */
   font-family: arial, verdana, trebuchet ms, tahoma, sans-serif;
   font-size: 10px;
 }
