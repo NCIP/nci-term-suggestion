@@ -31,7 +31,7 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String VOCABULARY_LABEL = "Vocabulary";
     public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
     public static final String CDISC_CODES_LABEL = "CDISC Code List";
-    public static final String TERM_LABEL = "New Term/Existing Term or Codelist";
+    public static final String TERM_LABEL = "Enter Term or Codelist Request Information";
     public static final String REASON_LABEL = "Reason for suggestion plus any" + 
         " other additional information";
 

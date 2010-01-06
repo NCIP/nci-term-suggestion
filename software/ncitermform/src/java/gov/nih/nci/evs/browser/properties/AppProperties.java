@@ -132,7 +132,7 @@ public class AppProperties {
 
     private ArrayList<VocabInfo> getVocabulariesCDISC() {
         if (_vocabListCDISC == null) {
-            _vocabListCDISC = parseVocabList();
+            _vocabListCDISC = new ArrayList<VocabInfo>();
             VocabInfo vocabInfo = new VocabInfo("CDISC Terminology");
             vocabInfo.setUrl("http://www.cancer.gov/cancertopics/terminologyresources/page6");
             vocabInfo.addEmails(getProperty(CDISC_EMAIL));

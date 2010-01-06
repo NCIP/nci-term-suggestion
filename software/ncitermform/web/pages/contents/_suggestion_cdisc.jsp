@@ -160,7 +160,7 @@
       <tr>
         <td <%=LABEL_ARGS%>><%=VOCABULARY_LABEL%>:</td>
         <td>
-          <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
+          <select name="<%=VOCABULARY%>" id="url" class="newConceptCB2<%=css%>">
             <%
                 selectedItem = vocabulary;
                 ArrayList list = AppProperties.getInstance().getVocabularies(version);
@@ -188,9 +188,6 @@
                 }
             %>
           </select>
-        </td>
-        <td align="right">
-          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayVocabLinkInNewWindow('url')" />
         </td>
       </tr>
       <tr>
