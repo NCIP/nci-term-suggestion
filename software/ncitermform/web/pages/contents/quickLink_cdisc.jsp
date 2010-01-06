@@ -2,6 +2,7 @@
 <%
   String imagesPath = FormUtils.getImagesPath(request);
 %>
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/dropdown.js"></script>
 <div id="quicklinksholder">
   <ul id="quicklinks"
     onmouseover="document.quicklinksimg.src='<%=imagesPath%>/quicklinks-active.gif';"
