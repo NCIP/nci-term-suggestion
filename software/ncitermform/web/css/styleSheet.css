@@ -581,7 +581,7 @@ h3
 }
 .newConceptTA2 {
   width: 575px;
-  height: 26px;
+  height: 32px;  /* Must be at least 32 pixels for scroll bar to show up in Firefox */
   font-family: arial, verdana, trebuchet ms, tahoma, sans-serif;
   font-size: 10px;
 }
@@ -593,6 +593,7 @@ h3
 .newConceptTA3 {
   width: 575px;
   height: 40px;
+  font-family: arial, verdana, trebuchet ms, tahoma, sans-serif;
   font-size: 10px;
 }
 .newConceptTA3_IE {
@@ -625,6 +626,7 @@ h3
 .newConceptTA12 {
   width: 575px;
   height: 160px;
+  font-family: arial, verdana, trebuchet ms, tahoma, sans-serif;
   font-size: 10px;
 }
 .newConceptTA12_IE {
