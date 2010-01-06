@@ -14,10 +14,10 @@
 
   // List of attribute name(s):
   private static final String EMAIL = SuggestionCDISCRequest.EMAIL;
-  private static final String OTHER = SuggestionCDISCRequest.OTHER;
   //private static final String NAME = SuggestionCDISCRequest.NAME;
   //private static final String PHONE_NUMBER = SuggestionCDISCRequest.PHONE_NUMBER;
   //private static final String ORGANIZATION = SuggestionCDISCRequest.ORGANIZATION;
+  private static final String OTHER = SuggestionCDISCRequest.OTHER;
   private static final String VOCABULARY = SuggestionCDISCRequest.VOCABULARY;
   private static final String CDISC_REQUEST_TYPE = SuggestionCDISCRequest.CDISC_REQUEST_TYPE;
   private static final String CDISC_CODES = SuggestionCDISCRequest.CDISC_CODES;
@@ -27,10 +27,10 @@
 
   // List of label(s):
   private static final String EMAIL_LABEL = SuggestionCDISCRequest.EMAIL_LABEL;
-  private static final String OTHER_LABEL = SuggestionCDISCRequest.OTHER_LABEL;
   //private static final String NAME_LABEL = SuggestionCDISCRequest.NAME_LABEL;
   //private static final String PHONE_NUMBER_LABEL = SuggestionCDISCRequest.PHONE_NUMBER_LABEL;
   //private static final String ORGANIZATION_LABEL = SuggestionCDISCRequest.ORGANIZATION_LABEL;
+  private static final String OTHER_LABEL = SuggestionCDISCRequest.OTHER_LABEL;
   private static final String VOCABULARY_LABEL = SuggestionCDISCRequest.VOCABULARY_LABEL;
   private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionCDISCRequest.CDISC_REQUEST_TYPE_LABEL;
   private static final String CDISC_CODES_LABEL = SuggestionCDISCRequest.CDISC_CODES_LABEL;
@@ -50,10 +50,10 @@
 
   // Attribute(s):
   String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
-  String other = HTTPUtils.getSessionAttributeString(request, OTHER);
   //String name = HTTPUtils.getSessionAttributeString(request, NAME);
   //String phone_number = HTTPUtils.getSessionAttributeString(request, PHONE_NUMBER);
   //String organization = HTTPUtils.getSessionAttributeString(request, ORGANIZATION);
+  String other = HTTPUtils.getSessionAttributeString(request, OTHER);
   String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
   String cdisc_request_type = HTTPUtils.getAttributeString(request, CDISC_REQUEST_TYPE);
   String cdisc_codes = HTTPUtils.getAttributeString(request, CDISC_CODES);
@@ -115,10 +115,6 @@
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
-      <tr>
-        <td <%=LABEL_ARGS%>><%=OTHER_LABEL%>:</td>
-        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA4<%=css%>"><%=other%></textarea></td>
-      </tr>
 <%--      
       <tr>
         <td <%=LABEL_ARGS%>><%=NAME_LABEL%>:</td>
@@ -142,6 +138,10 @@
         </td>
       </tr>
 --%>
+      <tr>
+        <td <%=LABEL_ARGS%>><%=OTHER_LABEL%>:</td>
+        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA4<%=css%>"><%=other%></textarea></td>
+      </tr>
       <tr>
         <td></td>
         <td colspan="2" class="newConceptNotes"><b class="warningMsgColor">Privacy Notice: </b>
