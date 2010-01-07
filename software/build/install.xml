@@ -304,6 +304,27 @@
             <filter token="cadsr.sources" value="${cadsr.sources}"/>
             <filter token="cadsr.types" value="${cadsr.types}"/>
             <filter token="cdisc.email" value="${cdisc.email}"/>
+            <filter token="cdisc.vocabulary.0" value="${cdisc.vocabulary.0}"/>
+            <filter token="cdisc.vocabulary.1" value="${cdisc.vocabulary.1}"/>
+            <filter token="cdisc.vocabulary.2" value="${cdisc.vocabulary.2}"/>
+            <filter token="cdisc.vocabulary.3" value="${cdisc.vocabulary.3}"/>
+            <filter token="cdisc.vocabulary.4" value="${cdisc.vocabulary.4}"/>
+            <filter token="cdisc.vocabulary.5" value="${cdisc.vocabulary.5}"/>
+            <filter token="cdisc.vocabulary.6" value="${cdisc.vocabulary.6}"/>
+            <filter token="cdisc.vocabulary.7" value="${cdisc.vocabulary.7}"/>
+            <filter token="cdisc.vocabulary.8" value="${cdisc.vocabulary.8}"/>
+            <filter token="cdisc.vocabulary.9" value="${cdisc.vocabulary.9}"/>
+            <filter token="cdisc.vocabulary.10" value="${cdisc.vocabulary.10}"/>
+            <filter token="cdisc.vocabulary.11" value="${cdisc.vocabulary.11}"/>
+            <filter token="cdisc.vocabulary.12" value="${cdisc.vocabulary.12}"/>
+            <filter token="cdisc.vocabulary.13" value="${cdisc.vocabulary.13}"/>
+            <filter token="cdisc.vocabulary.14" value="${cdisc.vocabulary.14}"/>
+            <filter token="cdisc.vocabulary.15" value="${cdisc.vocabulary.15}"/>
+            <filter token="cdisc.vocabulary.16" value="${cdisc.vocabulary.16}"/>
+            <filter token="cdisc.vocabulary.17" value="${cdisc.vocabulary.17}"/>
+            <filter token="cdisc.vocabulary.18" value="${cdisc.vocabulary.18}"/>
+            <filter token="cdisc.vocabulary.19" value="${cdisc.vocabulary.19}"/>
+            <filter token="cdisc.vocabulary.20" value="${cdisc.vocabulary.20}"/>
             <filter token="cdisc.request.types" value="${cdisc.request.types}"/>
             <filter token="cdisc.codes" value="${cdisc.codes}"/>
             <filter token="application.base.path" value="${application.base.path}"/>
