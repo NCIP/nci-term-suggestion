@@ -49,7 +49,7 @@
     <tr>
       <td/>
       <td>Web Page:</td>
-      <td><a href="<%=NCICB_URL%>" target="_blank" alt="NCICB Support"><%=NCICB_URL%></a></td>
+      <td><a href="<%=NCICB_URL%>" target="_blank"><%=NCICB_URL%></a></td>
     </tr>
   </table>
   <br/>
@@ -67,11 +67,11 @@
 
     For questions related to NCI's Cancer.gov Web site,
     see the
-    <a href="http://www.cancer.gov/help" target="_blank" alt="Cancer.gov help">
+    <a href="http://www.cancer.gov/help" target="_blank">
       Cancer.gov help page</a>. &nbsp;
     For help and other questions concerning NCI Enterprise Vocabulary
     Services (EVS),
-    see the <a href="http://evs.nci.nih.gov/" target="_blank" alt="EVS">
+    see the <a href="http://evs.nci.nih.gov/" target="_blank">
       EVS Web site</a>.
   </div>
 
@@ -108,7 +108,7 @@
       <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Detailed description of your problem or suggestion (no attachments):</i>
     </p>
-    <TEXTAREA class="textbody" Name="<%= EMAIL_MSG %>" alt="<%= EMAIL_MSG %>" rows="4" cols="98"><%= email_msg %></TEXTAREA>
+    <TEXTAREA class="textbody" Name="<%= EMAIL_MSG %>" rows="4" cols="98"><%= email_msg %></TEXTAREA>
     <p>
       <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Your e-mail address:</i>
@@ -133,8 +133,7 @@
   </form>
   <br/>
   
-  <a href="http://www.cancer.gov/policies/page3" target="_blank"
-      alt="National Cancer Institute Policies">
+  <a href="http://www.cancer.gov/policies/page3" target="_blank">
     <i>Privacy Policy on E-mail Messages Sent to the NCI Web Site</i>
   </a>
   
