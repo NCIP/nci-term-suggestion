@@ -22,8 +22,6 @@
   private static final String DEFINITION = SuggestionRequest.DEFINITION;
   private static final String CADSR_SOURCE = SuggestionRequest.CADSR_SOURCE;
   private static final String CADSR_TYPE = SuggestionRequest.CADSR_TYPE;
-  private static final String CDISC_REQUEST_TYPE = SuggestionRequest.CDISC_REQUEST_TYPE;
-  private static final String CDISC_CODES = SuggestionRequest.CDISC_CODES;
   private static final String REASON = SuggestionRequest.REASON;
   private static final String WARNINGS = SuggestionRequest.WARNINGS;
 
@@ -37,8 +35,6 @@
   private static final String DEFINITION_LABEL = SuggestionRequest.DEFINITION_LABEL;
   private static final String CADSR_SOURCE_LABEL = SuggestionRequest.CADSR_SOURCE_LABEL;
   private static final String CADSR_TYPE_LABEL = SuggestionRequest.CADSR_TYPE_LABEL;
-  private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionRequest.CDISC_REQUEST_TYPE_LABEL;
-  private static final String CDISC_CODES_LABEL = SuggestionRequest.CDISC_CODES_LABEL;
   private static final String REASON_LABEL = SuggestionRequest.REASON_LABEL;
 
   private static final String INPUT_ARGS =
@@ -62,8 +58,6 @@
   String definition = HTTPUtils.getAttributeString(request, DEFINITION);
   String cadsr_source = HTTPUtils.getAttributeString(request, CADSR_SOURCE);
   String cadsr_type = HTTPUtils.getAttributeString(request, CADSR_TYPE);
-  String cdisc_request_type = HTTPUtils.getAttributeString(request, CDISC_REQUEST_TYPE);
-  String cdisc_codes = HTTPUtils.getAttributeString(request, CDISC_CODES);
   String reason = HTTPUtils.getAttributeString(request, REASON);
   String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
   boolean isWarnings = warnings.length() > 0;
@@ -227,54 +221,6 @@
                 <%
                   selectedItem = cadsr_type;
                   items = AppProperties.getInstance().getCADSRTypeList();
-                  for (i=0; i<items.length; ++i) {
-                    String item = items[i];
-                    String args = "";
-                    if (item.equals(selectedItem))
-                      args += "selected=\"true\"";
-                %>
-                      <option value="<%=item%>" <%=args%>><%=item%></option>
-                <%
-                  }
-                %>
-              </select>
-            </td>
-          </tr>
-      <%
-        }
-      %>
-
-      <!-- =================================================================== -->
-      <%
-         if (version == Prop.Version.CDISC) {
-      %>
-          <tr>
-            <td <%=LABEL_ARGS%>><%=CDISC_REQUEST_TYPE_LABEL%>:</td>
-            <td colspan="2">
-              <select name="<%=CDISC_REQUEST_TYPE%>" class="newConceptCB2<%=css%>">
-                <%
-                  selectedItem = cdisc_request_type;
-                  items = AppProperties.getInstance().getCDISCRequestTypeList();
-                  for (i=0; i<items.length; ++i) {
-                    String item = items[i];
-                    String args = "";
-                    if (item.equals(selectedItem))
-                      args += "selected=\"true\"";
-                %>
-                      <option value="<%=item%>" <%=args%>><%=item%></option>
-                <%
-                  }
-                %>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td <%=LABEL_ARGS%>><%=CDISC_CODES_LABEL%>:</td>
-            <td colspan="2">
-              <select name="<%=CDISC_CODES%>" class="newConceptCB2<%=css%>">
-                <%
-                  selectedItem = cdisc_codes;
-                  items = AppProperties.getInstance().getCDISCCodeList();
                   for (i=0; i<items.length; ++i) {
                     String item = items[i];
                     String args = "";

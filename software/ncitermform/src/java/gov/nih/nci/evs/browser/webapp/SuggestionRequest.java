@@ -21,8 +21,6 @@ public class SuggestionRequest extends FormRequest {
     public static final String REASON = "reason";
     public static final String CADSR_SOURCE = "cadsrSource";
     public static final String CADSR_TYPE = "cadsrType";
-    public static final String CDISC_REQUEST_TYPE = "cdiscRequestType";
-    public static final String CDISC_CODES = "cdiscCodeList";
     
     // List of field label(s):
     public static final String EMAIL_LABEL = "Email";
@@ -36,16 +34,14 @@ public class SuggestionRequest extends FormRequest {
         " other additional information";
     public static final String CADSR_SOURCE_LABEL = "Source";
     public static final String CADSR_TYPE_LABEL = "caDSR Type";
-    public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
-    public static final String CDISC_CODES_LABEL = "CDISC Code List";
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
         EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
+        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE };
     public static final String[] MOST_PARAMETERS = new String[] { 
         /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE, CDISC_REQUEST_TYPE, CDISC_CODES };
+        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, OTHER, VOCABULARY };
     
@@ -66,8 +62,6 @@ public class SuggestionRequest extends FormRequest {
         hashMap.put(REASON, REASON_LABEL);
         hashMap.put(CADSR_SOURCE, CADSR_SOURCE_LABEL);
         hashMap.put(CADSR_TYPE, CADSR_TYPE_LABEL);
-        hashMap.put(CDISC_REQUEST_TYPE, CDISC_REQUEST_TYPE_LABEL);
-        hashMap.put(CDISC_CODES, CDISC_CODES_LABEL);
         return hashMap;
     }
     
@@ -121,9 +115,6 @@ public class SuggestionRequest extends FormRequest {
         if (version == Prop.Version.CADSR && 
                 appProperties.getCADSREmail().length > 0)
             return appProperties.getCADSREmail();
-        if (version == Prop.Version.CDISC && 
-                appProperties.getCDISCEmail().length > 0)
-            return appProperties.getCDISCEmail();
         return appProperties.getVocabularyEmails(version, vocabulary);
     }
     
@@ -170,9 +161,6 @@ public class SuggestionRequest extends FormRequest {
         if (version == Prop.Version.CADSR) {
             buffer_append(buffer, CADSR_SOURCE_LABEL, CADSR_SOURCE);
             buffer_append(buffer, CADSR_TYPE_LABEL, CADSR_TYPE);
-        } else if (version == Prop.Version.CDISC) {
-            buffer_append(buffer, CDISC_REQUEST_TYPE_LABEL, CDISC_REQUEST_TYPE);
-            buffer_append(buffer, CDISC_CODES_LABEL, CDISC_CODES);
         }
         buffer.append("\n");
         buffer.append("Additional Information:\n");
@@ -220,10 +208,6 @@ public class SuggestionRequest extends FormRequest {
             AppProperties.getInstance().getCADSRSourceList()[1]);
         HTTPUtils.setDefaultAttribute(request, CADSR_TYPE, 
             AppProperties.getInstance().getCADSRTypeList()[1]);
-        HTTPUtils.setDefaultAttribute(request, CDISC_REQUEST_TYPE,
-            AppProperties.getInstance().getCDISCRequestTypeList()[1]);
-        HTTPUtils.setDefaultAttribute(request, CDISC_CODES, 
-            AppProperties.getInstance().getCDISCCodeList()[1]);
         HTTPUtils.setDefaultAttribute(request, REASON, 
             "New improved version of the previous type.");
     }
