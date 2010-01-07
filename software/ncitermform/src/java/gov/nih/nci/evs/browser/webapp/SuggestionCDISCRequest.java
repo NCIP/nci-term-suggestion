@@ -108,7 +108,10 @@ public class SuggestionCDISCRequest extends FormRequest {
     
     protected String[] getRecipients() {
         AppProperties appProperties = AppProperties.getInstance();
-        return appProperties.getCDISCEmail();
+        String vocabulary = _parametersHashMap.get(VOCABULARY);
+        Prop.Version version = (Prop.Version) 
+            _request.getSession().getAttribute(VERSION);
+        return appProperties.getVocabularyEmails(version, vocabulary);
     }
     
     private String validate() {
