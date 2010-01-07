@@ -3,7 +3,9 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
+  String basePath = FormUtils.getBasePath(request);
   String imagesPath = FormUtils.getImagesPath(request);
+  String cssPath = FormUtils.getCSSPath(request);
   String content_title = request.getParameter("content_title");
   if (content_title == null || content_title.trim().length() <= 0)
       content_title = "Suggest New Term";
@@ -18,8 +20,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title><%=content_title%></title>
-    <link rel="stylesheet" type="text/css" href="<%= FormUtils.getCSSPath(request) %>/styleSheet.css" />
-    <link rel="shortcut icon" href="<%= request.getContextPath() %>/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="<%=cssPath%>/styleSheet.css" />
+    <link rel="shortcut icon" href="<%=basePath%>/favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <jsp:include page="/pages/templates/header.jsp" />
@@ -29,7 +31,8 @@
         width="745" height="5" alt="Mainbox Top" /></div>
       <div id="main-area">
         <div class="bannerarea">
-          <a href="<%=request.getContextPath()%>"><img src="<%=request.getContextPath()%>/images/banner.gif" alt="Suggest Term Logo" border="0"/></a>
+          <a href="<%=basePath%>"><img src="<%=imagesPath%>/banner.gif"
+            alt="Suggest Term Logo" border="0"/></a>
         </div>
         <div class="bluebar">
           <% if (content_quickLink.length() > 0) { %>
