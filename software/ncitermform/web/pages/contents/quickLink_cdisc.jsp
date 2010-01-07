@@ -1,6 +1,9 @@
+<%@ page import="java.util.*" %>
+<%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
   String imagesPath = FormUtils.getImagesPath(request);
+  ArrayList list = AppProperties.getInstance().getCDISCQuickLinks();
 %>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/dropdown.js"></script>
 <div id="quicklinksholder">
@@ -12,8 +15,17 @@
         height="18" border="0" name="quicklinksimg" alt="Quick Links" />
       </a>
       <ul>
-        <li><a href="http://gforge.nci.nih.gov/tracker/?func=browse&group_id=129&atid=2128" 
-          target="_blank">New Term Request: Browse</a></li>
+        <%
+          Iterator iterator = list.iterator();
+          while (iterator.hasNext()) {
+            QuickLinkInfo info = (QuickLinkInfo) iterator.next();
+            String display = info.getDisplay();
+            String url = info.getUrl();
+        %>
+            <li><a href="<%=url%>" target="_blank"><%=display%></a></li>
+        <%
+          }
+        %>
       </ul>
     </li>
   </ul>

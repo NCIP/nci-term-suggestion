@@ -327,6 +327,7 @@
             <filter token="cdisc.vocabulary.20" value="${cdisc.vocabulary.20}"/>
             <filter token="cdisc.request.types" value="${cdisc.request.types}"/>
             <filter token="cdisc.codes" value="${cdisc.codes}"/>
+            <filter token="cdisc.quicklinks" value="${cdisc.quicklinks}"/>
             <filter token="application.base.path" value="${application.base.path}"/>
             <filter token="application.url" value="${application.url}"/>
             <filter token="jboss.home" value="${jboss.home}"/>
