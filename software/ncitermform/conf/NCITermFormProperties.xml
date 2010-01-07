@@ -272,5 +272,9 @@
       <value>@cdisc.codes@</value>
     </ConfigurableItem>
     
+    <ConfigurableItem>
+      <key>CDISC_QUICKLINKS</key>
+      <value><![CDATA[@cdisc.quicklinks@]]></value>
+    </ConfigurableItem>
   </ConfigurableItems>
 </root>

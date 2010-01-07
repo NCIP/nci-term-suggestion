@@ -24,6 +24,7 @@ public class AppProperties {
     private static final int CDISC_VOCABULARY_MAX = 20;
     private static final String CDISC_REQUEST_TYPES = "CDISC_REQUEST_TYPES";
     private static final String CDISC_CODES = "CDISC_CODES";
+    private static final String CDISC_QUICKLINKS = "CDISC_QUICKLINKS";
 
     private static AppProperties _appProperties = null;
     private Logger _logger = Logger.getLogger(AppProperties.class);
@@ -37,6 +38,7 @@ public class AppProperties {
     private String[] _cdiscEmail = null;
     private String[] _cdiscRequestTypeList = null;
     private String[] _cdiscCodeList = null;
+    private ArrayList<QuickLinkInfo> _cdiscQuickLinkList = null;
 
     private AppProperties() { // Singleton Pattern
         loadProperties();
@@ -242,5 +244,13 @@ public class AppProperties {
     public String[] getCDISCCodeList() {
         return _cdiscCodeList = getList(
             CDISC_CODES, _cdiscCodeList, "_cdiscCodeList");
+    }
+    
+    public ArrayList<QuickLinkInfo> getCDISCQuickLinks() {
+        if (_cdiscQuickLinkList == null) {
+            String value = getProperty(CDISC_QUICKLINKS);
+            _cdiscQuickLinkList = QuickLinkInfo.parse(value);
+        }
+        return _cdiscQuickLinkList;
     }
 }
