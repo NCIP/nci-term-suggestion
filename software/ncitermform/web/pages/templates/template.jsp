@@ -18,7 +18,7 @@
     request.getSession().getAttribute(FormRequest.VERSION);
   if (version == null)
     version = Prop.Version.Default;
-  String logoUrl = basePath + version.getUrlParameter();
+  String logoUrl = basePath + "/" + version.getUrlParameter();
 %>
 <!-- Build info: <%=buildInfo%> -->
 <html>
