@@ -14,6 +14,11 @@
       content_quickLink = "";
   String content_page = request.getParameter("content_page");
   String buildInfo = AppProperties.getInstance().getBuildInfo();
+  Prop.Version version = (Prop.Version) 
+    request.getSession().getAttribute(FormRequest.VERSION);
+  if (version == null)
+    version = Prop.Version.Default;
+  String logoUrl = basePath + version.getUrlParameter();
 %>
 <!-- Build info: <%=buildInfo%> -->
 <html>
@@ -31,7 +36,7 @@
         width="745" height="5" alt="Mainbox Top" /></div>
       <div id="main-area">
         <div class="bannerarea">
-          <a href="<%=basePath%>"><img src="<%=imagesPath%>/banner.gif"
+          <a href="<%=logoUrl%>"><img src="<%=imagesPath%>/banner.gif"
             alt="Suggest Term Logo" border="0"/></a>
         </div>
         <div class="bluebar">
