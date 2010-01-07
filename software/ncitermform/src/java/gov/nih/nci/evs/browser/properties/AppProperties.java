@@ -30,12 +30,12 @@ public class AppProperties {
     private Logger _logger = Logger.getLogger(AppProperties.class);
     private HashMap<String, String> _configurableItemMap;
     private String _buildInfo = null;
-    private ArrayList<VocabInfo> _vocabList = null;
-    private ArrayList<VocabInfo> _vocabListCDISC = null;
+    private ArrayList<VocabInfo> _defaultVocabList = null;
     private String[] _cadsrEmail = null;
     private String[] _cadsrSourceList = null;
     private String[] _cadsrTypeList = null;
     private String[] _cdiscEmail = null;
+    private ArrayList<VocabInfo> _cdiscVocabList = null;
     private String[] _cdiscRequestTypeList = null;
     private String[] _cdiscCodeList = null;
     private ArrayList<QuickLinkInfo> _cdiscQuickLinkList = null;
@@ -129,21 +129,21 @@ public class AppProperties {
     }
 
     private ArrayList<VocabInfo> getVocabulariesDefault() {
-        if (_vocabList == null) {
-            _vocabList = parseVocabList(VOCABULARY_PREFIX, 
+        if (_defaultVocabList == null) {
+            _defaultVocabList = parseVocabList(VOCABULARY_PREFIX, 
                 VOCABULARY_MAX, true);
-            VocabInfo.debug(_vocabList);
+            VocabInfo.debug(_defaultVocabList);
         }
-        return _vocabList;
+        return _defaultVocabList;
     }
 
     private ArrayList<VocabInfo> getVocabulariesCDISC() {
-        if (_vocabListCDISC == null) {
-            _vocabListCDISC = parseVocabList(CDISC_VOCABULARY_PREFIX, 
+        if (_cdiscVocabList == null) {
+            _cdiscVocabList = parseVocabList(CDISC_VOCABULARY_PREFIX, 
                 CDISC_VOCABULARY_MAX, false);
-            VocabInfo.debug(_vocabListCDISC);
+            VocabInfo.debug(_cdiscVocabList);
         }
-        return _vocabListCDISC;
+        return _cdiscVocabList;
     }
 
     public String[] getVocabularyNames(Prop.Version version) {
