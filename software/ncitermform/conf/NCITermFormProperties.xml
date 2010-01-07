@@ -31,107 +31,107 @@
     <!-- Vocabulary List (Begin) =========================================== -->
     <ConfigurableItem>
       <key>VOCABULARY_0</key>
-      <value>@vocabulary.0@</value>
+      <value><![CDATA[@vocabulary.0@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_1</key>
-      <value>@vocabulary.1@</value>
+      <value><![CDATA[@vocabulary.1@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_2</key>
-      <value>@vocabulary.2@</value>
+      <value><![CDATA[@vocabulary.2@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_3</key>
-      <value>@vocabulary.3@</value>
+      <value><![CDATA[@vocabulary.3@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_4</key>
-      <value>@vocabulary.4@</value>
+      <value><![CDATA[@vocabulary.4@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_5</key>
-      <value>@vocabulary.5@</value>
+      <value><![CDATA[@vocabulary.5@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_6</key>
-      <value>@vocabulary.6@</value>
+      <value><![CDATA[@vocabulary.6@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_7</key>
-      <value>@vocabulary.7@</value>
+      <value><![CDATA[@vocabulary.7@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_8</key>
-      <value>@vocabulary.8@</value>
+      <value><![CDATA[@vocabulary.8@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_9</key>
-      <value>@vocabulary.9@</value>
+      <value><![CDATA[@vocabulary.9@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_10</key>
-      <value>@vocabulary.10@</value>
+      <value><![CDATA[@vocabulary.10@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_11</key>
-      <value>@vocabulary.11@</value>
+      <value><![CDATA[@vocabulary.11@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_12</key>
-      <value>@vocabulary.12@</value>
+      <value><![CDATA[@vocabulary.12@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_13</key>
-      <value>@vocabulary.13@</value>
+      <value><![CDATA[@vocabulary.13@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_14</key>
-      <value>@vocabulary.14@</value>
+      <value><![CDATA[@vocabulary.14@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_15</key>
-      <value>@vocabulary.15@</value>
+      <value><![CDATA[@vocabulary.15@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_16</key>
-      <value>@vocabulary.16@</value>
+      <value><![CDATA[@vocabulary.16@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_17</key>
-      <value>@vocabulary.17@</value>
+      <value><![CDATA[@vocabulary.17@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_18</key>
-      <value>@vocabulary.18@</value>
+      <value><![CDATA[@vocabulary.18@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_19</key>
-      <value>@vocabulary.19@</value>
+      <value><![CDATA[@vocabulary.19@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>VOCABULARY_20</key>
-      <value>@vocabulary.20@</value>
+      <value><![CDATA[@vocabulary.20@]]></value>
     </ConfigurableItem>
     <!-- Vocabulary List (End) ============================================= -->
 
@@ -142,12 +142,12 @@
     
     <ConfigurableItem>
       <key>CADSR_SOURCES</key>
-      <value>@cadsr.sources@</value>
+      <value><![CDATA[@cadsr.sources@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CADSR_TYPES</key>
-      <value>@cadsr.types@</value>
+      <value><![CDATA[@cadsr.types@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
@@ -158,118 +158,118 @@
     <!-- CDISC Vocabulary List (Begin) =========================================== -->
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_0</key>
-      <value>@cdisc.vocabulary.0@</value>
+      <value><![CDATA[@cdisc.vocabulary.0@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_1</key>
-      <value>@cdisc.vocabulary.1@</value>
+      <value><![CDATA[@cdisc.vocabulary.1@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_2</key>
-      <value>@cdisc.vocabulary.2@</value>
+      <value><![CDATA[@cdisc.vocabulary.2@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_3</key>
-      <value>@cdisc.vocabulary.3@</value>
+      <value><![CDATA[@cdisc.vocabulary.3@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_4</key>
-      <value>@cdisc.vocabulary.4@</value>
+      <value><![CDATA[@cdisc.vocabulary.4@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_5</key>
-      <value>@cdisc.vocabulary.5@</value>
+      <value><![CDATA[@cdisc.vocabulary.5@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_6</key>
-      <value>@cdisc.vocabulary.6@</value>
+      <value><![CDATA[@cdisc.vocabulary.6@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_7</key>
-      <value>@cdisc.vocabulary.7@</value>
+      <value><![CDATA[@cdisc.vocabulary.7@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_8</key>
-      <value>@cdisc.vocabulary.8@</value>
+      <value><![CDATA[@cdisc.vocabulary.8@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_9</key>
-      <value>@cdisc.vocabulary.9@</value>
+      <value><![CDATA[@cdisc.vocabulary.9@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_10</key>
-      <value>@cdisc.vocabulary.10@</value>
+      <value><![CDATA[@cdisc.vocabulary.10@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_11</key>
-      <value>@cdisc.vocabulary.11@</value>
+      <value><![CDATA[@cdisc.vocabulary.11@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_12</key>
-      <value>@cdisc.vocabulary.12@</value>
+      <value><![CDATA[@cdisc.vocabulary.12@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_13</key>
-      <value>@cdisc.vocabulary.13@</value>
+      <value><![CDATA[@cdisc.vocabulary.13@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_14</key>
-      <value>@cdisc.vocabulary.14@</value>
+      <value><![CDATA[@cdisc.vocabulary.14@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_15</key>
-      <value>@cdisc.vocabulary.15@</value>
+      <value><![CDATA[@cdisc.vocabulary.15@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_16</key>
-      <value>@cdisc.vocabulary.16@</value>
+      <value><![CDATA[@cdisc.vocabulary.16@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_17</key>
-      <value>@cdisc.vocabulary.17@</value>
+      <value><![CDATA[@cdisc.vocabulary.17@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_18</key>
-      <value>@cdisc.vocabulary.18@</value>
+      <value><![CDATA[@cdisc.vocabulary.18@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_19</key>
-      <value>@cdisc.vocabulary.19@</value>
+      <value><![CDATA[@cdisc.vocabulary.19@]]></value>
     </ConfigurableItem>
 
     <ConfigurableItem>
       <key>CDISC_VOCABULARY_20</key>
-      <value>@cdisc.vocabulary.20@</value>
+      <value><![CDATA[@cdisc.vocabulary.20@]]></value>
     </ConfigurableItem>
     <!-- CDISC Vocabulary List (End) ============================================= -->
 
     <ConfigurableItem>
       <key>CDISC_REQUEST_TYPES</key>
-      <value>@cdisc.request.types@</value>
+      <value><![CDATA[@cdisc.request.types@]]></value>
     </ConfigurableItem>
     
     <ConfigurableItem>
       <key>CDISC_CODES</key>
-      <value>@cdisc.codes@</value>
+      <value><![CDATA[@cdisc.codes@]]></value>
     </ConfigurableItem>
     
     <ConfigurableItem>
