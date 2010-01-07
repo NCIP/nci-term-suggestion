@@ -20,6 +20,8 @@ public class AppProperties {
     private static final String CADSR_SOURCES = "CADSR_SOURCES";
     private static final String CADSR_TYPES = "CADSR_TYPES";
     private static final String CDISC_EMAIL = "CDISC_EMAIL";
+    private static final String CDISC_VOCABULARY_PREFIX = "CDISC_VOCABULARY_";
+    private static final int CDISC_VOCABULARY_MAX = 20;
     private static final String CDISC_REQUEST_TYPES = "CDISC_REQUEST_TYPES";
     private static final String CDISC_CODES = "CDISC_CODES";
 
@@ -104,15 +106,17 @@ public class AppProperties {
         return getProperty(MAIL_SMTP_SERVER);
     }
     
-    private ArrayList<VocabInfo> parseVocabList() {
+    private ArrayList<VocabInfo> parseVocabList(String prefix, int max, 
+        boolean appendOthers) {
         ArrayList<VocabInfo> list = new ArrayList<VocabInfo>();
-        for (int i=0; i<VOCABULARY_MAX; ++i) {
-            String value = getProperty(VOCABULARY_PREFIX + i);
+        for (int i=0; i<max; ++i) {
+            String value = getProperty(prefix + i);
             VocabInfo vocab = VocabInfo.parse(value);
             if (vocab != null)
                 list.add(vocab);
         }
-        list.add(new VocabInfo("Other"));
+        if (appendOthers)
+            list.add(new VocabInfo("Other"));
         return list;
     }
 
@@ -124,7 +128,8 @@ public class AppProperties {
 
     private ArrayList<VocabInfo> getVocabulariesDefault() {
         if (_vocabList == null) {
-            _vocabList = parseVocabList();
+            _vocabList = parseVocabList(VOCABULARY_PREFIX, 
+                VOCABULARY_MAX, true);
             VocabInfo.debug(_vocabList);
         }
         return _vocabList;
@@ -132,11 +137,8 @@ public class AppProperties {
 
     private ArrayList<VocabInfo> getVocabulariesCDISC() {
         if (_vocabListCDISC == null) {
-            _vocabListCDISC = new ArrayList<VocabInfo>();
-            VocabInfo vocabInfo = new VocabInfo("CDISC Terminology");
-            vocabInfo.setUrl("http://www.cancer.gov/cancertopics/terminologyresources/page6");
-            vocabInfo.addEmails(getProperty(CDISC_EMAIL));
-            _vocabListCDISC.add(0, vocabInfo);
+            _vocabListCDISC = parseVocabList(CDISC_VOCABULARY_PREFIX, 
+                CDISC_VOCABULARY_MAX, false);
             VocabInfo.debug(_vocabListCDISC);
         }
         return _vocabListCDISC;

@@ -155,6 +155,113 @@
       <value>@cdisc.email@</value>
     </ConfigurableItem>
 
+    <!-- CDISC Vocabulary List (Begin) =========================================== -->
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_0</key>
+      <value>@cdisc.vocabulary.0@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_1</key>
+      <value>@cdisc.vocabulary.1@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_2</key>
+      <value>@cdisc.vocabulary.2@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_3</key>
+      <value>@cdisc.vocabulary.3@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_4</key>
+      <value>@cdisc.vocabulary.4@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_5</key>
+      <value>@cdisc.vocabulary.5@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_6</key>
+      <value>@cdisc.vocabulary.6@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_7</key>
+      <value>@cdisc.vocabulary.7@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_8</key>
+      <value>@cdisc.vocabulary.8@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_9</key>
+      <value>@cdisc.vocabulary.9@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_10</key>
+      <value>@cdisc.vocabulary.10@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_11</key>
+      <value>@cdisc.vocabulary.11@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_12</key>
+      <value>@cdisc.vocabulary.12@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_13</key>
+      <value>@cdisc.vocabulary.13@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_14</key>
+      <value>@cdisc.vocabulary.14@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_15</key>
+      <value>@cdisc.vocabulary.15@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_16</key>
+      <value>@cdisc.vocabulary.16@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_17</key>
+      <value>@cdisc.vocabulary.17@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_18</key>
+      <value>@cdisc.vocabulary.18@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_19</key>
+      <value>@cdisc.vocabulary.19@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_20</key>
+      <value>@cdisc.vocabulary.20@</value>
+    </ConfigurableItem>
+    <!-- CDISC Vocabulary List (End) ============================================= -->
+
     <ConfigurableItem>
       <key>CDISC_REQUEST_TYPES</key>
       <value>@cdisc.request.types@</value>

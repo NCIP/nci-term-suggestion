@@ -42,6 +42,19 @@ public class StringUtils {
         }
         return buffer.toString();
     }
+    
+    public static String toString(List<?> list, String delimiter) {
+        StringBuffer buffer = new StringBuffer();
+        Iterator<?> iterator = list.iterator();
+        int i = 0;
+        while (iterator.hasNext()) {
+            if (i > 0)
+                buffer.append(delimiter);
+            buffer.append(iterator.next().toString());
+            ++i;
+        }
+        return buffer.toString();
+    }
 
     public static String wrap(int maxCharInLine, String text) {
         StringTokenizer tokenizer = new StringTokenizer(text, "\n", true);

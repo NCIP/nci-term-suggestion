@@ -14,59 +14,88 @@ public class VocabInfo {
     private String _url = "";
     private ArrayList<String> _emails = new ArrayList<String>();
 
-    public void setDisplayName(String name) { _displayName = name; }
-    public String getDisplayName() { return _displayName; }
-    public void setName(String name) { _name = name; }
-    public String getName() { return _name; }
-    public void setUrl(String url) { _url = url; }
-    public String getUrl() { return _url; }
+    public String toString() {
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("displayName=" + _displayName);
+        buffer.append(", name=" + _name);
+        buffer.append(", url=" + _url);
+        buffer.append(", emails=" + StringUtils.toString(_emails, "; "));
+        return buffer.toString();
+    }
+
+    public void setDisplayName(String name) {
+        _displayName = name;
+    }
+
+    public String getDisplayName() {
+        return _displayName;
+    }
+
+    public void setName(String name) {
+        _name = name;
+    }
+
+    public String getName() {
+        return _name;
+    }
+
+    public void setUrl(String url) {
+        _url = url;
+    }
+
+    public String getUrl() {
+        return _url;
+    }
+
     public void addEmail(String email) {
-        if (! _emails.contains(email)) _emails.add(email); 
+        if (!_emails.contains(email))
+            _emails.add(email);
     }
-    public void addEmails(String emails) {
-        String[] list = StringUtils.toStrings(emails, ";", false);
-        for (int i=0; i<list.length; ++i)
-            addEmail(list[i]);
+
+    public ArrayList<String> getEmails() {
+        return _emails;
     }
-    public ArrayList<String> getEmails() { return _emails; }
+
     public boolean isEmpty() {
         return _name.length() <= 0 && _url.length() <= 0 && _emails.size() <= 0;
     }
-    
+
     public VocabInfo() {
     }
-    
+
     public VocabInfo(String name) {
         setDisplayName(name);
         setName(name);
     }
 
     public static VocabInfo parse(String text) {
-        if (text == null || text.trim().length() <= 0 || 
-            text.startsWith("@") || text.startsWith("${"))
+        if (text == null || text.trim().length() <= 0 || text.startsWith("@")
+            || text.startsWith("${"))
             return null;
-        
+
         StringTokenizer tokenizer = new StringTokenizer(text, DELIM, true);
         VocabInfo info = new VocabInfo();
-        int i=0;
+        int i = 0;
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken().trim();
-            if (token.equals(DELIM))
-                { ++i; continue; }
+            if (token.equals(DELIM)) {
+                ++i;
+                continue;
+            }
             if (i == 0)
                 info.setDisplayName(token);
-            if (i == 1)
+            else if (i == 1)
                 info.setName(token);
             else if (i == 2)
                 info.setUrl(token);
             else if (token.length() > 0)
                 info.addEmail(token);
         }
-        return ! info.isEmpty() ? info : null;
+        return !info.isEmpty() ? info : null;
     }
 
     public static void debug(VocabInfo list) {
-        if (! _logger.isInfoEnabled())
+        if (!_logger.isInfoEnabled())
             return;
         _logger.info("* Display Name: " + list.getDisplayName());
         _logger.info("  * Name: " + list.getName());
@@ -78,9 +107,9 @@ public class VocabInfo {
             _logger.info("  * Email: " + email);
         }
     }
-    
+
     public static void debug(List<VocabInfo> list) {
-        if (! _logger.isInfoEnabled())
+        if (!_logger.isInfoEnabled())
             return;
         Iterator<VocabInfo> iterator = list.iterator();
         _logger.info(StringUtils.SEPARATOR);
@@ -90,10 +119,9 @@ public class VocabInfo {
     }
 
     public static void main(String[] args) {
-        String[] values = new String[] {
-            "NCIt ; NCI Thesaurus ; http://ncit-qa.nci.nih.gov/; ncicb@pop.nci.nih.gov; NCIThesaurus@mail.nih.gov",
-        };
-        for (int i=0; i<values.length; ++i) {
+        String[] values =
+            new String[] { "NCIt ; NCI Thesaurus ; http://ncit-qa.nci.nih.gov/; ncicb@pop.nci.nih.gov; NCIThesaurus@mail.nih.gov", };
+        for (int i = 0; i < values.length; ++i) {
             _logger.info(StringUtils.SEPARATOR);
             String value = values[i];
             _logger.info("Value: \"" + value + "\"");
