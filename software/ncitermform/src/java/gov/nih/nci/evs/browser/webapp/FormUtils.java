@@ -34,6 +34,7 @@ public class FormUtils {
     public static void clearAllAttributes(HttpServletRequest request) {
         HTTPUtils.clearAttributes(request, FormRequest.ALL_PARAMETERS);
         HTTPUtils.clearAttributes(request, SuggestionRequest.MOST_PARAMETERS);
+        HTTPUtils.clearAttributes(request, SuggestionCDISCRequest.MOST_PARAMETERS);
     }
 
     public static String getIndexPage(HttpServletRequest request) {
