@@ -145,7 +145,7 @@
       <tr>
         <td></td>
         <td colspan="2" class="newConceptNotes"><b class="warningMsgColor">Privacy Notice: </b>
-          Your email, name, phone number, or other contact information will only be used
+          Your business email, name, business phone number, or other business contact information will only be used
           <br/>&nbsp;&nbsp;&nbsp;&nbsp;
           to contact you about this topic and not for any other purpose.
         </td>
