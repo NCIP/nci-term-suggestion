@@ -125,9 +125,10 @@
       <tr>
         <td></td>
         <td colspan="2" class="newConceptNotes"><b class="warningMsgColor">Privacy Notice: </b>
-          Your business email, name, business phone number, or other business contact information will only be used
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;
-          to contact you about this topic and not for any other purpose.
+          For term submission purposes we request business contact information only, not personal information.
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;Your business email, and any other business contact information that you enter, will only be used to contact you
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;about this topic if any clarifications are needed.  This information will not be disseminated to others outside the 
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;EVS group of the NCI, or stored except as part of the email communications on this topic.
         </td>
       </tr>
 
