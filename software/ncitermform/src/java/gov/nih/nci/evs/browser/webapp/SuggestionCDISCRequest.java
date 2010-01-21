@@ -12,10 +12,10 @@ public class SuggestionCDISCRequest extends FormRequest {
 
     // List of parameter/attribute name(s):
     public static final String EMAIL = "email";
-    // public static final String NAME = "name";
-    // public static final String PHONE_NUMBER = "phone";
-    // public static final String ORGANIZATION = "organization";
-    public static final String OTHER = "other";
+    public static final String NAME = "name";
+    public static final String PHONE_NUMBER = "phone";
+    public static final String ORGANIZATION = "organization";
+    //public static final String OTHER = "other";
     public static final String VOCABULARY = "vocabulary";
     public static final String CDISC_REQUEST_TYPE = "cdiscRequestType";
     public static final String CDISC_CODES = "cdiscCodeList";
@@ -24,10 +24,10 @@ public class SuggestionCDISCRequest extends FormRequest {
     
     // List of field label(s):
     public static final String EMAIL_LABEL = "Email";
-    // public static final String NAME_LABEL = "Name";
-    // public static final String PHONE_NUMBER_LABEL = "Phone Number";
-    // public static final String ORGANIZATION_LABEL = "Organization";
-    public static final String OTHER_LABEL = "Other";
+    public static final String NAME_LABEL = "Name";
+    public static final String PHONE_NUMBER_LABEL = "Phone Number";
+    public static final String ORGANIZATION_LABEL = "Organization";
+    // public static final String OTHER_LABEL = "Other";
     public static final String VOCABULARY_LABEL = "Vocabulary";
     public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
     public static final String CDISC_CODES_LABEL = "CDISC Code List";
@@ -37,13 +37,13 @@ public class SuggestionCDISCRequest extends FormRequest {
 
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
-        EMAIL, /* NAME, PHONE_NUMBER, ORGANIZATION,*/ OTHER, VOCABULARY, 
+        EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, /* OTHER, */ VOCABULARY, 
         CDISC_REQUEST_TYPE, CDISC_CODES, TERM, REASON };
     public static final String[] MOST_PARAMETERS = new String[] { 
         /* EMAIL, OTHER, VOCABULARY, */ 
         CDISC_REQUEST_TYPE, CDISC_CODES, TERM, REASON, };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
-        EMAIL, /* NAME, PHONE_NUMBER, ORGANIZATION, */ OTHER, VOCABULARY };
+        EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, /* OTHER, */ VOCABULARY };
     
     public SuggestionCDISCRequest() {
         super(VOCABULARY);
@@ -53,10 +53,10 @@ public class SuggestionCDISCRequest extends FormRequest {
     private static HashMap<String, String> getLabelsHashMap() {
         HashMap<String, String> hashMap = new HashMap<String, String>();
         hashMap.put(EMAIL, EMAIL_LABEL);
-        // hashMap.put(NAME, NAME_LABEL);
-        // hashMap.put(PHONE_NUMBER, PHONE_NUMBER_LABEL);
-        // hashMap.put(ORGANIZATION, ORGANIZATION_LABEL);
-        hashMap.put(OTHER, OTHER_LABEL);
+        hashMap.put(NAME, NAME_LABEL);
+        hashMap.put(PHONE_NUMBER, PHONE_NUMBER_LABEL);
+        hashMap.put(ORGANIZATION, ORGANIZATION_LABEL);
+        // hashMap.put(OTHER, OTHER_LABEL);
         hashMap.put(VOCABULARY, VOCABULARY_LABEL);
         hashMap.put(CDISC_REQUEST_TYPE, CDISC_REQUEST_TYPE_LABEL);
         hashMap.put(CDISC_CODES, CDISC_CODES_LABEL);
@@ -143,10 +143,10 @@ public class SuggestionCDISCRequest extends FormRequest {
         buffer.append(getSubject() + "\n\n");
         buffer.append("Contact information:\n");
         buffer_append(buffer, EMAIL_LABEL, EMAIL);
-        // buffer_append(buffer, NAME_LABEL, NAME);
-        // buffer_append(buffer, PHONE_NUMBER_LABEL, PHONE_NUMBER);
-        // buffer_append(buffer, ORGANIZATION_LABEL, ORGANIZATION);
-        buffer_append(buffer, OTHER_LABEL, OTHER);
+        buffer_append(buffer, NAME_LABEL, NAME);
+        buffer_append(buffer, PHONE_NUMBER_LABEL, PHONE_NUMBER);
+        buffer_append(buffer, ORGANIZATION_LABEL, ORGANIZATION);
+        // buffer_append(buffer, OTHER_LABEL, OTHER);
         buffer.append("\n");
         buffer.append("Term Information:\n");
         buffer_append(buffer, VOCABULARY_LABEL, VOCABULARY);
@@ -183,10 +183,10 @@ public class SuggestionCDISCRequest extends FormRequest {
         
         HttpServletRequest request = HTTPUtils.getRequest();
         HTTPUtils.setDefaulSessiontAttribute(request, EMAIL, "John.Doe@abc.com");
-        // HTTPUtils.setDefaulSessiontAttribute(request, NAME, "John Doe");
-        // HTTPUtils.setDefaulSessiontAttribute(request, PHONE_NUMBER, "987-654-3210\n987-654-3211");
-        // HTTPUtils.setDefaulSessiontAttribute(request, ORGANIZATION, "Google");
-        HTTPUtils.setDefaulSessiontAttribute(request, OTHER, "987-654-3210");
+        HTTPUtils.setDefaulSessiontAttribute(request, NAME, "John Doe");
+        HTTPUtils.setDefaulSessiontAttribute(request, PHONE_NUMBER, "987-654-3210\n987-654-3211");
+        HTTPUtils.setDefaulSessiontAttribute(request, ORGANIZATION, "Google");
+        // HTTPUtils.setDefaulSessiontAttribute(request, OTHER, "987-654-3210");
         // HTTPUtils.setDefaulSessiontAttribute(request, VOCABULARY, "NCI Thesaurus");
         HTTPUtils.setDefaultAttribute(request, CDISC_REQUEST_TYPE,
             AppProperties.getInstance().getCDISCRequestTypeList()[1]);
