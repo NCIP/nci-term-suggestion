@@ -234,6 +234,12 @@
         </td>
       </tr>
       <tr>
+        <td></td>
+        <td colspan="2" class="newConceptNotes"><b class="warningMsgColor">Note to user: </b>
+          CDASH and SDTM Terminology are the same and are contained within the SDTM codelists in the drop down list.
+        </td>        
+      </tr>
+      <tr>
         <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
       </tr>

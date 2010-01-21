@@ -23,9 +23,9 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String REASON = "reason";
     
     // List of field label(s):
-    public static final String EMAIL_LABEL = "Email";
+    public static final String EMAIL_LABEL = "Business Email";
     public static final String NAME_LABEL = "Name";
-    public static final String PHONE_NUMBER_LABEL = "Phone Number";
+    public static final String PHONE_NUMBER_LABEL = "Business Phone Number";
     public static final String ORGANIZATION_LABEL = "Organization";
     // public static final String OTHER_LABEL = "Other";
     public static final String VOCABULARY_LABEL = "Vocabulary";
