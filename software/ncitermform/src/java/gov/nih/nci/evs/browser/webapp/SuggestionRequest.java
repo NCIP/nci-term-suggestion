@@ -23,7 +23,7 @@ public class SuggestionRequest extends FormRequest {
     public static final String CADSR_TYPE = "cadsrType";
     
     // List of field label(s):
-    public static final String EMAIL_LABEL = "Email";
+    public static final String EMAIL_LABEL = "Business Email";
     public static final String OTHER_LABEL = "Other";
     public static final String VOCABULARY_LABEL = "Vocabulary";
     public static final String TERM_LABEL = "Term";
