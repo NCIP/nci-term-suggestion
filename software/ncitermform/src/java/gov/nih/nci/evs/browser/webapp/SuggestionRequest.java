@@ -18,6 +18,7 @@ public class SuggestionRequest extends FormRequest {
     public static final String SYNONYMS = "synonyms";
     public static final String NEAREST_CODE = "code";
     public static final String DEFINITION = "definition";
+    public static final String PROJECT = "project";
     public static final String REASON = "reason";
     public static final String CADSR_SOURCE = "cadsrSource";
     public static final String CADSR_TYPE = "cadsrType";
@@ -30,6 +31,7 @@ public class SuggestionRequest extends FormRequest {
     public static final String SYNONYMS_LABEL = "Synonym(s)";
     public static final String NEAREST_CODE_LABEL = "Nearest Code/CUI";
     public static final String DEFINITION_LABEL = "Definition/Other";
+    public static final String PROJECT_LABEL = "Project/Product term needed for";
     public static final String REASON_LABEL = "Reason for suggestion plus any" + 
         " other additional information";
     public static final String CADSR_SOURCE_LABEL = "Source";
@@ -38,10 +40,10 @@ public class SuggestionRequest extends FormRequest {
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] { 
         EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE };
+        DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE };
     public static final String[] MOST_PARAMETERS = new String[] { 
         /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
-        DEFINITION, REASON, CADSR_SOURCE, CADSR_TYPE };
+        DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, OTHER, VOCABULARY };
     
@@ -59,6 +61,7 @@ public class SuggestionRequest extends FormRequest {
         hashMap.put(SYNONYMS, SYNONYMS_LABEL);
         hashMap.put(NEAREST_CODE, NEAREST_CODE_LABEL);
         hashMap.put(DEFINITION, DEFINITION_LABEL);
+        hashMap.put(PROJECT, PROJECT_LABEL);
         hashMap.put(REASON, REASON_LABEL);
         hashMap.put(CADSR_SOURCE, CADSR_SOURCE_LABEL);
         hashMap.put(CADSR_TYPE, CADSR_TYPE_LABEL);
@@ -164,6 +167,7 @@ public class SuggestionRequest extends FormRequest {
         }
         buffer.append("\n");
         buffer.append("Additional Information:\n");
+        buffer_append(buffer, PROJECT_LABEL, PROJECT);
         buffer_append(buffer, REASON_LABEL, REASON);
         return buffer.toString();
     }
@@ -208,6 +212,8 @@ public class SuggestionRequest extends FormRequest {
             AppProperties.getInstance().getCADSRSourceList()[1]);
         HTTPUtils.setDefaultAttribute(request, CADSR_TYPE, 
             AppProperties.getInstance().getCADSRTypeList()[1]);
+        HTTPUtils.setDefaultAttribute(request, PROJECT, 
+            "NIH NCI CBIIT");
         HTTPUtils.setDefaultAttribute(request, REASON, 
             "New improved version of the previous type.");
     }

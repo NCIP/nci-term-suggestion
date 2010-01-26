@@ -22,6 +22,7 @@
   private static final String DEFINITION = SuggestionRequest.DEFINITION;
   private static final String CADSR_SOURCE = SuggestionRequest.CADSR_SOURCE;
   private static final String CADSR_TYPE = SuggestionRequest.CADSR_TYPE;
+  private static final String PROJECT = SuggestionRequest.PROJECT;
   private static final String REASON = SuggestionRequest.REASON;
   private static final String WARNINGS = SuggestionRequest.WARNINGS;
 
@@ -35,6 +36,7 @@
   private static final String DEFINITION_LABEL = SuggestionRequest.DEFINITION_LABEL;
   private static final String CADSR_SOURCE_LABEL = SuggestionRequest.CADSR_SOURCE_LABEL;
   private static final String CADSR_TYPE_LABEL = SuggestionRequest.CADSR_TYPE_LABEL;
+  private static final String PROJECT_LABEL = SuggestionRequest.PROJECT_LABEL;
   private static final String REASON_LABEL = SuggestionRequest.REASON_LABEL;
 
   private static final String INPUT_ARGS =
@@ -59,6 +61,7 @@
   String cadsr_source = HTTPUtils.getAttributeString(request, CADSR_SOURCE);
   String cadsr_type = HTTPUtils.getAttributeString(request, CADSR_TYPE);
   String reason = HTTPUtils.getAttributeString(request, REASON);
+  String project = HTTPUtils.getAttributeString(request, PROJECT);
   String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
   boolean isWarnings = warnings.length() > 0;
 
@@ -242,6 +245,10 @@
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
+      <tr>
+        <td <%=LABEL_ARGS%>><%=PROJECT_LABEL%>:</td>
+        <td colspan="2"><textarea name="<%=PROJECT%>" class="newConceptTA2<%=css%>"><%=project%></textarea></td>
+      </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=REASON_LABEL%>:</td>
         <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA6<%=css%>"><%=reason%></textarea></td>
