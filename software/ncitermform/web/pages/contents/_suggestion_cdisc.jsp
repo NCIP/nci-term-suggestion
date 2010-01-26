@@ -146,11 +146,8 @@
         <td></td>
         <td colspan="2" class="newConceptNotes"><b class="warningMsgColor">Privacy Notice: </b>
           For term submission purposes we request business contact information only, not personal information.
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;Your business email, and any other business contact information that you enter, will be shared with personnel of the
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;Clinical Data Interchange Standards Consortium (CDISC) who may contact you.  The EVS group of the NCI will not share
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;this information with others except CDISC, or store it except as part of the initial email communication on this topic.  
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;The NCI does not make any statements regarding the utilization, storage, or further dissemination of this information
-          <br/>&nbsp;&nbsp;&nbsp;&nbsp;by CDISC or its personnel.
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;Your business email, and any other business contact information that you enter, will be stored in a publicly-accessible
+          <br/>&nbsp;&nbsp;&nbsp;&nbsp;web site in support of CDISC term submission tracking.  CDISC personnel may contact you.
         </td>
       </tr>
 
