@@ -132,9 +132,10 @@ public class SuggestionCDISCRequest extends FormRequest {
 
     private String getSubject() {
         String term = _parametersHashMap.get(TERM);
+        String vocabulary = _parametersHashMap.get(VOCABULARY);
         String value = "Term Suggestion for";
         if (term.length() > 0)
-            value += ": " + term;
+            value += " " + vocabulary + ": " + term;
         return value;
     }
     
