@@ -300,6 +300,7 @@
             <filter token="vocabulary.18" value="${vocabulary.18}"/>
             <filter token="vocabulary.19" value="${vocabulary.19}"/>
             <filter token="vocabulary.20" value="${vocabulary.20}"/>
+            <filter token="vocabulary.other.email" value="${vocabulary.other.email}"/>
             <filter token="cadsr.email" value="${cadsr.email}"/>
             <filter token="cadsr.sources" value="${cadsr.sources}"/>
             <filter token="cadsr.types" value="${cadsr.types}"/>

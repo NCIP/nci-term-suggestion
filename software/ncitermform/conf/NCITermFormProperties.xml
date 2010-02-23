@@ -136,6 +136,11 @@
     <!-- Vocabulary List (End) ============================================= -->
 
     <ConfigurableItem>
+      <key>VOCABULARY_OTHER_EMAIL</key>
+      <value><![CDATA[@vocabulary.other.email@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
       <key>CADSR_EMAIL</key>
       <value>@cadsr.email@</value>
     </ConfigurableItem>
