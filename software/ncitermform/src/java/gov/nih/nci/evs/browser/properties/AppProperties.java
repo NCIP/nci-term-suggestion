@@ -178,7 +178,8 @@ public class AppProperties {
         Iterator<VocabInfo> iterator = list.iterator();
         while (iterator.hasNext()) {
             VocabInfo info = iterator.next();
-            if (info.getName().equals(vocabularyName)) {
+            if (info.getName().equals(vocabularyName) ||
+                info.getDisplayName().equals(vocabularyName)) {
                 ArrayList<String> emails = info.getEmails();
                 return emails.toArray(new String[emails.size()]);
             }
