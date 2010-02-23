@@ -16,6 +16,7 @@ public class AppProperties {
     private static final String NCICB_CONTACT_URL = "NCICB_CONTACT_URL";
     private static final String VOCABULARY_PREFIX = "VOCABULARY_";
     private static final int VOCABULARY_MAX = 20;
+    private static final String VOCABULARY_OTHER_EMAIL = "VOCABULARY_OTHER_EMAIL";
     private static final String CADSR_EMAIL = "CADSR_EMAIL";
     private static final String CADSR_SOURCES = "CADSR_SOURCES";
     private static final String CADSR_TYPES = "CADSR_TYPES";
@@ -117,8 +118,11 @@ public class AppProperties {
             if (vocab != null)
                 list.add(vocab);
         }
-        if (appendOthers)
-            list.add(new VocabInfo("Other"));
+        if (appendOthers) {
+            VocabInfo info = new VocabInfo("Other");
+            info.addEmail(getProperty(VOCABULARY_OTHER_EMAIL));
+            list.add(info);
+        }
         return list;
     }
 
