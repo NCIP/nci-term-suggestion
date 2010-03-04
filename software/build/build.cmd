@@ -3,8 +3,9 @@
 @rem **** Command file to invoke build.xml ****
 @rem ******************************************
 setlocal
-set DEVPROPFILE=C:\NCI-Projects\ncitermform-properties\properties\dev-upgrade.properties
-set QAPROPFILE=C:\NCI-Projects\ncitermform-properties\properties\qa-upgrade.properties
+set DEVPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\dev-upgrade.properties
+set QAPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\qa-upgrade.properties
+set DATAQAPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\data-qa-upgrade.properties
 cls
 if "%1" == "" (
     echo.
@@ -16,6 +17,7 @@ if "%1" == "" (
     echo   upgrade      -- Build and upgrade application
     echo   dev          -- Builds, upgrades JBoss on DEV
     echo   qa           -- Builds, upgrades JBoss on QA
+    echo   data-qa      -- Builds, upgrades JBoss on Data QA
     echo   deploy       -- Redeploy application
     goto DONE
 )
@@ -48,6 +50,10 @@ if "%1" == "dev" (
 )
 if "%1" == "qa" (
     ant -Dproperties.file=%QAPROPFILE% deploy:remote:upgrade
+    goto DONE
+)
+if "%1" == "data-qa" (
+    ant -Dproperties.file=%DATAQAPROPFILE% -Danthill.build.tag_built=desktop deploy:remote:upgrade
     goto DONE
 )
 :DONE
