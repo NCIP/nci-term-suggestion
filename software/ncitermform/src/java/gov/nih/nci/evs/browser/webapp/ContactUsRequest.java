@@ -119,14 +119,15 @@ public class ContactUsRequest extends FormRequest {
         StringBuffer buffer = new StringBuffer(warning);
         AppProperties appProperties = AppProperties.getInstance();
         String[] recipients = appProperties.getContactUsRecipients();
+        String from = MailUtils.cleanAddresses(_request.getParameter(EMAIL_ADDRESS));
         buffer.append("Debug:\n");
-        buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
+        buffer.append("    * recipient(s): " + StringUtils.toString(recipients, " ; ") + "\n");
         buffer.append("    * Subject: " + _request.getParameter(SUBJECT) + "\n");
         buffer.append("    * Message: ");
         String emailMsg = _request.getParameter(EMAIL_MSG);
         emailMsg = INDENT + emailMsg.replaceAll("\\\n", "\n" + INDENT);
         buffer.append(emailMsg + "\n");
-        buffer.append("    * Email: " + _request.getParameter(EMAIL_ADDRESS) + "\n");
+        buffer.append("    * Email: " + from + "\n");
         
         _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
