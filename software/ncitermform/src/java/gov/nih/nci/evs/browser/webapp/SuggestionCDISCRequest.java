@@ -74,6 +74,8 @@ public class SuggestionCDISCRequest extends FormRequest {
         clearAttributes(FormRequest.ALL_PARAMETERS);
         updateAttributes();
         updateSessionAttributes(SESSION_ATTRIBUTES);
+        _parametersHashMap.put(EMAIL, 
+            MailUtils.cleanAddresses(_parametersHashMap.get(EMAIL)));
         
         String warnings = validate();
         if (warnings.length() > 0) {
@@ -117,7 +119,7 @@ public class SuggestionCDISCRequest extends FormRequest {
     private String validate() {
         StringBuffer buffer = new StringBuffer();
         String email = _parametersHashMap.get(EMAIL);
-        validate(buffer, MailUtils.isValidEmailAddress(email), 
+        validate(buffer, MailUtils.isValidEmailAddresses(email), 
             "* Please enter a valid email address.");
 
         String vocabulary = _parametersHashMap.get(VOCABULARY);

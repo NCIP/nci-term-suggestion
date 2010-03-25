@@ -57,9 +57,23 @@ public class MailUtils extends Object {
     private static final int MAX_SUBJECT_CHAR = 256;
     private static final String INDENT = "    ";
 
-    public static boolean isValidEmailAddress(String text) {
-        int posOfAtChar = text.indexOf('@');
-        int posOfDotChar = text.lastIndexOf('.');
+    public static String cleanAddresses(String addresses) {
+        String list[] = StringUtils.toStrings(addresses, ";", false);
+        StringBuffer buffer = new StringBuffer();
+        for (int i=0; i<list.length; ++i) {
+            String address = list[i].trim();
+            if (address.length() <= 0)
+                continue;
+            if (buffer.length() > 0)
+                buffer.append(" ; ");
+            buffer.append(address);
+        }
+        return buffer.toString();
+    }
+
+    public static boolean isValidEmailAddress(String address) {
+        int posOfAtChar = address.indexOf('@');
+        int posOfDotChar = address.lastIndexOf('.');
 
         if (posOfAtChar <= 0 || posOfDotChar <= 0)
             return false;
@@ -67,8 +81,18 @@ public class MailUtils extends Object {
             return false;
         if (posOfAtChar == posOfDotChar - 1)
             return false;
-        if (posOfDotChar == text.length() - 1)
+        if (posOfDotChar == address.length() - 1)
             return false;
+        return true;
+    }
+    
+    public static boolean isValidEmailAddresses(String addresses) {
+        String list[] = StringUtils.toStrings(addresses, ";", false);
+        for (int i=0; i<list.length; ++i) {
+            String address = list[i];
+            if (! isValidEmailAddress(address))
+                return false;
+        }
         return true;
     }
 
