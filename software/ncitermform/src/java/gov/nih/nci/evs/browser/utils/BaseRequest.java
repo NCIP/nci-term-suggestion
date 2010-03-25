@@ -1,10 +1,12 @@
 package gov.nih.nci.evs.browser.utils;
 
+import gov.nih.nci.evs.browser.webapp.*;
+
 import java.util.*;
 
 import javax.servlet.http.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
 public class BaseRequest {
     private static Logger _logger = Logger.getLogger(BaseRequest.class);
@@ -14,6 +16,40 @@ public class BaseRequest {
     protected String[] _parameters = EMPTY_PARAMETERS;
     protected HashMap<String, String> _parametersHashMap = null;
 
+    private static final String VERSION = FormRequest.VERSION;
+    
+    public static void clearAllAttributes(HttpServletRequest request) {
+        clearAttributes(request, FormRequest.ALL_PARAMETERS);
+        clearAttributes(request, SuggestionRequest.MOST_PARAMETERS);
+        clearAttributes(request, SuggestionCDISCRequest.MOST_PARAMETERS);
+    }
+
+    public static String getIndexPage(HttpServletRequest request) {
+        Prop.Version version = (Prop.Version) 
+            request.getSession().getAttribute(VERSION);
+        
+        String basePath = FormUtils.getBasePath(request);
+        String indexPage = basePath + "/" + version.getUrlParameter();
+        clearAllAttributes(request);
+        return indexPage;
+    }
+    
+    public static Prop.Version getVersion(HttpServletRequest request) {
+        Prop.Version curr_version = (Prop.Version) 
+            request.getSession().getAttribute(VERSION);
+//DYEE        
+//        String parameterVersion = HTTPUtils.getParameter(
+//            request, VERSION, false);
+        String parameterVersion = request.getParameter(VERSION); //DYEE
+        Prop.Version parameter_version = Prop.Version.valueOfOrDefault(parameterVersion);
+        if (parameter_version != curr_version) {
+          curr_version = parameter_version;
+          clearAllAttributes(request);
+        }
+        request.getSession().setAttribute(VERSION, curr_version);
+        return curr_version;
+    }
+    
     protected void setDefaulSessiontAttribute(
         HttpServletRequest request, String name, Object value) {
         Object v = request.getSession().getAttribute(name);
@@ -83,7 +119,7 @@ public class BaseRequest {
         updateAttributes(_parameters);
     }
 
-    private void clearAttributes(HttpServletRequest request,
+    private static void clearAttributes(HttpServletRequest request,
         String[] parameters) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];

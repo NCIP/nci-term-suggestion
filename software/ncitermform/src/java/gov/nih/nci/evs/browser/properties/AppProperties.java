@@ -187,6 +187,12 @@ public class AppProperties {
         return new String[0];
     }
     
+    public String getVocabularyEmailsString(Prop.Version version, 
+        String vocabularyName) {
+        String[] emails = getVocabularyEmails(version, vocabularyName);
+        return StringUtils.toString(emails, ";");
+    }
+
     public String[] getList(String propertyName, String[] list, String debugText) {
         if (list != null)
             return list;
@@ -208,6 +214,10 @@ public class AppProperties {
         String value = getProperty(CADSR_EMAIL);
         String[] list = StringUtils.toStrings(value, ";", false);
         return _cadsrEmail = list;
+    }
+    
+    public String getCADSREmailString() {
+        return getProperty(CADSR_EMAIL);
     }
 
     public String[] getCADSRSourceList() {

@@ -1,12 +1,8 @@
 package gov.nih.nci.evs.browser.webapp;
 
-import gov.nih.nci.evs.browser.utils.*;
-
 import javax.servlet.http.HttpServletRequest;
 
 public class FormUtils {
-    private static final String VERSION = FormRequest.VERSION;
-    
     public static String getBasePath(HttpServletRequest request) {
         return request.getContextPath();
     }
@@ -29,35 +25,5 @@ public class FormUtils {
     public static String getCSSPath(HttpServletRequest request) {
         String basePath = getBasePath(request);
         return basePath + "/css";
-    }
-
-    public static void clearAllAttributes(HttpServletRequest request) {
-        HTTPUtils.clearAttributes(request, FormRequest.ALL_PARAMETERS);
-        HTTPUtils.clearAttributes(request, SuggestionRequest.MOST_PARAMETERS);
-        HTTPUtils.clearAttributes(request, SuggestionCDISCRequest.MOST_PARAMETERS);
-    }
-
-    public static String getIndexPage(HttpServletRequest request) {
-        Prop.Version version = (Prop.Version) 
-            request.getSession().getAttribute(VERSION);
-        
-        String basePath = getBasePath(request);
-        String indexPage = basePath + "/" + version.getUrlParameter();
-        clearAllAttributes(request);
-        return indexPage;
-    }
-    
-    public static Prop.Version getVersion(HttpServletRequest request) {
-        Prop.Version curr_version = (Prop.Version) 
-            request.getSession().getAttribute(VERSION);
-        String parameterVersion = HTTPUtils.getParameter(
-            request, VERSION, false);
-        Prop.Version parameter_version = Prop.Version.valueOfOrDefault(parameterVersion);
-        if (parameter_version != curr_version) {
-          curr_version = parameter_version;
-          clearAllAttributes(request);
-        }
-        request.getSession().setAttribute(VERSION, curr_version);
-        return curr_version;
     }
 }

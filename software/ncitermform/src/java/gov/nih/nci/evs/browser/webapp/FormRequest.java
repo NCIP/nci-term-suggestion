@@ -109,14 +109,14 @@ public class FormRequest extends BaseRequest implements IFormRequest {
 
         if (_vocabularyParameter == null || _vocabularyParameter.length() <= 0)
             return buffer.toString();
-        String[] recipients = getRecipients();
+        String recipients = getRecipients();
         buffer.append("Debug:\n");
-        buffer.append("    * recipient(s): " + StringUtils.toString(recipients, ", ") + "\n");
+        buffer.append("    * recipient(s): " + recipients + "\n");
         _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
     }
     
-    protected String[] getRecipients() {
-        return null;
+    protected String getRecipients() {
+        return "";
     }
 }

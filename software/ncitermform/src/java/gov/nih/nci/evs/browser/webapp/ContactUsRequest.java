@@ -39,7 +39,7 @@ public class ContactUsRequest extends FormRequest {
             String subject = _request.getParameter(SUBJECT);
             String emailMsg = _request.getParameter(EMAIL_MSG);
             String from = _request.getParameter(EMAIL_ADDRESS);
-            String recipients[] = appProperties.getContactUsRecipients();
+            String recipients = appProperties.getContactUrl();
             MailUtils.postMail(mailServer, from, recipients, subject, emailMsg, _isSendEmail);
         } catch (UserInputException e) {
             String warnings = e.getMessage();

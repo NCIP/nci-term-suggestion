@@ -87,7 +87,7 @@ public class SuggestionRequest extends FormRequest {
         AppProperties appProperties = AppProperties.getInstance();
         String mailServer = appProperties.getMailSmtpServer();
         String from = _parametersHashMap.get(EMAIL);
-        String[] recipients = getRecipients();
+        String recipients = getRecipients();
         String subject = getSubject();
         String emailMsg = getEmailMessage();
 
@@ -109,16 +109,16 @@ public class SuggestionRequest extends FormRequest {
         return SUCCESSFUL_STATE;
     }
     
-    protected String[] getRecipients() {
+    protected String getRecipients() {
         AppProperties appProperties = AppProperties.getInstance();
         String vocabulary = _parametersHashMap.get(VOCABULARY);
         Prop.Version version = (Prop.Version) 
             _request.getSession().getAttribute(VERSION);
         
-        if (version == Prop.Version.CADSR && 
-                appProperties.getCADSREmail().length > 0)
-            return appProperties.getCADSREmail();
-        return appProperties.getVocabularyEmails(version, vocabulary);
+        String cadsrEmails = appProperties.getCADSREmailString();
+        if (version == Prop.Version.CADSR && cadsrEmails.length() > 0)
+            return cadsrEmails;
+        return appProperties.getVocabularyEmailsString(version, vocabulary);
     }
     
     private String validate() {
