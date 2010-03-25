@@ -1,6 +1,6 @@
-package gov.nih.nci.evs.browser.utils;
+package gov.nih.nci.evs.browser.webapp;
 
-import gov.nih.nci.evs.browser.webapp.*;
+import gov.nih.nci.evs.browser.utils.*;
 
 import java.util.*;
 
