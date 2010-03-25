@@ -49,23 +49,23 @@
   SuggestionCDISCRequest.setupTestData();
 
   // Attribute(s):
-  String email = HTTPUtils.getSessionAttributeString(request, EMAIL);
-  String name = HTTPUtils.getSessionAttributeString(request, NAME);
-  String phone_number = HTTPUtils.getSessionAttributeString(request, PHONE_NUMBER);
-  String organization = HTTPUtils.getSessionAttributeString(request, ORGANIZATION);
-  //String other = HTTPUtils.getSessionAttributeString(request, OTHER);
-  String vocabulary = HTTPUtils.getSessionAttributeString(request, VOCABULARY);
-  String cdisc_request_type = HTTPUtils.getAttributeString(request, CDISC_REQUEST_TYPE);
-  String cdisc_codes = HTTPUtils.getAttributeString(request, CDISC_CODES);
-  String term = HTTPUtils.getAttributeString(request, TERM);
-  String reason = HTTPUtils.getAttributeString(request, REASON);
-  String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
+  String email = HTTPUtils.getJspSessionAttributeString(request, EMAIL);
+  String name = HTTPUtils.getJspSessionAttributeString(request, NAME);
+  String phone_number = HTTPUtils.getJspSessionAttributeString(request, PHONE_NUMBER);
+  String organization = HTTPUtils.getJspSessionAttributeString(request, ORGANIZATION);
+  //String other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
+  String vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
+  String cdisc_request_type = HTTPUtils.getJspAttributeString(request, CDISC_REQUEST_TYPE);
+  String cdisc_codes = HTTPUtils.getJspAttributeString(request, CDISC_CODES);
+  String term = HTTPUtils.getJspAttributeString(request, TERM);
+  String reason = HTTPUtils.getJspAttributeString(request, REASON);
+  String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
   boolean isWarnings = warnings.length() > 0;
 
-  String pVocabulary = HTTPUtils.getParameter(request, VOCABULARY);
+  String pVocabulary = HTTPUtils.getJspParameter(request, VOCABULARY);
   if (pVocabulary == null || pVocabulary.length() <= 0) {
     // Note: This is how NCIt/TB and NCIm is passing in this value.  
-    pVocabulary = HTTPUtils.getParameter(request, DICTIONARY);
+    pVocabulary = HTTPUtils.getJspParameter(request, DICTIONARY);
   }
 
   // Member variable(s):

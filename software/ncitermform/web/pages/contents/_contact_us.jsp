@@ -17,11 +17,11 @@
 %>
 <%
   String ncicb_contact_url = AppProperties.getInstance().getContactUrl();
-  String subject = HTTPUtils.getAttributeString(request, SUBJECT);
-  String email_msg = HTTPUtils.getAttributeString(request, EMAIL_MSG);
-  String email_address = HTTPUtils.getSessionAttributeString(request, EMAIL_ADDRESS);
-  String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
-  String warningType = HTTPUtils.getAttributeString(request, WARNING_TYPE);
+  String subject = HTTPUtils.getJspAttributeString(request, SUBJECT);
+  String email_msg = HTTPUtils.getJspAttributeString(request, EMAIL_MSG);
+  String email_address = HTTPUtils.getJspSessionAttributeString(request, EMAIL_ADDRESS);
+  String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
+  String warningType = HTTPUtils.getJspAttributeString(request, WARNING_TYPE);
   boolean isUserError = Prop.WarningType.valueOfOrDefault(warningType) == Prop.WarningType.User;
 %>
 <f:view>
