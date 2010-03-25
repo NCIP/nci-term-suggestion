@@ -1,7 +1,7 @@
 package gov.nih.nci.evs.browser.webapp;
 
 import gov.nih.nci.evs.browser.properties.*;
-import gov.nih.nci.evs.browser.utils.*;
+import gov.nih.nci.evs.utils.*;
 
 public class ContactUsRequest extends FormRequest {
     // List of attribute name(s):

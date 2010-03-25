@@ -1,7 +1,7 @@
 package gov.nih.nci.evs.browser.webapp;
 
 import java.util.*;
-import gov.nih.nci.evs.browser.utils.*;
+import gov.nih.nci.evs.utils.*;
 
 public class QuickLinkInfo {
     private String _display = "";

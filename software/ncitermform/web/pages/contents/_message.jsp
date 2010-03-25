@@ -1,4 +1,4 @@
-<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
+<%@ page import="gov.nih.nci.evs.utils.*" %>
 <%
   String message = HTTPUtils.getJspAttributeString(request, "message", false, true);
   String warnings = HTTPUtils.getJspAttributeString(request, "warnings", false, true);

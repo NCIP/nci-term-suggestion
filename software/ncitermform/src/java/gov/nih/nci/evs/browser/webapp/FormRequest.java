@@ -5,7 +5,7 @@ import java.util.*;
 import javax.servlet.http.*;
 
 import gov.nih.nci.evs.browser.properties.*;
-import gov.nih.nci.evs.browser.utils.*;
+import gov.nih.nci.evs.utils.*;
 
 public class FormRequest extends BaseRequest implements IFormRequest {
     // List of attribute name(s):

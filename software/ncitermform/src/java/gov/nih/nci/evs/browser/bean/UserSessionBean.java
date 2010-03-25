@@ -2,8 +2,8 @@ package gov.nih.nci.evs.browser.bean;
 
 import javax.servlet.http.*;
 
-import gov.nih.nci.evs.browser.utils.*;
 import gov.nih.nci.evs.browser.webapp.*;
+import gov.nih.nci.evs.utils.*;
 
 public class UserSessionBean {
     public String changeRequest() {

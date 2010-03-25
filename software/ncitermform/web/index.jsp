@@ -1,5 +1,5 @@
-<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
+<%@ page import="gov.nih.nci.evs.utils.*" %>
 <%
   Prop.Version version = BaseRequest.getVersion(request);
 %>

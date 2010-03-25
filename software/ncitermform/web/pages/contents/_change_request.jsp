@@ -1,5 +1,5 @@
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
-<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
+<%@ page import="gov.nih.nci.evs.utils.*" %>
 <script type="text/javascript" src="<%= FormUtils.getJSPath(request) %>/utils.js"></script>
 <%!
   // List of attribute name(s):

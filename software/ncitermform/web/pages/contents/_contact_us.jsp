@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
-<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
+<%@ page import="gov.nih.nci.evs.utils.*" %>
 <%!
   private static final String TELEPHONE = "301.451.4384 or Toll-Free: 888.478.4423";
   private static final String MAIL_TO = "ncicb@pop.nci.nih.gov";
