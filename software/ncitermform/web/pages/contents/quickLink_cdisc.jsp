@@ -1,5 +1,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
+<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%
   String imagesPath = FormUtils.getImagesPath(request);
