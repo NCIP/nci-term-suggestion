@@ -37,10 +37,8 @@ public class BaseRequest {
     public static Prop.Version getVersion(HttpServletRequest request) {
         Prop.Version curr_version = (Prop.Version) 
             request.getSession().getAttribute(VERSION);
-//DYEE        
-//        String parameterVersion = HTTPUtils.getParameter(
-//            request, VERSION, false);
-        String parameterVersion = request.getParameter(VERSION); //DYEE
+        String parameterVersion = HTTPUtils.getJspParameter(
+            request, VERSION, false);
         Prop.Version parameter_version = Prop.Version.valueOfOrDefault(parameterVersion);
         if (parameter_version != curr_version) {
           curr_version = parameter_version;

@@ -45,7 +45,7 @@
 <%
     // Member variable(s):
   String imagesPath = FormUtils.getImagesPath(request);
-  Prop.Version version = FormUtils.getVersion(request);
+  Prop.Version version = BaseRequest.getVersion(request);
   SuggestionCDISCRequest.setupTestData();
 
   // Attribute(s):

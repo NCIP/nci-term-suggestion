@@ -47,7 +47,7 @@
 <%
     // Member variable(s):
   String imagesPath = FormUtils.getImagesPath(request);
-  Prop.Version version = FormUtils.getVersion(request);
+  Prop.Version version = BaseRequest.getVersion(request);
   SuggestionRequest.setupTestData();
 
   // Attribute(s):
@@ -70,7 +70,7 @@
     // Note: This is how NCIt/TB and NCIm is passing in this value.  
     pVocabulary = HTTPUtils.getParameter(request, DICTIONARY);
   }
-  String pCode = HTTPUtils.getParameter(request, CODE, false);
+  String pCode = HTTPUtils.getJspParameter(request, CODE, false);
   if (! isWarnings && pCode != null)
     nearest_code = pCode;
 
