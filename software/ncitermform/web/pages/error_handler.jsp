@@ -1,9 +1,8 @@
-<%@ page import="gov.nih.nci.evs.browser.common.*" %>
+<%@ page import="gov.nih.nci.evs.common.*" %>
 <html>
   <body>
 	<%
-      //String errorMsg = Constants.ERROR_MESSAGE;
-	  String errorMsg = "systemMessage";
+      String errorMsg = EVSConstants.ERROR_MESSAGE;
       String message = (String) request.getSession().getAttribute(errorMsg); 
     %>
 	<b><%=message%></b>
