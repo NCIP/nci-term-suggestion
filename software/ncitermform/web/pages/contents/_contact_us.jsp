@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
-<%@ page import="gov.nih.nci.evs.browser.utils.*" %>
+<%@ page import="gov.nih.nci.evs.utils.*" %>
 <%!
   private static final String TELEPHONE = "301.451.4384 or Toll-Free: 888.478.4423";
   private static final String MAIL_TO = "ncicb@pop.nci.nih.gov";
@@ -17,11 +17,11 @@
 %>
 <%
   String ncicb_contact_url = AppProperties.getInstance().getContactUrl();
-  String subject = HTTPUtils.getAttributeString(request, SUBJECT);
-  String email_msg = HTTPUtils.getAttributeString(request, EMAIL_MSG);
-  String email_address = HTTPUtils.getSessionAttributeString(request, EMAIL_ADDRESS);
-  String warnings = HTTPUtils.getAttributeString(request, WARNINGS);
-  String warningType = HTTPUtils.getAttributeString(request, WARNING_TYPE);
+  String subject = HTTPUtils.getJspAttributeString(request, SUBJECT);
+  String email_msg = HTTPUtils.getJspAttributeString(request, EMAIL_MSG);
+  String email_address = HTTPUtils.getJspSessionAttributeString(request, EMAIL_ADDRESS);
+  String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
+  String warningType = HTTPUtils.getJspAttributeString(request, WARNING_TYPE);
   boolean isUserError = Prop.WarningType.valueOfOrDefault(warningType) == Prop.WarningType.User;
 %>
 <f:view>
