@@ -1,7 +1,11 @@
 <%@ page import="gov.nih.nci.evs.browser.common.*" %>
 <html>
-  <body>        
-	<% String message = (String) request.getSession().getAttribute(Constants.ERROR_MESSAGE); %>
+  <body>
+	<%
+      //String errorMsg = Constants.ERROR_MESSAGE;
+	  String errorMsg = "systemMessage";
+      String message = (String) request.getSession().getAttribute(errorMsg); 
+    %>
 	<b><%=message%></b>
   </body>
 </html>        

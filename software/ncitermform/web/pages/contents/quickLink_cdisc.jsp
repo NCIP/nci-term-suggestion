@@ -1,6 +1,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
+<%@ page import="gov.nih.nci.evs.utils.*" %>
 <%
   String imagesPath = FormUtils.getImagesPath(request);
   ArrayList list = AppProperties.getInstance().getCDISCQuickLinks();
