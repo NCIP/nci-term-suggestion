@@ -4,6 +4,7 @@
 @rem ******************************************
 setlocal
 set DEVPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\dev-upgrade.properties
+set CIPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\ci-upgrade.properties
 set QAPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\qa-upgrade.properties
 set DATAQAPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\data-qa-upgrade.properties
 cls
@@ -16,6 +17,7 @@ if "%1" == "" (
     echo   install      -- Builds, installs JBoss locally
     echo   upgrade      -- Build and upgrade application
     echo   dev          -- Builds, upgrades JBoss on DEV
+    echo   ci           -- Builds, upgrades JBoss on CI
     echo   qa           -- Builds, upgrades JBoss on QA
     echo   data-qa      -- Builds, upgrades JBoss on Data QA
     echo   deploy       -- Redeploy application
@@ -46,6 +48,10 @@ if "%1" == "clean" (
 )
 if "%1" == "dev" (
     ant -Dproperties.file=%DEVPROPFILE% deploy:remote:upgrade
+    goto DONE
+)
+if "%1" == "ci" (
+    ant -Dproperties.file=%CIPROPFILE% deploy:remote:upgrade
     goto DONE
 )
 if "%1" == "qa" (
