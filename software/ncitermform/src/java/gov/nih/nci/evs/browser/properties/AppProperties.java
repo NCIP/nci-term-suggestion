@@ -55,6 +55,8 @@ import gov.nih.nci.evs.utils.*;
 public class AppProperties {
     private static final String PROPERTY_FILE = "NCITermFormPropertiesFile";
     private static final String BUILD_INFO = "NCITERMFORM_BUILD_INFO";
+    private static final String APP_VERSION = "APPLICATION_VERSION";
+    private static final String ANTHILL_BUILD_TAG_BUILT = "ANTHILL_BUILD_TAG_BUILT";
     private static final String DEBUG_ON = "DEBUG_ON";
     private static final String SEND_EMAIL = "SEND_EMAIL";
     private static final String MAIL_SMTP_SERVER = "MAIL_SMTP_SERVER";
@@ -75,7 +77,9 @@ public class AppProperties {
     private static AppProperties _appProperties = null;
     private Logger _logger = Logger.getLogger(AppProperties.class);
     private HashMap<String, String> _configurableItemMap;
-    private String _buildInfo = null;
+    private String _buildDate = null;
+    private String _appVersion = null;
+    private String _buildTag = null;
     private ArrayList<VocabInfo> _defaultVocabList = null;
     private String[] _cadsrEmail = null;
     private String[] _cadsrSourceList = null;
@@ -117,21 +121,51 @@ public class AppProperties {
         return value;
     }
 
-    public String getBuildInfo() {
-        if (_buildInfo != null)
-            return _buildInfo;
+    public String getBuildDate() {
+        if (_buildDate != null)
+            return _buildDate;
         try {
-            _buildInfo = getProperty(AppProperties.BUILD_INFO);
-            if (_buildInfo == null)
-                _buildInfo = "null";
+        	_buildDate = getProperty(BUILD_INFO);
+            if (_buildDate == null)
+            	_buildDate = "null";
         } catch (Exception ex) {
-            _buildInfo = ex.getMessage();
+        	_buildDate = ex.getMessage();
         }
 
-        _logger.info("getBuildInfo returns " + _buildInfo);
-        return _buildInfo;
+        _logger.info("getBuildDate returns " + _buildDate);
+        return _buildDate;
     }
 
+    public String getAppVersion() {
+        if (_appVersion != null)
+            return _appVersion;
+        try {
+        	_appVersion = getProperty(APP_VERSION);
+            if (_appVersion == null)
+            	_appVersion = "N/A";
+        } catch (Exception ex) {
+        	_appVersion = ex.getMessage();
+        }
+
+        _logger.info("getAppVersion returns " + _appVersion);
+        return _appVersion;    	
+    }
+
+    public String getAnthillBuildTagBuilt() {
+        if (_buildTag != null)
+            return _buildTag;
+        try {
+        	_buildTag = getProperty(ANTHILL_BUILD_TAG_BUILT);
+            if (_buildTag == null)
+            	_buildTag = "trunk";
+        } catch (Exception ex) {
+        	_buildTag = ex.getMessage();
+        }
+
+        _logger.info("getAnthillBuildTagBuilt returns " + _buildTag);
+        return _buildTag;    	
+    }    
+    
     public boolean isDebugOn() {
         return Boolean.parseBoolean(getProperty(DEBUG_ON));
     }
