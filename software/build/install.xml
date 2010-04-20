@@ -331,6 +331,7 @@
             <filter token="cdisc.quicklinks" value="${cdisc.quicklinks}"/>
             <filter token="application.base.path" value="${application.base.path}"/>
             <filter token="application.url" value="${application.url}"/>
+            <filter token="application.version" value="${application.version}"/>
             <filter token="jboss.home" value="${jboss.home}"/>
             <filter token="tomcat.home" value="${tomcat.home}"/>
             <filter token="env.LOGNAME" value="${env.LOGNAME}"/>

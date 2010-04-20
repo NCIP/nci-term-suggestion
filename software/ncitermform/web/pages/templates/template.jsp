@@ -14,14 +14,20 @@
   if (content_quickLink == null)
       content_quickLink = "";
   String content_page = request.getParameter("content_page");
-  String buildInfo = AppProperties.getInstance().getBuildInfo();
+  String buildDate = AppProperties.getInstance().getBuildDate();
+  String application_version = AppProperties.getInstance().getAppVersion();
+  String anthill_build_tag_built = AppProperties.getInstance().getAnthillBuildTagBuilt();  
   Prop.Version version = (Prop.Version) 
     request.getSession().getAttribute(FormRequest.VERSION);
   if (version == null)
     version = Prop.Version.Default;
   String logoUrl = basePath + "/" + version.getUrlParameter();
 %>
-<!-- Build info: <%=buildInfo%> -->
+<!--
+   Build info: <%=buildDate%>
+ Version info: <%=application_version%>
+          Tag: <%=anthill_build_tag_built%>
+  -->
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
