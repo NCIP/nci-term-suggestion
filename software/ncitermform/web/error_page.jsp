@@ -5,7 +5,7 @@
 <html>
   <body>
   <f:view>
-    <form name="ntsubmit" method="post">
+    <h:form>
       Submit:
       <h:commandButton
         id="submit"
@@ -14,7 +14,7 @@
         image="#{facesContext.externalContext.requestContextPath}/images/search.gif"
         alt="submit">
       </h:commandButton>
-    </form>
+    </h:form>
   </f:view>
   </body>
 </html>

@@ -75,7 +75,7 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
 %>
 <f:view>
-  <form method="post">
+  <h:form>
     <table class="newConceptDT">
       <!-- =================================================================== -->
       <%
@@ -271,5 +271,5 @@
         </td>
       </tr>
     </table>
-  </form>
+  </h:form>
 </f:view>

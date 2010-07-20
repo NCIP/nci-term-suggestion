@@ -98,7 +98,7 @@
     %>
   </p>
   
-  <form method="post">
+  <h:form>
     <p>
       <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Subject of your email:</i>
@@ -130,7 +130,7 @@
       action="#{userSessionBean.contactUs}"
       alt="submit" >
     </h:commandButton>
-  </form>
+  </h:form>
   <br/>
   
   <a href="http://www.cancer.gov/policies/page3" target="_blank">
