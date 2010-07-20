@@ -11,7 +11,7 @@
         id="submit"
         value="submit"
         action="#{userSessionBean.changeRequest}"
-        image="#{facesContext.externalContext.requestContextPath}/images/search.gif"
+        image="/images/search.gif"
         alt="submit">
       </h:commandButton>
     </h:form>
