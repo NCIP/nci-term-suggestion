@@ -5,16 +5,16 @@
 <html>
   <body>
   <f:view>
-    <form name="ntsubmit" method="post">
+    <h:form>
       Submit:
       <h:commandButton
         id="submit"
         value="submit"
         action="#{userSessionBean.changeRequest}"
-        image="#{facesContext.externalContext.requestContextPath}/images/search.gif"
+        image="/images/search.gif"
         alt="submit">
       </h:commandButton>
-    </form>
+    </h:form>
   </f:view>
   </body>
 </html>

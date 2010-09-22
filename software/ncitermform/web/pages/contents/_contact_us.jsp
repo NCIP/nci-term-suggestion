@@ -16,6 +16,7 @@
   private static final String WARNING_TYPE = ContactUsRequest.WARNING_TYPE;
 %>
 <%
+  String imagesPath = FormUtils.getImagesPath(request);
   String ncicb_contact_url = AppProperties.getInstance().getContactUrl();
   String subject = HTTPUtils.getJspAttributeString(request, SUBJECT);
   String email_msg = HTTPUtils.getJspAttributeString(request, EMAIL_MSG);
@@ -98,7 +99,7 @@
     %>
   </p>
   
-  <form method="post">
+  <h:form>
     <p>
       <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Subject of your email:</i>
@@ -119,18 +120,19 @@
     <h:commandButton
       id="clear"
       value="clear"
-      image="#{facesContext.externalContext.requestContextPath}/images/clear.gif"
+      image="/images/clear.gif"
       action="#{userSessionBean.clearContactUs}"
       alt="clear">
     </h:commandButton>
+    <img src="<%=imagesPath%>/spacer.gif" width="1" />
     <h:commandButton
       id="mail"
       value="submit"
-      image="#{facesContext.externalContext.requestContextPath}/images/submit.gif"
+      image="/images/submit.gif"
       action="#{userSessionBean.contactUs}"
       alt="submit" >
     </h:commandButton>
-  </form>
+  </h:form>
   <br/>
   
   <a href="http://www.cancer.gov/policies/page3" target="_blank">
