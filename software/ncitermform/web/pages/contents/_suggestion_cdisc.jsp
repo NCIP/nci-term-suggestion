@@ -75,7 +75,7 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
 %>
 <f:view>
-  <form method="post">
+  <h:form>
     <table class="newConceptDT">
       <!-- =================================================================== -->
       <%
@@ -258,18 +258,19 @@
             id="clear"
             value="clear"
             action="#{userSessionBean.clearSuggestion}"
-            image="#{facesContext.externalContext.requestContextPath}/images/clear.gif"
+            image="/images/clear.gif"
             alt="clear">
           </h:commandButton>
+          <img src="<%=imagesPath%>/spacer.gif" width="1" />
           <h:commandButton
             id="submit"
             value="submit"
             action="#{userSessionBean.requestSuggestion}"
-            image="#{facesContext.externalContext.requestContextPath}/images/submit.gif"
+            image="/images/submit.gif"
             alt="submit">
           </h:commandButton>
         </td>
       </tr>
     </table>
-  </form>
+  </h:form>
 </f:view>
