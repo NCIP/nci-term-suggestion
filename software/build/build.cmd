@@ -85,7 +85,7 @@ if "%1" == "data-qa" (
     ant -Dproperties.file=%DATAQAPROPFILE% %TAG% %DEBUG% deploy:remote:upgrade
     goto DONE
 )
-f "%1" == "cissh" (
+if "%1" == "cissh" (
     ssh jboss51a@ncias-c512-v.nci.nih.gov -i C:\NCI-Projects\ncit-properties\properties\ssh-keys\id_dsa_bda echo "Test worked!"
     goto DONE
 )
