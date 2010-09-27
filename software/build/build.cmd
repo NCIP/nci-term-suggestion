@@ -3,10 +3,17 @@
 @rem **** Command file to invoke build.xml ****
 @rem ******************************************
 setlocal
+@rem Environment settings here...
 set DEVPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\dev-upgrade.properties
 set CIPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\ci-upgrade.properties
 set QAPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\qa-upgrade.properties
 set DATAQAPROPFILE=C:\NCI-Projects\nci-termform-properties\properties\data-qa-upgrade.properties
+set DEBUG=-Denable.install.debug=false
+set TAG=-Danthill.build.tag_built=desktop
+@rem Test is debug has been set
+if "%2" == "debug" (
+    set DEBUG=-Denable.install.debug=true -debug
+)
 cls
 if "%1" == "" (
     echo.
@@ -20,23 +27,39 @@ if "%1" == "" (
     echo   ci           -- Builds, upgrades JBoss on CI
     echo   qa           -- Builds, upgrades JBoss on QA
     echo   data-qa      -- Builds, upgrades JBoss on Data QA
-    echo   deploy       -- Redeploy application
+    echo   deploy       -- Hot deploy application
+    echo   jsp          -- Hot deploy JSP files
+    echo   stop         -- Stop war file
+    echo   start        -- Start war file
+    echo   cissh        -- Test SSH login in CI
     goto DONE
 )
 if "%1" == "all" (
-    ant build:all
-    goto DONE
-)
-if "%1" == "install" (
-    ant deploy:local:install
+    ant %TAG% build:all
     goto DONE
 )
 if "%1" == "upgrade" (
-    ant deploy:local:upgrade
+    ant %TAG% %DEBUG% deploy:local:upgrade
+    goto DONE
+)
+if "%1" == "install" (
+    ant %TAG% %DEBUG% deploy:local:install
     goto DONE
 )
 if "%1" == "deploy" (
-    ant deploy:hot
+    ant %TAG% %DEBUG% deploy:hot
+    goto DONE
+)
+if "%1" == "stop" (
+    ant %TAG% %DEBUG% deploy:stop
+    goto DONE
+)
+if "%1" == "start" (
+    ant %TAG% %DEBUG% deploy:start
+    goto DONE
+)
+if "%1" == "jsp" (
+    ant %DEBUG% deploy:hot:jsp
     goto DONE
 )
 if "%1" == "clean" (
@@ -47,19 +70,23 @@ if "%1" == "clean" (
     goto DONE
 )
 if "%1" == "dev" (
-    ant -Dproperties.file=%DEVPROPFILE% deploy:remote:upgrade
+    ant -Dproperties.file=%DEVPROPFILE% %TAG% %DEBUG% deploy:remote:upgrade
     goto DONE
 )
 if "%1" == "ci" (
-    ant -Dproperties.file=%CIPROPFILE% deploy:remote:upgrade
+    ant -Dproperties.file=%CIPROPFILE% %TAG% %DEBUG% deploy:remote:upgrade
     goto DONE
 )
 if "%1" == "qa" (
-    ant -Dproperties.file=%QAPROPFILE% deploy:remote:upgrade
+    ant -Dproperties.file=%QAPROPFILE% %TAG% %DEBUG% deploy:remote:upgrade
     goto DONE
 )
 if "%1" == "data-qa" (
-    ant -Dproperties.file=%DATAQAPROPFILE% -Danthill.build.tag_built=desktop deploy:remote:upgrade
+    ant -Dproperties.file=%DATAQAPROPFILE% %TAG% %DEBUG% deploy:remote:upgrade
+    goto DONE
+)
+f "%1" == "cissh" (
+    ssh jboss51a@ncias-c512-v.nci.nih.gov -i C:\NCI-Projects\ncit-properties\properties\ssh-keys\id_dsa_bda echo "Test worked!"
     goto DONE
 )
 :DONE
