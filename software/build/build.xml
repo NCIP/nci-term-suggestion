@@ -27,6 +27,7 @@
     <replaceregexp file="${properties.file}" byline="true" match="^([\w\d.]+)=(.*[\w\d\/\{\}\\]+)[ \t]+\r*$" replace="\1=\2" />
     <replaceregexp file="${properties.file}" byline="true" match="^([\w\d.]+)=[ \t]+(.*[\w\d\/\{\}\\]+)\r*$" replace="\1=\2" />
     <property file="${properties.file}" />
+    <property name="override.properties.delimiter" value=","/>
 
     <!-- Set application.base.path based on platform -->
     <condition property="application.base.path" value="${application.base.path.linux}">
@@ -484,13 +485,6 @@
         build:all,
         dist:upgrader
         ">
-
-        <echo>**************************************</echo>
-        <exec executable="ls">
-            <arg value="/local/AnthillPro/work"/>
-        </exec>
-        <echo>**************************************</echo>
-
         <!--
           * Will use the target from install.xml specified in ${upgrade.target} (defaults to upgrade unless passed in on command line).
           * Requires specifying -Dproperties.file=@file@ on the command line to point installer to correct enviornment to install into.
