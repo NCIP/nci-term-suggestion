@@ -227,6 +227,7 @@
                 <filter token="vocabulary.2" value="${vocabulary.2}"/>
                 <filter token="vocabulary.3" value="${vocabulary.3}"/>
                 <filter token="vocabulary.4" value="${vocabulary.4}"/>
+                <filter token="vocabulary.5" value="${vocabulary.5}"/>
                 <filter token="vocabulary.other.email" value="${vocabulary.other.email}"/>
                 <filter token="cadsr.email" value="${cadsr.email}"/>
                 <filter token="cdisc.email" value="${cdisc.email}"/>
