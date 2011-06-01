@@ -276,6 +276,14 @@
           </h:commandButton>
         </td>
       </tr>
-    </table>
+      </table>
+      <p class="newConceptNotes">
+     
+For multiple terms, please consider emailing an Excel, delimited text, or similar file to <a href="mailto:ncithesaurus@mail.nih.gov">ncithesaurus@mail.nih.gov</a>,
+which can also respond to any questions.
+     
+      </p>
+      
+    
   </h:form>
 </f:view>
