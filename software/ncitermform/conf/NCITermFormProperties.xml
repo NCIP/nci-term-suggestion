@@ -63,6 +63,12 @@
       <key>VOCABULARY_4</key>
       <value><![CDATA[@vocabulary.4@]]></value>
     </ConfigurableItem>
+    
+    <ConfigurableItem>
+      <key>VOCABULARY_5</key>
+      <value><![CDATA[@vocabulary.5@]]></value>
+    </ConfigurableItem>    
+    
 
     <!-- Vocabulary List (End) ============================================= -->
 
