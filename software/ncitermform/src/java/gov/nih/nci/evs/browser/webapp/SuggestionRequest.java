@@ -7,42 +7,42 @@ import gov.nih.nci.evs.utils.*;
 
 /**
  * <!-- LICENSE_TEXT_START -->
- * Copyright 2008,2009 NGIT. This software was developed in conjunction 
- * with the National Cancer Institute, and so to the extent government 
- * employees are co-authors, any rights in such works shall be subject 
+ * Copyright 2008,2009 NGIT. This software was developed in conjunction
+ * with the National Cancer Institute, and so to the extent government
+ * employees are co-authors, any rights in such works shall be subject
  * to Title 17 of the United States Code, section 105.
- * Redistribution and use in source and binary forms, with or without 
- * modification, are permitted provided that the following conditions 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
  * are met:
- *   1. Redistributions of source code must retain the above copyright 
- *      notice, this list of conditions and the disclaimer of Article 3, 
- *      below. Redistributions in binary form must reproduce the above 
- *      copyright notice, this list of conditions and the following 
- *      disclaimer in the documentation and/or other materials provided 
+ *   1. Redistributions of source code must retain the above copyright
+ *      notice, this list of conditions and the disclaimer of Article 3,
+ *      below. Redistributions in binary form must reproduce the above
+ *      copyright notice, this list of conditions and the following
+ *      disclaimer in the documentation and/or other materials provided
  *      with the distribution.
- *   2. The end-user documentation included with the redistribution, 
+ *   2. The end-user documentation included with the redistribution,
  *      if any, must include the following acknowledgment:
- *      "This product includes software developed by NGIT and the National 
+ *      "This product includes software developed by NGIT and the National
  *      Cancer Institute."   If no such end-user documentation is to be
  *      included, this acknowledgment shall appear in the software itself,
  *      wherever such third-party acknowledgments normally appear.
- *   3. The names "The National Cancer Institute", "NCI" and "NGIT" must 
+ *   3. The names "The National Cancer Institute", "NCI" and "NGIT" must
  *      not be used to endorse or promote products derived from this software.
  *   4. This license does not authorize the incorporation of this software
- *      into any third party proprietary programs. This license does not 
- *      authorize the recipient to use any trademarks owned by either NCI 
- *      or NGIT 
- *   5. THIS SOFTWARE IS PROVIDED "AS IS," AND ANY EXPRESSED OR IMPLIED 
- *      WARRANTIES, (INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
- *      OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE) ARE 
+ *      into any third party proprietary programs. This license does not
+ *      authorize the recipient to use any trademarks owned by either NCI
+ *      or NGIT
+ *   5. THIS SOFTWARE IS PROVIDED "AS IS," AND ANY EXPRESSED OR IMPLIED
+ *      WARRANTIES, (INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ *      OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE) ARE
  *      DISCLAIMED. IN NO EVENT SHALL THE NATIONAL CANCER INSTITUTE,
- *      NGIT, OR THEIR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT, 
- *      INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
- *      BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
- *      LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
- *      CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
- *      LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
- *      ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+ *      NGIT, OR THEIR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT,
+ *      INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ *      BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ *      LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ *      CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ *      LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ *      ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *      POSSIBILITY OF SUCH DAMAGE.
  * <!-- LICENSE_TEXT_END -->
  */
@@ -67,7 +67,7 @@ public class SuggestionRequest extends FormRequest {
     public static final String REASON = "reason";
     public static final String CADSR_SOURCE = "cadsrSource";
     public static final String CADSR_TYPE = "cadsrType";
-    
+
     // List of field label(s):
     public static final String EMAIL_LABEL = "Business Email";
     public static final String OTHER_LABEL = "Other";
@@ -77,26 +77,26 @@ public class SuggestionRequest extends FormRequest {
     public static final String NEAREST_CODE_LABEL = "Nearest Code/CUI";
     public static final String DEFINITION_LABEL = "Definition/Other";
     public static final String PROJECT_LABEL = "Project/Product term needed for";
-    public static final String REASON_LABEL = "Reason for suggestion plus any" + 
+    public static final String REASON_LABEL = "Reason for suggestion plus any" +
         " other additional information";
     public static final String CADSR_SOURCE_LABEL = "Source";
     public static final String CADSR_TYPE_LABEL = "caDSR Type";
 
     // Parameter list(s):
-    public static final String[] ALL_PARAMETERS = new String[] { 
-        EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE, 
+    public static final String[] ALL_PARAMETERS = new String[] {
+        EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE,
         DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE };
-    public static final String[] MOST_PARAMETERS = new String[] { 
-        /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE, 
+    public static final String[] MOST_PARAMETERS = new String[] {
+        /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE,
         DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, OTHER, VOCABULARY };
-    
+
     public SuggestionRequest() {
         super(VOCABULARY);
         setParameters(ALL_PARAMETERS);
     }
-    
+
     private static HashMap<String, String> getLabelsHashMap() {
         HashMap<String, String> hashMap = new HashMap<String, String>();
         hashMap.put(EMAIL, EMAIL_LABEL);
@@ -112,7 +112,7 @@ public class SuggestionRequest extends FormRequest {
         hashMap.put(CADSR_TYPE, CADSR_TYPE_LABEL);
         return hashMap;
     }
-    
+
     public void clear() {
         super.clear();
         clearSessionAttributes(SESSION_ATTRIBUTES);
@@ -122,9 +122,9 @@ public class SuggestionRequest extends FormRequest {
         clearAttributes(FormRequest.ALL_PARAMETERS);
         updateAttributes();
         updateSessionAttributes(SESSION_ATTRIBUTES);
-        _parametersHashMap.put(EMAIL, 
+        _parametersHashMap.put(EMAIL,
             MailUtils.cleanAddresses(_parametersHashMap.get(EMAIL)));
-        
+
         String warnings = validate();
         if (warnings.length() > 0) {
             _request.setAttribute(WARNINGS, warnings);
@@ -155,27 +155,27 @@ public class SuggestionRequest extends FormRequest {
         printSendEmailWarning();
         return SUCCESSFUL_STATE;
     }
-    
+
     protected String getRecipients() {
         AppProperties appProperties = AppProperties.getInstance();
         String vocabulary = _parametersHashMap.get(VOCABULARY);
-        Prop.Version version = (Prop.Version) 
+        Prop.Version version = (Prop.Version)
             _request.getSession().getAttribute(VERSION);
-        
+
         String cadsrEmails = appProperties.getCADSREmailString();
         if (version == Prop.Version.CADSR && cadsrEmails.length() > 0)
             return cadsrEmails;
         return appProperties.getVocabularyEmailsString(version, vocabulary);
     }
-    
+
     private String validate() {
         StringBuffer buffer = new StringBuffer();
         String email = _parametersHashMap.get(EMAIL);
-        validate(buffer, MailUtils.isValidEmailAddresses(email), 
+        validate(buffer, MailUtils.isValidEmailAddresses(email),
             "* Please enter a valid email address.");
 
         String vocabulary = _parametersHashMap.get(VOCABULARY);
-        validate(buffer, vocabulary != null && vocabulary.length() > 0, 
+        validate(buffer, vocabulary != null && vocabulary.length() > 0,
             "* Please select a vocabulary.");
 
         String term = _parametersHashMap.get(TERM);
@@ -192,7 +192,7 @@ public class SuggestionRequest extends FormRequest {
             value += " " + vocabulary + ": " + term;
         return value;
     }
-    
+
     private String getEmailMessage() {
         Prop.Version version = (Prop.Version)
             _request.getSession().getAttribute(VERSION);
@@ -223,7 +223,7 @@ public class SuggestionRequest extends FormRequest {
     protected String printSendEmailWarning() {
         if (_isSendEmail)
             return "";
-        
+
         String warning = super.printSendEmailWarning();
         StringBuffer buffer = new StringBuffer(warning);
         buffer.append("Subject: " + getSubject() + "\n");
@@ -231,7 +231,7 @@ public class SuggestionRequest extends FormRequest {
         String emailMsg = getEmailMessage();
         emailMsg = INDENT + emailMsg.replaceAll("\\\n", "\n" + INDENT);
         buffer.append(emailMsg);
-        
+
         _request.setAttribute(WARNINGS, buffer.toString());
         return buffer.toString();
     }
@@ -240,16 +240,16 @@ public class SuggestionRequest extends FormRequest {
         boolean useTestData = false;
         if (! useTestData)
             return;
-        
+
         HttpServletRequest request = HTTPUtils.getRequest();
         HTTPUtils.setDefaulSessiontAttribute(request, EMAIL, "John.Doe@abc.com");
         HTTPUtils.setDefaulSessiontAttribute(request, OTHER, "Phone: 987-654-3210");
         HTTPUtils.setDefaulSessiontAttribute(request, VOCABULARY, "NCI Thesaurus");
         HTTPUtils.setDefaultAttribute(request, TERM, "Ultra Murine Cell Types");
-        HTTPUtils.setDefaultAttribute(request, SYNONYMS, 
+        HTTPUtils.setDefaultAttribute(request, SYNONYMS,
             "Cell Types; Cell; Murine Cell Types");
         HTTPUtils.setDefaultAttribute(request, NEAREST_CODE, "C23442");
-        HTTPUtils.setDefaultAttribute(request, DEFINITION, 
+        HTTPUtils.setDefaultAttribute(request, DEFINITION,
             "The smallest units of living structure capable of independent" +
             " existence, composed of a membrane-enclosed mass of protoplasm" +
             " and containing a nucleus or nucleoid. Cells are highly variable" +
@@ -258,11 +258,11 @@ public class SuggestionRequest extends FormRequest {
             " energy, and reproduce themselves.");
         HTTPUtils.setDefaultAttribute(request, CADSR_SOURCE,
             AppProperties.getInstance().getCADSRSourceList()[1]);
-        HTTPUtils.setDefaultAttribute(request, CADSR_TYPE, 
+        HTTPUtils.setDefaultAttribute(request, CADSR_TYPE,
             AppProperties.getInstance().getCADSRTypeList()[1]);
-        HTTPUtils.setDefaultAttribute(request, PROJECT, 
+        HTTPUtils.setDefaultAttribute(request, PROJECT,
             "NIH NCI CBIIT");
-        HTTPUtils.setDefaultAttribute(request, REASON, 
+        HTTPUtils.setDefaultAttribute(request, REASON,
             "New improved version of the previous type.");
     }
 }
