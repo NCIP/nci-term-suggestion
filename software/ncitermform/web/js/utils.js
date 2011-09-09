@@ -29,57 +29,72 @@ function go(loc) {
   window.location.href = loc;
 }
 
-//----------------------------------------------------------------------------//
-// From: http://www.interwebby.com/
-// 
-// Close a window or tab in Firefox with JavaScript…
-// February 4th, 2006
-// 
-// Update... Unfortunately this code no longer works in Firefox 2.x ~ 
-// I guess they saw this and fixed it, (for them - broke it for us!).
-// 
-// Recently at work I was asked to make javascript:window.close(); work in
-// FireFox.  I searched hard and long across numerous forums and on each and
-// every one the answer was the same - it cannot be done unless the page was
-// opened by a script! Or at least it couldn't until I was required to make
-// it happen ;-)
-// 
-// I'm by no means a JavaScript expert - in fact I hardly know any at all -
-// but I couldn't believe that this was completely impossible so I came up
-// with the following:
-// 
-// The first step is to fool the browser into thinking that it was opened
-// with a script.
-// 
-//   * window.open('','_parent','');
-// 
-// This opens a new page, (non-existent), into a target frame/window, 
-// (_parent which of course is the window in which the script is executed,
-// so replacing itself), and defines parameters such as window size etc, 
-// (in this case none are defined as none are needed). Now that the browser 
-// thinks a script opened a page we can quickly close it in the standard way...
-// 
-//   * window.close();
-// 
-// and there you have it - I told you it was simple! In case you didn't follow
-// that, here is the complete solution in two easy steps:
-// 
-//   1. Copy/paste the following code to the head of your page:
-//      <script language="javascript" type="text/javascript">
-//        function closeWindow() {
-//          window.open('','_parent','');
-//          window.close();
-//        }
-//      </script>
-// 
-//   2. Set your link like this:
-//      <a href="javascript:closeWindow();">Close Window</a>
-// 
-// and there you have it - a problem that it seemed, (according to my trying to 
-// find a solution before coming up with this one anyway), to have baffled everyone
-// else.
+
 //----------------------------------------------------------------------------//
 function closeWindow() {
   window.open('','_parent','');
   window.close();
 }
+
+
+   function check_blank()
+   {
+      var email=document.getElementById("email").value;  
+      if (email == "")
+      {
+          alert("Please provide an email address.");
+          //if(navigator.appName == "Microsoft Internet Explorer")
+	  {
+              document.getElementById("email").focus();
+          } 
+          return false;
+      }   
+   
+      var term=document.getElementById("term").value;  
+      if (term == "")
+      {
+          alert("Please enter a term.");
+          //if(navigator.appName == "Microsoft Internet Explorer")
+	  {
+              document.getElementById("term").focus();
+          }        
+          return false;
+      } 
+      
+      var answer=document.getElementById("answer").value;  
+      if (answer == "")
+      {
+          alert("Please enter the characters appearing in the image.");
+          //if(navigator.appName == "Microsoft Internet Explorer")
+	  {
+              document.getElementById("answer").focus();
+          } 
+          return false;
+      }
+      return true;
+   }
+   
+
+   function clear_form()
+   {
+      if (confirm("Are you sure you want to clear form?")) {
+	    document.suggestion.reset();
+      }
+      return false;
+   }
+
+
+   function try_again()
+   {
+       if(navigator.appName == "Microsoft Internet Explorer")
+       {
+      	    parent.history.back(); 
+       }    
+       return false;
+   }
+   
+   function reloadPage()
+   {
+       window.location.reload();
+   }
+   
