@@ -1,12 +1,28 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page contentType="text/html;charset=windows-1252"%>
 <%@ page import="java.util.*" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.utils.*" %>
-<script type="text/javascript" src="<%=FormUtils.getJSPath(request)%>/utils.js"></script>
+
+<%@ page import="nl.captcha.Captcha" %>
+
+<html>
+<head>
+    <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>NCI Term Form</title>
+
+	<script type="text/javascript" src="<%=FormUtils.getJSPath(request)%>/utils.js"></script>
+	<link href="<%= request.getContextPath() %>/css/sc.css" type="text/css" rel="stylesheet" />    
+
+</head>
+<body>
+
+
 <%!
   // List of parameter name(s):
   private static final String DICTIONARY = "dictionary";
@@ -49,6 +65,27 @@
   SuggestionCDISCRequest.setupTestData();
 
   // Attribute(s):
+  
+  String email = HTTPUtils.getJspSessionAttributeString(request, EMAIL);
+  String name = HTTPUtils.getJspSessionAttributeString(request, NAME);
+  String phone_number = HTTPUtils.getJspSessionAttributeString(request, PHONE_NUMBER);
+  String organization = HTTPUtils.getJspSessionAttributeString(request, ORGANIZATION);
+  //String other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
+  String vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
+  String cdisc_request_type = HTTPUtils.getJspSessionAttributeString(request, CDISC_REQUEST_TYPE);
+  String cdisc_codes = HTTPUtils.getJspSessionAttributeString(request, CDISC_CODES);
+  String term = HTTPUtils.getJspSessionAttributeString(request, TERM);
+  String reason = HTTPUtils.getJspSessionAttributeString(request, REASON);
+  
+  String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
+  boolean isWarnings = warnings.length() > 0;
+
+  String message = (String) request.getSession().getAttribute("message");
+  String retry = (String) request.getSession().getAttribute("retry_cdisc");  
+  request.getSession().removeAttribute("retry_cdisc");
+  
+  
+  /*
   String email = HTTPUtils.getJspSessionAttributeString(request, EMAIL);
   String name = HTTPUtils.getJspSessionAttributeString(request, NAME);
   String phone_number = HTTPUtils.getJspSessionAttributeString(request, PHONE_NUMBER);
@@ -59,9 +96,28 @@
   String cdisc_codes = HTTPUtils.getJspAttributeString(request, CDISC_CODES);
   String term = HTTPUtils.getJspAttributeString(request, TERM);
   String reason = HTTPUtils.getJspAttributeString(request, REASON);
+  
   String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
   boolean isWarnings = warnings.length() > 0;
 
+  String message = (String) request.getSession().getAttribute("message");
+  String retry = (String) request.getSession().getAttribute("retry_cdisc");
+  */
+  
+  
+ Captcha captcha = (Captcha) request.getSession().getAttribute("captcha");
+ if (captcha == null) {
+  	captcha = new Captcha.Builder(200, 50)
+	        .addText()
+	        .addBackground()
+	        //.addNoise()
+		.gimp()
+		//.addBorder()
+                .build();
+	request.getSession().setAttribute(Captcha.NAME, captcha);
+ }
+ 
+  
   String pVocabulary = HTTPUtils.getJspParameter(request, VOCABULARY);
   if (pVocabulary == null || pVocabulary.length() <= 0) {
     // Note: This is how NCIt/TB and NCIm is passing in this value.  
@@ -75,35 +131,138 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
 %>
 <f:view>
-  <h:form>
+  <h:form id="suggestion">
     <table class="newConceptDT">
       <!-- =================================================================== -->
-      <%
+<%      
+          boolean form_completed = true;
           if (isWarnings) {
-          String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
-          for (i=0; i<wList.length; ++i) {
-            String warning = wList[i];
-            warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
-            if (i==0) {
-      %>
-              <tr>
-                <td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
-                <td><i class="warningMsgColor"><%=warning%></i></td>
-              </tr>
+                  form_completed = false;
+		  String[] wList = StringUtils.toStrings(warnings, "\n", false, false);
+		  for (i=0; i<wList.length; ++i) {
+		    String warning = wList[i];
+		    warning = StringUtils.toHtml(warning); // For leading spaces (indentation)
+			    if (i==0) {
+		      %>
+			      <tr>
+				<td <%=LABEL_ARGS%>><b class="warningMsgColor">Warning:</b></td>
+				<td><i class="warningMsgColor"><%=warning%></i></td>
+			      </tr>
+		      <%
+			  } else {
+		      %>
+			      <tr>
+				<td <%=LABEL_ARGS%>></td>
+				<td><i class="warningMsgColor"><%=warning%></i></td>
+			      </tr>
+		      <%
+			  }
+		    }
+	      %>
+		  <tr><td><br/></td></tr>
       <%
+          } 
+
+          if (message != null && message.compareTo("null") != 0) {
+              form_completed = false;
+              request.getSession().removeAttribute("message");
+      %>    
+              <tr>
+                <td></td>
+                <td><i class="warningMsgColor"><%=message%></i></td>
+              </tr> 
+
+              <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr> 
+              
+<%         
+             
+          }
+
+    if (!form_completed) {
+        request.getSession().setAttribute("retry_cdisc", "true");
+              
+%>
+          
+          <tr>
+                <td></td>
+                <td>
+
+    
+          <%
+          if (WebUtils.isUsingIE(request)) {
+          %>
+		  <h:commandButton
+		    id="back"
+		    value="back"
+		    action="#{userSessionBean.requestSuggestionCDISC}"
+		    image="/images/tryagain.gif"
+
+		    onclick="parent.history.back(); return false;"
+
+		    alt="back">
+		  </h:commandButton>
+          
+          <%
           } else {
-      %>
-              <tr>
-                <td <%=LABEL_ARGS%>></td>
-                <td><i class="warningMsgColor"><%=warning%></i></td>
-              </tr>
-      <%
+	      
+	      term = HTTPUtils.getJspSessionAttributeString(request, TERM);
+	      phone_number = HTTPUtils.getJspSessionAttributeString(request, PHONE_NUMBER);
+	      organization = HTTPUtils.getJspSessionAttributeString(request, ORGANIZATION);
+	      //other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
+	      vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
+
+	      cdisc_request_type = HTTPUtils.getJspSessionAttributeString(request, CDISC_REQUEST_TYPE);
+	      cdisc_codes = HTTPUtils.getJspSessionAttributeString(request, CDISC_CODES);
+
+	      reason = HTTPUtils.getJspSessionAttributeString(request, REASON);
+	      warnings = HTTPUtils.getJspSessionAttributeString(request, WARNINGS);              
+              
+              
+              request.getSession().setAttribute(VOCABULARY, vocabulary);
+              request.getSession().setAttribute(TERM, term);
+              request.getSession().setAttribute(PHONE_NUMBER, phone_number);
+              request.getSession().setAttribute(ORGANIZATION, organization);
+              request.getSession().setAttribute(CDISC_REQUEST_TYPE, cdisc_request_type);
+              request.getSession().setAttribute(CDISC_CODES, cdisc_codes);
+              
+              request.getSession().setAttribute(REASON, reason);
+              request.getSession().setAttribute(WARNINGS, warnings);
+              
+              request.getSession().setAttribute("cdisc", "true");
+              
+          %>
+
+ <!--
+               <h:outputLink
+                 value="#{facesContext.externalContext.requestContextPath}/pages/main/suggestion_cdisc.jsp">
+                 <h:graphicImage value="/images/tryagain.gif" alt="Try Again"
+                 style="border-width:0;" />
+              </h:outputLink>
+ -->
+              <h:outputLink
+                  value="/ncitermform?version=cdisc">
+                  <h:graphicImage value="/images/tryagain.gif" alt="Try Again"
+                  style="border-width:0;" />
+              </h:outputLink>
+ 
+              
+          <%
           }
-            }
-      %>
-          <tr><td><br/></td></tr>
-      <%
-          }
+          %>
+          
+          
+
+              </td>
+              </tr> 
+              
+     <%     
+          } else { 
+          
+request.getSession().removeAttribute("retry_cdisc");
+
       %>
 
       <!-- =================================================================== -->
@@ -111,7 +270,7 @@
       <tr>
         <td <%=LABEL_ARGS%>><%=EMAIL_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
-          <input name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
+          <input id="<%=EMAIL%>"  name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
@@ -173,6 +332,7 @@
                   String displayName = vocab.getDisplayName();
                   String vocabName = vocab.getName();
                   String url = vocab.getUrl();
+                  
                   String args = "";
                   if (! isSelected) {
                     if (! isWarnings && vocabName.equalsIgnoreCase(pVocabulary))
@@ -182,6 +342,7 @@
                     else if (i >= n-1 && pVocabulary.length() > 0) // Default it to the last one.
                       { args += "selected=\"true\""; isSelected = true; }
                   }
+                  
             %>
                   <option value="<%=url%>" <%=args%>><%=displayName%></option>
             <%
@@ -238,7 +399,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
-        <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
+        <td colspan="2"><textarea id="<%=TERM%>"  name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
       </tr>
 
       <!-- =================================================================== -->
@@ -251,34 +412,85 @@
 
       <!-- =================================================================== -->
       <tr><td><br/></td></tr>
+      
+      <tr>
+      <td></td>
+      <td>
+             <img src="<c:url value="simpleCaptcha.png" />"><br />
+        </td>
+      </tr>
+      <tr>
+      
+      <td> 
+          Enter the characters appearing in the above image: <i class="warningMsgColor">*</i> 
+       </td>
+       <td>   
+          <input id="answer" name="answer" />&nbsp;
+       </td>
+      </tr>      
+      
+      
+      
       <tr>
         <td class="newConceptNotes"><i class="warningMsgColor">* Required</i></td>
         <td colspan="2" align="right">
+        
           <h:commandButton
             id="clear"
             value="clear"
-            action="#{userSessionBean.clearSuggestion}"
+            action="#"
             image="/images/clear.gif"
+            
+            onclick="return clear_form()"
+            
             alt="clear">
-          </h:commandButton>
+          </h:commandButton>        
+          
+          
           <img src="<%=imagesPath%>/spacer.gif" width="1" />
+          
           <h:commandButton
             id="submit"
             value="submit"
-            action="#{userSessionBean.requestSuggestion}"
+            action="#{userSessionBean.requestSuggestionCDISC}"
             image="/images/submit.gif"
+            
+            onclick="return check_blank()"
+
             alt="submit">
           </h:commandButton>
+          
+          
+          
+          
+
         </td>
       </tr>
-    </table>
-    
+      
+      <%
+      }
+      %>      
+      
+      </table>      
+      
+<%  
+
+if (message == null || message.compareTo("null") == 0) {
+%>
       <p class="newConceptNotes">
      
 For multiple terms, please consider emailing an Excel, delimited text, or similar file to <a href="mailto:ncithesaurus@mail.nih.gov">ncithesaurus@mail.nih.gov</a>,
 which can also respond to any questions.
      
-      </p>    
-    
+      </p>
+<%
+}
+%>
+
+      <input type="hidden" id="cdisc" name="cdisc" value="true" />
+
   </h:form>
 </f:view>
+
+</body>
+</html>

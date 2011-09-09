@@ -7,13 +7,16 @@
   String basePath = FormUtils.getBasePath(request);
   String imagesPath = FormUtils.getImagesPath(request);
   String cssPath = FormUtils.getCSSPath(request);
-  String content_title = request.getParameter("content_title");
+  String content_title = HTTPUtils.cleanXSS((String) request.getParameter("content_title"));
   if (content_title == null || content_title.trim().length() <= 0)
       content_title = "Suggest New Term";
-  String content_quickLink = request.getParameter("content_quickLink");
+  String content_quickLink = HTTPUtils.cleanXSS((String) request.getParameter("content_quickLink"));
   if (content_quickLink == null)
       content_quickLink = "";
-  String content_page = request.getParameter("content_page");
+  String content_page = HTTPUtils.cleanXSS((String) request.getParameter("content_page"));
+  
+  
+  
   String buildDate = AppProperties.getInstance().getBuildDate();
   String application_version = AppProperties.getInstance().getAppVersion();
   String anthill_build_tag_built = AppProperties.getInstance().getAnthillBuildTagBuilt();  

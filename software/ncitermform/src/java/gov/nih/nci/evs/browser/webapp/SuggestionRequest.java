@@ -67,6 +67,8 @@ public class SuggestionRequest extends FormRequest {
     public static final String REASON = "reason";
     public static final String CADSR_SOURCE = "cadsrSource";
     public static final String CADSR_TYPE = "cadsrType";
+    public static final String ANSWER = "answer";
+
 
     // List of field label(s):
     public static final String EMAIL_LABEL = "Business Email";
@@ -82,13 +84,16 @@ public class SuggestionRequest extends FormRequest {
     public static final String CADSR_SOURCE_LABEL = "Source";
     public static final String CADSR_TYPE_LABEL = "caDSR Type";
 
+    public static final String ANSWER_LABEL = "Answer";
+
+
     // Parameter list(s):
     public static final String[] ALL_PARAMETERS = new String[] {
         EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE,
-        DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE };
+        DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE, ANSWER };
     public static final String[] MOST_PARAMETERS = new String[] {
         /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE,
-        DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE };
+        DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE, ANSWER };
     public static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, OTHER, VOCABULARY };
 
@@ -110,6 +115,9 @@ public class SuggestionRequest extends FormRequest {
         hashMap.put(REASON, REASON_LABEL);
         hashMap.put(CADSR_SOURCE, CADSR_SOURCE_LABEL);
         hashMap.put(CADSR_TYPE, CADSR_TYPE_LABEL);
+
+        hashMap.put(ANSWER, ANSWER_LABEL);
+
         return hashMap;
     }
 
@@ -118,8 +126,19 @@ public class SuggestionRequest extends FormRequest {
         clearSessionAttributes(SESSION_ATTRIBUTES);
     }
 
-    public String submitForm() {
+
+    public void updateFormAttributes() {
         clearAttributes(FormRequest.ALL_PARAMETERS);
+        updateAttributes();
+        updateSessionAttributes(SESSION_ATTRIBUTES);
+        _parametersHashMap.put(EMAIL,
+            MailUtils.cleanAddresses(_parametersHashMap.get(EMAIL)));
+	}
+
+
+
+    public String submitForm() {
+        //clearAttributes(FormRequest.ALL_PARAMETERS);
         updateAttributes();
         updateSessionAttributes(SESSION_ATTRIBUTES);
         _parametersHashMap.put(EMAIL,
