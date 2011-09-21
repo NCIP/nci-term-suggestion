@@ -85,20 +85,6 @@
   String project = HTTPUtils.getJspSessionAttributeString(request, PROJECT);
   String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
   
-  /*
-  String email = HTTPUtils.getJspSessionAttributeString(request, EMAIL);
-  String other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
-  String vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
-  String term = HTTPUtils.getJspAttributeString(request, TERM);
-  String synonyms = HTTPUtils.getJspAttributeString(request, SYNONYMS);
-  String nearest_code = HTTPUtils.getJspAttributeString(request, NEAREST_CODE);
-  String definition = HTTPUtils.getJspAttributeString(request, DEFINITION);
-  String cadsr_source = HTTPUtils.getJspAttributeString(request, CADSR_SOURCE);
-  String cadsr_type = HTTPUtils.getJspAttributeString(request, CADSR_TYPE);
-  String reason = HTTPUtils.getJspAttributeString(request, REASON);
-  String project = HTTPUtils.getJspAttributeString(request, PROJECT);
-  String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
-  */
   
   boolean isWarnings = warnings.length() > 0;
   
@@ -107,20 +93,6 @@
   String retry = (String) request.getSession().getAttribute("retry");
   if (retry != null && retry.compareTo("true") == 0) {
       request.getSession().removeAttribute("retry");
-      /*
-      term = HTTPUtils.getJspSessionAttributeString(request, TERM);
-      other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
-      vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
-      synonyms = HTTPUtils.getJspSessionAttributeString(request, SYNONYMS);
-      nearest_code = HTTPUtils.getJspSessionAttributeString(request, NEAREST_CODE);
-      definition = HTTPUtils.getJspSessionAttributeString(request, DEFINITION);
-      cadsr_source = HTTPUtils.getJspSessionAttributeString(request, CADSR_SOURCE);
-      cadsr_type = HTTPUtils.getJspSessionAttributeString(request, CADSR_TYPE);
-      reason = HTTPUtils.getJspSessionAttributeString(request, REASON);
-      project = HTTPUtils.getJspSessionAttributeString(request, PROJECT);
-      warnings = HTTPUtils.getJspSessionAttributeString(request, WARNINGS);
-      isWarnings = warnings.length() > 0;
-      */
   }
   
 
@@ -218,8 +190,30 @@
 
     
           <%
+          
+          String refresh = (String) request.getSession().getAttribute("refresh");
+          boolean refresh_bool = false;
+          if (refresh != null && refresh.compareTo("true") == 0) {
+              refresh_bool = true;
+          }
+          request.getSession().removeAttribute("refresh");
+
           if (WebUtils.isUsingIE(request)) {
-          %>
+                  if (refresh_bool) {
+          %>    
+		  <h:commandButton
+		    id="back"
+		    value="back"
+		    action="#{userSessionBean.requestSuggestion}"
+		    image="/images/refresh.gif"
+
+		    onclick="parent.history.back(); return false;"
+
+		    alt="Refresh image">
+		  </h:commandButton>  
+	<%	  
+		  } else {
+	%>	  
 
 		  <h:commandButton
 		    id="back"
@@ -229,10 +223,10 @@
 
 		    onclick="parent.history.back(); return false;"
 
-		    alt="back">
-		  </h:commandButton>
-          
-          <%
+		    alt="Try again">
+		  </h:commandButton> 
+	  <%	  
+		  }
           } else {
               request.getSession().setAttribute("retry", "true");
               request.getSession().setAttribute(OTHER, other);
@@ -248,22 +242,25 @@
               request.getSession().setAttribute(WARNINGS, warnings);
               
               request.getSession().setAttribute("cdisc", "false");
+              
+              if (refresh_bool) {
           %>
- <!--
-              <h:outputLink
-                value="#{facesContext.externalContext.requestContextPath}/pages/main/suggestion.jsp">
-                <h:graphicImage value="/images/tryagain.gif" alt="Try Again"
-                style="border-width:0;" />
-              </h:outputLink>
--->
-
                <h:outputLink
                   value="/ncitermform/">
-                  <h:graphicImage value="/images/tryagain.gif" alt="Try Again"
+                  <h:graphicImage value="/images/refresh.gif" alt="Refresh image"
                   style="border-width:0;" />
               </h:outputLink>            
           
           <%
+              } else {
+          %>    
+                <h:outputLink
+                  value="/ncitermform/">
+                  <h:graphicImage value="/images/tryagain.gif" alt="Try again"
+                  style="border-width:0;" />
+                </h:outputLink>                 
+          <%    
+              }
           }
           %>
           
@@ -346,7 +343,7 @@
           </select>
         </td>
         <td align="right">
-          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayVocabLinkInNewWindow('url')" />
+          <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayVocabLinkInNewWindow('url')" alt="browse" />
         </td>
       </tr>
       <tr>
@@ -431,8 +428,11 @@
 
       <tr>
       <td></td>
-      <td>
-             <img src="<c:url value="simpleCaptcha.png" />"><br />
+        <td>
+             <img src="<c:url value="simpleCaptcha.png" />">
+             
+             &nbsp;<h:commandLink value="Unable to read the image?" action="#{userSessionBean.refreshForm}" />
+             <br/>
         </td>
       </tr>
       <tr>
@@ -456,24 +456,25 @@
             
             onclick="return clear_form()"
             
-            
             alt="clear">
           </h:commandButton>
           
+  
+           <img src="<%=imagesPath%>/spacer.gif" width="1" />
+ 
+           <h:commandButton
+             id="submit"
+             value="submit"
+             action="#{userSessionBean.requestSuggestion}"
+             image="/images/submit.gif"
+             
+             onclick="return check_blank()"
+ 
+             alt="submit">
+           </h:commandButton>
           
-          <img src="<%=imagesPath%>/spacer.gif" width="1" />
           
           
-          <h:commandButton
-            id="submit"
-            value="submit"
-            action="#{userSessionBean.requestSuggestion}"
-            image="/images/submit.gif"
-            
-            onclick="return check_blank()"
-
-            alt="submit">
-          </h:commandButton>
       </td>
       </tr>
       

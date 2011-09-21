@@ -192,8 +192,32 @@
 
     
           <%
+          
+          String refresh = (String) request.getSession().getAttribute("refresh");
+          boolean refresh_bool = false;
+          if (refresh != null && refresh.compareTo("true") == 0) {
+              refresh_bool = true;
+          }
+          request.getSession().removeAttribute("refresh");         
+          
+          
           if (WebUtils.isUsingIE(request)) {
-          %>
+                  if (refresh_bool) {
+          %>    
+		  <h:commandButton
+		    id="back"
+		    value="back"
+		    action="#{userSessionBean.requestSuggestionCDISC}"
+		    image="/images/refresh.gif"
+
+		    onclick="parent.history.back(); return false;"
+
+		    alt="Refresh image">
+		  </h:commandButton>  
+	<%	  
+		  } else {
+	%>	  
+
 		  <h:commandButton
 		    id="back"
 		    value="back"
@@ -202,10 +226,11 @@
 
 		    onclick="parent.history.back(); return false;"
 
-		    alt="back">
-		  </h:commandButton>
-          
-          <%
+		    alt="Try again">
+		  </h:commandButton> 
+	  <%	  
+		  }          
+
           } else {
 	      
 	      term = HTTPUtils.getJspSessionAttributeString(request, TERM);
@@ -233,23 +258,26 @@
               
               request.getSession().setAttribute("cdisc", "true");
               
-          %>
 
- <!--
+             if (refresh_bool) {
+          %>
                <h:outputLink
-                 value="#{facesContext.externalContext.requestContextPath}/pages/main/suggestion_cdisc.jsp">
-                 <h:graphicImage value="/images/tryagain.gif" alt="Try Again"
-                 style="border-width:0;" />
-              </h:outputLink>
- -->
-              <h:outputLink
-                  value="/ncitermform?version=cdisc">
-                  <h:graphicImage value="/images/tryagain.gif" alt="Try Again"
+                  value="/ncitermform/">
+                  <h:graphicImage value="/images/refresh.gif" alt="Refresh image"
                   style="border-width:0;" />
-              </h:outputLink>
- 
-              
+              </h:outputLink>            
+          
           <%
+              } else {
+          %>    
+                <h:outputLink
+                  value="/ncitermform/">
+                  <h:graphicImage value="/images/tryagain.gif" alt="Try again"
+                  style="border-width:0;" />
+                </h:outputLink>                 
+          <%    
+              }
+
           }
           %>
           
@@ -416,7 +444,9 @@ request.getSession().removeAttribute("retry_cdisc");
       <tr>
       <td></td>
       <td>
-             <img src="<c:url value="simpleCaptcha.png" />"><br />
+             <img src="<c:url value="simpleCaptcha.png" />">
+             &nbsp;<h:commandLink value="Unable to read the image?" action="#{userSessionBean.refreshCDISCForm}" />
+             <br/>             
         </td>
       </tr>
       <tr>
@@ -446,10 +476,9 @@ request.getSession().removeAttribute("retry_cdisc");
             alt="clear">
           </h:commandButton>        
           
+           <img src="<%=imagesPath%>/spacer.gif" width="1" />
           
-          <img src="<%=imagesPath%>/spacer.gif" width="1" />
-          
-          <h:commandButton
+           <h:commandButton
             id="submit"
             value="submit"
             action="#{userSessionBean.requestSuggestionCDISC}"
@@ -458,11 +487,7 @@ request.getSession().removeAttribute("retry_cdisc");
             onclick="return check_blank()"
 
             alt="submit">
-          </h:commandButton>
-          
-          
-          
-          
+          </h:commandButton>         
 
         </td>
       </tr>
