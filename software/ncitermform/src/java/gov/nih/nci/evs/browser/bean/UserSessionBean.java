@@ -126,10 +126,6 @@ public class UserSessionBean {
 			request.getSession().setAttribute(SuggestionRequest.CADSR_TYPE, cadsr_type);
 			request.getSession().setAttribute(SuggestionRequest.REASON, reason);
 			request.getSession().setAttribute(SuggestionRequest.PROJECT, project);
-
-
-
-
 		}
 
 
@@ -275,4 +271,143 @@ public class UserSessionBean {
         ContactUsRequest request = new ContactUsRequest();
         return request.clearForm();
     }
+
+
+
+
+
+    public String refreshForm() {
+	    HttpServletRequest request = HTTPUtils.getRequest();
+	    String retry = (String) request.getSession().getAttribute("retry");
+
+        String email = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.EMAIL);
+        String term = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.TERM);
+        String other = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.OTHER);
+        String vocabulary = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.VOCABULARY);
+        String synonyms = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.SYNONYMS);
+        String nearest_code = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.NEAREST_CODE);
+        String definition = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.DEFINITION);
+        String cadsr_source = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.CADSR_SOURCE);
+        String cadsr_type = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.CADSR_TYPE);
+        String reason = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.REASON);
+        String project = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.PROJECT);
+      //String warnings = HTTPUtils.getJspSessionAttributeString(request, SuggestionRequest.WARNINGS);
+
+	    if (retry == null || retry.compareTo("true") != 0) {
+			email = (String) request.getParameter(SuggestionRequest.EMAIL);
+			term = (String) request.getParameter(SuggestionRequest.TERM);
+			other = (String) request.getParameter(SuggestionRequest.OTHER);
+			vocabulary = (String) request.getParameter(SuggestionRequest.VOCABULARY);
+			synonyms = (String) request.getParameter(SuggestionRequest.SYNONYMS);
+			nearest_code = (String) request.getParameter(SuggestionRequest.NEAREST_CODE);
+			definition = (String) request.getParameter(SuggestionRequest.DEFINITION);
+			cadsr_source = (String) request.getParameter(SuggestionRequest.CADSR_SOURCE);
+			cadsr_type = (String) request.getParameter(SuggestionRequest.CADSR_TYPE);
+			reason = (String) request.getParameter(SuggestionRequest.REASON);
+			project = (String) request.getParameter(SuggestionRequest.PROJECT);
+
+			request.getSession().setAttribute(SuggestionRequest.EMAIL, email);
+			request.getSession().setAttribute(SuggestionRequest.TERM, term);
+			request.getSession().setAttribute(SuggestionRequest.OTHER, other);
+			request.getSession().setAttribute(SuggestionRequest.VOCABULARY, vocabulary);
+			request.getSession().setAttribute(SuggestionRequest.SYNONYMS, synonyms);
+			request.getSession().setAttribute(SuggestionRequest.NEAREST_CODE, nearest_code);
+			request.getSession().setAttribute(SuggestionRequest.DEFINITION, definition);
+			request.getSession().setAttribute(SuggestionRequest.CADSR_SOURCE, cadsr_source);
+			request.getSession().setAttribute(SuggestionRequest.CADSR_TYPE, cadsr_type);
+			request.getSession().setAttribute(SuggestionRequest.REASON, reason);
+			request.getSession().setAttribute(SuggestionRequest.PROJECT, project);
+		}
+
+
+		Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
+		if (captcha == null) {
+			captcha = new Captcha.Builder(200, 50)
+					.addText()
+					.addBackground()
+					//.addNoise()
+				    .gimp()
+				//.addBorder()
+					.build();
+			request.getSession().setAttribute(Captcha.NAME, captcha);
+		}
+
+		try {
+			request.setCharacterEncoding("UTF-8"); // Do this so we can capture non-Latin chars
+		} catch (Exception ex) {
+
+		}
+
+		request.getSession().removeAttribute("reload");
+		String msg = "Please press Refresh to generate a new image.";
+		request.getSession().setAttribute("message", msg);
+		request.getSession().setAttribute("reload", "true");
+		request.getSession().setAttribute("refresh", "true");
+		return "refresh";
+    }
+
+    public String refreshCDISCForm() {
+	    HttpServletRequest request = HTTPUtils.getRequest();
+	    String retry_cdisc = (String) request.getSession().getAttribute("retry_cdisc");
+
+	    String email = HTTPUtils.getJspSessionAttributeString(request, SuggestionCDISCRequest.EMAIL);
+	    String name = HTTPUtils.getJspSessionAttributeString(request, SuggestionCDISCRequest.NAME);
+	    String phone_number = HTTPUtils.getJspSessionAttributeString(request, SuggestionCDISCRequest.PHONE_NUMBER);
+	    String organization = HTTPUtils.getJspSessionAttributeString(request, SuggestionCDISCRequest.ORGANIZATION);
+	    String vocabulary = HTTPUtils.getJspSessionAttributeString(request, SuggestionCDISCRequest.VOCABULARY);
+	    String cdisc_request_type = HTTPUtils.getJspAttributeString(request, SuggestionCDISCRequest.CDISC_REQUEST_TYPE);
+	    String cdisc_codes = HTTPUtils.getJspAttributeString(request, SuggestionCDISCRequest.CDISC_CODES);
+	    String term = HTTPUtils.getJspAttributeString(request, SuggestionCDISCRequest.TERM);
+	    String reason = HTTPUtils.getJspAttributeString(request, SuggestionCDISCRequest.REASON);
+	    //String warnings = HTTPUtils.getJspAttributeString(request, SuggestionCDISCRequest.WARNINGS);
+
+	    if (retry_cdisc == null || retry_cdisc.compareTo("true") != 0) {
+
+			email = (String) request.getParameter(SuggestionCDISCRequest.EMAIL);
+			name = (String) request.getParameter(SuggestionCDISCRequest.NAME);
+			phone_number = (String) request.getParameter(SuggestionCDISCRequest.PHONE_NUMBER);
+			organization = (String) request.getParameter(SuggestionCDISCRequest.ORGANIZATION);
+			vocabulary = (String) request.getParameter(SuggestionCDISCRequest.VOCABULARY);
+			cdisc_request_type = (String) request.getParameter(SuggestionCDISCRequest.CDISC_REQUEST_TYPE);
+			cdisc_codes = (String) request.getParameter(SuggestionCDISCRequest.CDISC_CODES);
+			term = (String) request.getParameter(SuggestionCDISCRequest.TERM);
+			reason = (String) request.getParameter(SuggestionCDISCRequest.REASON);
+
+			request.getSession().setAttribute(SuggestionCDISCRequest.EMAIL, email);
+			request.getSession().setAttribute(SuggestionCDISCRequest.NAME, name);
+			request.getSession().setAttribute(SuggestionCDISCRequest.PHONE_NUMBER, phone_number);
+			request.getSession().setAttribute(SuggestionCDISCRequest.ORGANIZATION, organization);
+			request.getSession().setAttribute(SuggestionCDISCRequest.VOCABULARY, vocabulary);
+			request.getSession().setAttribute(SuggestionCDISCRequest.CDISC_REQUEST_TYPE, cdisc_request_type);
+			request.getSession().setAttribute(SuggestionCDISCRequest.CDISC_CODES, cdisc_codes);
+			request.getSession().setAttribute(SuggestionCDISCRequest.TERM, term);
+			request.getSession().setAttribute(SuggestionCDISCRequest.REASON, reason);
+		}
+
+		Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
+		if (captcha == null) {
+			captcha = new Captcha.Builder(200, 50)
+					.addText()
+					.addBackground()
+					//.addNoise()
+				    .gimp()
+				//.addBorder()
+					.build();
+			request.getSession().setAttribute(Captcha.NAME, captcha);
+		}
+
+		try {
+			request.setCharacterEncoding("UTF-8"); // Do this so we can capture non-Latin chars
+		} catch (Exception ex) {
+
+		}
+
+		request.getSession().removeAttribute("reload");
+		String msg = "Please press Refresh to generate a new image.";
+		request.getSession().setAttribute("message", msg);
+		request.getSession().setAttribute("reload", "true");
+		request.getSession().setAttribute("refresh", "true");
+		return "refresh_cdisc";
+    }
+
 }

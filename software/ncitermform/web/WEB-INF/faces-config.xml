@@ -15,6 +15,7 @@
 
     <!-- Navigation: General =============================================== -->
 
+   
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
@@ -56,6 +57,24 @@
              <to-view-id>/pages/main/suggestion_cdisc.jsp</to-view-id>
          </navigation-case>
     </navigation-rule>
+
+
+     <navigation-rule>
+         <from-view-id>*</from-view-id>
+         <navigation-case>
+             <from-outcome>refresh</from-outcome>
+             <to-view-id>/pages/main/suggestion.jsp</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+
+     <navigation-rule>
+         <from-view-id>*</from-view-id>
+         <navigation-case>
+             <from-outcome>refresh_cdisc</from-outcome>
+             <to-view-id>/pages/main/suggestion_cdisc.jsp</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+    
     
 
     <!-- Managed Beans ===================================================== -->
