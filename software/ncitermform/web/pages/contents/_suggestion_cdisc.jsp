@@ -444,8 +444,8 @@ request.getSession().removeAttribute("retry_cdisc");
       <tr>
       <td></td>
       <td>
-             <img src="<c:url value="simpleCaptcha.png" />">
-             &nbsp;<h:commandLink value="Unable to read the image?" action="#{userSessionBean.refreshCDISCForm}" />
+             <img src="<c:url value="simpleCaptcha.png" />" alt="simpleCaptcha.png">
+             &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.refreshCDISCForm}" />
              <br/>             
         </td>
       </tr>
