@@ -79,10 +79,43 @@ function closeWindow() {
    {
       if (confirm("Are you sure you want to clear form?")) {
 	    document.suggestion.reset();
+	    
+	    //document.getElementById("email") = "";
+	    //document.getElementById("other") = "";
+	    //document.getElementById("term") = "";
+	    //document.getElementById("synonyms") = "";
+	    //document.getElementById("code") = "";
+	    //document.getElementById("definition") = "";
+	    //document.getElementById("project") = "";
+	    //document.getElementById("reason") = "";
+	    //document.getElementById("cadsrSource") = "";
+	    //document.getElementById("cadsrType") = "";
+	    //document.getElementById("answer") = "";
+
       }
       return false;
    }
 
+
+   function clear_cdisc_form()
+   {
+      if (confirm("Are you sure you want to clear form?")) {
+	    document.suggestion.reset();
+    
+	    //document.getElementById("email") = "";
+	    //document.getElementById("name") = "";
+	    //document.getElementById("phone") = "";
+	    //document.getElementById("organization") = "";
+	    //document.getElementById("other") = "";
+	    //document.getElementById("term") = "";
+	    //document.getElementById("reason") = "";
+	    //document.getElementById("answer") = "";
+
+      }
+      return false;
+   }
+   
+   
 
    function try_again()
    {
