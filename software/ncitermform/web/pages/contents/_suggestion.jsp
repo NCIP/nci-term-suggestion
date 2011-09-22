@@ -84,10 +84,8 @@
   String reason = HTTPUtils.getJspSessionAttributeString(request, REASON);
   String project = HTTPUtils.getJspSessionAttributeString(request, PROJECT);
   String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
-  
-  
+ 
   boolean isWarnings = warnings.length() > 0;
-  
   String message = (String) request.getSession().getAttribute("message");
   
   String retry = (String) request.getSession().getAttribute("retry");
@@ -429,9 +427,9 @@
       <tr>
       <td></td>
         <td>
-             <img src="<c:url value="simpleCaptcha.png" />">
+             <img src="<c:url value="simpleCaptcha.png"  />" alt="simpleCaptcha.png">
              
-             &nbsp;<h:commandLink value="Unable to read the image?" action="#{userSessionBean.refreshForm}" />
+             &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.refreshForm}" />
              <br/>
         </td>
       </tr>

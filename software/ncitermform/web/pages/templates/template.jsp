@@ -15,8 +15,6 @@
       content_quickLink = "";
   String content_page = HTTPUtils.cleanXSS((String) request.getParameter("content_page"));
   
-  
-  
   String buildDate = AppProperties.getInstance().getBuildDate();
   String application_version = AppProperties.getInstance().getAppVersion();
   String anthill_build_tag_built = AppProperties.getInstance().getAnthillBuildTagBuilt();  
@@ -39,6 +37,12 @@
     <link rel="shortcut icon" href="<%=basePath%>/favicon.ico" type="image/x-icon" />
   </head>
   <body>
+  
+    <f:view>
+    <!-- Begin Skip Top Navigation -->
+      <a href="#evs-content" class="hideLink" accesskey="1" title="Skip repetitive navigation links">skip navigation links</A>
+    <!-- End Skip Top Navigation -->      
+  
     <jsp:include page="/pages/templates/header.jsp" />
     <div class="center-page">
       <jsp:include page="/pages/templates/sub_header.jsp" />
@@ -54,7 +58,11 @@
             <jsp:include page="<%=content_quickLink%>" />
           <% } %>
         </div>
+        
+        
         <div class="pagecontent">
+          <a name="evs-content" id="evs-content"></a>
+          
           <jsp:include page="<%=content_page%>" />
           <jsp:include page="/pages/templates/footer.jsp" />
         </div>
