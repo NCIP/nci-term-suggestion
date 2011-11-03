@@ -265,7 +265,7 @@
              if (refresh_bool) {
           %>
                <h:outputLink
-                  value="/ncitermform/">
+                  value="/ncitermform/?version=cdisc">
                   <h:graphicImage value="/images/refresh.gif" alt="Refresh image"
                   style="border-width:0;" />
               </h:outputLink>            
@@ -274,7 +274,7 @@
               } else {
           %>    
                 <h:outputLink
-                  value="/ncitermform/">
+                  value="/ncitermform/?version=cdisc">
                   <h:graphicImage value="/images/tryagain.gif" alt="Try again"
                   style="border-width:0;" />
                 </h:outputLink>                 
