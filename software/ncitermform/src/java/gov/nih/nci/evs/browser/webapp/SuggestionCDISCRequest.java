@@ -124,7 +124,7 @@ public class SuggestionCDISCRequest extends FormRequest {
         clearSessionAttributes(SESSION_ATTRIBUTES);
     }
 
-    public String submitForm() {
+    public String submitForm() throws Exception {
         clearAttributes(FormRequest.ALL_PARAMETERS);
         updateAttributes();
 
@@ -145,15 +145,8 @@ public class SuggestionCDISCRequest extends FormRequest {
         String subject = getSubject();
         String emailMsg = getEmailMessage();
 
-        try {
-            if (_isSendEmail)
-                MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
-        } catch (Exception e) {
-            _request.setAttribute(WARNINGS,
-                    e.getLocalizedMessage());
-            e.printStackTrace();
-            return WARNING_STATE;
-        }
+        if (_isSendEmail)
+            MailUtils.postMail(mailServer, from, recipients, subject, emailMsg);
 
         clearAttributes(MOST_PARAMETERS);
         String msg = "FYI: The following request has been sent:\n";

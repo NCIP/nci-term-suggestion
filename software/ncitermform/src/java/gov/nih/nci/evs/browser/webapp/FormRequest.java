@@ -89,7 +89,7 @@ public class FormRequest extends BaseRequest implements IFormRequest {
         return WARNING_STATE;
     }
 
-    public String submitForm() {
+    public String submitForm() throws Exception {
         _request.setAttribute(MESSAGE, "NewTermRequest.submitForm");
         return MESSAGE_STATE;
     }

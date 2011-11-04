@@ -84,7 +84,6 @@ public class UserSessionBean {
         return new SuggestionRequest();
     }
 
-
     public String requestSuggestion() {
 	    HttpServletRequest request = HTTPUtils.getRequest();
 	    String retry = (String) request.getSession().getAttribute("retry");
@@ -128,49 +127,42 @@ public class UserSessionBean {
 			request.getSession().setAttribute(SuggestionRequest.PROJECT, project);
 		}
 
-
-		Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
-		if (captcha == null) {
-			captcha = new Captcha.Builder(200, 50)
+        try {
+    		Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
+    		if (captcha == null) {
+    			captcha = new Captcha.Builder(200, 50)
 					.addText()
 					.addBackground()
 					//.addNoise()
 				    .gimp()
-				//.addBorder()
-					.build();
-			request.getSession().setAttribute(Captcha.NAME, captcha);
-		}
-
-		try {
-			request.setCharacterEncoding("UTF-8"); // Do this so we can capture non-Latin chars
-		} catch (Exception ex) {
-
-		}
-
-		String answer = request.getParameter("answer");
-		if (answer == null || answer.length() == 0) {
-			String msg = "Please enter the characters appearing in the image.";
-			request.getSession().setAttribute("message", msg);
-			return "incomplete";
-		}
-
-		request.getSession().removeAttribute("reload");
-
-		if (captcha.isCorrect(answer)) {
-			request.getSession().removeAttribute(Captcha.NAME);
+    				//.addBorder()
+   					.build();
+    			request.getSession().setAttribute(Captcha.NAME, captcha);
+    		}
+    
+    		request.setCharacterEncoding("UTF-8"); // Do this so we can capture non-Latin chars
+    		String answer = request.getParameter("answer");
+    		if (answer == null || answer.length() == 0) {
+    			String msg = "Please enter the characters appearing in the image.";
+    			request.getSession().setAttribute("message", msg);
+    			return "incomplete";
+    		}
+    
+    		request.getSession().removeAttribute("reload");
+    		if (! captcha.isCorrect(answer))
+    		    throw new Exception("WARNING: The string you entered does not match with what is shown in the image.");
+    		
+    		request.getSession().removeAttribute(Captcha.NAME);
             return new SuggestionRequest().submitForm();
-		} else {
-			String msg = "WARNING: The string you entered does not match with what is shown in the image.";
-			request.getSession().setAttribute("message", msg);
+            //IFormRequest req = getFormRequest();
+            //return req.submitForm();
+        } catch (Exception e) {
+            String msg = e.getMessage();
+            request.getSession().setAttribute("message", msg);
             request.getSession().setAttribute("reload", "true");
-			return "incomplete";
-		}
-
-        //IFormRequest req = getFormRequest();
-        //return req.submitForm();
+            return "incomplete";
+        }
     }
-
-
 
     public String requestSuggestionCDISC() {
 	    HttpServletRequest request = HTTPUtils.getRequest();
@@ -188,7 +180,6 @@ public class UserSessionBean {
 	    //String warnings = HTTPUtils.getJspAttributeString(request, SuggestionCDISCRequest.WARNINGS);
 
 	    if (retry_cdisc == null || retry_cdisc.compareTo("true") != 0) {
-
 			email = (String) request.getParameter(SuggestionCDISCRequest.EMAIL);
 			name = (String) request.getParameter(SuggestionCDISCRequest.NAME);
 			phone_number = (String) request.getParameter(SuggestionCDISCRequest.PHONE_NUMBER);
@@ -211,51 +202,45 @@ public class UserSessionBean {
 		}
 
 		request.getSession().setAttribute("version", Prop.Version.CDISC);
-
-	    IFormRequest iFormRequest = getFormRequest();
-		Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
-		if (captcha == null) {
-			captcha = new Captcha.Builder(200, 50)
-					.addText()
-					.addBackground()
-					//.addNoise()
-				    .gimp()
-				//.addBorder()
-					.build();
-			request.getSession().setAttribute(Captcha.NAME, captcha);
-		}
-
 		try {
-			request.setCharacterEncoding("UTF-8"); // Do this so we can capture non-Latin chars
-		} catch (Exception ex) {
+    	    IFormRequest iFormRequest = getFormRequest();
+    		Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
+    		if (captcha == null) {
+    			captcha = new Captcha.Builder(200, 50)
+    				.addText()
+    				.addBackground()
+    				//.addNoise()
+    				.gimp()
+    				//.addBorder()
+    				.build();
+    			request.getSession().setAttribute(Captcha.NAME, captcha);
+    		}
+    
+    		request.setCharacterEncoding("UTF-8"); // Do this so we can capture non-Latin chars
+    		String answer = request.getParameter("answer");
+    		if (answer == null || answer.length() == 0) {
+    			String msg = "Please enter the characters appearing in the image.";
+    			request.getSession().setAttribute("message", msg);
+    			return "incomplete_cdisc";
+    		}
+    
+    		request.getSession().removeAttribute("reload");
+    		if (! captcha.isCorrect(answer))
+    		    throw new Exception("WARNING: The string you entered does not match with what is shown in the image.");
 
-		}
+    		request.getSession().removeAttribute(Captcha.NAME);
+    		//return iFormRequest.submitForm();
+    		return new SuggestionCDISCRequest().submitForm();
 
-		String answer = request.getParameter("answer");
-		if (answer == null || answer.length() == 0) {
-			String msg = "Please enter the characters appearing in the image.";
-			request.getSession().setAttribute("message", msg);
-			return "incomplete_cdisc";
-		}
-
-		request.getSession().removeAttribute("reload");
-
-		if (captcha.isCorrect(answer)) {
-			request.getSession().removeAttribute(Captcha.NAME);
-			//return iFormRequest.submitForm();
-			return new SuggestionCDISCRequest().submitForm();
-
-		} else {
-			String msg = "WARNING: The string you entered does not match with what is shown in the image.";
-			request.getSession().setAttribute("message", msg);
+    		//IFormRequest req = getFormRequest();
+            //return req.submitForm();
+		} catch (Exception e) {
+            String msg = e.getMessage();
+            request.getSession().setAttribute("message", msg);
             request.getSession().setAttribute("reload", "true");
-			return "incomplete_cdisc";
+            return "incomplete_cdisc";
 		}
-        //IFormRequest req = getFormRequest();
-        //return req.submitForm();
     }
-
-
 
     public String clearSuggestion() {
         IFormRequest request = getFormRequest();
@@ -271,10 +256,6 @@ public class UserSessionBean {
         ContactUsRequest request = new ContactUsRequest();
         return request.clearForm();
     }
-
-
-
-
 
     public String refreshForm() {
 	    HttpServletRequest request = HTTPUtils.getRequest();
@@ -319,16 +300,15 @@ public class UserSessionBean {
 			request.getSession().setAttribute(SuggestionRequest.PROJECT, project);
 		}
 
-
 		Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
 		if (captcha == null) {
 			captcha = new Captcha.Builder(200, 50)
-					.addText()
-					.addBackground()
-					//.addNoise()
-				    .gimp()
+				.addText()
+				.addBackground()
+				//.addNoise()
+				.gimp()
 				//.addBorder()
-					.build();
+				.build();
 			request.getSession().setAttribute(Captcha.NAME, captcha);
 		}
 
@@ -387,12 +367,12 @@ public class UserSessionBean {
 		Captcha captcha = (Captcha) request.getSession().getAttribute(Captcha.NAME);
 		if (captcha == null) {
 			captcha = new Captcha.Builder(200, 50)
-					.addText()
-					.addBackground()
-					//.addNoise()
-				    .gimp()
+				.addText()
+				.addBackground()
+				//.addNoise()
+				.gimp()
 				//.addBorder()
-					.build();
+				.build();
 			request.getSession().setAttribute(Captcha.NAME, captcha);
 		}
 
