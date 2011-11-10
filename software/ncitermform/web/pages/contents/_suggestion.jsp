@@ -280,11 +280,7 @@
       <tr>
         <td <%=LABEL_ARGS%>><%=EMAIL_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
-          <!--
-          <input name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
-          -->
-          <input id="email" name="email" value="<%=email%>" alt="<%=EMAIL%>"
-          
+          <input id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
@@ -346,10 +342,7 @@
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
-        <!--
         <td colspan="2"><textarea id="<%=TERM%>" name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
-        -->
-        <td colspan="2"><textarea name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
         
       </tr>
       <tr>

@@ -44,7 +44,7 @@ function closeWindow() {
       {
           alert("Please provide an email address.");
           //if(navigator.appName == "Microsoft Internet Explorer")
-	  {
+          {
               document.getElementById("email").focus();
           } 
           return false;
@@ -55,22 +55,23 @@ function closeWindow() {
       {
           alert("Please enter a term.");
           //if(navigator.appName == "Microsoft Internet Explorer")
-	  {
+          {
               document.getElementById("term").focus();
           }        
           return false;
       } 
       
-      var answer=document.getElementById("answer").value;  
+      var answer=document.getElementById("answer").value;
       if (answer == "")
       {
           alert("Please enter the characters appearing in the image.");
           //if(navigator.appName == "Microsoft Internet Explorer")
-	  {
+          {
               document.getElementById("answer").focus();
           } 
           return false;
       }
+
       return true;
    }
    
