@@ -133,10 +133,8 @@ public class SuggestionCDISCRequest extends FormRequest {
             MailUtils.cleanAddresses(_parametersHashMap.get(EMAIL)));
 
         String warnings = validate();
-        if (warnings.length() > 0) {
-            _request.setAttribute(WARNINGS, warnings);
-            return WARNING_STATE;
-        }
+        if (warnings.length() > 0)
+            throw new Exception(warnings);
 
         AppProperties appProperties = AppProperties.getInstance();
         String mailServer = appProperties.getMailSmtpServer();
