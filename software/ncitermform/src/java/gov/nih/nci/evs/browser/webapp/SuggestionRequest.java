@@ -181,7 +181,8 @@ public class SuggestionRequest extends FormRequest {
     private String validate() {
         StringBuffer buffer = new StringBuffer();
         String email = _parametersHashMap.get(EMAIL);
-        validate(buffer, MailUtils.isValidEmailAddresses(email),
+        validate(buffer, email != null && email.trim().length() > 0 &&
+            MailUtils.isValidEmailAddresses(email),
             "* Please enter a valid email address.");
 
         String vocabulary = _parametersHashMap.get(VOCABULARY);
@@ -189,7 +190,7 @@ public class SuggestionRequest extends FormRequest {
             "* Please select a vocabulary.");
 
         String term = _parametersHashMap.get(TERM);
-        validate(buffer, term != null && term.length() > 0,
+        validate(buffer, term != null && term.trim().length() > 0,
             "* Please enter a term.");
         return buffer.toString();
     }

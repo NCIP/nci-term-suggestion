@@ -122,7 +122,7 @@ public class FormRequest extends BaseRequest implements IFormRequest {
         if (validValue)
             return;
         if (buffer.length() > 0)
-            buffer.append("\n");
+            buffer.append("<br/>");
         buffer.append(message);
     }
 
