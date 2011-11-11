@@ -68,6 +68,8 @@
 <%
     // Member variable(s):
   String imagesPath = FormUtils.getImagesPath(request);
+  Prop.Version versionSession = (Prop.Version) 
+    request.getSession().getAttribute(FormRequest.VERSION);
   Prop.Version version = BaseRequest.getVersion(request);
   SuggestionRequest.setupTestData();
 
@@ -241,23 +243,34 @@
               
               request.getSession().setAttribute("cdisc", "false");
               
-              if (refresh_bool) {
-          %>
-               <h:outputLink
-                  value="/ncitermform/">
-                  <h:graphicImage value="/images/refresh.gif" alt="Refresh image"
-                  style="border-width:0;" />
-              </h:outputLink>            
-          
-          <%
+              if (versionSession == Prop.Version.CADSR) {
+                if (refresh_bool) { %>
+                  <h:outputLink
+                    value="/ncitermform/?version=cadsr">
+                    <h:graphicImage value="/images/refresh.gif" alt="Refresh image"
+                    style="border-width:0;" />
+                  </h:outputLink>            
+                <% } else { %>    
+                  <h:outputLink
+                    value="/ncitermform/?version=cadsr">
+                    <h:graphicImage value="/images/tryagain.gif" alt="Try again"
+                    style="border-width:0;" />
+                  </h:outputLink>                 
+                <% }
               } else {
-          %>    
-                <h:outputLink
-                  value="/ncitermform/">
-                  <h:graphicImage value="/images/tryagain.gif" alt="Try again"
-                  style="border-width:0;" />
-                </h:outputLink>                 
-          <%    
+                  if (refresh_bool) { %>
+                  <h:outputLink
+                    value="/ncitermform/">
+                    <h:graphicImage value="/images/refresh.gif" alt="Refresh image"
+                    style="border-width:0;" />
+                  </h:outputLink>            
+                <% } else { %>    
+                  <h:outputLink
+                    value="/ncitermform/">
+                    <h:graphicImage value="/images/tryagain.gif" alt="Try again"
+                    style="border-width:0;" />
+                  </h:outputLink>                 
+                <% }
               }
           }
           %>
