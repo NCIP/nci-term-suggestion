@@ -132,3 +132,11 @@ function closeWindow() {
        window.location.reload();
    }
    
+function handleSubmit(event, submitId) {
+  if (event.keyCode == 13 &&
+      event.target.nodeName == 'INPUT' &&
+      event.target.getAttribute('type') == 'text') { 
+	document.getElementById(submitId).click();
+	return false;
+  }
+}   
