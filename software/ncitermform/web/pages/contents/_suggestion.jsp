@@ -9,8 +9,6 @@
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.utils.*" %>
 
-<%@ page import="javax.faces.context.FacesContext" %>
-
 <%@ page import="nl.captcha.Captcha" %>
 
 
@@ -125,8 +123,7 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
 %>
 <f:view>
-
-  <h:form id="suggestion">
+  <h:form id="suggestion" onkeypress="return handleSubmit(event, 'suggestion:submit')">
     <table class="newConceptDT">
     
       <!-- =================================================================== -->
@@ -293,7 +290,7 @@
       <tr>
         <td <%=LABEL_ARGS%>><%=EMAIL_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
-          <input id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
+          <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
@@ -449,7 +446,7 @@
           Enter the characters appearing in the above image: <i class="warningMsgColor">*</i> 
        </td>
        <td>   
-          <input id="answer"  name="answer" value="" />&nbsp;
+          <input type="text" id="answer"  name="answer" value="" />&nbsp;
        </td>
       </tr>
       <tr>

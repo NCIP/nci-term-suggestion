@@ -131,7 +131,7 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
 %>
 <f:view>
-  <h:form id="suggestion">
+  <h:form id="suggestion" onkeypress="return handleSubmit(event, 'suggestion:submit')">
     <table class="newConceptDT">
       <!-- =================================================================== -->
 <%      
@@ -301,28 +301,28 @@ request.getSession().removeAttribute("retry_cdisc");
       <tr>
         <td <%=LABEL_ARGS%>><%=EMAIL_LABEL%>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
-          <input id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
+          <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=NAME_LABEL%>:</td>
         <td colspan="2">
-          <input name="<%=NAME%>" value="<%=name%>" alt="<%=NAME%>"
+          <input type="text" name="<%=NAME%>" value="<%=name%>" alt="<%=NAME%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=PHONE_NUMBER_LABEL%>:</td>
         <td colspan="2">
-          <input name="<%=PHONE_NUMBER%>" value="<%=phone_number%>" alt="<%=PHONE_NUMBER%>"
+          <input type="text" name="<%=PHONE_NUMBER%>" value="<%=phone_number%>" alt="<%=PHONE_NUMBER%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><%=ORGANIZATION_LABEL%>:</td>
         <td colspan="2">
-          <input name="<%=ORGANIZATION%>" value="<%=organization%>" alt="<%=ORGANIZATION%>"
+          <input type="text" name="<%=ORGANIZATION%>" value="<%=organization%>" alt="<%=ORGANIZATION%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
@@ -458,7 +458,7 @@ request.getSession().removeAttribute("retry_cdisc");
           Enter the characters appearing in the above image: <i class="warningMsgColor">*</i> 
        </td>
        <td>   
-          <input id="answer" name="answer" />&nbsp;
+          <input type="text" id="answer" name="answer" />&nbsp;
        </td>
       </tr>      
       
