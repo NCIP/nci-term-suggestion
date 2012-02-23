@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <ConfigurableItems>
+
+    <ConfigurableItem>
+      <key>NCITERMFORM_BUILD_INFO</key>
+      <value>@ncitermform.build.info@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>DEBUG_ON</key>
+      <value>@debug.on@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>SEND_EMAIL</key>
+      <value>@send.email@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>MAIL_SMTP_SERVER</key>
+      <value>@mail.smtp.server@</value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>NCICB_CONTACT_URL</key>
+      <value>@ncicb.contact.url@</value>
+    </ConfigurableItem>
+
+    <!-- Vocabulary List (Begin) =========================================== -->
+    <ConfigurableItem>
+      <key>VOCABULARY_0</key>
+      <value><![CDATA[@vocabulary.0@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_1</key>
+      <value><![CDATA[@vocabulary.1@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_2</key>
+      <value><![CDATA[@vocabulary.2@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_3</key>
+      <value><![CDATA[@vocabulary.3@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_4</key>
+      <value><![CDATA[@vocabulary.4@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_5</key>
+      <value><![CDATA[@vocabulary.5@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_6</key>
+      <value><![CDATA[@vocabulary.6@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_7</key>
+      <value><![CDATA[@vocabulary.7@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_8</key>
+      <value><![CDATA[@vocabulary.8@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_9</key>
+      <value><![CDATA[@vocabulary.9@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_10</key>
+      <value><![CDATA[@vocabulary.10@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_11</key>
+      <value><![CDATA[@vocabulary.11@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_12</key>
+      <value><![CDATA[@vocabulary.12@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_13</key>
+      <value><![CDATA[@vocabulary.13@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_14</key>
+      <value><![CDATA[@vocabulary.14@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_15</key>
+      <value><![CDATA[@vocabulary.15@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_16</key>
+      <value><![CDATA[@vocabulary.16@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_17</key>
+      <value><![CDATA[@vocabulary.17@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_18</key>
+      <value><![CDATA[@vocabulary.18@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_19</key>
+      <value><![CDATA[@vocabulary.19@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>VOCABULARY_20</key>
+      <value><![CDATA[@vocabulary.20@]]></value>
+    </ConfigurableItem>
+    <!-- Vocabulary List (End) ============================================= -->
+
+    <ConfigurableItem>
+      <key>VOCABULARY_OTHER_EMAIL</key>
+      <value><![CDATA[@vocabulary.other.email@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CADSR_EMAIL</key>
+      <value>@cadsr.email@</value>
+    </ConfigurableItem>
+    
+    <ConfigurableItem>
+      <key>CADSR_SOURCES</key>
+      <value><![CDATA[@cadsr.sources@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CADSR_TYPES</key>
+      <value><![CDATA[@cadsr.types@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_EMAIL</key>
+      <value>@cdisc.email@</value>
+    </ConfigurableItem>
+
+    <!-- CDISC Vocabulary List (Begin) =========================================== -->
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_0</key>
+      <value><![CDATA[@cdisc.vocabulary.0@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_1</key>
+      <value><![CDATA[@cdisc.vocabulary.1@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_2</key>
+      <value><![CDATA[@cdisc.vocabulary.2@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_3</key>
+      <value><![CDATA[@cdisc.vocabulary.3@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_4</key>
+      <value><![CDATA[@cdisc.vocabulary.4@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_5</key>
+      <value><![CDATA[@cdisc.vocabulary.5@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_6</key>
+      <value><![CDATA[@cdisc.vocabulary.6@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_7</key>
+      <value><![CDATA[@cdisc.vocabulary.7@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_8</key>
+      <value><![CDATA[@cdisc.vocabulary.8@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_9</key>
+      <value><![CDATA[@cdisc.vocabulary.9@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_10</key>
+      <value><![CDATA[@cdisc.vocabulary.10@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_11</key>
+      <value><![CDATA[@cdisc.vocabulary.11@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_12</key>
+      <value><![CDATA[@cdisc.vocabulary.12@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_13</key>
+      <value><![CDATA[@cdisc.vocabulary.13@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_14</key>
+      <value><![CDATA[@cdisc.vocabulary.14@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_15</key>
+      <value><![CDATA[@cdisc.vocabulary.15@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_16</key>
+      <value><![CDATA[@cdisc.vocabulary.16@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_17</key>
+      <value><![CDATA[@cdisc.vocabulary.17@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_18</key>
+      <value><![CDATA[@cdisc.vocabulary.18@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_19</key>
+      <value><![CDATA[@cdisc.vocabulary.19@]]></value>
+    </ConfigurableItem>
+
+    <ConfigurableItem>
+      <key>CDISC_VOCABULARY_20</key>
+      <value><![CDATA[@cdisc.vocabulary.20@]]></value>
+    </ConfigurableItem>
+    <!-- CDISC Vocabulary List (End) ============================================= -->
+
+    <ConfigurableItem>
+      <key>CDISC_REQUEST_TYPES</key>
+      <value><![CDATA[@cdisc.request.types@]]></value>
+    </ConfigurableItem>
+    
+    <ConfigurableItem>
+      <key>CDISC_CODES</key>
+      <value><![CDATA[@cdisc.codes@]]></value>
+    </ConfigurableItem>
+    
+    <ConfigurableItem>
+      <key>CDISC_QUICKLINKS</key>
+      <value><![CDATA[@cdisc.quicklinks@]]></value>
+    </ConfigurableItem>
+  </ConfigurableItems>
+</root>
