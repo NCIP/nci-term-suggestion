@@ -15,7 +15,114 @@
 
     <!-- Navigation: General =============================================== -->
 
-   
+  <navigation-rule>
+    <from-view-id>/pages/contents/_contact_us.jsp</from-view-id>
+    <navigation-case>
+       <description>retry</description>
+       <from-action>#{userSessionBean.regenerateCaptchaImage}</from-action>
+       <from-outcome>retry</from-outcome>
+       <to-view-id>/pages/main/contact_us.jsp</to-view-id>
+    </navigation-case>
+    
+    <navigation-case>
+       <description>retry</description>
+       <from-action>#{userSessionBean.switchCaptchaMode}</from-action>
+       <from-outcome>resetCaptcha</from-outcome>
+       <to-view-id>/pages/main/contact_us.jsp</to-view-id>
+    </navigation-case> 
+    
+    <navigation-case>
+       <description>retry</description>
+       <from-action>#{userSessionBean.contactUs}</from-action>
+       <from-outcome>retry</from-outcome>
+       <to-view-id>/pages/main/contact_us.jsp</to-view-id>
+    </navigation-case>     
+    
+  </navigation-rule>
+
+  <navigation-rule>
+    <from-view-id>/pages/contents/_suggestion.jsp</from-view-id>
+    <navigation-case>
+       <description>retry</description>
+       <from-action>#{userSessionBean.regenerateCaptchaImage}</from-action>
+       <from-outcome>retry</from-outcome>
+       <to-view-id>/pages/main/_suggestion.jsp</to-view-id>
+    </navigation-case>
+    
+	 <navigation-case>
+	   <description>resetCaptcha</description>
+	   <from-action>#{userSessionBean.switchCaptchaMode}</from-action>
+	   <from-outcome>resetCaptcha</from-outcome>
+	   <to-view-id>/pages/main/_suggestion.jsp</to-view-id>
+	 </navigation-case>  
+	 
+	 <navigation-case>
+	   <description>resetCaptcha</description>
+	   <from-action>#{userSessionBean.requestSuggestion}</from-action>
+	   <from-outcome>retry</from-outcome>
+	   <to-view-id>/pages/main/_suggestion.jsp</to-view-id>
+	 </navigation-case>  	 
+	 
+	 <navigation-case>
+	   <description>requestSuggestion</description>
+	   <from-action>#{userSessionBean.requestSuggestion}</from-action>
+	   <from-outcome>successful</from-outcome>
+	   <to-view-id>/pages/main/_suggestion.jsp</to-view-id>
+	 </navigation-case> 	 
+
+	 <navigation-case>
+	   <description>clearSuggestion</description>
+	   <from-action>#{userSessionBean.clearSuggestion}</from-action>
+	   <from-outcome>*</from-outcome>
+	   <to-view-id>/pages/main/_suggestion.jsp</to-view-id>
+	 </navigation-case> 
+	 
+	 
+  </navigation-rule>
+  
+  
+    <navigation-rule>
+      <from-view-id>/pages/contents/_suggestion_cdisc.jsp</from-view-id>
+      <navigation-case>
+         <description>retry</description>
+         <from-action>#{userSessionBean.regenerateCaptchaImage}</from-action>
+         <from-outcome>retry</from-outcome>
+         <to-view-id>/pages/main/_suggestion_cdisc.jsp</to-view-id>
+      </navigation-case>
+      
+	 <navigation-case>
+	   <description>resetCaptcha</description>
+	   <from-action>#{userSessionBean.switchCaptchaMode}</from-action>
+	   <from-outcome>resetCaptcha</from-outcome>
+	   <to-view-id>/pages/main/_suggestion_cdisc.jsp</to-view-id>
+	 </navigation-case>         
+      
+ 	 <navigation-case>
+	   <description>resetCaptcha</description>
+	   <from-action>#{userSessionBean.requestSuggestionCDISC}</from-action>
+	   <from-outcome>retry</from-outcome>
+	   <to-view-id>/pages/main/_suggestion_cdisc.jsp</to-view-id>
+	 </navigation-case>  
+	 
+ 	 <navigation-case>
+	   <description>resetCaptcha</description>
+	   <from-action>#{userSessionBean.requestSuggestionCDISC}</from-action>
+	   <from-outcome>successful</from-outcome>
+	   <to-view-id>/pages/main/_suggestion_cdisc.jsp</to-view-id>
+	 </navigation-case>  	 
+	 
+	 <navigation-case>
+	   <description>clearCDISCSuggestion</description>
+	   <from-action>#{userSessionBean.clearCDISCSuggestion}</from-action>
+	   <from-outcome>*</from-outcome>
+	   <to-view-id>/pages/main/_suggestion_cdisc.jsp</to-view-id>
+	 </navigation-case>	 
+	 
+	 
+    </navigation-rule>
+  
+
+
     <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
@@ -23,7 +130,7 @@
             <to-view-id>/pages/main/change_request.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
-
+    
     
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -76,6 +183,13 @@
     </navigation-rule>
     
     
+     <navigation-rule>
+         <from-view-id>_suggestion.jsp</from-view-id>
+         <navigation-case>
+           <from-outcome>resetCaptcha</from-outcome>
+           <to-view-id>/pages/main/suggestion.jsp</to-view-id>
+         </navigation-case>    
+     </navigation-rule>
 
     <!-- Managed Beans ===================================================== -->
 

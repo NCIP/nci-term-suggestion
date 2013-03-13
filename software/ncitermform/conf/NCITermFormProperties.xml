@@ -121,4 +121,10 @@
       <value><![CDATA[@cdisc.quicklinks@]]></value>
     </ConfigurableItem>
   </ConfigurableItems>
+  
+        <ConfigurableItem>
+                 <key>AUDIO_CAPTCHA_BACKGROUND_NOISE_ON</key>
+                 <value>@audio_captcha_background_noise_on@</value>
+        </ConfigurableItem>  
+  
 </root>

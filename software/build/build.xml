@@ -162,6 +162,7 @@
                 <filter token="debug.on" value="${debug.on}"/>
                 <filter token="cadsr.sources" value="${cadsr.sources}"/>
                 <filter token="cadsr.types" value="${cadsr.types}"/>
+                <filter token="audio_captcha_background_noise_on" value="${audio_captcha_background_noise_on}"/>
            </filterset>
             <resources>
                 <file file="${bda.conf.dir}/${webapp.prop.file}"/>

@@ -62,13 +62,15 @@ function closeWindow() {
       } 
       
       var answer=document.getElementById("answer").value;
+      var captcha_option = document.getElementById("captcha_option").value;
       if (answer == "")
       {
-          alert("Please enter the characters appearing in the image.");
-          //if(navigator.appName == "Microsoft Internet Explorer")
-          {
-              document.getElementById("answer").focus();
+          if (captcha_option == "default") {
+              alert("Please enter the characters appearing in the image.");
+          } else {
+              alert("Please enter the digits you heard from the audio.");
           } 
+          document.getElementById("answer").focus();
           return false;
       }
 
