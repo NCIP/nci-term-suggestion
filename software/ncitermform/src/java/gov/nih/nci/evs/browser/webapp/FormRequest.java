@@ -59,7 +59,7 @@ public class FormRequest extends BaseRequest implements IFormRequest {
     public static final String WARNINGS = "warnings";
 
     // Parameter list(s):
-    public static final String[] ALL_PARAMETERS =
+    private static final String[] ALL_PARAMETERS =
         new String[] { MESSAGE, WARNINGS };
 
     // List of return state(s):
@@ -74,6 +74,11 @@ public class FormRequest extends BaseRequest implements IFormRequest {
     public FormRequest() {
         super();
     }
+
+
+    public static String[] get_ALL_PARAMETERS() {
+		return Arrays.copyOf(ALL_PARAMETERS, ALL_PARAMETERS.length);
+	}
 
     public FormRequest(String vocabularyParameter) {
         _vocabularyParameter = vocabularyParameter;
@@ -111,7 +116,7 @@ public class FormRequest extends BaseRequest implements IFormRequest {
             return;
 
         HttpServletRequest request = HTTPUtils.getRequest();
-        Prop.Version version = (Prop.Version)
+        String version = (String)
             request.getSession().getAttribute(FormRequest.VERSION);
 
         String name = AppProperties.getInstance().getVocabularyName(version, url);
@@ -142,6 +147,7 @@ public class FormRequest extends BaseRequest implements IFormRequest {
         String value = _parametersHashMap.get(parameter);
         buffer.append("* " + label + ": " + value + "\n");
     }
+
 
     protected String printSendEmailWarning() {
         if (_isSendEmail)

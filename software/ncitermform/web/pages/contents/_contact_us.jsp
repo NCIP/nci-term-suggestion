@@ -1,8 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.utils.*" %>
+<%@ page import="gov.nih.nci.evs.browser.bean.UserSessionBean" %>
+<%@ page import="nl.captcha.Captcha" %>
+<%@ page import="nl.captcha.audio.AudioCaptcha" %>
+
+
 <%!
   private static final String TELEPHONE = "301.451.4384 or Toll-Free: 888.478.4423";
   private static final String MAIL_TO = "ncicb@pop.nci.nih.gov";
@@ -18,16 +25,108 @@
 <%
   String imagesPath = FormUtils.getImagesPath(request);
   String ncicb_contact_url = AppProperties.getInstance().getContactUrl();
-  String subject = HTTPUtils.getJspAttributeString(request, SUBJECT);
-  String email_msg = HTTPUtils.getJspAttributeString(request, EMAIL_MSG);
-  String email_address = HTTPUtils.getJspSessionAttributeString(request, EMAIL_ADDRESS);
+  
+  //String subject = HTTPUtils.getJspAttributeString(request, SUBJECT);
+  //String email_msg = HTTPUtils.getJspAttributeString(request, EMAIL_MSG);
+  //String email_address = HTTPUtils.getJspSessionAttributeString(request, EMAIL_ADDRESS);
+  
   String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
   String warningType = HTTPUtils.getJspAttributeString(request, WARNING_TYPE);
   boolean isUserError = Prop.WarningType.valueOfOrDefault(warningType) == Prop.WarningType.User;
+    
+  
+  String subject = HTTPUtils.getJspAttributeString(request, SUBJECT);
+  String email_msg = HTTPUtils.getJspAttributeString(request, EMAIL_MSG);
+  String email_address = HTTPUtils.getJspSessionAttributeString(request, EMAIL_ADDRESS);
+  
+  subject = (String) request.getSession().getAttribute(ContactUsRequest.SUBJECT);
+  email_msg = (String) request.getSession().getAttribute(ContactUsRequest.EMAIL_MSG);
+  email_address = (String) HTTPUtils.getJspSessionAttributeString(request, EMAIL_ADDRESS);
+
+  if (UserSessionBean.isNull(subject)) subject = "";
+  if (UserSessionBean.isNull(email_msg)) email_msg = "";
+  if (UserSessionBean.isNull(email_address)) email_address = "";
+  
+  String answer  = "";
+
+   
+    boolean audio_captcha_background_noise_on = true;
+    String audio_captcha_str = "audio.wav";
+    if (!AppProperties.isAudioCaptchaBackgroundNoiseOn()) {
+        audio_captcha_background_noise_on = false;
+        audio_captcha_str = "nci.audio.wav";
+    }
+    
+    String captcha_option = "default";
+    String alt_captcha_option = "audio";
+    String opt = HTTPUtils.cleanXSS((String) request.getSession().getAttribute("captcha_option"));
+    if (opt != null && opt.compareTo("audio") == 0) {
+          captcha_option = "audio";
+          alt_captcha_option = "default";
+    }    
+
+  Captcha captcha = (Captcha) request.getSession().getAttribute("captcha");
+  AudioCaptcha ac = null;  
+  
+    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
+    if (errorMsg != null) {
+        request.getSession().removeAttribute("errorMsg");
+    }  
+        
+  
+  String retry = (String) request.getSession().getAttribute("retry");
+  if (retry != null && retry.compareTo("true") == 0) {
+        request.getSession().removeAttribute("retry");
+  }
+  
+if (captcha_option.compareTo("default") == 0) {
+  	captcha = new Captcha.Builder(200, 50)
+	        .addText()
+	        .addBackground()
+	        //.addNoise()
+		.gimp()
+		//.addBorder()
+                .build();
+	request.getSession().setAttribute(Captcha.NAME, captcha);
+}    
+
 %>
+
+  <%
+    String color = ""; 
+    if (isUserError)
+      color = "style=\"color:#FF0000;\"";
+  %>
+
+
+
 <f:view>
   <div class="texttitle-blue">Contact Us</div>
   <hr></hr>
+
+<%
+if (errorMsg != null) {
+%>
+<p class="textbodyred">&nbsp;<%=errorMsg%></p>
+<%
+}
+%>
+
+    <%
+      if (warnings != null && warnings.length() > 0) {
+          warnings = warnings.replaceAll("&lt;br/&gt;", "\n");
+          String[] list = StringUtils.toStrings(warnings, "\n", false, false);
+          for (int i=0; i<list.length; ++i) {
+            String text = list[i];
+            text = StringUtils.toHtml(text); // For leading spaces (indentation)
+    %>
+            <i style="color:#FF0000;"><%= text %></i>
+            <br/>
+    <%
+          }
+      }
+    %>
+
 
   <div>
     <b>You can request help or make suggestions by filling out the
@@ -76,30 +175,73 @@
       EVS Web site</a>.
   </div>
 
-  <%
-    String color = ""; 
-    if (isUserError)
-      color = "style=\"color:#FF0000;\"";
-  %>
+
   <p><b>Online Form</b></p>
   <p <%= color %>>
     To use this web form, please fill in every box below and then click on 'Submit'. 
-    <%
-      if (warnings != null && warnings.length() > 0) {
-          warnings = warnings.replaceAll("&lt;br/&gt;", "\n");
-          String[] list = StringUtils.toStrings(warnings, "\n", false, false);
-          for (int i=0; i<list.length; ++i) {
-            String text = list[i];
-            text = StringUtils.toHtml(text); // For leading spaces (indentation)
-    %>
-            <br/><i style="color:#FF0000;"><%= text %></i>
-    <%
-          }
-      }
-    %>
   </p>
   
   <h:form>
+  
+<p>
+<table>
+<%
+String answer_label = "Enter the characters appearing in the above image";
+
+if (captcha_option.compareTo("default") == 0) {
+%>
+      <tr>
+      <td class="textbody">
+             <img src="<c:url value="/simpleCaptcha.png"  />" alt="simpleCaptcha.png">
+             
+       &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.regenerateCaptchaImage}" />
+       <br/>             
+      </td>
+      </tr>
+
+       
+
+<%
+} else {
+      answer_label = "Enter the numbers you hear from the audio";
+%>
+
+<tr>
+<td>
+<p class="textbody">Click 
+
+
+<a href="<%=request.getContextPath()%>/<%=audio_captcha_str%> ">here</a> to listen to the audio. 
+</td>
+</tr>
+
+
+<%
+} 
+%>
+
+      <tr>
+      <td class="textbody"> 
+          <%=answer_label%>: <i class="warningMsgColor">*</i> 
+          <input type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"/>&nbsp;
+      </td>
+      </tr> 
+      
+      
+      <tr>
+      <td class="textbody">
+       <h:commandLink value="Prefer an alternative form of CAPTCHA?" action="#{userSessionBean.switchCaptchaMode}" />
+       <br/>             
+      </td>
+      </tr>
+     
+
+      </table>  
+      
+</p>    
+ 
+  
+  
     <p>
       <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
       <i>Subject of your email:</i>
@@ -132,6 +274,10 @@
       action="#{userSessionBean.contactUs}"
       alt="submit" >
     </h:commandButton>
+    
+    <input type="hidden" name="captcha_option" id="captcha_option" value="<%=alt_captcha_option%>">
+
+
   </h:form>
   <br/>
   

@@ -10,6 +10,7 @@
 <%@ page import="gov.nih.nci.evs.utils.*" %>
 
 <%@ page import="nl.captcha.Captcha" %>
+<%@ page import="nl.captcha.audio.AudioCaptcha" %>
 
 <html>
 <head>
@@ -19,7 +20,70 @@
 	<script type="text/javascript" src="<%=FormUtils.getJSPath(request)%>/utils.js"></script>
 	<link href="<%= request.getContextPath() %>/css/sc.css" type="text/css" rel="stylesheet" />    
 
+    <script>
+	    function getContextPath() {
+		return "<%=request.getContextPath()%>";
+	    }
+
+
+	    function loadAudio() {
+		var path = getContextPath() + "/audio.wav?bogus=";
+		document.getElementById("audioCaptcha").src = path + new Date().getTime();
+		document.getElementById("audioSupport").innerHTML = document.createElement('audio').canPlayType("audio/wav");
+	    }
+    </script>
+    
 </head>
+
+<%
+
+  //Prop.Version versionSession = (Prop.Version) 
+  //   request.getSession().getAttribute(FormRequest.VERSION);
+
+    String versionSession = (String) request.getSession().getAttribute(FormRequest.VERSION);
+    boolean audio_captcha_background_noise_on = true;
+    String audio_captcha_str = "audio.wav";
+    if (!AppProperties.isAudioCaptchaBackgroundNoiseOn()) {
+        audio_captcha_background_noise_on = false;
+        audio_captcha_str = "nci.audio.wav";
+    }
+    
+    String captcha_option = "default";
+    String alt_captcha_option = "audio";
+    String opt = HTTPUtils.cleanXSS((String) request.getSession().getAttribute("captcha_option"));
+    if (opt != null && opt.compareTo("audio") == 0) {
+          captcha_option = "audio";
+          alt_captcha_option = "default";
+    }    
+
+  Captcha captcha = (Captcha) request.getSession().getAttribute("captcha");
+  AudioCaptcha ac = null;  
+  
+    String errorMsg = (String) request.getSession().getAttribute("errorMsg");
+    if (errorMsg != null) {
+        request.getSession().removeAttribute("errorMsg");
+    }  
+  
+    String retry = (String) request.getSession().getAttribute("retry_cdisc");  
+
+  if (retry != null && retry.compareTo("true") == 0) {
+        request.getSession().removeAttribute("retry_cdisc");
+  }
+  
+if (captcha_option.compareTo("default") == 0) {
+  	captcha = new Captcha.Builder(200, 50)
+	        .addText()
+	        .addBackground()
+	        //.addNoise()
+		.gimp()
+		//.addBorder()
+                .build();
+	request.getSession().setAttribute(Captcha.NAME, captcha);
+}    
+
+%>    
+
+
 <body>
 
 
@@ -33,7 +97,6 @@
   private static final String NAME = SuggestionCDISCRequest.NAME;
   private static final String PHONE_NUMBER = SuggestionCDISCRequest.PHONE_NUMBER;
   private static final String ORGANIZATION = SuggestionCDISCRequest.ORGANIZATION;
-  //private static final String OTHER = SuggestionCDISCRequest.OTHER;
   private static final String VOCABULARY = SuggestionCDISCRequest.VOCABULARY;
   private static final String CDISC_REQUEST_TYPE = SuggestionCDISCRequest.CDISC_REQUEST_TYPE;
   private static final String CDISC_CODES = SuggestionCDISCRequest.CDISC_CODES;
@@ -46,7 +109,6 @@
   private static final String NAME_LABEL = SuggestionCDISCRequest.NAME_LABEL;
   private static final String PHONE_NUMBER_LABEL = SuggestionCDISCRequest.PHONE_NUMBER_LABEL;
   private static final String ORGANIZATION_LABEL = SuggestionCDISCRequest.ORGANIZATION_LABEL;
-  //private static final String OTHER_LABEL = SuggestionCDISCRequest.OTHER_LABEL;
   private static final String VOCABULARY_LABEL = SuggestionCDISCRequest.VOCABULARY_LABEL;
   private static final String CDISC_REQUEST_TYPE_LABEL = SuggestionCDISCRequest.CDISC_REQUEST_TYPE_LABEL;
   private static final String CDISC_CODES_LABEL = SuggestionCDISCRequest.CDISC_CODES_LABEL;
@@ -60,69 +122,60 @@
 %>
 <%
     // Member variable(s):
+   
   String imagesPath = FormUtils.getImagesPath(request);
-  Prop.Version version = BaseRequest.getVersion(request);
-  SuggestionCDISCRequest.setupTestData();
+  String version = BaseRequest.getVersion(request);
+  //SuggestionCDISCRequest.setupTestData();
 
   // Attribute(s):
-  
-  String email = HTTPUtils.getJspSessionAttributeString(request, EMAIL);
-  String name = HTTPUtils.getJspSessionAttributeString(request, NAME);
-  String phone_number = HTTPUtils.getJspSessionAttributeString(request, PHONE_NUMBER);
-  String organization = HTTPUtils.getJspSessionAttributeString(request, ORGANIZATION);
-  //String other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
-  String vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
-  String cdisc_request_type = HTTPUtils.getJspSessionAttributeString(request, CDISC_REQUEST_TYPE);
-  String cdisc_codes = HTTPUtils.getJspSessionAttributeString(request, CDISC_CODES);
-  String term = HTTPUtils.getJspSessionAttributeString(request, TERM);
-  String reason = HTTPUtils.getJspSessionAttributeString(request, REASON);
-  
-  String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
-  boolean isWarnings = warnings.length() > 0;
-
-  String message = (String) request.getSession().getAttribute("message");
-  String retry = (String) request.getSession().getAttribute("retry_cdisc");  
-  request.getSession().removeAttribute("retry_cdisc");
-  
-  
-  /*
-  String email = HTTPUtils.getJspSessionAttributeString(request, EMAIL);
-  String name = HTTPUtils.getJspSessionAttributeString(request, NAME);
-  String phone_number = HTTPUtils.getJspSessionAttributeString(request, PHONE_NUMBER);
-  String organization = HTTPUtils.getJspSessionAttributeString(request, ORGANIZATION);
-  //String other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
-  String vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
-  String cdisc_request_type = HTTPUtils.getJspAttributeString(request, CDISC_REQUEST_TYPE);
-  String cdisc_codes = HTTPUtils.getJspAttributeString(request, CDISC_CODES);
-  String term = HTTPUtils.getJspAttributeString(request, TERM);
-  String reason = HTTPUtils.getJspAttributeString(request, REASON);
-  
-  String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
-  boolean isWarnings = warnings.length() > 0;
-
-  String message = (String) request.getSession().getAttribute("message");
-  String retry = (String) request.getSession().getAttribute("retry_cdisc");
-  */
-  
-  
- Captcha captcha = (Captcha) request.getSession().getAttribute("captcha");
- if (captcha == null) {
-  	captcha = new Captcha.Builder(200, 50)
-	        .addText()
-	        .addBackground()
-	        //.addNoise()
-		.gimp()
-		//.addBorder()
-                .build();
-	request.getSession().setAttribute(Captcha.NAME, captcha);
- }
+  String email = (String) request.getSession().getAttribute(EMAIL);
+  String name = (String) request.getSession().getAttribute(NAME);
+  String phone_number = (String) request.getSession().getAttribute(PHONE_NUMBER);
+  String organization = (String) request.getSession().getAttribute(ORGANIZATION);
+  String vocabulary = (String) request.getSession().getAttribute(VOCABULARY);
+  String cdisc_request_type = (String) request.getSession().getAttribute(CDISC_REQUEST_TYPE);
+  String cdisc_codes = (String) request.getSession().getAttribute(CDISC_CODES);
+  String term = (String) request.getSession().getAttribute(TERM);
  
   
+  String reason = (String) request.getSession().getAttribute(REASON);
+  String warnings = (String) request.getSession().getAttribute(WARNINGS);
+
+  if (email == null || email.compareTo("null") == 0) email = "";
+  if (name == null || name.compareTo("null") == 0) name = "";
+  if (phone_number == null || phone_number.compareTo("null") == 0) phone_number = "";
+  if (organization == null || organization.compareTo("null") == 0) organization = "";
+  if (vocabulary == null || vocabulary.compareTo("null") == 0) vocabulary = "NCI Thesaurus";
+  if (cdisc_request_type == null || cdisc_request_type.compareTo("null") == 0) cdisc_request_type = "";
+  if (cdisc_codes == null || cdisc_codes.compareTo("null") == 0) cdisc_codes = "";
+  if (term == null || term.compareTo("null") == 0) term = "";
+  if (reason == null || reason.compareTo("null") == 0) reason = "";
+  if (warnings == null || warnings.compareTo("null") == 0) warnings = "";
+
+  boolean isWarnings = false;
+  if (warnings != null && warnings.length() > 0) isWarnings = true;  
+
+  String message = (String) request.getSession().getAttribute("message");
+  //String retry = (String) request.getSession().getAttribute("retry_cdisc");  
+  //request.getSession().removeAttribute("retry_cdisc");
+  String pVocabulary = null;
+  String newtermform = (String) request.getParameter("newtermform");
+  if (newtermform == null || newtermform.compareTo("null") == 0) {
+	  pVocabulary = (String) request.getParameter(DICTIONARY);// HTTPUtils.getJspParameter(request, DICTIONARY);
+  } else {
+      pVocabulary = vocabulary;
+  }
+  if (pVocabulary == null) {
+      pVocabulary = "NCI Thesaurus";
+  }
+
+  /*
   String pVocabulary = HTTPUtils.getJspParameter(request, VOCABULARY);
   if (pVocabulary == null || pVocabulary.length() <= 0) {
     // Note: This is how NCIt/TB and NCIm is passing in this value.  
     pVocabulary = HTTPUtils.getJspParameter(request, DICTIONARY);
   }
+  */
 
   // Member variable(s):
   int i=0;
@@ -131,7 +184,19 @@
   String css = WebUtils.isUsingIE(request) ? "_IE" : "";
 %>
 <f:view>
+
+
+<%
+if (errorMsg != null) {
+%>
+<p class="textbodyred">&nbsp;<%=errorMsg%></p>
+<%
+}
+%>
+
+
   <h:form id="suggestion" onkeypress="return handleSubmit(event, 'suggestion:submit')">
+  
     <table class="newConceptDT">
       <!-- =================================================================== -->
 <%      
@@ -199,40 +264,7 @@
               refresh_bool = true;
           }
           request.getSession().removeAttribute("refresh");         
-          
-          
-          if (WebUtils.isUsingIE(request)) {
-                  if (refresh_bool) {
-          %>    
-		  <h:commandButton
-		    id="back"
-		    value="back"
-		    action="#{userSessionBean.requestSuggestionCDISC}"
-		    image="/images/refresh.gif"
-
-		    onclick="parent.history.back(); return false;"
-
-		    alt="Refresh image">
-		  </h:commandButton>  
-	<%	  
-		  } else {
-	%>	  
-
-		  <h:commandButton
-		    id="back"
-		    value="back"
-		    action="#{userSessionBean.requestSuggestionCDISC}"
-		    image="/images/tryagain.gif"
-
-		    onclick="parent.history.back(); return false;"
-
-		    alt="Try again">
-		  </h:commandButton> 
-	  <%	  
-		  }          
-
-          } else {
-	      
+          /*	      
 	      term = HTTPUtils.getJspSessionAttributeString(request, TERM);
 	      	      
 	      //term = request.getSession().getAttribute("term");//getJspSessionAttributeString(request, TERM);
@@ -247,8 +279,8 @@
 
 	      reason = HTTPUtils.getJspSessionAttributeString(request, REASON);
 	      warnings = HTTPUtils.getJspSessionAttributeString(request, WARNINGS);              
-              
-              
+         
+             
               request.getSession().setAttribute(VOCABULARY, vocabulary);
               request.getSession().setAttribute(TERM, term);
               request.getSession().setAttribute(PHONE_NUMBER, phone_number);
@@ -260,6 +292,7 @@
               request.getSession().setAttribute(WARNINGS, warnings);
               
               request.getSession().setAttribute("cdisc", "true");
+              */
               
 
              if (refresh_bool) {
@@ -281,9 +314,7 @@
           <%    
               }
 
-          }
           %>
-          
           
 
               </td>
@@ -442,55 +473,75 @@ request.getSession().removeAttribute("retry_cdisc");
       </tr>
 
       <!-- =================================================================== -->
-      <tr><td><br/></td></tr>
+ 
+ <%
+ String answer = "";
+ String answer_label = "Enter the characters appearing in the above image";
+ if (captcha_option.compareTo("default") != 0) {
+     answer_label = "";
+ }
+ 
+ if (captcha_option.compareTo("default") == 0) {
+ %>
+       <tr>  
+       <td></td>
+       <td class="newConceptTA6<%=css%>">
+              <img src="<c:url value="/simpleCaptcha.png"  />" alt="simpleCaptcha.png">
+        &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.regenerateCaptchaImage}" />
+      </td>
+      </tr> 
       
-      <tr>
-      <td></td>
-      <td>
-             <img src="<c:url value="simpleCaptcha.png" />" alt="simpleCaptcha.png">
-             &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.refreshCDISCForm}" />
-             <br/>             
-        </td>
-      </tr>
-      <tr>
-      
-      <td> 
-          Enter the characters appearing in the above image: <i class="warningMsgColor">*</i> 
+       <tr>
+       <td class="newConceptTA6<%=css%>"> 
+           <%=answer_label%>: <i class="warningMsgColor">*</i>
        </td>
-       <td>   
-          <input type="text" id="answer" name="answer" />&nbsp;
+       <td class="newConceptTA6<%=css%>">
+           <input type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"/>&nbsp;
+           &nbsp;<h:commandLink value="Prefer an alternative form of CAPTCHA?" action="#{userSessionBean.switchCaptchaMode}" />
        </td>
-      </tr>      
+       </tr>      
       
-      
+ <%
+ } else {
+ %>
+      <tr>
+ <td class="newConceptTA6<%=css%>">
+ Click <a href="<%=request.getContextPath()%>/<%=audio_captcha_str%> ">here</a> to listen to the audio, 
+ then enter the numbers you hear from the audio
+ 
+           <%=answer_label%>: <i class="warningMsgColor">*</i>
+       </td>
+       <td class="newConceptTA6<%=css%>">
+           <input type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"/>&nbsp;
+           &nbsp;<h:commandLink value="Prefer an alternative form of CAPTCHA?" action="#{userSessionBean.switchCaptchaMode}" />
+       </td>
+       </tr>       
+       
+ <%
+ } 
+%>
       
       <tr>
         <td class="newConceptNotes"><i class="warningMsgColor">* Required</i></td>
         <td colspan="2" align="right">
         
-          <h:commandButton
-            id="clear"
-            value="clear"
-            action="#"
-            image="/images/clear.gif"
-            
-            onclick="return clear_form()"
-            
-            alt="clear">
-          </h:commandButton>        
-          
-           <img src="<%=imagesPath%>/spacer.gif" width="1" />
-          
            <h:commandButton
-            id="submit"
-            value="submit"
-            action="#{userSessionBean.requestSuggestionCDISC}"
-            image="/images/submit.gif"
-            
-            onclick="return check_blank()"
-
-            alt="submit">
-          </h:commandButton>         
+             id="clear"
+             value="clear"
+             action="#{userSessionBean.clearCDISCSuggestion}"
+             image="/images/clear.gif"
+             alt="clear">
+           </h:commandButton>      
+      
+           <img src="<%=imagesPath%>/spacer.gif" width="1" />
+ 
+           <h:commandButton
+             id="submit"
+             value="submit"
+             action="#{userSessionBean.requestSuggestionCDISC}"
+             image="/images/submit.gif"
+              alt="submit">
+           </h:commandButton>        
 
         </td>
       </tr>
@@ -516,6 +567,9 @@ which can also respond to any questions.
 %>
 
       <input type="hidden" id="cdisc" name="cdisc" value="true" />
+      <input type="hidden" name="captcha_option" id="captcha_option" value="<%=alt_captcha_option%>">
+      <input type="hidden" name="newtermform" id="newtermform" value="cdiscnewtermform">
+      <input type="hidden" name="version" id="version" value="<%=versionSession%>">
 
   </h:form>
 </f:view>

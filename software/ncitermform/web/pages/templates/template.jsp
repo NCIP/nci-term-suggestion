@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
   String basePath = FormUtils.getBasePath(request);
+ 
   String imagesPath = FormUtils.getImagesPath(request);
   String cssPath = FormUtils.getCSSPath(request);
   String content_title = HTTPUtils.cleanXSS((String) request.getParameter("content_title"));
@@ -13,16 +14,25 @@
   String content_quickLink = HTTPUtils.cleanXSS((String) request.getParameter("content_quickLink"));
   if (content_quickLink == null)
       content_quickLink = "";
+      
   String content_page = HTTPUtils.cleanXSS((String) request.getParameter("content_page"));
   
   String buildDate = AppProperties.getInstance().getBuildDate();
   String application_version = AppProperties.getInstance().getAppVersion();
   String anthill_build_tag_built = AppProperties.getInstance().getAnthillBuildTagBuilt();  
-  Prop.Version version = (Prop.Version) 
-    request.getSession().getAttribute(FormRequest.VERSION);
-  if (version == null)
-    version = Prop.Version.Default;
-  String logoUrl = basePath + "/" + version.getUrlParameter();
+  //String version = (String) 
+  //  request.getSession().getAttribute(FormRequest.VERSION);
+  
+  String version = null;
+  Object version_obj = request.getSession().getAttribute(FormRequest.VERSION);
+  
+  if (version == null) {
+      version = "Default";
+  } else {
+      version = version_obj.toString();
+  }
+  
+  String logoUrl = basePath + "/" + BaseRequest.getUrlParameter(version);
 %>
 <!--
    Build info: <%=buildDate%>
@@ -35,6 +45,22 @@
     <title><%=content_title%></title>
     <link rel="stylesheet" type="text/css" href="<%=cssPath%>/styleSheet.css" />
     <link rel="shortcut icon" href="<%=basePath%>/favicon.ico" type="image/x-icon" />
+    
+    
+    <script>
+
+    function getContextPath() {
+	return "<%=request.getContextPath()%>";
+    }
+
+    function loadAudio() {
+        var path = getContextPath() + "/audio.wav?bogus=";
+        document.getElementById("audioCaptcha").src = path + new Date().getTime();
+        document.getElementById("audioSupport").innerHTML = document.createElement('audio').canPlayType("audio/wav");
+    }
+    </script>    
+    
+    
   </head>
   <body>
   

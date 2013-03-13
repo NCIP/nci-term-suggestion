@@ -69,6 +69,8 @@ public class SuggestionRequest extends FormRequest {
     public static final String CADSR_TYPE = "cadsrType";
     public static final String ANSWER = "answer";
 
+    public static final String VERSION = "version";
+
 
     // List of field label(s):
     public static final String EMAIL_LABEL = "Business Email";
@@ -88,19 +90,31 @@ public class SuggestionRequest extends FormRequest {
 
 
     // Parameter list(s):
-    public static final String[] ALL_PARAMETERS = new String[] {
+    private static final String[] ALL_PARAMETERS = new String[] {
         EMAIL, OTHER, VOCABULARY, TERM, SYNONYMS, NEAREST_CODE,
         DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE, ANSWER };
-    public static final String[] MOST_PARAMETERS = new String[] {
+
+
+    private static final String[] REQUIRED_FIELDS = new String[] {EMAIL, TERM, ANSWER };
+
+    private static final String[] MOST_PARAMETERS = new String[] {
         /* EMAIL, OTHER, VOCABULARY, */ TERM, SYNONYMS, NEAREST_CODE,
         DEFINITION, PROJECT, REASON, CADSR_SOURCE, CADSR_TYPE, ANSWER };
-    public static final String[] SESSION_ATTRIBUTES = new String[] {
+    private static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, OTHER, VOCABULARY };
 
     public SuggestionRequest() {
         super(VOCABULARY);
         setParameters(ALL_PARAMETERS);
     }
+
+    public static String[] get_REQUIRED_FIELDS() {
+		return Arrays.copyOf(REQUIRED_FIELDS, REQUIRED_FIELDS.length);
+	}
+
+    public static String[] get_MOST_PARAMETERS() {
+		return Arrays.copyOf(MOST_PARAMETERS, MOST_PARAMETERS.length);
+	}
 
     private static HashMap<String, String> getLabelsHashMap() {
         HashMap<String, String> hashMap = new HashMap<String, String>();
@@ -128,7 +142,7 @@ public class SuggestionRequest extends FormRequest {
 
 
     public void updateFormAttributes() {
-        clearAttributes(FormRequest.ALL_PARAMETERS);
+        clearAttributes(FormRequest.get_ALL_PARAMETERS());
         updateAttributes();
         updateSessionAttributes(SESSION_ATTRIBUTES);
         _parametersHashMap.put(EMAIL,
@@ -169,11 +183,11 @@ public class SuggestionRequest extends FormRequest {
     protected String getRecipients() {
         AppProperties appProperties = AppProperties.getInstance();
         String vocabulary = _parametersHashMap.get(VOCABULARY);
-        Prop.Version version = (Prop.Version)
+        String version = (String)
             _request.getSession().getAttribute(VERSION);
 
         String cadsrEmails = appProperties.getCADSREmailString();
-        if (version == Prop.Version.CADSR && cadsrEmails.length() > 0)
+        if (version != null && version.compareToIgnoreCase("CADSR") == 0 && cadsrEmails.length() > 0)
             return cadsrEmails;
         return appProperties.getVocabularyEmailsString(version, vocabulary);
     }
@@ -205,7 +219,7 @@ public class SuggestionRequest extends FormRequest {
     }
 
     private String getEmailMessage() {
-        Prop.Version version = (Prop.Version)
+        String version = (String)
             _request.getSession().getAttribute(VERSION);
 
         StringBuffer buffer = new StringBuffer();
@@ -220,7 +234,8 @@ public class SuggestionRequest extends FormRequest {
         buffer_append(buffer, SYNONYMS_LABEL, SYNONYMS);
         buffer_append(buffer, NEAREST_CODE_LABEL, NEAREST_CODE);
         buffer_append(buffer, DEFINITION_LABEL, DEFINITION);
-        if (version == Prop.Version.CADSR) {
+        //if (version == Prop.Version.CADSR) {
+		if (version != null && version.compareToIgnoreCase("CADSR") == 0) {
             buffer_append(buffer, CADSR_SOURCE_LABEL, CADSR_SOURCE);
             buffer_append(buffer, CADSR_TYPE_LABEL, CADSR_TYPE);
         }

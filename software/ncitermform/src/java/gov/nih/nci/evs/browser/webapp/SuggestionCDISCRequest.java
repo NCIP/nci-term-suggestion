@@ -66,6 +66,7 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String CDISC_CODES = "cdiscCodeList";
     public static final String TERM = "term";
     public static final String REASON = "reason";
+    public static final String ANSWER = "answer";
 
     // List of field label(s):
     public static final String EMAIL_LABEL = "Business Email";
@@ -79,21 +80,33 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String TERM_LABEL = "Enter Term or Codelist Request Information";
     public static final String REASON_LABEL = "Reason for suggestion plus any" +
         " other additional information";
+    public static final String ANSWER_LABEL = "Answer";
 
     // Parameter list(s):
-    public static final String[] ALL_PARAMETERS = new String[] {
+    private static final String[] ALL_PARAMETERS = new String[] {
         EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, /* OTHER, */ VOCABULARY,
         CDISC_REQUEST_TYPE, CDISC_CODES, TERM, REASON };
-    public static final String[] MOST_PARAMETERS = new String[] {
+    private static final String[] MOST_PARAMETERS = new String[] {
         /* EMAIL, OTHER, VOCABULARY, */
         CDISC_REQUEST_TYPE, CDISC_CODES, TERM, REASON, };
-    public static final String[] SESSION_ATTRIBUTES = new String[] {
+    private static final String[] SESSION_ATTRIBUTES = new String[] {
         EMAIL, NAME, PHONE_NUMBER, ORGANIZATION, /* OTHER, */ VOCABULARY };
+
+    private static final String[] REQUIRED_FIELDS = new String[] {EMAIL, TERM, ANSWER };
 
     public SuggestionCDISCRequest() {
         super(VOCABULARY);
         setParameters(ALL_PARAMETERS);
     }
+
+    public static String[] get_REQUIRED_FIELDS() {
+		return Arrays.copyOf(REQUIRED_FIELDS, REQUIRED_FIELDS.length);
+	}
+
+    public static String[] get_MOST_PARAMETERS() {
+		return Arrays.copyOf(MOST_PARAMETERS, MOST_PARAMETERS.length);
+	}
+
 
     private static HashMap<String, String> getLabelsHashMap() {
         HashMap<String, String> hashMap = new HashMap<String, String>();
@@ -125,7 +138,7 @@ public class SuggestionCDISCRequest extends FormRequest {
     }
 
     public String submitForm() throws Exception {
-        clearAttributes(FormRequest.ALL_PARAMETERS);
+        clearAttributes(FormRequest.get_ALL_PARAMETERS());
         updateAttributes();
 
         updateSessionAttributes(SESSION_ATTRIBUTES);
@@ -158,7 +171,7 @@ public class SuggestionCDISCRequest extends FormRequest {
         AppProperties appProperties = AppProperties.getInstance();
         String vocabulary = _parametersHashMap.get(VOCABULARY);
 
-        Prop.Version version = (Prop.Version)
+        String version = (String)
             _request.getSession().getAttribute(VERSION);
 
         String recipients = appProperties.getVocabularyEmailsString(version, vocabulary);

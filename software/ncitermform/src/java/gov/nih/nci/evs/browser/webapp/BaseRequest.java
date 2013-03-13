@@ -48,7 +48,7 @@ import gov.nih.nci.evs.utils.*;
  */
 
 /**
- * @author EVS Team (David Yee)
+ * @author EVS Team (David Yee, Kim Ong)
  * @version 1.0
  */
 
@@ -63,34 +63,70 @@ public class BaseRequest {
     private static final String VERSION = FormRequest.VERSION;
 
     public static void clearAllAttributes(HttpServletRequest request) {
-        clearAttributes(request, FormRequest.ALL_PARAMETERS);
-        clearAttributes(request, SuggestionRequest.MOST_PARAMETERS);
-        clearAttributes(request, SuggestionCDISCRequest.MOST_PARAMETERS);
+        clearAttributes(request, FormRequest.get_ALL_PARAMETERS());
+        clearAttributes(request, SuggestionRequest.get_MOST_PARAMETERS());
+        clearAttributes(request, SuggestionCDISCRequest.get_MOST_PARAMETERS());
     }
 
     public static String getIndexPage(HttpServletRequest request) {
-        Prop.Version version = (Prop.Version)
+        String version = (String)
             request.getSession().getAttribute(VERSION);
 
         String basePath = FormUtils.getBasePath(request);
-        String indexPage = basePath + "/" + version.getUrlParameter();
+        String indexPage = basePath + "/" + getUrlParameter(version);
         clearAllAttributes(request);
         return indexPage;
     }
 
-    public static Prop.Version getVersion(HttpServletRequest request) {
-        Prop.Version curr_version = (Prop.Version)
-            request.getSession().getAttribute(VERSION);
-        String parameterVersion = HTTPUtils.getJspParameter(
-            request, VERSION, false);
+
+/*
+    public static Prop.Version getVersion(HttpServletRequest request, boolean clearAll) {
+
+        Prop.Version curr_version = (Prop.Version) request.getSession().getAttribute(VERSION);
+
+        String parameterVersion = HTTPUtils.getJspParameter(request, VERSION, false);
+
+
         Prop.Version parameter_version = Prop.Version.valueOfOrDefault(parameterVersion);
+
+
         if (parameter_version != curr_version) {
-          curr_version = parameter_version;
-          clearAllAttributes(request);
+            curr_version = parameter_version;
+            if (clearAll) {
+			    clearAllAttributes(request);
+		    }
         }
+
         request.getSession().setAttribute(VERSION, curr_version);
         return curr_version;
     }
+*/
+    public static String getVersion(HttpServletRequest request) {
+		String curr_version = null;
+        Object curr_version_obj = request.getSession().getAttribute(VERSION);
+        if (curr_version_obj == null) {
+			curr_version = "Default";
+		} else {
+			curr_version = (String) curr_version_obj;
+		}
+
+		String parameter_version = null;
+        Object parameter_version_obj = request.getParameter(VERSION);
+        if (parameter_version_obj == null) {
+			parameter_version = "Default";
+		} else {
+			parameter_version = (String) parameter_version_obj;
+		}
+
+        if (parameter_version.compareToIgnoreCase(curr_version) != 0) {
+            curr_version = parameter_version;
+		    clearAllAttributes(request);
+        }
+
+        request.getSession().setAttribute(VERSION, curr_version);
+        return curr_version;
+    }
+
 
     protected void setDefaulSessiontAttribute(
         HttpServletRequest request, String name, Object value) {
@@ -113,7 +149,7 @@ public class BaseRequest {
         HashMap<String, String> hashMap = new HashMap<String, String>();
         for (int i = 0; i < parameters.length; ++i) {
             String key = parameters[i];
-            String value = (String) request.getParameter(key);
+            String value = HTTPUtils.cleanXSS((String) request.getParameter(key));
             if (value == null || value.compareTo("") == 0) {
 				value = getSessionAttribute(key);
 			}
@@ -161,7 +197,8 @@ public class BaseRequest {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
             String value = parametersHashMap.get(parameter);
-            request.setAttribute(parameter, value);
+            //request.setAttribute(parameter, value);
+            request.getSession().setAttribute(parameter, value);
         }
         debugParameters("HTTPUtils.updateAttributes:", parameters,
             parametersHashMap);
@@ -179,7 +216,7 @@ public class BaseRequest {
         String[] parameters) {
         for (int i = 0; i < parameters.length; ++i) {
             String parameter = parameters[i];
-            request.setAttribute(parameter, null);
+            request.getSession().setAttribute(parameter, null);
         }
     }
 
@@ -195,7 +232,7 @@ public class BaseRequest {
         String[] parameters) {
         for (int i = 0; i < parameters.length; ++i) {
             String name = parameters[i];
-            String value = request.getParameter(name);
+            String value = HTTPUtils.cleanXSS((String) request.getParameter(name));
             request.getSession().setAttribute(name, value);
         }
     }
@@ -214,4 +251,12 @@ public class BaseRequest {
     protected void clearSessionAttributes(String[] parameters) {
         clearSessionAttributes(_request, parameters);
     }
+
+
+	public static String getUrlParameter(String version) {
+		if (version == null || version.compareTo("null") == 0 || version.compareToIgnoreCase("Default") == 0)
+			return "";
+		return "?version=" + version.toLowerCase();
+	}
+
 }
