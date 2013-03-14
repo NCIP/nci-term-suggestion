@@ -66,23 +66,10 @@
   
     String retry = (String) request.getSession().getAttribute("retry_cdisc");  
 
-  if (retry != null && retry.compareTo("true") == 0) {
+    if (retry != null && retry.compareTo("true") == 0) {
         request.getSession().removeAttribute("retry_cdisc");
-  }
-  
-if (captcha_option.compareTo("default") == 0) {
-  	captcha = new Captcha.Builder(200, 50)
-	        .addText()
-	        .addBackground()
-	        //.addNoise()
-		.gimp()
-		//.addBorder()
-                .build();
-	request.getSession().setAttribute(Captcha.NAME, captcha);
-}    
-
+    }
 %>    
-
 
 <body>
 
@@ -161,7 +148,7 @@ if (captcha_option.compareTo("default") == 0) {
   String pVocabulary = null;
   String newtermform = (String) request.getParameter("newtermform");
   if (newtermform == null || newtermform.compareTo("null") == 0) {
-	  pVocabulary = (String) request.getParameter(DICTIONARY);// HTTPUtils.getJspParameter(request, DICTIONARY);
+	  pVocabulary = (String) request.getParameter(DICTIONARY);
   } else {
       pVocabulary = vocabulary;
   }
@@ -264,36 +251,6 @@ if (errorMsg != null) {
               refresh_bool = true;
           }
           request.getSession().removeAttribute("refresh");         
-          /*	      
-	      term = HTTPUtils.getJspSessionAttributeString(request, TERM);
-	      	      
-	      //term = request.getSession().getAttribute("term");//getJspSessionAttributeString(request, TERM);
-	      
-	      phone_number = HTTPUtils.getJspSessionAttributeString(request, PHONE_NUMBER);
-	      organization = HTTPUtils.getJspSessionAttributeString(request, ORGANIZATION);
-	      //other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
-	      vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
-
-	      cdisc_request_type = HTTPUtils.getJspSessionAttributeString(request, CDISC_REQUEST_TYPE);
-	      cdisc_codes = HTTPUtils.getJspSessionAttributeString(request, CDISC_CODES);
-
-	      reason = HTTPUtils.getJspSessionAttributeString(request, REASON);
-	      warnings = HTTPUtils.getJspSessionAttributeString(request, WARNINGS);              
-         
-             
-              request.getSession().setAttribute(VOCABULARY, vocabulary);
-              request.getSession().setAttribute(TERM, term);
-              request.getSession().setAttribute(PHONE_NUMBER, phone_number);
-              request.getSession().setAttribute(ORGANIZATION, organization);
-              request.getSession().setAttribute(CDISC_REQUEST_TYPE, cdisc_request_type);
-              request.getSession().setAttribute(CDISC_CODES, cdisc_codes);
-              
-              request.getSession().setAttribute(REASON, reason);
-              request.getSession().setAttribute(WARNINGS, warnings);
-              
-              request.getSession().setAttribute("cdisc", "true");
-              */
-              
 
              if (refresh_bool) {
           %>
@@ -486,7 +443,7 @@ request.getSession().removeAttribute("retry_cdisc");
        <tr>  
        <td></td>
        <td class="newConceptTA6<%=css%>">
-              <img src="<c:url value="/simpleCaptcha.png"  />" alt="simpleCaptcha.png">
+              <img src="<c:url value="/nci.simpleCaptcha.png"  />" alt="simpleCaptcha.png">
         &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.regenerateCaptchaImage}" />
       </td>
       </tr> 

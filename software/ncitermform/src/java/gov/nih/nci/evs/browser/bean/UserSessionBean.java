@@ -197,7 +197,7 @@ public class UserSessionBean {
 			String parameter = required_fields[i];
 			String s = (String) request.getParameter(parameter);
 			if (isNull(s)) {
-				String msg = "WARNING: Incomplete data entry.";
+				String msg = "Please complete data entries.";
 				request.getSession().setAttribute("errorMsg", msg);
 				request.getSession().setAttribute("retry", "true");
 				return "retry";
