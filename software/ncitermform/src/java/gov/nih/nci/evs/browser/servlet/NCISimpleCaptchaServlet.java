@@ -19,7 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import nl.captcha.Captcha;
 import nl.captcha.backgrounds.GradiatedBackgroundProducer;
+import nl.captcha.backgrounds.FlatColorBackgroundProducer;
+
 import nl.captcha.text.renderer.ColoredEdgesWordRenderer;
+
+import java.awt.Color;
 
 
 /**
@@ -68,7 +72,8 @@ public class NCISimpleCaptchaServlet extends SimpleCaptchaServlet {
                 //.gimp()
                 .addNoise()
                 //.addBackground(new GradiatedBackgroundProducer())
-                .addBackground(new TransparentBackgroundProducer())
+                //.addBackground(new TransparentBackgroundProducer())
+                .addBackground(new FlatColorBackgroundProducer(Color.lightGray))
                 .build();
 
         CaptchaServletUtil.writeImage(resp, captcha.getImage());
