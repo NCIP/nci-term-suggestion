@@ -78,7 +78,8 @@
   if (retry != null && retry.compareTo("true") == 0) {
         request.getSession().removeAttribute("retry");
   }
-  
+
+/*  
 if (captcha_option.compareTo("default") == 0) {
   	captcha = new Captcha.Builder(200, 50)
 	        .addText()
@@ -89,6 +90,7 @@ if (captcha_option.compareTo("default") == 0) {
                 .build();
 	request.getSession().setAttribute(Captcha.NAME, captcha);
 }    
+*/
 
 %>
 
@@ -192,7 +194,7 @@ if (captcha_option.compareTo("default") == 0) {
 %>
       <tr>
       <td class="textbody">
-             <img src="<c:url value="/simpleCaptcha.png"  />" alt="simpleCaptcha.png">
+             <img src="<c:url value="/nci.simpleCaptcha.png"  />" alt="simpleCaptcha.png">
              
        &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.regenerateCaptchaImage}" />
        <br/>             
