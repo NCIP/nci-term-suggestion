@@ -14,7 +14,7 @@
   private static final String TELEPHONE = "301.451.4384 or Toll-Free: 888.478.4423";
   private static final String MAIL_TO = "ncicb@pop.nci.nih.gov";
   //private static final String NCICB_URL = "http://ncicb.nci.nih.gov/support";
-  private static final String NCICB_URL = " http://ncicbiit@mail.nih.gov/support";
+  private static final String NCICB_URL = "http://ncicb.nci.nih.gov/support";
   
   // List of attribute name(s):
   private static final String SUBJECT = ContactUsRequest.SUBJECT;
