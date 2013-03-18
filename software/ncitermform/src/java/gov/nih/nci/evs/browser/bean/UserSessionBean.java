@@ -355,7 +355,7 @@ public class UserSessionBean {
 		String[] required_fields = SuggestionCDISCRequest.get_REQUIRED_FIELDS();
 		for (int i=0; i<required_fields.length; i++) {
 			String parameter = required_fields[i];
-			String s = (String) request.getParameter(parameter);
+			String s = HTTPUtils.cleanXSS((String) request.getParameter(parameter));
 			if (isNull(s)) {
 				String msg = "WARNING: Incomplete data entry.";
 				request.getSession().setAttribute("errorMsg", msg);
