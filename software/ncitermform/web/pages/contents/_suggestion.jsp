@@ -581,7 +581,7 @@ which can also respond to any questions.
    <input type="hidden" id="cdisc" name="cdisc" value="false" /> 
    <input type="hidden" name="captcha_option" id="captcha_option" value="<%=alt_captcha_option%>">
    <input type="hidden" name="newtermform" id="newtermform" value="newtermform">
-   <input type="hidden" name="version" id="newtermform" value="<%=version%>">
+   <input type="hidden" name="version" id="version" value="<%=version%>">
    
   </h:form>
 
