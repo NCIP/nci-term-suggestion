@@ -103,6 +103,7 @@ public class BaseRequest {
 */
     public static String getVersion(HttpServletRequest request) {
 		String curr_version = null;
+
         Object curr_version_obj = request.getSession().getAttribute(VERSION);
         if (curr_version_obj == null) {
 			curr_version = "Default";
@@ -110,15 +111,22 @@ public class BaseRequest {
 			curr_version = (String) curr_version_obj;
 		}
 
-		String parameter_version = null;
-        Object parameter_version_obj = request.getParameter(VERSION);
+		//String parameter_version = null;
+		String parameter_version = HTTPUtils.getJspParameter(request, VERSION, false);
+		if (parameter_version == null || parameter_version.compareToIgnoreCase("null") == 0) {
+			parameter_version = "Default";
+		}
+		/*
+        Object parameter_version_obj = HTTPUtils.cleanXSS((String) request.getParameter(VERSION));
         if (parameter_version_obj == null) {
 			parameter_version = "Default";
 		} else {
 			parameter_version = (String) parameter_version_obj;
 		}
+		*/
 
-        if (parameter_version.compareToIgnoreCase(curr_version) != 0) {
+        //if (parameter_version != null && parameter_version.compareToIgnoreCase(curr_version) != 0) {
+		if (parameter_version.compareToIgnoreCase(curr_version) != 0) {
             curr_version = parameter_version;
 		    clearAllAttributes(request);
         }
