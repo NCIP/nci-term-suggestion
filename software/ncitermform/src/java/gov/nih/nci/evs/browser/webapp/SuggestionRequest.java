@@ -48,7 +48,7 @@ import gov.nih.nci.evs.utils.*;
  */
 
 /**
- * @author EVS Team (David Yee)
+ * @author EVS Team (David Yee, Kim Ong)
  * @version 1.0
  */
 
@@ -70,7 +70,6 @@ public class SuggestionRequest extends FormRequest {
     public static final String ANSWER = "answer";
 
     public static final String VERSION = "version";
-
 
     // List of field label(s):
     public static final String EMAIL_LABEL = "Business Email";
