@@ -60,7 +60,7 @@ public class BaseRequest {
     protected String[] _parameters = EMPTY_PARAMETERS;
     protected HashMap<String, String> _parametersHashMap = null;
 
-    private static final String VERSION = FormRequest.VERSION;
+    private static final String VERSION = "version";
 
     public static void clearAllAttributes(HttpServletRequest request) {
         clearAttributes(request, FormRequest.get_ALL_PARAMETERS());

@@ -117,7 +117,7 @@ public class FormRequest extends BaseRequest implements IFormRequest {
 
         HttpServletRequest request = HTTPUtils.getRequest();
         String version = (String)
-            request.getSession().getAttribute(FormRequest.VERSION);
+            request.getSession().getAttribute(VERSION);
 
         String name = AppProperties.getInstance().getVocabularyName(version, url);
         _parametersHashMap.put(_vocabularyParameter, name);

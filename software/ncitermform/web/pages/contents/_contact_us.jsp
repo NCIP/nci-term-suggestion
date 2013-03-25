@@ -4,16 +4,16 @@
 
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
+<%@ page import="gov.nih.nci.evs.browser.common.Constants" %>
 <%@ page import="gov.nih.nci.evs.utils.*" %>
 <%@ page import="gov.nih.nci.evs.browser.bean.UserSessionBean" %>
 <%@ page import="nl.captcha.Captcha" %>
 <%@ page import="nl.captcha.audio.AudioCaptcha" %>
 
-
 <%!
-    private static final String TELEPHONE = "240-276-5541 or Toll-Free: 1-888-478-4423";
-    private static final String MAIL_TO = "ncicbiit@mail.nih.gov";
-    private static final String NCICB_URL = "http://ncicb.nci.nih.gov/support";
+  private static final String TELEPHONE = Constants.TELEPHONE;
+  private static final String MAIL_TO = Constants.MAIL_TO;
+  private static final String NCICB_URL = Constants.NCICB_URL;
   
   // List of attribute name(s):
   private static final String SUBJECT = ContactUsRequest.SUBJECT;
