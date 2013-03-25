@@ -171,17 +171,11 @@
   String pVocabulary = null;
   String pCode = null;
  
-  String newtermform = (String) request.getParameter("newtermform");
+  String newtermform =  HTTPUtils.cleanXSS((String) request.getParameter("newtermform"));
   if (newtermform == null || newtermform.compareTo("null") == 0) {
-	  pVocabulary = (String) request.getParameter(DICTIONARY);// HTTPUtils.getJspParameter(request, DICTIONARY);
-	  /*
-	  if (pVocabulary == null || pVocabulary.length() <= 0) {
-	      // Note: This is how NCIt/TB and NCIm is passing in this value.  
-	      pVocabulary = HTTPUtils.getJspParameter(request, DICTIONARY);
-	  } 
-	  */
- 	  pCode = (String) request.getParameter(CODE);//getJspParameter(request, CODE, false);
-  	  if (! isWarnings && pCode != null && pCode.compareTo("null") != 0) {
+	  pVocabulary =  HTTPUtils.cleanXSS((String) request.getParameter(DICTIONARY));
+ 	  pCode =  HTTPUtils.cleanXSS((String) request.getParameter(CODE));
+  	  if (!isWarnings && pCode != null && pCode.compareTo("null") != 0) {
 		nearest_code = pCode;
           }
   } else {

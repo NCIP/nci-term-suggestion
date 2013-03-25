@@ -146,9 +146,9 @@
   //String retry = (String) request.getSession().getAttribute("retry_cdisc");  
   //request.getSession().removeAttribute("retry_cdisc");
   String pVocabulary = null;
-  String newtermform = (String) request.getParameter("newtermform");
+  String newtermform =  HTTPUtils.cleanXSS((String) request.getParameter("newtermform"));
   if (newtermform == null || newtermform.compareTo("null") == 0) {
-	  pVocabulary = (String) request.getParameter(DICTIONARY);
+	  pVocabulary =  HTTPUtils.cleanXSS((String) request.getParameter(DICTIONARY));
   } else {
       pVocabulary = vocabulary;
   }
