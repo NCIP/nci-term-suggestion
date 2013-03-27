@@ -224,7 +224,7 @@ if (captcha_option.compareTo("default") == 0) {
 
       <tr>
       <td class="textbody"> 
-          <%=answer_label%>: <i class="warningMsgColor">*</i> 
+          <LABEL FOR="answer"><%=answer_label%><LAB/EL>: <i class="warningMsgColor">*</i> 
           <input type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"/>&nbsp;
       </td>
       </tr> 
@@ -246,17 +246,17 @@ if (captcha_option.compareTo("default") == 0) {
   
     <p>
       <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
-      <i>Subject of your email:</i>
+      <i><LABEL FOR="subject">Subject of your email</LABEL>:</i>
     </p>
     <input class="textbody" size="100" name="subject" alt="Subject" value="<%= subject %>" onFocus="active = true" onBlur="active = false" onKeyPress="return ifenter(event,this.form)">
     <p>
       <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
-      <i>Detailed description of your problem or suggestion (no attachments):</i>
+      <i><LABEL FOR="<%= EMAIL_MSG %>">Detailed description of your problem or suggestion (no attachments):</LABEL></i>
     </p>
-    <TEXTAREA class="textbody" Name="<%= EMAIL_MSG %>" rows="4" cols="98"><%= email_msg %></TEXTAREA>
+    <TEXTAREA class="textbody" Name="<%= EMAIL_MSG %>" id="<%= EMAIL_MSG %>" rows="4" cols="98"><%= email_msg %></TEXTAREA>
     <p>
       <% if (isUserError) %> <i style="color:#FF0000;">* Required)</i>
-      <i>Your e-mail address:</i>
+      <i><LABEL FOR="<%= EMAIL_ADDRESS %>">Your e-mail address</LABEL>:</i>
     </p>
     <input class="textbody" size="100" name="<%= EMAIL_ADDRESS %>" alt="<%= EMAIL_ADDRESS %>" value="<%= email_address %>" onFocus="active = true" onBlur="active = false" onKeyPress="return ifenter(event,this.form)">
     <br/><br/>

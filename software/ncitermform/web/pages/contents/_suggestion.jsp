@@ -341,14 +341,14 @@ if (errorMsg != null) {
       <!-- =================================================================== -->
       <tr><td class="newConceptSubheader" colspan="2">Contact Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=EMAIL_LABEL%>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=EMAIL%>"><%=EMAIL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
           <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=OTHER_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=OTHER%>"><%=OTHER_LABEL%></LABEL>:</td>
         <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA4<%=css%>"><%=other%></textarea></td>
       </tr>
       <tr>
@@ -368,7 +368,7 @@ if (errorMsg != null) {
         <td>Fill in the following fields as appropriate:</td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=VOCABULARY_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="url"><%=VOCABULARY_LABEL%></LABEL>:</td>
         <td>
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB<%=css%>">
             <%
@@ -404,20 +404,20 @@ if (errorMsg != null) {
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=TERM%>"><%=TERM_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea id="<%=TERM%>" name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
         
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=SYNONYMS_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=SYNONYMS%>"><%=SYNONYMS%></LABEL>:</td>
         <td colspan="2"><textarea name="<%=SYNONYMS%>" class="newConceptTA2<%=css%>"><%=synonyms%></textarea></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=NEAREST_CODE_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=NEAREST_CODE%>"><%=NEAREST_CODE_LABEL%></LABEL>:</td>
         <td colspan="2"><textarea name="<%=NEAREST_CODE%>" class="newConceptTA2<%=css%>"><%=nearest_code%></textarea></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=DEFINITION_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=DEFINITION%>"><%=DEFINITION_LABEL%></LABEL>:</td>
         <td colspan="2"><textarea name="<%=DEFINITION%>" class="newConceptTA6<%=css%>"><%=definition%></textarea></td>
       </tr>
 
@@ -426,7 +426,7 @@ if (errorMsg != null) {
           if (version != null && version.compareToIgnoreCase("CADSR") == 0) {
       %>
           <tr>
-            <td <%=LABEL_ARGS%>><%=CADSR_SOURCE_LABEL%>:</td>
+            <td <%=LABEL_ARGS%>><LABEL FOR="<%=CADSR_SOURCE%>"><%=CADSR_SOURCE_LABEL%></LABEL>:</td>
             <td colspan="2">
               <select name="<%=CADSR_SOURCE%>" class="newConceptCB2<%=css%>">
                 <%
@@ -446,7 +446,7 @@ if (errorMsg != null) {
             </td>
           </tr>
           <tr>
-            <td <%=LABEL_ARGS%>><%=CADSR_TYPE_LABEL%>:</td>
+            <td <%=LABEL_ARGS%>><LABEL FOR="<%=CADSR_TYPE%>"><%=CADSR_TYPE_LABEL%></LABEL>:</td>
             <td colspan="2">
               <select name="<%=CADSR_TYPE%>" class="newConceptCB2<%=css%>">
                 <%
@@ -473,11 +473,11 @@ if (errorMsg != null) {
       <tr><td><br/></td></tr>
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=PROJECT_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=PROJECT%>"><%=PROJECT_LABEL%></LABEL>:</td>
         <td colspan="2"><textarea name="<%=PROJECT%>" class="newConceptTA2<%=css%>"><%=project%></textarea></td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=REASON_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=REASON%>"><%=REASON_LABEL%></LABEL>:</td>
         <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA6<%=css%>"><%=reason%></textarea></td>
       </tr>
 

@@ -287,39 +287,34 @@ request.getSession().removeAttribute("retry_cdisc");
       <!-- =================================================================== -->
       <tr><td class="newConceptSubheader" colspan="2">Contact Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=EMAIL_LABEL%>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=EMAIL%>"><%=EMAIL_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
           <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=NAME_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=NAME%>"><%=NAME_LABEL%></LABEL>:</td>
         <td colspan="2">
           <input type="text" name="<%=NAME%>" value="<%=name%>" alt="<%=NAME%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=PHONE_NUMBER_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=PHONE_NUMBER%>"><%=PHONE_NUMBER_LABEL%></LABEL>:</td>
         <td colspan="2">
           <input type="text" name="<%=PHONE_NUMBER%>" value="<%=phone_number%>" alt="<%=PHONE_NUMBER%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=ORGANIZATION_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=ORGANIZATION%>"><%=ORGANIZATION_LABEL%></LABEL>:</td>
         <td colspan="2">
           <input type="text" name="<%=ORGANIZATION%>" value="<%=organization%>" alt="<%=ORGANIZATION%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
-<%--      
-      <tr>
-        <td <%=LABEL_ARGS%>><%=OTHER_LABEL%>:</td>
-        <td colspan="2"><textarea name="<%=OTHER%>" class="newConceptTA4<%=css%>"><%=other%></textarea></td>
-      </tr>
---%>
+
       <tr>
         <td></td>
         <td colspan="2" class="newConceptNotes"><b class="warningMsgColor">Privacy Notice: </b>
@@ -336,7 +331,7 @@ request.getSession().removeAttribute("retry_cdisc");
         <td>Fill in the following fields as appropriate:</td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=VOCABULARY_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="url"><%=VOCABULARY_LABEL%></LABEL>:</td>
         <td>
           <select name="<%=VOCABULARY%>" id="url" class="newConceptCB2<%=css%>">
             <%
@@ -371,7 +366,7 @@ request.getSession().removeAttribute("retry_cdisc");
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=CDISC_REQUEST_TYPE_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=CDISC_REQUEST_TYPE%>"><%=CDISC_REQUEST_TYPE_LABEL%></LABEL>:</td>
         <td colspan="2">
           <select name="<%=CDISC_REQUEST_TYPE%>" class="newConceptCB2<%=css%>">
             <%
@@ -391,7 +386,7 @@ request.getSession().removeAttribute("retry_cdisc");
         </td>
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=CDISC_CODES_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=CDISC_CODES%>"><%=CDISC_CODES_LABEL%></LABEL>:</td>
         <td colspan="2">
           <select name="<%=CDISC_CODES%>" class="newConceptCB2<%=css%>">
             <%
@@ -417,7 +412,7 @@ request.getSession().removeAttribute("retry_cdisc");
         </td>        
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=TERM_LABEL%>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=TERM%>"><%=TERM_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea id="<%=TERM%>" name="<%=TERM%>" class="newConceptTA2<%=css%>"><%=term%></textarea></td>
       </tr>
 
@@ -425,7 +420,7 @@ request.getSession().removeAttribute("retry_cdisc");
       <tr><td><br/></td></tr>
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>><%=REASON_LABEL%>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=REASON%>"><%=REASON_LABEL%></LABEL>:</td>
         <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA6<%=css%>"><%=reason%></textarea></td>
       </tr>
 
