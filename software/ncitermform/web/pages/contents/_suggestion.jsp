@@ -30,6 +30,21 @@
 		document.getElementById("audioCaptcha").src = path + new Date().getTime();
 		document.getElementById("audioSupport").innerHTML = document.createElement('audio').canPlayType("audio/wav");
 	    }
+	    
+	    function submitOnEnter(form, event) {
+			if (event.which){
+				if(event.which == 13) {
+					window.submitForm('suggestion',1,{source:'submit'});
+					return false;
+				}
+			} else {
+				if(window.event.keyCode==13)
+				{
+					window.submitForm('suggestion',1,{source:'submit'});
+					return false;
+				}
+			}
+	    }	    
     </script>
     
 </head>
