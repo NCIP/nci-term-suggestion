@@ -356,7 +356,7 @@ if (errorMsg != null) {
       <!-- =================================================================== -->
       <tr><td class="newConceptSubheader" colspan="2">Contact Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>><LABEL FOR="<%=EMAIL%>"><%=EMAIL%></LABEL>: <i class="warningMsgColor">*</i></td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=EMAIL%>"><%=EMAIL_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
           <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
@@ -424,7 +424,7 @@ if (errorMsg != null) {
         
       </tr>
       <tr>
-        <td <%=LABEL_ARGS%>><LABEL FOR="<%=SYNONYMS%>"><%=SYNONYMS%></LABEL>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=SYNONYMS%>"><%=SYNONYMS_LABEL%></LABEL>:</td>
         <td colspan="2"><textarea name="<%=SYNONYMS%>" class="newConceptTA2<%=css%>"><%=synonyms%></textarea></td>
       </tr>
       <tr>
