@@ -4,6 +4,7 @@ import java.util.*;
 import javax.servlet.http.*;
 import gov.nih.nci.evs.browser.properties.*;
 import gov.nih.nci.evs.utils.*;
+import gov.nih.nci.evs.browser.utils.*;
 
 /**
  * <!-- LICENSE_TEXT_START -->
@@ -242,7 +243,9 @@ public class SuggestionRequest extends FormRequest {
         buffer.append("Additional Information:\n");
         buffer_append(buffer, PROJECT_LABEL, PROJECT);
         buffer_append(buffer, REASON_LABEL, REASON);
-        return buffer.toString();
+        String retstr = buffer.toString();
+        retstr = StringUtil.replaceSpecialCharacters(retstr);
+        return retstr;
     }
 
     protected String printSendEmailWarning() {

@@ -3,6 +3,7 @@ package gov.nih.nci.evs.browser.webapp;
 import java.util.*;
 import javax.servlet.http.*;
 import gov.nih.nci.evs.browser.properties.*;
+import gov.nih.nci.evs.browser.utils.*;
 import gov.nih.nci.evs.utils.*;
 
 /**
@@ -222,7 +223,9 @@ public class SuggestionCDISCRequest extends FormRequest {
         buffer.append("\n");
         buffer.append("Additional Information:\n");
         buffer_append(buffer, REASON_LABEL, REASON);
-        return buffer.toString();
+        String retstr = buffer.toString();
+        retstr = StringUtil.replaceSpecialCharacters(retstr);
+        return retstr;
     }
 
     protected String printSendEmailWarning() {
