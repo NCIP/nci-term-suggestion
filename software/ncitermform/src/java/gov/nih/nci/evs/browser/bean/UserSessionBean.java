@@ -192,19 +192,8 @@ public class UserSessionBean {
 		HttpServletRequest request = HTTPUtils.getRequest();
 		saveSessionVariables(request);
 
-		String[] required_fields = SuggestionRequest.get_REQUIRED_FIELDS();
-		for (int i=0; i<required_fields.length; i++) {
-			String parameter = required_fields[i];
-			String s =  HTTPUtils.cleanXSS((String) request.getParameter(parameter));
-			if (isNull(s)) {
-				String msg = "Please complete data entries.";
-				request.getSession().setAttribute("errorMsg", msg);
-				request.getSession().setAttribute("retry", "true");
-				return "retry";
-			}
-		}
-
         String answer = HTTPUtils.cleanXSS((String) request.getParameter("answer"));
+
         String msg = "Your message was successfully sent.";
 
         String captcha_option = HTTPUtils.cleanXSS((String) request.getParameter("captcha_option"));
@@ -228,6 +217,19 @@ public class UserSessionBean {
 			request.getSession().setAttribute("retry", "true");
 			return "retry";
 		}
+
+		String[] required_fields = SuggestionRequest.get_REQUIRED_FIELDS();
+		for (int i=0; i<required_fields.length; i++) {
+			String parameter = required_fields[i];
+			String s =  HTTPUtils.cleanXSS((String) request.getParameter(parameter));
+			if (isNull(s)) {
+				msg = "Please complete data entries.";
+				request.getSession().setAttribute("errorMsg", msg);
+				request.getSession().setAttribute("retry", "true");
+				return "retry";
+			}
+		}
+
 
 		String email = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionRequest.EMAIL));
 		boolean emailAddressValid = MailUtils.isValidEmailAddress(email);
@@ -352,17 +354,7 @@ public class UserSessionBean {
 		HttpServletRequest request = HTTPUtils.getRequest();
 		saveCDISCSessionVariables(request);
 		request.getSession().setAttribute("version", "CDISC");
-		String[] required_fields = SuggestionCDISCRequest.get_REQUIRED_FIELDS();
-		for (int i=0; i<required_fields.length; i++) {
-			String parameter = required_fields[i];
-			String s = HTTPUtils.cleanXSS((String) request.getParameter(parameter));
-			if (isNull(s)) {
-				String msg = "WARNING: Incomplete data entry.";
-				request.getSession().setAttribute("errorMsg", msg);
-				request.getSession().setAttribute("retry", "true");
-				return "retry";
-			}
-		}
+
 
 
 
@@ -388,6 +380,18 @@ public class UserSessionBean {
 			request.getSession().setAttribute("errorMsg", msg);
 			request.getSession().setAttribute("retry", "true");
 			return "retry";
+		}
+
+		String[] required_fields = SuggestionCDISCRequest.get_REQUIRED_FIELDS();
+		for (int i=0; i<required_fields.length; i++) {
+			String parameter = required_fields[i];
+			String s = HTTPUtils.cleanXSS((String) request.getParameter(parameter));
+			if (isNull(s)) {
+				msg = "WARNING: Incomplete data entry.";
+				request.getSession().setAttribute("errorMsg", msg);
+				request.getSession().setAttribute("retry", "true");
+				return "retry";
+			}
 		}
 
 
