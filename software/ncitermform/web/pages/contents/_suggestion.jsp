@@ -44,7 +44,41 @@
 					return false;
 				}
 			}
-	    }	    
+	    }
+	    
+
+
+    function submitenter(myfield,e)
+    {
+        var keycode;
+        if (window.event) keycode = window.event.keyCode;
+        else if (e) keycode = e.which;
+        else return true;
+
+        if (keycode == 13)
+        {
+            myfield.form.submit();
+            return false;
+        }
+        else
+            return true;
+    }
+
+
+
+	    function checkBlankOnEnter(event) {
+			if (event.which){
+				if(event.which == 13) {
+					check_blank();
+				}
+			} else {
+				if(window.event.keyCode==13)
+				{
+					check_blank();
+				}
+			}
+	    }	  	    
+	    
     </script>
     
 </head>
@@ -358,7 +392,7 @@ if (errorMsg != null) {
       <tr>
         <td <%=LABEL_ARGS%>><LABEL FOR="<%=EMAIL%>"><%=EMAIL_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
-          <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" onKeyPress="return submitOnEnter(event)" alt="<%=EMAIL%>"
+          <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" onKeyPress="return submitenter(this,event)" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
