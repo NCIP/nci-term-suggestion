@@ -31,7 +31,7 @@
 		document.getElementById("audioSupport").innerHTML = document.createElement('audio').canPlayType("audio/wav");
 	    }
 	    
-	    function submitOnEnter(form, event) {
+	    function submitOnEnter(event) {
 			if (event.which){
 				if(event.which == 13) {
 					window.submitForm('suggestion',1,{source:'submit'});
@@ -358,7 +358,7 @@ if (errorMsg != null) {
       <tr>
         <td <%=LABEL_ARGS%>><LABEL FOR="<%=EMAIL%>"><%=EMAIL_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
-          <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
+          <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" onKeyPress="return submitOnEnter(event)" alt="<%=EMAIL%>"
           class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
         </td>
       </tr>
@@ -535,7 +535,7 @@ then enter the numbers you hear from the audio
           <%=answer_label%>: <i class="warningMsgColor">*</i>
       </td>
       <td class="newConceptTA6<%=css%>">
-          <input type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"/>&nbsp;
+          <input type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"   onKeyPress="return submitOnEnter(event)" />&nbsp;
           &nbsp;<h:commandLink value="Prefer an alternative form of CAPTCHA?" action="#{userSessionBean.switchCaptchaMode}" />
       </td>
       </tr>       
