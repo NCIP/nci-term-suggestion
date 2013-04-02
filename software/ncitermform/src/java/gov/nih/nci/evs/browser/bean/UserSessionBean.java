@@ -204,6 +204,15 @@ public class UserSessionBean {
 			return "retry";
 		}
 
+		String term = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionRequest.TERM));
+		if (isNull(term))
+		{
+			msg = "Please specify a term.";
+			request.getSession().setAttribute("errorMsg", msg);
+			request.getSession().setAttribute("retry", "true");
+			return "retry";
+		}
+
         String captcha_option = HTTPUtils.cleanXSS((String) request.getParameter("captcha_option"));
         if (isNull(captcha_option)) {
 			captcha_option = "default";
@@ -372,6 +381,14 @@ public class UserSessionBean {
 			return "retry";
 		}
 
+		String term = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionRequest.TERM));
+		if (isNull(term))
+		{
+			msg = "Please specify a term.";
+			request.getSession().setAttribute("errorMsg", msg);
+			request.getSession().setAttribute("retry", "true");
+			return "retry";
+		}
 
         String answer = HTTPUtils.cleanXSS((String) request.getParameter("answer"));
 
