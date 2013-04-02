@@ -69,15 +69,16 @@
 	    function checkBlankOnEnter(event) {
 			if (event.which){
 				if(event.which == 13) {
-					check_blank();
+					return check_blank();
 				}
 			} else {
 				if(window.event.keyCode==13)
 				{
-					check_blank();
+					return check_blank();
 				}
 			}
-	    }	  	    
+	    }	  	
+	    
 	    
     </script>
     
@@ -166,21 +167,6 @@
   
 
   // Attribute(s):
-  /*
-  String email = HTTPUtils.getJspSessionAttributeString(request, EMAIL);
-  String other = HTTPUtils.getJspSessionAttributeString(request, OTHER);
-  String vocabulary = HTTPUtils.getJspSessionAttributeString(request, VOCABULARY);
-  String term = HTTPUtils.getJspSessionAttributeString(request, TERM);
-  String synonyms = HTTPUtils.getJspSessionAttributeString(request, SYNONYMS);
-  String nearest_code = HTTPUtils.getJspSessionAttributeString(request, NEAREST_CODE);
-  String definition = HTTPUtils.getJspSessionAttributeString(request, DEFINITION);
-  String cadsr_source = HTTPUtils.getJspSessionAttributeString(request, CADSR_SOURCE);
-  String cadsr_type = HTTPUtils.getJspSessionAttributeString(request, CADSR_TYPE);
-  String reason = HTTPUtils.getJspSessionAttributeString(request, REASON);
-  String project = HTTPUtils.getJspSessionAttributeString(request, PROJECT);
-  String warnings = HTTPUtils.getJspAttributeString(request, WARNINGS);
-  */
-  
   String email = (String) request.getSession().getAttribute(EMAIL);
   String other = (String) request.getSession().getAttribute(OTHER);
   String vocabulary = (String) request.getSession().getAttribute(VOCABULARY);
@@ -255,10 +241,8 @@ if (errorMsg != null) {
 }
 %>
 
+<h:form id="suggestion" onkeypress="return handleSubmit(event, 'suggestion:submit')">
 
-  <h:form id="suggestion" onkeypress="return handleSubmit(event, 'suggestion:submit')">
-   
-  
     <table class="newConceptDT">
     
       <!-- =================================================================== -->
@@ -392,8 +376,8 @@ if (errorMsg != null) {
       <tr>
         <td <%=LABEL_ARGS%>><LABEL FOR="<%=EMAIL%>"><%=EMAIL_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2">
-          <input type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" onKeyPress="return submitenter(this,event)" alt="<%=EMAIL%>"
-          class="newConceptTF<%=css%>" <%=INPUT_ARGS%>>
+          <INPUT type="text" id="<%=EMAIL%>" name="<%=EMAIL%>" value="<%=email%>" alt="<%=EMAIL%>"
+          class="newConceptTF<%=css%>" <%=INPUT_ARGS%> />
         </td>
       </tr>
       <tr>
@@ -553,7 +537,7 @@ if (captcha_option.compareTo("default") == 0) {
           <%=answer_label%>: <i class="warningMsgColor">*</i>
       </td>
       <td class="newConceptTA6<%=css%>">
-          <input type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"/>&nbsp;
+          <INPUT type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"/>&nbsp;
           &nbsp;<h:commandLink value="Prefer an alternative form of CAPTCHA?" action="#{userSessionBean.switchCaptchaMode}" />
       </td>
       </tr>      
@@ -569,7 +553,7 @@ then enter the numbers you hear from the audio
           <%=answer_label%>: <i class="warningMsgColor">*</i>
       </td>
       <td class="newConceptTA6<%=css%>">
-          <input type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"   onKeyPress="return submitOnEnter(event)" />&nbsp;
+          <INPUT type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>" />&nbsp;
           &nbsp;<h:commandLink value="Prefer an alternative form of CAPTCHA?" action="#{userSessionBean.switchCaptchaMode}" />
       </td>
       </tr>       
@@ -622,9 +606,9 @@ which can also respond to any questions.
 }
 %>
    <input type="hidden" id="cdisc" name="cdisc" value="false" /> 
-   <input type="hidden" name="captcha_option" id="captcha_option" value="<%=alt_captcha_option%>">
-   <input type="hidden" name="newtermform" id="newtermform" value="newtermform">
-   <input type="hidden" name="version" id="version" value="<%=version%>">
+   <input type="hidden" name="captcha_option" id="captcha_option" value="<%=alt_captcha_option%>" />
+   <input type="hidden" name="newtermform" id="newtermform" value="newtermform" />
+   <input type="hidden" name="version" id="version" value="<%=version%>" />
    
   </h:form>
 

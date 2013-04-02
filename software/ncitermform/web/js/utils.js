@@ -43,7 +43,6 @@ function closeWindow() {
       if (email == "")
       {
           alert("Please provide an email address.");
-          //if(navigator.appName == "Microsoft Internet Explorer")
           {
               document.getElementById("email").focus();
           } 
@@ -54,7 +53,6 @@ function closeWindow() {
       if (term == "")
       {
           alert("Please enter a term.");
-          //if(navigator.appName == "Microsoft Internet Explorer")
           {
               document.getElementById("term").focus();
           }        
