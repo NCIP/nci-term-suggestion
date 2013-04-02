@@ -193,8 +193,16 @@ public class UserSessionBean {
 		saveSessionVariables(request);
 
         String answer = HTTPUtils.cleanXSS((String) request.getParameter("answer"));
-
         String msg = "Your message was successfully sent.";
+
+		String email = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionRequest.EMAIL));
+		if (isNull(email))
+		{
+			msg = "Please provide an email address.";
+			request.getSession().setAttribute("errorMsg", msg);
+			request.getSession().setAttribute("retry", "true");
+			return "retry";
+		}
 
         String captcha_option = HTTPUtils.cleanXSS((String) request.getParameter("captcha_option"));
         if (isNull(captcha_option)) {
@@ -231,7 +239,6 @@ public class UserSessionBean {
 		}
 
 
-		String email = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionRequest.EMAIL));
 		boolean emailAddressValid = MailUtils.isValidEmailAddress(email);
 		if (!emailAddressValid) {
 			msg = INVALID_EMAIL_ADDRESS;
@@ -354,12 +361,20 @@ public class UserSessionBean {
 		HttpServletRequest request = HTTPUtils.getRequest();
 		saveCDISCSessionVariables(request);
 		request.getSession().setAttribute("version", "CDISC");
+		String msg = "Your message was successfully sent.";
 
-
+		String email = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionRequest.EMAIL));
+		if (isNull(email))
+		{
+			msg = "Please provide an email address.";
+			request.getSession().setAttribute("errorMsg", msg);
+			request.getSession().setAttribute("retry", "true");
+			return "retry";
+		}
 
 
         String answer = HTTPUtils.cleanXSS((String) request.getParameter("answer"));
-        String msg = "Your message was successfully sent.";
+
         String captcha_option = HTTPUtils.cleanXSS((String) request.getParameter("captcha_option"));
         if (isNull(captcha_option)) {
 			captcha_option = "default";
@@ -395,7 +410,7 @@ public class UserSessionBean {
 		}
 
 
-		String email = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionCDISCRequest.EMAIL));
+		//String email = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionCDISCRequest.EMAIL));
 		boolean emailAddressValid = MailUtils.isValidEmailAddress(email);
 		if (!emailAddressValid) {
 		    msg = INVALID_EMAIL_ADDRESS;
