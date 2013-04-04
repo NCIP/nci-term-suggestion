@@ -78,7 +78,9 @@ function closeWindow() {
    </div><br/>
 <%
   }
- 
+
+String version = BaseRequest.getVersion(request);
+  
   
 request.getSession().removeAttribute("retry");
 request.getSession().removeAttribute(OTHER);
@@ -112,10 +114,9 @@ Do you want to suggest a new term or suggest a modification to one:
 -->
 
 <p>
-You may click <a href="javascript:go('<%=BaseRequest.getIndexPage(request)%>')">here</a> to suggest a new term or suggest a modification to one, 
+You may click <a href="<%= request.getContextPath() %>/redirect?version=<%=version%>">here</a> to suggest a new term or suggest a modification to one, 
 or close the browser window to exit this application.
 <p/>
-
 
 
 
