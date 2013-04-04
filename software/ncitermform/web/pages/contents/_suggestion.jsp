@@ -241,8 +241,7 @@ if (errorMsg != null) {
 }
 %>
 
-<h:form id="suggestion" onkeypress="return handleSubmit(event, 'suggestion:submit')">
-
+<h:form id="suggestion" >
     <table class="newConceptDT">
     
       <!-- =================================================================== -->
@@ -528,8 +527,8 @@ if (captcha_option.compareTo("default") != 0) {
 if (captcha_option.compareTo("default") == 0) {
 %>
       <tr>  
-      <td <%=LABEL_ARGS%>></td>
-      <td class="newConceptTA6<%=css%>">
+      <td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>">Security code:</td>
+      <td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>">
              <img src="<c:url value="/nci.simpleCaptcha.png"  />" alt="simpleCaptcha.png">
        &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.regenerateCaptchaImage}" />
      </td>
