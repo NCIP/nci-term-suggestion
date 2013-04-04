@@ -343,7 +343,10 @@ request.getSession().removeAttribute("retry_cdisc");
       <tr><td><br/></td></tr>
       <tr>
         <td class="newConceptSubheader">Term Information:</td>
-        <td>Fill in the following fields as appropriate:</td>
+        <td>Fill in the following fields as appropriate.
+For multiple terms, please consider emailing an Excel, delimited text, or similar file to <a href="mailto:ncithesaurus@mail.nih.gov">ncithesaurus@mail.nih.gov</a>,
+which can also respond to any questions.        
+        </td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><LABEL FOR="url"><%=VOCABULARY_LABEL%></LABEL>:</td>
@@ -523,20 +526,6 @@ request.getSession().removeAttribute("retry_cdisc");
       %>      
       
       </table>      
-      
-<%  
-
-if (message == null || message.compareTo("null") == 0) {
-%>
-      <p class="newConceptNotes">
-     
-For multiple terms, please consider emailing an Excel, delimited text, or similar file to <a href="mailto:ncithesaurus@mail.nih.gov">ncithesaurus@mail.nih.gov</a>,
-which can also respond to any questions.
-     
-      </p>
-<%
-}
-%>
 
       <input type="hidden" id="cdisc" name="cdisc" value="true" />
       <input type="hidden" name="captcha_option" id="captcha_option" value="<%=alt_captcha_option%>">
