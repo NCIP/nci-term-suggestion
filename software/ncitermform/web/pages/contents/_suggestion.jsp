@@ -398,8 +398,9 @@ if (errorMsg != null) {
       <tr><td><br/></td></tr>
       <tr>
         <td class="newConceptSubheader">Term Information:</td>
-        <td>Fill in the following fields as appropriate:
-        
+        <td>Fill in the following fields as appropriate. 
+        For multiple terms, please consider emailing an Excel, delimited text, or similar file to <a href="mailto:ncithesaurus@mail.nih.gov">ncithesaurus@mail.nih.gov</a>,
+which can also respond to any questions.
         </td>
       </tr>
       <tr>
@@ -591,19 +592,6 @@ then enter the numbers you hear from the audio
       
       </table>
       
-<%  
-
-if (form_completed) {
-%>
-      <p class="newConceptNotes">
-     
-For multiple terms, please consider emailing an Excel, delimited text, or similar file to <a href="mailto:ncithesaurus@mail.nih.gov">ncithesaurus@mail.nih.gov</a>,
-which can also respond to any questions.
-     
-      </p>
-<%
-}
-%>
    <input type="hidden" id="cdisc" name="cdisc" value="false" /> 
    <input type="hidden" name="captcha_option" id="captcha_option" value="<%=alt_captcha_option%>" />
    <input type="hidden" name="newtermform" id="newtermform" value="newtermform" />
