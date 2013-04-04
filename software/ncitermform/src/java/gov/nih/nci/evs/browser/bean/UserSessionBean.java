@@ -146,6 +146,8 @@ public class UserSessionBean {
     }
 
 
+
+
     public void saveSessionVariables(HttpServletRequest request) {
         String email = null;
         String term = null;

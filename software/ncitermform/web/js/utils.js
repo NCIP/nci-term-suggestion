@@ -131,10 +131,22 @@ function closeWindow() {
    {
        window.location.reload();
    }
+
+function confirmClear() {
+	var agree=confirm("Are you sure you want to clear this form?");
+	if (agree)
+	     return true;
+	else
+	     return false;
+	}
+}
+
    
 function handleSubmit(event, submitId) {
 
   var keycode;
+  //var keyCode = (window.event) ? event.which : event.keyCode;
+
   if (window.event) keycode = window.event.keyCode;
   else if (event) keycode = event.which;
 

@@ -398,7 +398,9 @@ if (errorMsg != null) {
       <tr><td><br/></td></tr>
       <tr>
         <td class="newConceptSubheader">Term Information:</td>
-        <td>Fill in the following fields as appropriate:</td>
+        <td>Fill in the following fields as appropriate:
+        
+        </td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><LABEL FOR="url"><%=VOCABULARY_LABEL%></LABEL>:</td>
@@ -525,7 +527,7 @@ if (captcha_option.compareTo("default") != 0) {
 if (captcha_option.compareTo("default") == 0) {
 %>
       <tr>  
-      <td></td>
+      <td <%=LABEL_ARGS%>></td>
       <td class="newConceptTA6<%=css%>">
              <img src="<c:url value="/nci.simpleCaptcha.png"  />" alt="simpleCaptcha.png">
        &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.regenerateCaptchaImage}" />
@@ -533,10 +535,10 @@ if (captcha_option.compareTo("default") == 0) {
      </tr> 
      
       <tr>
-      <td class="newConceptTA6<%=css%>"> 
+      <td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>"> 
           <%=answer_label%>: <i class="warningMsgColor">*</i>
       </td>
-      <td class="newConceptTA6<%=css%>">
+      <td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>">
           <INPUT type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>"/>&nbsp;
           &nbsp;<h:commandLink value="Prefer an alternative form of CAPTCHA?" action="#{userSessionBean.switchCaptchaMode}" />
       </td>
@@ -546,13 +548,13 @@ if (captcha_option.compareTo("default") == 0) {
 } else {
 %>
      <tr>
-<td class="newConceptTA6<%=css%>">
+<td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>">
 Click <a href="<%=request.getContextPath()%>/<%=audio_captcha_str%> ">here</a> to listen to the audio, 
 then enter the numbers you hear from the audio
 
           <%=answer_label%>: <i class="warningMsgColor">*</i>
       </td>
-      <td class="newConceptTA6<%=css%>">
+      <td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>">
           <INPUT type="text" id="answer" name="answer" value="<%=HTTPUtils.cleanXSS(answer)%>" />&nbsp;
           &nbsp;<h:commandLink value="Prefer an alternative form of CAPTCHA?" action="#{userSessionBean.switchCaptchaMode}" />
       </td>
@@ -563,16 +565,13 @@ then enter the numbers you hear from the audio
 %>
       
       <tr>
-      <td class="newConceptNotes"><i class="warningMsgColor">* Required</i></td>
+      <td <%=LABEL_ARGS%> class="newConceptNotes"><i class="warningMsgColor">* Required</i></td>
       <td align="right">
-           <h:commandButton
-             id="clear"
-             value="clear"
-             action="#{userSessionBean.clearSuggestion}"
-             image="/images/clear.gif"
-             alt="clear">
-           </h:commandButton>      
-      
+
+     <a href="<%= request.getContextPath() %>/redirect?version=<%=version%>" tabindex="15"
+	onclick="return confirm('Are you sure you want clear this page?')">
+	<img src="<%=imagesPath%>/clear.gif" border="0"></a>
+
            <img src="<%=imagesPath%>/spacer.gif" width="1" />
  
            <h:commandButton

@@ -116,6 +116,7 @@ public class BaseRequest {
 		if (parameter_version == null || parameter_version.compareToIgnoreCase("null") == 0) {
 			parameter_version = "Default";
 		}
+
 		/*
         Object parameter_version_obj = HTTPUtils.cleanXSS((String) request.getParameter(VERSION));
         if (parameter_version_obj == null) {
@@ -130,7 +131,6 @@ public class BaseRequest {
             curr_version = parameter_version;
 		    clearAllAttributes(request);
         }
-
         request.getSession().setAttribute(VERSION, curr_version);
         return curr_version;
     }
