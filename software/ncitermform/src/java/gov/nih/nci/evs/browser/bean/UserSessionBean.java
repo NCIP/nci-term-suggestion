@@ -209,7 +209,7 @@ public class UserSessionBean {
 		String term = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionRequest.TERM));
 		if (isNull(term))
 		{
-			msg = "Please specify a term.";
+			msg = "Please enter term information below.";
 			request.getSession().setAttribute("errorMsg", msg);
 			request.getSession().setAttribute("retry", "true");
 			return "retry";
@@ -386,7 +386,7 @@ public class UserSessionBean {
 		String term = HTTPUtils.cleanXSS((String) request.getParameter(SuggestionRequest.TERM));
 		if (isNull(term))
 		{
-			msg = "Please specify a term.";
+			msg = "Please enter term information below.";
 			request.getSession().setAttribute("errorMsg", msg);
 			request.getSession().setAttribute("retry", "true");
 			return "retry";
