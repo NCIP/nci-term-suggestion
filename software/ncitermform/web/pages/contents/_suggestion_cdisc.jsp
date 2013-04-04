@@ -451,8 +451,9 @@ which can also respond to any questions.
  
  if (captcha_option.compareTo("default") == 0) {
  %>
-       <tr>  
-      <td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>">Security code:</td>
+      <tr><td class="newConceptSubheader" colspan="2">Security code:</td></tr>
+      <tr>  
+      <td></td>
       <td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>">
               <img src="<c:url value="/nci.simpleCaptcha.png"  />" alt="simpleCaptcha.png">
         &nbsp;<h:commandLink value="Unable to read this image?" action="#{userSessionBean.regenerateCaptchaImage}" />
