@@ -132,7 +132,7 @@ public class UserSessionBean {
         String answer = HTTPUtils.cleanXSS((String) request.getParameter("answer"));
         if (answer == null || answer.length() == 0) {
             throw new NoReloadException(
-                "Please enter the characters appearing in the image. ");
+                "Please enter the security code appearing in the image. ");
         }
 
         request.getSession().removeAttribute("reload");
@@ -230,7 +230,7 @@ public class UserSessionBean {
 			if (captcha_option.compareTo("audio") == 0) {
 				msg = "Please enter the digits you heard from the audio.";
 			} else {
-				msg = "Please enter the characters appearing in the image.";
+				msg = "Please enter the security code appearing in the image.";
 			}
 			request.getSession().setAttribute("errorMsg", msg);
 			request.getSession().setAttribute("retry", "true");
@@ -409,7 +409,7 @@ public class UserSessionBean {
 			if (captcha_option.compareTo("audio") == 0) {
 				msg = "Please enter the digits you heard from the audio.";
 			} else {
-				msg = "Please enter the characters appearing in the image.";
+				msg = "Please enter the security code appearing in the image.";
 			}
 			request.getSession().setAttribute("errorMsg", msg);
 			request.getSession().setAttribute("retry", "true");

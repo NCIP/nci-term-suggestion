@@ -141,18 +141,18 @@ function confirmClear() {
 	}
 }
 
+
    
+    
 function handleSubmit(event, submitId) {
-
   var keycode;
-  //var keyCode = (window.event) ? event.which : event.keyCode;
-
   if (window.event) keycode = window.event.keyCode;
   else if (event) keycode = event.which;
 
   if (keycode == 13 &&
       event.target.nodeName == 'INPUT' &&
-      event.target.getAttribute('type') == 'text') { 
+      event.target.getAttribute('type') == 'text'
+      ) { 
 	document.getElementById(submitId).click();
 	return false;
   }
