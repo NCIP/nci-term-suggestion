@@ -342,8 +342,8 @@ request.getSession().removeAttribute("retry_cdisc");
       <tr>
         <td class="newConceptSubheader">Term Information:</td>
         <td>Fill in the following fields as appropriate.
-For multiple terms, please consider emailing an Excel, delimited text, or similar file to <a href="mailto:ncithesaurus@mail.nih.gov">ncithesaurus@mail.nih.gov</a>,
-which can also respond to any questions.        
+For multiple term submissions, please consider emailing an Excel, delimited text, or similar file to NciEvsCdiscHelp@mail.nih.gov<mailto:NciEvsCdiscHelp@mail.nih.gov>. Please include in your email the Request Type, Code List, and other information. In addition, 
+please submit a CDISC New Term Request form indicating "File emailed separately" in Additional Information.
         </td>
       </tr>
       <tr>
