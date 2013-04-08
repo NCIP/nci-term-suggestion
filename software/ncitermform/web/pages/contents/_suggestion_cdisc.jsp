@@ -21,6 +21,18 @@
 	<link href="<%= request.getContextPath() %>/css/sc.css" type="text/css" rel="stylesheet" />    
 
     <script>
+    
+function displayVocabLinkInNewWindow(id) {
+  var element = document.getElementById(id);
+  var url = element.value;
+  if (url != "")
+        element.onclick=window.open(url);
+  else
+	alert("This vocabulary does not have\nan associated home page.");
+}    
+
+
+    
 	    function getContextPath() {
 		return "<%=request.getContextPath()%>";
 	    }
