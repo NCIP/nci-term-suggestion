@@ -1,10 +1,3 @@
-<%--L
-  Copyright Northrop Grumman Information Technology.
-
-  Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/nci-term-suggestion/LICENSE.txt for details.
-L--%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
@@ -470,7 +463,7 @@ please submit a CDISC New Term Request form indicating "File emailed separately"
  
  if (captcha_option.compareTo("default") == 0) {
  %>
-      <tr><td class="newConceptSubheader" colspan="2">Security code:</td></tr>
+      <tr><td class="newConceptSubheader" colspan="2">Security Code:</td></tr>
       <tr>  
       <td></td>
       <td <%=LABEL_ARGS%> class="newConceptTA6<%=css%>">
