@@ -25,7 +25,7 @@ Getting Started
   - Make sure you fill in the earliest version that you know has the issue.
 
 .. _`GitHub Account`: https://github.com/signup/free
-.. _`tracker`: https://gforge.nci.nih.gov/tracker/?group_id=600
+.. _`tracker`: https://gforge.nci.nih.gov/tracker/?group_id=590
 .. _`here`: http://gforge.nci.nih.gov/account/register.php
 
 --------------
@@ -77,7 +77,7 @@ Submitting Changes
   - Include a link to the pull request in the ticket
 
 .. _`BSD 3-Clause License`: http://opensource.org/licenses/BSD-3-Clause
-.. _`tracker`: https://gforge.nci.nih.gov/tracker/?group_id=600
+.. _`tracker`: https://gforge.nci.nih.gov/tracker/?group_id=590
 
 --------------------
 Additional Resources
