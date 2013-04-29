@@ -17,8 +17,8 @@ You will find more details NCI Term Suggestion Browser in the following links:
  * [Documentation] (https://wiki.nci.nih.gov/x/jmlyAQ)
  * [Installation Instructions] (https://wiki.nci.nih.gov/x/V4DQAw)
  
-An NCI hosted instance of nci-term-suggestion is publicly available at:
+An NCI hosted instance of  NCI Term Suggestion is publicly available at:
 
 [Production Instance] (http://ncitermform.nci.nih.gov)
  
-Please join us in further developing and improving nci-term-suggestion.
+Please join us in further developing and improving  NCI Term Suggestion.
