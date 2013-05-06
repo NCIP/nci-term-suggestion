@@ -11,7 +11,7 @@ Please see the NOTICE and LICENSE files for details.
 
 You will find more details NCI Term Suggestion Browser in the following links:
 
- * [Home Page] (https://wiki.nci.nih.gov/x/jmlyAQ)
+ * [Community Wiki] (https://wiki.nci.nih.gov/x/jmlyAQ)
  * [Code Repository] (http://github.com/NCIP/nci-term-suggestion)
  * [Issue Tracker] (https://gforge.nci.nih.gov/tracker/?group_id=590)
  * [Documentation] (https://wiki.nci.nih.gov/x/jmlyAQ)
