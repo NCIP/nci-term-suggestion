@@ -1,10 +1,3 @@
-<%--L
-  Copyright Northrop Grumman Information Technology.
-
-  Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/nci-term-suggestion/LICENSE.txt for details.
-L--%>
-
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -190,7 +183,7 @@ if (errorMsg != null) {
     To use this web form, please fill in every box below and then click on 'Submit'. 
   </p>
   
-  <h:form>
+  <h:form styleClass="search-form" acceptcharset="UTF-8">
   
 <p>
 <table>

@@ -1,10 +1,3 @@
-<%--L
-  Copyright Northrop Grumman Information Technology.
-
-  Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/nci-term-suggestion/LICENSE.txt for details.
-L--%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
@@ -21,7 +14,7 @@ L--%>
 
 <html>
 <head>
-    <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>NCI Term Form</title>
 
 	<script type="text/javascript" src="<%=FormUtils.getJSPath(request)%>/utils.js"></script>
@@ -39,6 +32,9 @@ function displayVocabLinkInNewWindow(id) {
 }    
 
 
+		function openNewWindow(url) {
+		    window.open(url, '_blank', 'top=100, left=100, height=740, width=780, status=no, menubar=yes, resizable=yes, scrollbars=yes, toolbar=yes, location=no, directories=no');
+		}
     
 	    function getContextPath() {
 		return "<%=request.getContextPath()%>";
@@ -215,7 +211,7 @@ if (errorMsg != null) {
 }
 %>
 
-<h:form id="suggestion" >
+<h:form id="suggestion" styleClass="search-form" acceptcharset="UTF-8">
     <table class="newConceptDT">
       <!-- =================================================================== -->
 <%      
@@ -360,9 +356,18 @@ request.getSession().removeAttribute("retry_cdisc");
       <tr><td><br/></td></tr>
       <tr>
         <td class="newConceptSubheader">Term Information:</td>
-        <td>Fill in the following fields as appropriate.
-For multiple term submissions, please consider emailing an Excel, delimited text, or similar file to NciEvsCdiscHelp@mail.nih.gov<mailto:NciEvsCdiscHelp@mail.nih.gov>. Please include in your email the Request Type, Code List, and other information. In addition, 
-please submit a CDISC New Term Request form indicating "File emailed separately" in Additional Information.
+        <td>
+Fill in the following fields as appropriate. 
+For multiple term submissions, please click on and download the Excel file 
+<a href="<%= request.getContextPath() %>/download?action=download" 
+title="CDISC_Controlled_Terminology_Multiple_Term_Request_Spreadsheet">
+CDISC Controlled Terminology Multiple Term Request Spreadsheet</a>  
+and add on your name and request date to the end of the file name.  
+Email this completed file to 
+<a href="mailto:NciEvsCdiscHelp@mail.nih.gov?Subject=CDISC%20New%20Term%20Request" target="_top">
+NciEvsCdiscHelp@mail.nih.gov</a>.
+In addition, please submit a CDISC New Term Request form indicating 
+"File emailed separately" in Additional Information.
         </td>
       </tr>
       <tr>
@@ -455,7 +460,7 @@ please submit a CDISC New Term Request form indicating "File emailed separately"
       <tr><td><br/></td></tr>
       <tr><td class="newConceptSubheader" colspan="2">Additional Information:</td></tr>
       <tr>
-        <td <%=LABEL_ARGS%>><LABEL FOR="<%=REASON%>"><%=REASON_LABEL%></LABEL>:</td>
+        <td <%=LABEL_ARGS%>><LABEL FOR="<%=REASON%>"><%=REASON_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
         <td colspan="2"><textarea name="<%=REASON%>" class="newConceptTA6<%=css%>"><%=reason%></textarea></td>
       </tr>
 

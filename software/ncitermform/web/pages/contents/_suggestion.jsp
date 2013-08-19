@@ -1,10 +1,3 @@
-<%--L
-  Copyright Northrop Grumman Information Technology.
-
-  Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/nci-term-suggestion/LICENSE.txt for details.
-L--%>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
 <%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
@@ -21,7 +14,7 @@ L--%>
 
 <html>
 <head>
-    <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>NCI Term Form</title>
 
 	<script type="text/javascript" src="<%=FormUtils.getJSPath(request)%>/utils.js"></script>
@@ -264,7 +257,7 @@ if (errorMsg != null) {
 }
 %>
 
-<h:form id="suggestion" >
+<h:form id="suggestion" styleClass="search-form" acceptcharset="UTF-8">
     <table class="newConceptDT">
     
       <!-- =================================================================== -->

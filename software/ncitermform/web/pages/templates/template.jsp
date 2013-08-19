@@ -1,11 +1,4 @@
-<%--L
-  Copyright Northrop Grumman Information Technology.
-
-  Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/nci-term-suggestion/LICENSE.txt for details.
-L--%>
-
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="gov.nih.nci.evs.browser.properties.*" %>
 <%@ page import="gov.nih.nci.evs.browser.webapp.*" %>
 <%@ page import="gov.nih.nci.evs.utils.*" %>
@@ -48,7 +41,7 @@ L--%>
   -->
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title><%=content_title%></title>
     <link rel="stylesheet" type="text/css" href="<%=cssPath%>/styleSheet.css" />
     <link rel="shortcut icon" href="<%=basePath%>/favicon.ico" type="image/x-icon" />
