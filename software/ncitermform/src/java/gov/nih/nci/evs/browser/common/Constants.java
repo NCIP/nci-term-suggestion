@@ -52,7 +52,7 @@ public class Constants {
     public static final String TELEPHONE = "240-276-5541 or Toll-Free: 1-888-478-4423";
     public static final String MAIL_TO = "ncicbiit@mail.nih.gov";
     public static final String NCICB_URL = "http://ncicb.nci.nih.gov/support";
-    public static final String CDISC_MULTIPLE_TERM_REQUEST_TEMPLATE = "CDISC_Controlled_Terminology_Multiple_Term_Request_Spreadsheet_508_Compliant.xls";
+    public static final String CDISC_MULTIPLE_TERM_REQUEST_TEMPLATE = "CDISC_Multiple_Term.xls";
 
     /**
      * Constructor

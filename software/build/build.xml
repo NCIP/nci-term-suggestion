@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<!--L
-  Copyright Northrop Grumman Information Technology.
-
-  Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/nci-term-suggestion/LICENSE.txt for details.
-L-->
-
 <project name="build" default="usage" basedir="." xmlns:bda="antlib:gov.nih.nci.bdalite">
 
     <description>
@@ -35,6 +28,8 @@ L-->
     <property name="project.short.name" value="ncitf" />
     <property name="webapp.war.name" value="${project.name}.war" />
     <property name="webapp.prop.file" value="NCITermFormProperties.xml" />
+    <property name="download.template.file" value="CDISC_Multiple_Term.xls" />
+    
 
     <path id="classpath">
         <fileset dir="../${project.name}/extlib">
@@ -196,6 +191,14 @@ L-->
             </resources>
         </copy>
 
+
+        <bda:CopyFile
+            sourcefile="${bda.conf.dir}/${download.template.file}"
+            targetfile="${bda.dist.dir}/exploded/${project.name}-webapp/deploy/${download.template.file}"
+            
+        />
+        
+        
     </target>
 
     <target name="build:config" description="Generates configuration files for a target environment">
@@ -254,6 +257,11 @@ L-->
             </resources>
         </copy>
 
+        <bda:CopyFile
+            sourcefile="${exploded.dir}/deploy/${download.template.file}"
+            targetfile="${exploded.dir}/install/${download.template.file}"
+        />
+        
     </target>
 
     <target name="deploy:local:upgrade" depends="build:all,build:config" description="Build and upgrade application">
@@ -274,6 +282,13 @@ L-->
             value="${application.data.path}/${ncitermform.conf.path}/${project.short.name}-log4j.xml"
         />
 
+
+        <bda:CopyFile
+            sourcefile="${exploded.dir}/install/${download.template.file}"
+            targetfile="${application.data.path}/conf/${download.template.file}"
+        />
+        
+        
         <copy todir="${application.data.path}/conf" overwrite="true"
               flatten="true" includeEmptyDirs="no" filtering="false">
             <resources>
@@ -283,6 +298,7 @@ L-->
             </resources>
         </copy>
 
+       
         <copy
             file="${bda.dist.dir}/exploded/${project.name}-webapp/${webapp.war.name}"
             tofile="${jboss.server.path}/server/default/deploy/${webapp.war.name}"
