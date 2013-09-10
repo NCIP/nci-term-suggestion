@@ -28,7 +28,7 @@
     <property name="project.short.name" value="ncitf" />
     <property name="webapp.war.name" value="${project.name}.war" />
     <property name="webapp.prop.file" value="NCITermFormProperties.xml" />
-    <property name="download.template.file" value="CDISC_Multiple_Term.xls" />
+    <property name="download.template.file" value="CDISC_Multi_Term_Request.xls" />
     
 
     <path id="classpath">
