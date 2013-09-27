@@ -467,6 +467,10 @@ In addition, please submit a CDISC New Term Request form indicating
       <!-- =================================================================== -->
  
  <%
+ 
+ System.out.println(REASON_LABEL);
+ 
+ 
  String answer = "";
  String answer_label = "Enter the characters appearing in the above image";
  if (captcha_option.compareTo("default") != 0) {

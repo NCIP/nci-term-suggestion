@@ -79,8 +79,10 @@ public class SuggestionCDISCRequest extends FormRequest {
     public static final String CDISC_REQUEST_TYPE_LABEL = "Request Type";
     public static final String CDISC_CODES_LABEL = "CDISC Code List";
     public static final String TERM_LABEL = "Enter Term or Codelist Request Information";
-    public static final String REASON_LABEL = "Reason for suggestion plus any" +
-        " other additional information";
+    //public static final String REASON_LABEL = "Reason for suggestion plus any" +
+    //    " other additional information";
+
+    public static final String REASON_LABEL = "Reason for suggestion plus draft definition and examples of how this new term will be used (if emailing the spreadsheet above please enter \"File emailed separately\")";
     public static final String ANSWER_LABEL = "Answer";
 
     // Parameter list(s):
