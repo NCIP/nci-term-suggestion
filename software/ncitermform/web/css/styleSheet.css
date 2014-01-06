@@ -337,6 +337,12 @@ a.hideLink
  padding-top: 7px;
 }
 
+#quicklinksholder_960
+{
+ margin-left: 700px;
+ padding-top: 7px;
+}
+
 #quicklinks, #quicklinks ul
 {
  padding: 0;
@@ -570,6 +576,8 @@ a.hideLink
   height: 16px;
   font-size: 10px;
 }
+
+<!--
 .newConceptCB {
   width: 519px;
   height: 22px;
@@ -580,6 +588,19 @@ a.hideLink
   height: 24px;
   font-size: 10px;
 }
+-->
+
+.newConceptCB {
+  width: 519px;
+  height: 22px;
+  font-size: 10px;
+}
+.newConceptCB_IE {
+  width: 521px;
+  height: 24px;
+  font-size: 10px;
+}
+
 .newConceptCB2 {
   width: 579px;
   height: 22px;
@@ -645,4 +666,91 @@ a.hideLink
   width: 575px;
   height: 170px;
   font-size: 11px;
+}
+
+
+/************************** increase window width ***********************************/
+
+.center-page_960
+{
+ width: 946px;
+ margin-top: 0;
+ margin-right: auto;
+ margin-bottom: 0;
+ margin-left: auto;
+ padding: 0;
+ text-align: left;
+}
+
+
+.termstable_960
+{
+ font-size: 11px;
+ width: 950px;
+}
+
+
+.search-globalnav_960
+{
+ width: 357px;
+ height: 82px;
+ background-color: #dde3ec;
+ margin-left: 583px;
+ border-color: red;
+ border-width: 0px;
+ border-style: solid;
+}
+
+
+#main-area_960
+{
+ border-left-color: #adadc2;
+ border-left-width: 1px;
+ border-left-style: solid;
+ border-right-color: #adadc2;
+ border-right-width: 1px;
+ border-right-style: solid;
+ width: 943px;
+}
+
+
+.bannerarea_960_0
+{
+ width: 943px;
+ height: 117px;
+ background-color: #dde3ec;
+}
+
+
+.bannerarea_960
+{
+ width: 943px;
+ height: 97px;
+ background-color: #dde3ec;
+}
+
+
+
+.datatable_960
+{
+ table-layout: fixed;
+ width: 900px;
+ word-wrap: break-word;
+ font-size: 11px;
+}
+
+.datatableValueSet_960
+{
+ table-layout: fixed;
+ width: 880px;
+ word-wrap: break-word;
+ font-size: 11px;
+}
+
+.bluebar_960
+{
+ width: 943px;
+ background-image: url(../images/quicklinks.gif);
+ background-repeat: repeat-x;
+ height: 32px;
 }

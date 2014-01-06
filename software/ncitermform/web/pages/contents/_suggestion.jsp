@@ -449,10 +449,10 @@ which can also respond to any questions.
                 }
             %>
           </select>
-        </td>
-        <td align="right">
+       </td>
+       <td align="bottom">
           <img src="<%=imagesPath%>/browse.gif" onclick="javascript:displayVocabLinkInNewWindow('url')" alt="browse" />
-        </td>
+      </td>
       </tr>
       <tr>
         <td <%=LABEL_ARGS%>><LABEL FOR="<%=TERM%>"><%=TERM_LABEL%></LABEL>: <i class="warningMsgColor">*</i></td>
@@ -583,6 +583,7 @@ then enter the numbers you hear from the audio
       
       <tr>
       <td <%=LABEL_ARGS%> class="newConceptNotes"><i class="warningMsgColor">* Required</i></td>
+      
       <td align="right">
 
      <a href="<%= request.getContextPath() %>/redirect?version=<%=version%>" tabindex="15"

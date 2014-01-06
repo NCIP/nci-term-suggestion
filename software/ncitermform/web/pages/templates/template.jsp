@@ -70,16 +70,16 @@
     <!-- End Skip Top Navigation -->      
   
     <jsp:include page="/pages/templates/header.jsp" />
-    <div class="center-page">
+    <div class="center-page_960">
       <jsp:include page="/pages/templates/sub_header.jsp" />
       <div class="mainbox-top"><img src="<%=imagesPath%>/mainbox-top.gif"
-        width="745" height="5" alt="Mainbox Top" /></div>
-      <div id="main-area">
-        <div class="bannerarea">
+        width="941" height="5" alt="Mainbox Top" /></div>
+      <div id="main-area_960">
+        <div class="bannerarea_960">
           <a href="<%=logoUrl%>"><img src="<%=imagesPath%>/banner.gif"
             alt="Suggest Term Logo" border="0"/></a>
         </div>
-        <div class="bluebar">
+        <div class="bluebar_960">
           <% if (content_quickLink.length() > 0) { %>
             <jsp:include page="<%=content_quickLink%>" />
           <% } %>
@@ -94,7 +94,7 @@
         </div>
       </div>
       <div class="mainbox-bottom"><img src="<%=imagesPath%>/mainbox-bottom.gif"
-        width="745" height="5" alt="Mainbox Bottom" /></div>
+        width="941" height="5" alt="Mainbox Bottom" /></div>
     </div>
   </body>
   <br>

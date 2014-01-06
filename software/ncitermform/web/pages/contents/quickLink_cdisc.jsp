@@ -7,7 +7,7 @@
   ArrayList list = AppProperties.getInstance().getCDISCQuickLinks();
 %>
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/dropdown.js"></script>
-<div id="quicklinksholder">
+<div id="quicklinksholder_960">
   <ul id="quicklinks"
     onmouseover="document.quicklinksimg.src='<%=imagesPath%>/quicklinks-active.gif';"
     onmouseout="document.quicklinksimg.src='<%=imagesPath%>/quicklinks-inactive.gif';">
