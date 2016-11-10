@@ -2,6 +2,14 @@
 <%
   String imagesPath = FormUtils.getImagesPath(request);
 %>
+<div style='clear:both;margin-top:-5px;padding:8px;height:32px;color:white;background-color:#C31F40'>
+  <a href="http://www.cancer.gov" target="_blank">
+    <img src="<%=request.getContextPath()%>/images/banner-red.png"
+      width="955" height="39" border="0"
+      alt="National Cancer Institute"/>
+  </a>
+  
+<!--
 <div class="ncibanner">
   <a href="http://www.cancer.gov" target="_blank">
     <img src="<%=imagesPath%>/logotype.gif"
@@ -22,4 +30,6 @@
       width="125" height="39" border="0"
       alt="www.cancer.gov" />
   </a>
+  -->
+  
 </div>
